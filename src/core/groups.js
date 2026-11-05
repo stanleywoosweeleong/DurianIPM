@@ -532,7 +532,7 @@ export const GROUPS = [
       { en: 'Whitewash the trunk (lime + copper) after treatment — it reduces sunscald and Phytophthora, which both attract the beetles.', zh: '处理后涂白树干（石灰+铜剂）——可减少日灼和疫霉，这两者都会吸引小蠹虫。' },
     ],
     chem: [
-      { moa: 'FRAC P07', fit: 'best', why: { en: 'Phosphonic acid (potassium phosphonate) trunk injection, usually 2–3 times a year at the label dose for the tree size — the most important long-term treatment for durian Phytophthora. Too much damages durian — injury reported above about 25 g active ingredient per tree per year.', zh: '亚磷酸（亚磷酸钾）树干注射，通常每年2–3次，按标签对应树体大小的剂量——防治榴莲疫霉最重要的长期措施。过量会伤害榴莲——每株每年超过约25克有效成分即有药害报告。' } },
+      { moa: 'FRAC P07', fit: 'best', why: { en: 'Phosphonic acid (potassium phosphonate) trunk injection, usually 2–3 times a year at the label dose for the tree size — the most important long-term treatment for durian Phytophthora. Mature tree: 2–3 injections of about 16 g active ingredient a year, at leaf flush (ACIAR durian guidance). Higher rates have injured durian — never exceed the label.', zh: '亚磷酸（亚磷酸钾）树干注射，通常每年2–3次，按标签对应树体大小的剂量——防治榴莲疫霉最重要的长期措施。成年树：每年注射2–3次，每次约16克有效成分，在抽梢期进行（ACIAR榴莲建议）。更高剂量曾造成榴莲药害——绝不超过标签用量。' } },
       { moa: 'FRAC M01', fit: 'good', why: { en: 'Copper paste on scraped cankers.', zh: '刮除溃疡后涂抹铜剂膏。' } },
       { moa: 'FRAC 4', fit: 'good', why: { en: 'Metalaxyl paste on scraped cankers where Phytophthora is active.', zh: '疫霉活跃时，刮除溃疡后涂抹精甲霜灵膏。' } },
       { moa: 'IRAC 3A', only: ['permethrin', 'bifenthrin', 'cypermethrin', 'lambda-cyhalothrin'], fit: 'good', why: { en: 'Then the beetles: a bark spray kills them as they bore in — the poison has to stay on the bark. In a trial, permethrin protected trees for at least 4 weeks; bifenthrin only about 10 days, and not reliably. Spray only while fresh sawdust shows the beetles are active.', zh: '再处理甲虫：喷树皮，在它们钻入时杀死——药必须留在树皮上。试验中氯菊酯保护树木至少4周；联苯菊酯只有约10天，且不稳定。只在有新木屑、说明甲虫在活动时才喷。' } },
@@ -543,6 +543,7 @@ export const GROUPS = [
       { moa: 'IRAC 4A', why: { en: 'Systemic insecticides work poorly — the beetles feed on fungus, not on the tree sap.', zh: '内吸性杀虫剂效果差——小蠹虫吃的是真菌，不是树液。' } },
     ],
     refs: [
+      { t: 'Guest et al. 2004 (ACIAR Monograph 114, ch. 8.7) — Integrated management of Phytophthora diseases of durian: recommendations', url: 'https://era.dpi.qld.gov.au/id/eprint/10666/1/Integrated%20management%20of%20phytophthora%20diseases%20of%20durian%20recommendations%20and%20benefit-cost%20analysis.pdf', supports: 'mature trees: 2–3 injections of 16 g a.i. phosphonate a year; plant on mounds; prune branches within 80–100 cm of the ground; clear mulch from the trunk base; disinfect tools', scope: 'durian' },
       { t: 'Reding & Ranger (2018) J. Econ. Entomol. 111(1) — Residue age and attack pressure influence efficacy of insecticide treatments against ambrosia beetles', url: 'https://bioone.org/journals/journal-of-economic-entomology/volume-111/issue-1/tox327/Residue-Age-and-Attack-Pressure-Influence-Efficacy-of-Insecticide-Treatments/10.1093/jee/tox327.full', supports: 'permethrin bark spray reduced attacks for at least 4 weeks; bifenthrin inconsistent, about 10 days', scope: 'other' },
       { t: 'Grosman, Eskalen & Brownie (2019) J. Econ. Entomol. 112(3) — Emamectin benzoate and propiconazole for an invasive shot-hole borer (Euwallacea) in California sycamores', url: 'https://escholarship.org/uc/item/35r4v4w9', supports: 'emamectin trunk injection an acceptable treatment for Euwallacea', scope: 'other' },
       { t: "Durian tree phenology and control of Phytophthora using phosphonate trunk injection (ACIAR Proc./Monograph, Diczbalis et al.)", url: "https://agris.fao.org/search/en/providers/122669/records/674842c57625988a37199539", supports: "Best: phosphonate trunk injection controls durian Phytophthora; 16 g a.i./tree/yr beat metalaxyl or Aliette sprays; 48 g a.i. every 3 months under high pressure; persists 128+ days", scope: "durian" },
@@ -768,8 +769,8 @@ export const GROUPS = [
       { en: 'Apply Trichoderma with compost under the canopy.', zh: '在树冠下施用木霉菌配合堆肥。' },
     ],
     chem: [
-      { moa: 'FRAC P07', fit: 'best', why: { en: 'Phosphonate TRUNK INJECTION (the best rating is for injection, not fosetyl sprays): moves to roots and boosts tree defences; in durian trials it beat metalaxyl and fosetyl sprays. Do not overdose — injury reported above about 25 g active ingredient per tree per year.', zh: '亚磷酸盐树干注射：可传导至根部并增强树体防御；榴莲试验中效果优于精甲霜灵和三乙膦酸铝喷施。切勿过量——每株每年超过约25克有效成分即有药害报告。' } },
-      { moa: 'FRAC 4', fit: 'good', why: { en: 'Metalaxyl-M soil drench for root rot — max 2 per season.', zh: '精甲霜灵灌根防治根腐——每季最多2次。' } },
+      { moa: 'FRAC P07', fit: 'best', why: { en: 'Phosphonate TRUNK INJECTION (the best rating is for injection, not fosetyl sprays): moves to roots and boosts tree defences; in durian trials it beat metalaxyl and fosetyl sprays. Mature tree: 2–3 injections of about 16 g active ingredient a year, at leaf flush (ACIAR durian guidance). Higher rates have injured durian — never exceed the label.', zh: '亚磷酸盐树干注射：可传导至根部并增强树体防御；榴莲试验中效果优于精甲霜灵和三乙膦酸铝喷施。成年树：每年注射2–3次，每次约16克有效成分，在抽梢期进行（ACIAR榴莲建议）。更高剂量曾造成榴莲药害——绝不超过标签用量。' } },
+      { moa: 'FRAC 4', fit: 'good', why: { en: 'Metalaxyl-M soil drench or paint for root rot and cankers. Phytophthora can become resistant — use it sparingly and mix with a protectant such as copper.', zh: '精甲霜灵灌根或涂抹，防治根腐和溃疡。疫霉会产生抗性——少用，并与铜剂等保护性药剂混用。' } },
       { moa: 'FRAC 40', fit: 'good', why: { en: 'Dimethomorph: rotation partner for foliar/fruit phases.', zh: '烯酰吗啉：叶片/果实阶段的轮换药剂。' } },
       { moa: 'FRAC 21', fit: 'good', why: { en: 'Cyazofamid: preventive on fruit and leaves.', zh: '氰霜唑：对果实和叶片有预防作用。' } },
       { moa: 'FRAC M01', fit: 'good', why: { en: 'Copper paste on scraped cankers.', zh: '刮除溃疡后涂抹铜剂膏。' } },
@@ -780,8 +781,10 @@ export const GROUPS = [
       { moa: 'FRAC 3', why: { en: 'Triazoles (hexaconazole etc.) do not work on oomycetes.', zh: '三唑类（己唑醇等）对卵菌无效。' } },
     ],
     refs: [
+      { t: 'Guest et al. 2004 (ACIAR Monograph 114, ch. 8.7) — Integrated management of Phytophthora diseases of durian: recommendations', url: 'https://era.dpi.qld.gov.au/id/eprint/10666/1/Integrated%20management%20of%20phytophthora%20diseases%20of%20durian%20recommendations%20and%20benefit-cost%20analysis.pdf', supports: 'mature trees: 2–3 injections of 16 g a.i. phosphonate a year; plant on mounds; prune branches within 80–100 cm of the ground; clear mulch from the trunk base; disinfect tools', scope: 'durian' },
+      { t: 'Thai MOAC/DOAE pest alert — durian root and foot rot (2023)', url: 'https://www.opsmoac.go.th/pattani-warning-files-452791791945', supports: 'no standing water; Trichoderma under the canopy; clean tools; scrape lesions and paint; phosphonic acid trunk injection; red-brown ooze', scope: 'durian' },
       { t: 'New Disease Reports 41:2 (2020) — Phytopythium vexans causing root rot of durian in Vietnam', url: 'https://www.ndrs.org.uk/article.php?id=41002', supports: 'Phytopythium vexans (syn. Pythium vexans / P. complectens) is a durian root-rot pathogen', scope: 'durian' },
-      { t: "O'Gara et al. 2004 (ACIAR) — P. palmivora is durian's greatest threat; drainage, lower-branch pruning; phosphonate trunk injection works on durian", url: "https://era.daf.qld.gov.au/id/eprint/10667/1/Phytophthora%20diseases%20of%20durian,%20and%20durian-decline%20syndrome%20in%20northern%20Queensland,%20Australia.pdf", supports: "No.1 killer of durian; drainage and pruning lower branches; phosphonate trunk injection (best) and metalaxyl as oomycete systemics; metalaxyl resistance risk (limit applications)", scope: "durian" },
+      { t: "O'Gara et al. 2004 (ACIAR) — P. palmivora is durian's greatest threat; drainage, lower-branch pruning; phosphonate trunk injection works on durian", url: "https://era.dpi.qld.gov.au/id/eprint/10667/1/Phytophthora%20diseases%20of%20durian,%20and%20durian-decline%20syndrome%20in%20northern%20Queensland,%20Australia.pdf", supports: "No.1 killer of durian; drainage and pruning lower branches; phosphonate trunk injection (best) and metalaxyl as oomycete systemics; metalaxyl resistance risk (limit applications)", scope: "durian" },
       { t: "Diczbalis et al. 2004 — phosphonate trunk injection beat metalaxyl or Aliette sprays for durian canker control in Vietnam", url: "https://agris.fao.org/search/en/providers/122669/records/674842c57625988a37199539", supports: "Phosphonate trunk injection is the best chemistry for durian Phytophthora; it moves through the tree to all organs", scope: "durian" },
       { t: "Nor Daniala et al. 2024 (MARDI) — Bacillus and Streptomyces drench/spray reduced P. palmivora canker lesions on durian seedlings", url: "https://journal.unisza.edu.my/agrobiotechnology/index.php/agrobiotechnology/article/download/369/351", supports: "BIO-FUN (Bacillus) as a preventive biocontrol for durian Phytophthora; root-zone drench application", scope: "durian" },
       { t: "William-Woodward & DeMott 2014 — oomycetes are not true fungi, closer to brown algae; many fungicides have no activity on them", url: "https://agris.fao.org/search/en/records/65de30adb766d82b18fc8b8f", supports: "Key biology claim: water moulds are not fungi, so many common fungicides do not work; oomycete-specific chemistry needed", scope: "other" },
@@ -801,7 +804,7 @@ export const GROUPS = [
     damagingStage: { en: 'Spores in wet weather; grows inside wood', zh: '潮湿天气产孢；在木质部内生长' },
     why: { en: 'True fungi that invade wood through wounds. Cutting out infected wood is the main cure; fungicides protect cuts and stop spread.', zh: '通过伤口侵入木质部的真菌。切除感病木质部是主要治疗手段；杀菌剂用于保护切口并阻止扩散。' },
     scout: { en: 'Twigs dying back from the tip, sunken bark with pinpoint black dots (the fungus fruiting), pink crust on branch forks, internal brown streaks. On fruit: rot spreading down from the stalk end, often a few days after harvest.', zh: '枝梢从顶端枯死、树皮凹陷并有针尖大小的黑点（真菌的产孢结构）、枝杈处出现粉红色菌壳、内部有褐色条纹。果实上：从果柄一端向下扩展的腐烂，常在采后几天出现。' },
-    threshold: { en: 'Act at first sign — prune 15–20 cm below visible infection.', zh: '初见症状即处理——在可见病部下方15–20厘米处修剪。' },
+    threshold: { en: 'Act at first sign — prune at least 30 cm below any visible infection.', zh: '初见症状即处理——在可见病部下方至少30厘米处修剪。' },
     nonChem: [
       { en: 'Prune on dry days, back into healthy wood well below the lesion. Burn the prunings — never leave them in the orchard.', zh: '在干燥天修剪，剪到病斑下方远处的健康木质部。剪下的枝条烧掉——绝不留在果园里。' },
       { en: 'Disinfect tools between trees, and before cutting from diseased into healthy wood: 70% alcohol for 30 seconds, or 1 part bleach to 9 parts water for 30 seconds, then rinse and oil (bleach rusts tools). Wiping on a cloth is not disinfecting.', zh: '每棵树之间、以及从病部切到健康部位之前都要消毒工具：70%酒精30秒，或漂白水1份兑水9份浸30秒后冲洗上油（漂白水会锈蚀工具）。用布擦一擦不算消毒。' },
@@ -819,8 +822,8 @@ export const GROUPS = [
       { moa: 'FRAC P07', why: { en: 'Phosphonates target Phytophthora — they do not control cankers caused by true fungi.', zh: '亚磷酸盐针对疫霉——不能防治真菌引起的溃疡。' } },
     ],
     refs: [
-      { t: "Wisconsin PDDC — disinfesting pruning tools: 70% alcohol or 10% bleach for at least 30 seconds; bleach corrodes metal", url: "https://pddc.wisc.edu/?p=19989", supports: "tool disinfection between trees", scope: "general" },
-      { t: "Murdoch University — control of postharvest diseases in durian: fruit that touched soil at harvest had more rot; Lasiodiplodia among the main fruit-rot fungi", url: "https://researchportal.murdoch.edu.au/esploro/outputs/bookChapter/The-control-of-postharvest-diseases-in/991005540508007891", supports: "keep fruit off the soil at harvest", scope: "durian" },
+      { t: "Wisconsin PDDC — disinfesting pruning tools: 70% alcohol or 10% bleach for at least 30 seconds; bleach corrodes metal", url: "https://pddc.wisc.edu/?p=19989", supports: "70% alcohol or 10% bleach for at least 30 seconds; bleach corrodes metal", scope: "general" },
+      { t: "Murdoch University — control of postharvest diseases in durian: fruit that touched soil at harvest had more rot; P. palmivora the main fruit-rot pathogen, Botryodiplodia (Lasiodiplodia) also isolated", url: "https://researchportal.murdoch.edu.au/esploro/outputs/bookChapter/The-control-of-postharvest-diseases-in/991005540508007891", supports: "keep fruit off the soil at harvest", scope: "durian" },
       { t: "Queensland Government — pink disease: durian among hosts; pink crust at branch forks; remove and burn affected branches", url: "https://www.business.qld.gov.au/industries/farms-fishing-forestry/forests-wood/pests-diseases/trees-timber/pink-disease", supports: "Pink disease affects durian; pink crust on branch forks; burn removed wood; fungicide can be effective", scope: "durian" },
       { t: "Pacific Pests, Pathogens & Weeds — cocoa pink disease: prune 30 cm below fungus, remove prunings, copper paste on cuts", url: "https://apps.lucidcentral.org/pppw_v10/text/web_full/entities/cocoa_pink_disease_012.htm", supports: "Prune infected branches well below the lesion; remove prunings; copper paste on cuts and early pink disease", scope: "other" },
       { t: "Kerala Agricultural University — rubber pink disease: hexaconazole/propiconazole in rubber kote 'very effective'; Bordeaux paste; burn dead branches", url: "https://celkau.in/crops/cashcrops/rubber/Pink.php", supports: "Triazoles (hexaconazole, propiconazole) and copper (Bordeaux) for pink disease; cut and burn affected branches", scope: "other" },
@@ -862,6 +865,7 @@ export const GROUPS = [
       { moa: 'FRAC P07', why: { en: 'Phosphonates (fosetyl) target Phytophthora. In the Thai dieback outbreak, fungicides aimed at Phytophthora failed.', zh: '亚磷酸盐（三乙膦酸铝）针对疫霉。在泰国的枝枯爆发中，针对疫霉的杀菌剂都失效了。' } },
     ],
     refs: [
+      { t: 'Guest et al. 2004 (ACIAR) — clear mulch from the trunk base in the wet season', url: 'https://era.dpi.qld.gov.au/id/eprint/10666/1/Integrated%20management%20of%20phytophthora%20diseases%20of%20durian%20recommendations%20and%20benefit-cost%20analysis.pdf', supports: 'keep the trunk collar dry: clear mulch from the base (stated for Phytophthora canker)', scope: 'durian' },
       { t: 'Plants (2023) — Comprehensive investigation of die-back disease caused by Fusarium in durian (Thailand)', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10490359/', supports: 'F. solani and F. incarnatum cause durian dieback; yellow leaves drop in 5–7 days; brown–black wood; ambrosia beetle Euwallacea similis carries F. solani; Phytophthora fungicides failed', scope: 'durian' },
       { t: 'Boontanom & Chantarasiri (2021) New Disease Reports 44:e12026 — Fusarium solani and Lasiodiplodia pseudotheobromae causing durian stem rot in Eastern Thailand', url: 'https://doi.org/10.1002/ndr2.12026', supports: 'Fusarium solani is a durian stem-rot pathogen', scope: 'durian' },
     ],
@@ -888,12 +892,13 @@ export const GROUPS = [
     chem: [
       { moa: 'FRAC M03', fit: 'good', why: { en: 'Mancozeb/propineb: cheap protectant and mixing partner — but a Thai durian study found 6 of 15 anthracnose isolates resistant to mancozeb.', zh: '代森锰锌/丙森锌：便宜的保护剂和混配伙伴——但泰国榴莲研究发现15个炭疽菌株中有6个对代森锰锌有抗性。' } },
       { moa: 'FRAC 3', only: ['difenoconazole', 'prochloraz', 'hexaconazole', 'propiconazole', 'tebuconazole'], fit: 'best', why: { en: 'Difenoconazole or prochloraz first: a Thai durian study found ALL anthracnose isolates sensitive to both. Systemic and curative.', zh: '首选苯醚甲环唑或咪鲜胺：泰国榴莲研究发现所有炭疽菌株都对这两种药敏感。内吸并有治疗作用。' } },
-      { moa: 'FRAC 11', fit: 'limited', why: { en: 'Strobilurins (QoI): in a Thai durian study only 6 of 15 anthracnose isolates were sensitive to pyraclostrobin — use only in rotation, max 2 in a row.', zh: '甲氧基丙烯酸酯类（QoI）：泰国榴莲研究中15个炭疽菌株只有6个对吡唑醚菌酯敏感——只在轮换中使用，最多连用2次。' } },
-      { moa: 'FRAC M01', fit: 'good', why: { en: 'Copper for algal leaf spot.', zh: '铜剂防治藻斑病。' } },
+      { moa: 'FRAC 11', only: ['pyraclostrobin', 'azoxystrobin'], fit: 'limited', why: { en: 'Strobilurins (QoI): in a Thai durian study only 6 of 15 anthracnose isolates were sensitive to pyraclostrobin — use only in rotation, max 2 in a row.', zh: '甲氧基丙烯酸酯类（QoI）：泰国榴莲研究中15个炭疽菌株只有6个对吡唑醚菌酯敏感——只在轮换中使用，最多连用2次。' } },
+      { moa: 'FRAC M01', fit: 'limited', why: { en: 'Copper for heavy algal red rust only. It is a minor problem: pruning for light and air comes first.', zh: '只在红锈病（藻斑）严重时用铜剂。这是小问题：先修剪改善透光通风。' } },
       { moa: 'BIO-FUN', fit: 'limited', why: { en: 'Bacillus-based products as protection for flush and flowers; not tested against durian anthracnose.', zh: '芽孢杆菌类产品用于保护新梢和花朵；尚未在榴莲炭疽病上试验。' } },
     ],
     avoid: [],
     refs: [
+      { t: 'Pacific Pests, Pathogens & Weeds — Algal leaf spot: a minor disease; chemical control not appropriate', url: 'https://apps.lucidcentral.org/pppw_v13/text/web_full/entities/algal_leaf_spot_148.htm', supports: 'algal red rust is minor; prune for light and air before using copper', scope: 'other' },
       { t: 'Leaf spot characteristics of Phomopsis durionis on durian and latent infection of the pathogen (Acta Univ. Agric. Silvic. Mendel. Brun. 2016, 64:185)', url: 'https://acta.mendelu.cz/artkey/acu-201601-0022_leaf-spot-characteristics-of-phomopsis-durionis-on-durian-durio-zibethinus-murray-and-latent-infection-of-the.php', supports: 'Phomopsis durionis causes durian leaf spot with yellow halo; latent in leaves and flowers', scope: 'durian' },
       { t: 'UC IPM Pest Notes: Sooty mold — it does not infect plants; control the insects that make honeydew', url: 'https://ipm.ucanr.edu/PMG/PESTNOTES/pn74108.html', supports: 'sooty mould is secondary to sap-sucking insects', scope: 'general' },
       { t: "Apithanasakulngeon et al. 2025 — durian anthracnose Colletotrichum (E. Thailand): all isolates sensitive to difenoconazole and prochloraz", url: "https://li01.tci-thaijo.org/index.php/anres/article/view/266994", supports: "Difenoconazole (FRAC 3) is systemic and effective on durian anthracnose; rotate modes of action", scope: "durian" },
@@ -951,7 +956,7 @@ export const GROUPS = [
     kingdom: 'disease',
     icon: 'root',
     name: { en: 'White root disease', zh: '白根病' },
-    examples: { en: 'White root disease (Rigidoporus)', zh: '白根病（硬孔菌）' },
+    examples: { en: 'White root disease (Rigidoporus microporus) — evidence is from rubber; not yet confirmed in durian trials', zh: '白根病（硬孔菌）——证据来自橡胶，尚未在榴莲试验中确认' },
     taxon: { en: 'Basidiomycota', zh: '担子菌门' },
     feeding: 'pathogen',
     hides: { en: 'On roots, spreads from old stumps along root contact', zh: '在根部，从老树桩沿根系接触传播' },
@@ -961,7 +966,7 @@ export const GROUPS = [
     threshold: { en: 'Any infected tree — also check neighbours.', zh: '任何感病树——同时检查邻近树。' },
     nonChem: [
       { en: 'Remove old stumps and infected roots; dig an isolation trench.', zh: '清除老树桩和病根；挖隔离沟。' },
-      { en: 'Apply sulfur and Trichoderma to the root zone.', zh: '在根区施用硫磺和木霉菌。' },
+      { en: 'Put sulphur into the planting hole after removing a dead tree or stump — not around living roots, which it can scorch. Trichoderma can go around the roots of healthy neighbours.', zh: '挖除死树或树桩后，把硫磺放进种植穴——不要放在活根周围，会灼伤嫩根。木霉菌可施在健康邻树的根周围。' },
     ],
     chem: [
       { moa: 'FRAC 3', only: ['hexaconazole', 'propiconazole'], fit: 'good', why: { en: 'Hexaconazole/propiconazole collar drench.', zh: '己唑醇/丙环唑根颈灌根。' } },
@@ -969,6 +974,8 @@ export const GROUPS = [
     ],
     avoid: [],
     refs: [
+      { t: 'Danlag 1987 (UPM thesis) — control of white root disease in mature rubber', url: 'https://cendekia.unisza.edu.my/neuaxis-e/Record/upm-10232/Description', supports: 'isolation trenches are an established control for white root disease', scope: 'other' },
+      { t: 'Go et al. 2023, Plants — Trichoderma asperellum against white root disease in rubber (UPM)', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10004977/', supports: 'Trichoderma pretreatment kept disease severity below 30% vs 68.5% untreated in a nursery trial', scope: 'other' },
       { t: "RRISL 2013 — white root disease spreads by root contact with infected stumps; remove roots, sulphur in holes; hexaconazole/tebuconazole drench", url: "https://www.rrisl.gov.lk/content/files/downDoc/10.%20Management%20of%20White%20Root%20Disease.pdf", supports: "Spread from stumps through roots; remove stumps and infected roots (never leave debris); sulphur in root zone; triazole collar drench", scope: "other" },
       { t: "Jayaratne et al. 2001, J. Rubber Res. Inst. Sri Lanka — triazole drenches (hexaconazole, tebuconazole, propiconazole) control white root disease", url: "https://dl.nsf.gov.lk/bitstreams/87651736-7a22-46de-8db1-315951976a01/download", supports: "Hexaconazole/propiconazole collar drench is effective; cultural practices before replanting are the most effective control (source removal matters more than chemicals)", scope: "other" },
     ],
@@ -993,14 +1000,14 @@ export const GROUPS = [
       { en: 'Remove infected shoots.', zh: '剪除感病枝梢。' },
     ],
     chem: [
-      { moa: 'FRAC M01', fit: 'best', why: { en: 'Copper: protective; spray before rain.', zh: '铜剂：保护性；雨前喷施。' } },
+      { moa: 'FRAC M01', fit: 'best', why: { en: 'Copper: protective only — it must be on the leaf before infection. Rain washes it off, so re-apply soon after heavy rain.', zh: '铜剂：仅有保护作用——必须在侵染前留在叶片上。雨水会冲掉药剂，大雨后要尽快补喷。' } },
     ],
     avoid: [
       { moa: 'FRAC 3', why: { en: 'Fungicides do not affect bacteria.', zh: '杀菌剂（抗真菌）对细菌无效。' } },
       { moa: 'FRAC 1', why: { en: 'Fungicides do not affect bacteria.', zh: '杀菌剂（抗真菌）对细菌无效。' } },
     ],
     refs: [
-      { t: "UC Cooperative Extension (Fake, 2015) — copper is an effective bactericide and fungicide, but works only as a preventive; apply before rain", url: "https://ccfruitandnuts.ucanr.edu/sites/default/files/2015-04/64320.pdf", supports: "Copper is the main protective tool for bacterial spot; spray before rain", scope: "general" },
+      { t: "UC Cooperative Extension (Fake, 2015) — copper is an effective bactericide and fungicide, but works only as a preventive; rain washes residue off", url: "https://ccfruitandnuts.ucanr.edu/sites/default/files/2015-04/64320.pdf", supports: "Copper is the main protective tool for bacterial spot; spray before rain", scope: "general" },
       { t: "Cornell Cooperative Extension — bacterial leaf spot: avoid touching wet plants, remove infected leaves/debris, copper sprays", url: "https://allegany.cce.cornell.edu/gardening/pest-management/bacterial-leaf-spot-in-peppers-how-to-identify-treat-and-prevent-it", supports: "Do not work in plants when wet; remove infected tissue; copper as the main treatment", scope: "other" },
     ],
     stages: ['vegetative'],
