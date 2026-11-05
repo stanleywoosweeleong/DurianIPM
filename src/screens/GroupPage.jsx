@@ -8,7 +8,7 @@ import { OrganicToggle } from '../ui/OrganicToggle.jsx';
 import { CHART_FOR_GROUP } from '../core/rotation.js';
 import { examplesFor } from '../core/examples.js';
 import { coverFor } from '../core/photos.js';
-import { stageById } from '../core/stages.js';
+import { STAGES } from '../core/stages.js';
 import { href } from '../hooks/useRoute.js';
 import { StagePicker, KillsBadges } from '../ui/StagePicker.jsx';
 
@@ -43,7 +43,6 @@ export default function GroupPage({ id, orchard, setOrchard }) {
   if (!g) return <div><BackBar /><p>Not found.</p></div>;
 
   const examples = examplesFor(g.id);
-  const stage = orchard.stage && stageById(orchard.stage);
   const chart = CHART_FOR_GROUP[g.id];
   const setLast = (key) => setOrchard({ recentMoa: key ? [key] : [] });
 
@@ -96,15 +95,24 @@ export default function GroupPage({ id, orchard, setOrchard }) {
           {rec.options.length === 0 && track === 'organic' && <div className="mt-3"><Callout tone="lime" icon="leaf">{ui('group.organicEmpty')}</Callout></div>}
 
           {rec.options.length > 0 && (
-            <label className="mt-3 block text-[14px]">
-              <span className="font-bold text-slate-600">{ui('group.lastUsed')}</span>
-              {stage && <Badge tone="green" className="ml-2">{t(stage.name)}</Badge>}
-              <select value={orchard.recentMoa[0] || ''} onChange={e => setLast(e.target.value || null)}
-                className="mt-1 block w-full max-w-full min-h-[44px] rounded-lg border border-slate-300 bg-white px-2 font-bold text-[15px]">
-                <option value="">{ui('group.lastUsedNone')}</option>
-                {rec.options.map(o => <option key={o.moa} value={o.moa}>{moaCode(o.moaInfo) ? `${moaCode(o.moaInfo)} · ${t(o.moaInfo.name)}` : t(o.moaInfo.name)}</option>)}
-              </select>
-            </label>
+            <div className="mt-3 grid grid-cols-2 gap-2 text-[14px]">
+              <label className="block min-w-0">
+                <span className="block font-bold text-slate-600 leading-tight mb-1">{ui('group.lastUsedShort')}</span>
+                <select value={orchard.recentMoa[0] || ''} onChange={e => setLast(e.target.value || null)}
+                  className="block w-full max-w-full min-h-[44px] rounded-lg border border-slate-300 bg-white px-2 font-bold text-[15px]">
+                  <option value="">{ui('group.lastUsedNone')}</option>
+                  {rec.options.map(o => <option key={o.moa} value={o.moa}>{moaCode(o.moaInfo) ? `${moaCode(o.moaInfo)} · ${t(o.moaInfo.name)}` : t(o.moaInfo.name)}</option>)}
+                </select>
+              </label>
+              <label className="block min-w-0">
+                <span className="block font-bold text-slate-600 leading-tight mb-1">{ui('group.treeStage')}</span>
+                <select value={orchard.stage || ''} onChange={e => setOrchard({ stage: e.target.value || null })}
+                  className="block w-full max-w-full min-h-[44px] rounded-lg border border-slate-300 bg-white px-2 font-bold text-[15px]">
+                  <option value="">—</option>
+                  {STAGES.map(st => <option key={st.id} value={st.id}>{t(st.name)}</option>)}
+                </select>
+              </label>
+            </div>
           )}
 
           <div className="space-y-2 mt-3">

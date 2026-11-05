@@ -23,7 +23,9 @@ questions (where, what you see, what creature), and gets sound advice.
 
 ## Screens
 
-- **Diagnose** (opening screen): a search box for farmers who already know the pest's name; crop stage, weather and a one-line "watch out this stage" list.
+- **Diagnose** (opening screen): purely visual — what the farmer sees, regardless of tree stage or weather. A name
+  search for farmers who already know the pest, then where → what you see → what creature. Tree stage is asked
+  only on the advice page (optional), where it triggers the flowering bee warning and the near-harvest reminder.
 - **Diagnose**: 3-step wizard → the likely pest group, the evidence behind it, and **what works** right on the result:
   the first non-chemical steps, the top organic options and the top conventional options, each with real products.
 - **Group page**: what it is, why it matters for control, how to confirm it, action threshold, non-chemical steps first.

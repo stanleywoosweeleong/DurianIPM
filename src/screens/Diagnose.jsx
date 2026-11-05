@@ -2,7 +2,6 @@ import React, { useMemo, useState } from 'react';
 import { useLang } from '../i18n/useLang.jsx';
 import { Card, Chip, Icon, Badge, Callout } from '../ui/kit.jsx';
 import { GroupArt, Glyph } from '../components/Art.jsx';
-import { OrchardBar } from '../ui/OrchardBar.jsx';
 import { LeafCurlArt } from '../components/LeafCurl.jsx';
 import { PARTS, CULPRITS, signsForPart, diagnose } from '../core/diagnosis.js';
 import { recommend } from '../core/recommend.js';
@@ -13,7 +12,7 @@ import { href } from '../hooks/useRoute.js';
 import { WikiCover } from '../components/WikiPhotoStrip.jsx';
 import { coverFor } from '../core/photos.js';
 import { searchKnownPests } from '../core/examples.js';
-import { GROUPS, groupById } from '../core/groups.js';
+import { groupById } from '../core/groups.js';
 
 const toggle = (arr, v) => (arr.includes(v) ? arr.filter(x => x !== v) : [...arr, v]);
 
@@ -40,8 +39,8 @@ export default function Diagnose({ orchard, setOrchard }) {
 
   const signOptions = useMemo(() => signsForPart(parts), [parts]);
   const results = useMemo(
-    () => (step === 3 ? diagnose({ signs, culprits, weather: orchard.weather }) : []),
-    [step, signs, culprits, orchard.weather]
+    () => (step === 3 ? diagnose({ signs, culprits }) : []), // purely what the farmer sees
+    [step, signs, culprits]
   );
 
   const restart = () => { setStep(0); setParts([]); setSigns([]); setCulprits([]); };
@@ -106,8 +105,6 @@ export default function Diagnose({ orchard, setOrchard }) {
               </Tile>
             ))}
           </div>
-          <div className="mt-5"><OrchardBar orchard={orchard} setOrchard={setOrchard} /></div>
-          <WatchLine orchard={orchard} />
         </>
       )}
       {step === 1 && (
@@ -261,26 +258,6 @@ function KnownSearch() {
           ))}
         </div>
       )}
-    </div>
-  );
-}
-
-/** One short line: what to watch for at the chosen crop stage. */
-function WatchLine({ orchard }) {
-  const { t, ui } = useLang();
-  if (!orchard.stage) return null;
-  const watch = GROUPS.filter(g => g.stages.includes(orchard.stage))
-    .sort((a, b) => (b.weather === orchard.weather) - (a.weather === orchard.weather)).slice(0, 5);
-  return (
-    <div className="mt-3 text-[14px] leading-relaxed">
-      <span className="font-extrabold text-slate-500 uppercase tracking-wider text-[12px] mr-1">{ui('home.watch')}:</span>
-      {watch.map((g, i) => (
-        <React.Fragment key={g.id}>
-          {i > 0 && <span className="text-slate-300"> · </span>}
-          <a href={href(`group/${g.id}`)} className="font-bold text-[#114b2d] underline">{t(g.name)}</a>
-        </React.Fragment>
-      ))}
-      {orchard.stage === 'flowering' && <div className="mt-1 text-amber-900 flex gap-1.5"><Icon name="bee" className="w-4 h-4 shrink-0 mt-0.5" />{ui('home.flowerWarn')}</div>}
     </div>
   );
 }

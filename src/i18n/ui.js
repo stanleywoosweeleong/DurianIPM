@@ -100,6 +100,8 @@ export const UI_STRINGS = {
     actives: s('Active ingredients', '有效成分'),
     lastUsed: s('Which group did you spray last?', '你上次喷的是哪个组别？'),
     lastUsedNone: s('None / not sure', '没有 / 不确定'),
+    lastUsedShort: s('Last sprayed', '上次喷的'),
+    treeStage: s('Tree stage (optional)', '物候期（可选）'),
     share: s('Share on WhatsApp', '分享到 WhatsApp'),
   },
   fit: { best: s('Best fit', '最佳'), good: s('Good', '良好'), limited: s('Limited', '有限') },
