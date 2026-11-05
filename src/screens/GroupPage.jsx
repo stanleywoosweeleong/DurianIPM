@@ -97,10 +97,10 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
 
       <p className="mt-3 text-[16px] leading-relaxed text-slate-800">{t(g.why)}</p>
 
-      <p className="mt-3 text-[15px] leading-snug rounded-xl bg-white border border-slate-200 px-3 py-2"><b>{ui('diag.first')}:</b> {t(g.nonChem[0])}</p>
-      {SPRAY_WHERE[g.id] && g.chem.length > 0 && (
-        <p className="mt-2 text-[15px] leading-snug rounded-xl bg-white border border-slate-200 px-3 py-2"><b>{ui('group.sprayWhere')}:</b> {t(SPRAY_WHERE[g.id])}</p>
-      )}
+      <div className="mt-3 text-[15px] leading-snug rounded-xl bg-white border border-slate-200 px-3 py-2 divide-y divide-slate-100">
+        <p className={SPRAY_WHERE[g.id] && g.chem.length > 0 ? 'pb-1.5' : ''}><b>{ui('diag.first')}:</b> {t(g.nonChem[0])}</p>
+        {SPRAY_WHERE[g.id] && g.chem.length > 0 && <p className="pt-1.5"><b>{ui('group.sprayWhere')}:</b> {t(SPRAY_WHERE[g.id])}</p>}
+      </div>
       {g.chem.length === 0 ? (
         <Section><Callout tone="blue" icon="leaf">{ui('group.noChem')}</Callout></Section>
       ) : (

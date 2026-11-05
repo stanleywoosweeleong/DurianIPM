@@ -80,11 +80,11 @@ export function Lesson({ id }) {
     <div>
       <BackBar />
       <h1 className="text-xl font-extrabold leading-tight text-slate-900">{t(l.title)}</h1>
-      <p className="text-[16px] text-slate-600 mt-1">{t(l.summary)}</p>
-      <Card className="p-4 mt-4 space-y-3">
+      <p className="text-[15px] text-slate-500 mt-1 leading-snug">{t(l.summary)}</p>
+      <Card className="px-3.5 py-3.5 mt-3 space-y-2.5 text-slate-800">
         {body.map((p, i) => p.startsWith('• ')
-          ? <div key={i} className="flex gap-2 text-[17px] leading-snug"><span className="text-emerald-600 font-black">•</span><span>{p.slice(2)}</span></div>
-          : <p key={i} className="text-[17px] leading-relaxed">{p}</p>)}
+          ? <div key={i} className="flex gap-2 text-[16px] leading-[1.55]"><span className="text-emerald-600 font-bold">•</span><span>{p.slice(2)}</span></div>
+          : <p key={i} className="text-[16px] leading-[1.6]">{p}</p>)}
       </Card>
       {FIGURES[l.id] && (
         <Section title={t(FIGURE_TITLE[l.id])}>{FIGURES[l.id](t, lang)}</Section>

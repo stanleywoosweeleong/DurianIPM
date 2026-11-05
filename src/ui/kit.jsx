@@ -82,7 +82,7 @@ export function Callout({ tone = 'amber', icon = 'warn', title, children }) {
 export function BackBar({ title, onBack }) {
   const { ui } = useLang();
   return (
-    <div className="flex items-center gap-2 -mx-1 mb-2">
+    <div className="flex items-center gap-2 -mx-2 -mt-2 mb-1">
       <button onClick={onBack || back} className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-xl active:bg-slate-200" aria-label={ui('common.back')}>
         <Icon name="back" className="w-6 h-6" />
       </button>

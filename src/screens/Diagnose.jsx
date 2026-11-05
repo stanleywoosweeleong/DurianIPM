@@ -16,10 +16,10 @@ const PART_GLYPH = { leaf: 'partLeaf', flower: 'partFlower', fruit: 'partFruit',
 // A culprit tile shows the art of the group it points to most strongly.
 const topGroupOf = (c) => Object.entries(c.w).sort((a, b) => b[1] - a[1])[0]?.[0];
 
-function Tile({ on, onClick, children }) {
+function Tile({ on, onClick, children, className = "" }) {
   return (
     <button type="button" onClick={onClick} aria-pressed={!!on}
-      className={`flex flex-col items-center justify-center gap-1 p-2 min-h-[92px] rounded-xl border text-center text-[14px] font-bold leading-tight transition-colors ${on
+      className={`flex flex-col items-center justify-center gap-1 p-2 min-h-[80px] rounded-xl border text-center text-[14px] font-bold leading-tight transition-colors ${className} ${on
         ? 'bg-[#114b2d] border-[#114b2d] text-white shadow-md' : 'bg-white border-slate-200 text-slate-700 active:bg-slate-50'}`}>
       {children}
     </button>
@@ -115,11 +115,11 @@ export default function Diagnose({ orchard, setOrchard }) {
       <div>
         <KnownSearch />
         <CommonProblems />
-        <h1 className="text-xl font-extrabold text-slate-900 mt-6">{ui('diag.q1')}</h1>
+        <h1 className="text-lg font-extrabold text-slate-900 mt-5">{ui('diag.q1')}</h1>
         <p className="text-[14px] text-slate-500 leading-snug">{ui('diag.intro')}</p>
-        <div className="grid grid-cols-3 gap-2 mt-3">
-          {PARTS.map(p => (
-            <Tile key={p.id} onClick={() => setPart(p.id)}>
+        <div className="grid grid-cols-6 gap-2 mt-2.5">
+          {PARTS.map((p, i) => (
+            <Tile key={p.id} onClick={() => setPart(p.id)} className={PARTS.length === 5 && i >= 3 ? 'col-span-3' : 'col-span-2'}>
               <Glyph name={PART_GLYPH[p.id]} className="w-9 h-9" />
               {t(p.name)}
             </Tile>
@@ -261,19 +261,19 @@ function CommonProblems() {
   const { t, ui } = useLang();
   return (
     <section className="mt-4">
-      <h2 className="text-[13px] font-extrabold text-slate-500 uppercase tracking-wider">{ui('diag.common')}</h2>
+      <h2 className="text-[13px] font-bold text-slate-500 tracking-wide">{ui('diag.common')}</h2>
       {/* Pests together, then diseases together — same order as the part lists. */}
       {[['pests', COMMON.filter(([id]) => groupById(id).kingdom !== 'disease')],
         ['diseases', COMMON.filter(([id]) => groupById(id).kingdom === 'disease')]]
         .filter(([, list]) => list.length).map(([kind, list]) => (
-          <div key={kind} className="mt-2">
-            <div className="text-[12px] font-bold text-slate-400 mb-1">{ui(`diag.${kind}`)}</div>
-            <div className="grid grid-cols-3 gap-2">
+          <div key={kind} className="mt-2.5">
+            <div className="text-[12px] font-semibold text-slate-400 mb-1">{ui(`diag.${kind}`)}</div>
+            <div className="flex flex-wrap gap-1.5">
               {list.map(([id, label]) => (
                 <a key={id} href={href(`group/${id}`)}
-                  className="flex flex-col items-center justify-center gap-1 p-1.5 min-h-[76px] rounded-xl border border-slate-200 bg-white text-center active:bg-slate-50">
-                  <GroupArt id={id} className="w-8 h-8 text-slate-700" />
-                  <span className="text-[13px] font-bold text-slate-700 leading-tight">{t(label)}</span>
+                  className="inline-flex items-center gap-1.5 pl-1.5 pr-3 min-h-[44px] rounded-full border border-slate-200 bg-white active:bg-slate-50">
+                  <GroupArt id={id} className="w-7 h-7 text-slate-700 shrink-0" />
+                  <span className="text-[14px] font-semibold text-slate-800 leading-tight whitespace-nowrap">{t(label)}</span>
                 </a>
               ))}
             </div>
