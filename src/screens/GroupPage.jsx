@@ -6,7 +6,8 @@ import { groupById, FEEDING } from '../core/groups.js';
 import { recommend } from '../core/recommend.js';
 import { OrganicToggle } from '../ui/OrganicToggle.jsx';
 import { CHART_FOR_GROUP } from '../core/rotation.js';
-import { examplesFor, photoNamesFor } from '../core/examples.js';
+import { examplesFor } from '../core/examples.js';
+import { coverFor } from '../core/photos.js';
 import { stageById } from '../core/stages.js';
 import { href } from '../hooks/useRoute.js';
 import { StagePicker, KillsBadges } from '../ui/StagePicker.jsx';
@@ -67,8 +68,8 @@ export default function GroupPage({ id, orchard, setOrchard }) {
   return (
     <div>
       <BackBar />
-      <WikiCover names={photoNamesFor(g.id)} lang={lang} className="h-48" />
-      <div className="flex items-center gap-3 mt-3">
+      <WikiCover photo={coverFor(g.id)} lang={lang} className="h-48 mb-3" />
+      <div className="flex items-center gap-3">
         <div className="w-11 h-11 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-700 shrink-0">
           <GroupArt id={g.id} className="w-8 h-8" />
         </div>
@@ -83,22 +84,7 @@ export default function GroupPage({ id, orchard, setOrchard }) {
 
       <p className="mt-3 text-[16px] leading-relaxed text-slate-800">{t(g.why)}</p>
 
-      <Fold title={ui('group.nonChem')} hint={t(g.nonChem[0])} open>
-        <Bullets items={g.nonChem} t={t} />
-      </Fold>
-      <Fold title={ui('group.scout')} hint={t(g.threshold)}>
-        <p className="text-[16px] leading-snug">{t(g.scout)}</p>
-        <div className="mt-3 text-[14px] font-bold text-slate-500">{ui('group.threshold')}</div>
-        <p className="text-[16px] leading-snug font-semibold">{t(g.threshold)}</p>
-      </Fold>
-      <Fold title={ui('group.about')} hint={t(g.hides)}>
-        <div className="grid grid-cols-1 gap-3">
-          <Fact label={ui('group.hides')} value={t(g.hides)} />
-          <Fact label={ui('group.stage')} value={t(g.damagingStage)} />
-          <Fact label={ui('group.taxon')} value={t(g.taxon)} />
-        </div>
-      </Fold>
-
+      <p className="mt-3 text-[15px] leading-snug rounded-xl bg-white border border-slate-200 px-3 py-2"><b>{ui('diag.first')}:</b> {t(g.nonChem[0])}</p>
       {g.chem.length === 0 ? (
         <Section><Callout tone="blue" icon="leaf">{ui('group.noChem')}</Callout></Section>
       ) : (
@@ -150,6 +136,22 @@ export default function GroupPage({ id, orchard, setOrchard }) {
           )}
         </Section>
       )}
+
+      <Fold title={ui('group.nonChem')} hint={t(g.nonChem[0])}>
+        <Bullets items={g.nonChem} t={t} />
+      </Fold>
+      <Fold title={ui('group.scout')} hint={t(g.threshold)}>
+        <p className="text-[16px] leading-snug">{t(g.scout)}</p>
+        <div className="mt-3 text-[14px] font-bold text-slate-500">{ui('group.threshold')}</div>
+        <p className="text-[16px] leading-snug font-semibold">{t(g.threshold)}</p>
+      </Fold>
+      <Fold title={ui('group.about')} hint={t(g.hides)}>
+        <div className="grid grid-cols-1 gap-3">
+          <Fact label={ui('group.hides')} value={t(g.hides)} />
+          <Fact label={ui('group.stage')} value={t(g.damagingStage)} />
+          <Fact label={ui('group.taxon')} value={t(g.taxon)} />
+        </div>
+      </Fold>
 
       {rec.avoid.length > 0 && (
         <Fold title={ui('group.avoid')} hint={rec.avoid.map(a => moaCode(a.moaInfo) || t(a.moaInfo.name)).join(' · ')} tone="rose">

@@ -11,7 +11,9 @@ import { ChemChip, moaCode } from './GroupPage.jsx';
 import { StagePicker } from '../ui/StagePicker.jsx';
 import { href } from '../hooks/useRoute.js';
 import { WikiCover } from '../components/WikiPhotoStrip.jsx';
-import { photoNamesFor } from '../core/examples.js';
+import { coverFor } from '../core/photos.js';
+import { searchKnownPests } from '../core/examples.js';
+import { GROUPS, groupById } from '../core/groups.js';
 
 const toggle = (arr, v) => (arr.includes(v) ? arr.filter(x => x !== v) : [...arr, v]);
 
@@ -92,7 +94,8 @@ export default function Diagnose({ orchard, setOrchard }) {
       <Progress />
       {step === 0 && (
         <>
-          <p className="text-[15px] text-slate-600 leading-snug mb-3">{ui('diag.intro')}</p>
+          <KnownSearch />
+          <p className="text-[15px] text-slate-600 leading-snug mt-4 mb-3">{ui('diag.intro')}</p>
           <h1 className="text-xl font-extrabold text-slate-900">{ui('diag.q1')}</h1>
           <p className="text-[14px] text-slate-500">{ui('diag.q1Sub')}</p>
           <div className="grid grid-cols-3 gap-2 mt-3">
@@ -104,6 +107,7 @@ export default function Diagnose({ orchard, setOrchard }) {
             ))}
           </div>
           <div className="mt-5"><OrchardBar orchard={orchard} setOrchard={setOrchard} /></div>
+          <WatchLine orchard={orchard} />
         </>
       )}
       {step === 1 && (
@@ -168,7 +172,7 @@ function ResultCard({ r, big, orchard, culprits = [] }) {
   }
   return (
     <Card className="mt-2 p-3 border-l-4 border-l-[#114b2d]">
-      <WikiCover names={photoNamesFor(g.id)} lang={lang} className="h-40 mb-3" />
+      <WikiCover photo={coverFor(g.id)} lang={lang} className="h-40 mb-3" />
       <div className="flex items-center gap-3">
         <div className="w-14 h-14 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
           <GroupArt id={g.id} className="w-10 h-10" />
@@ -227,6 +231,56 @@ function WhatWorks({ g, orchard, culprits }) {
           {!list.length && track === 'organic' && <p className="mt-2 text-[15px]">{ui('group.organicEmpty')}</p>}
         </>
       )}
+    </div>
+  );
+}
+
+/** "Already know the pest?" — jump straight to its advice by name. */
+function KnownSearch() {
+  const { t, ui } = useLang();
+  const [q, setQ] = useState('');
+  const hits = useMemo(() => searchKnownPests(q).slice(0, 6), [q]);
+  return (
+    <div>
+      <div className="relative">
+        <Icon name="search" className="w-5 h-5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+        <input value={q} onChange={e => setQ(e.target.value)} placeholder={ui('home.searchKnown')} aria-label={ui('home.knownTitle')}
+          className="w-full min-h-[48px] rounded-xl border border-slate-300 pl-10 pr-3 bg-white focus:border-[#114b2d] outline-none" />
+      </div>
+      {q && (
+        <div className="mt-2 space-y-1.5">
+          {hits.length === 0 && <p className="text-[14px] text-slate-600">{ui('home.noKnown')}</p>}
+          {hits.map(({ pest, groupId }) => (
+            <a key={pest.id} href={href(`group/${groupId}`)} className="flex items-center justify-between gap-2 p-3 rounded-xl bg-white border border-slate-200">
+              <div className="min-w-0">
+                <div className="font-bold text-[15px] leading-tight">{t(pest.common)}</div>
+                <div className="text-[13px] italic text-slate-500 truncate">{pest.scientific}</div>
+              </div>
+              <Badge tone="green">{t(groupById(groupId)?.name)}</Badge>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/** One short line: what to watch for at the chosen crop stage. */
+function WatchLine({ orchard }) {
+  const { t, ui } = useLang();
+  if (!orchard.stage) return null;
+  const watch = GROUPS.filter(g => g.stages.includes(orchard.stage))
+    .sort((a, b) => (b.weather === orchard.weather) - (a.weather === orchard.weather)).slice(0, 5);
+  return (
+    <div className="mt-3 text-[14px] leading-relaxed">
+      <span className="font-extrabold text-slate-500 uppercase tracking-wider text-[12px] mr-1">{ui('home.watch')}:</span>
+      {watch.map((g, i) => (
+        <React.Fragment key={g.id}>
+          {i > 0 && <span className="text-slate-300"> · </span>}
+          <a href={href(`group/${g.id}`)} className="font-bold text-[#114b2d] underline">{t(g.name)}</a>
+        </React.Fragment>
+      ))}
+      {orchard.stage === 'flowering' && <div className="mt-1 text-amber-900 flex gap-1.5"><Icon name="bee" className="w-4 h-4 shrink-0 mt-0.5" />{ui('home.flowerWarn')}</div>}
     </div>
   );
 }

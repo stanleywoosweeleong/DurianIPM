@@ -82,7 +82,7 @@ export const UI_STRINGS = {
     scout: s('Confirm it', '如何确认'),
     threshold: s('When to act', '何时行动'),
     nonChem: s('Do first — no chemicals', '先做这些——无需用药'),
-    chem: s('If you need to spray', '如需用药'),
+    chem: s('Best options for this pest', '最佳防治选择'),
     chemSub: s('Ranked for this pest group and your crop stage. Follow the product label.', '根据该类群和你的物候期排序。请遵照产品标签使用。'),
     trackAll: s('All', '全部'),
     organicOnly: s('Organic only', '只看有机'),

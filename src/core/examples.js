@@ -49,9 +49,4 @@ export function searchKnownPests(q) {
   ).map(p => ({ pest: p, groupId: groupOfPest(p.id) }));
 }
 
-/** Scientific names to try for a group's cover photo, best first. */
-export function photoNamesFor(groupId, max = 3) {
-  return [...new Set(examplesFor(groupId).map(p => p.scientific.split('/')[0].split('(')[0].replace(/\s+spp\.?/, '').trim()))].slice(0, max);
-}
-
 export const MAPPED_IDS = new Set(Object.values(MAP).flat());

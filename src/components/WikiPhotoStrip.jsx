@@ -297,63 +297,27 @@ export function WikiPhotoStrip({ scientificName, lang = 'en' }) {
 }
 
 // ============================================================
-// Cover photo + thumbnail — the first good Wikimedia photo for a list of
-// scientific names (tries each in turn), with the drawn icon as fallback
-// when offline or when no photo exists. Attribution is always shown.
+// Cover photo — a FIXED, hand-checked photo (see src/core/photos.js), never a
+// live search. Renders nothing when the group has no checked photo.
 // ============================================================
-function useFirstPhoto(names, enabled = true) {
-  const [photo, setPhoto] = useState(undefined); // undefined = loading, null = none
-  const key = names.join('|');
-  useEffect(() => {
-    if (!enabled) return;
-    let cancelled = false;
-    (async () => {
-      for (const n of names) {
-        const list = await fetchWikiPhotos(n);
-        if (cancelled) return;
-        if (list && list.length) { setPhoto(list[0]); return; }
-      }
-      if (!cancelled) setPhoto(null);
-    })();
-    return () => { cancelled = true; };
-  }, [key, enabled]); // eslint-disable-line react-hooks/exhaustive-deps
-  return photo;
-}
-
-// Wikimedia thumbnails can be re-requested at a larger width by editing the URL.
 const sized = (thumb, px) => (thumb ? thumb.replace(/\/\d+px-/, `/${px}px-`) : thumb);
 
-export function WikiCover({ names, fallback, lang = 'en', className = 'h-44' }) {
-  const photo = useFirstPhoto(names);
+export function WikiCover({ photo, lang = 'en', className = 'h-44' }) {
   const [open, setOpen] = useState(false);
   const [big, setBig] = useState(true);
-  if (photo === undefined) return <div className={`${className} rounded-2xl bg-slate-100 animate-pulse`} aria-hidden="true" />;
-  if (photo === null) return fallback || null; // offline / no photo: collapse, the page header still has the icon
+  const [failed, setFailed] = useState(false);
+  if (!photo || failed) return null; // offline before first view, or no checked photo
+  const p = { ...photo, full: sized(photo.thumb, 960), descUrl: photo.desc };
   return (
     <>
       <button onClick={() => setOpen(true)} className={`relative block w-full ${className} rounded-2xl overflow-hidden bg-slate-100 border border-slate-200`} aria-label={photo.title}>
-        <img src={big ? sized(photo.thumb, 500) : photo.thumb} onError={() => setBig(false)} alt={photo.title} className="w-full h-full object-cover" />
+        <img src={big ? sized(photo.thumb, 500) : photo.thumb} alt={photo.title}
+          onError={() => (big ? setBig(false) : setFailed(true))} className="w-full h-full object-cover" />
         <span className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent text-white text-[11px] px-2.5 pt-4 pb-1.5 text-left truncate">
           {photo.author ? `${photo.author} · ` : ''}{photo.license || 'Wikimedia Commons'}
         </span>
       </button>
-      {open && <PhotoLightbox photo={photo} lang={lang} onClose={() => setOpen(false)} />}
+      {open && <PhotoLightbox photo={p} lang={lang} onClose={() => setOpen(false)} />}
     </>
-  );
-}
-
-export function WikiThumb({ names, fallback, className = 'w-full h-16' }) {
-  const ref = useRef(null);
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const el = ref.current; if (!el || inView) return;
-    const ob = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { setInView(true); ob.disconnect(); } }, { rootMargin: '400px' });
-    ob.observe(el); return () => ob.disconnect();
-  }, [inView]);
-  const photo = useFirstPhoto(names, inView);
-  return (
-    <span ref={ref} className={`${className} rounded-lg overflow-hidden flex items-center justify-center ${photo ? 'bg-slate-100' : ''}`}>
-      {photo ? <img src={photo.thumb} alt="" loading="lazy" className="w-full h-full object-cover" /> : fallback}
-    </span>
   );
 }

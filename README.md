@@ -23,7 +23,7 @@ questions (where, what you see, what creature), and gets sound advice.
 
 ## Screens
 
-- **Home**: set crop stage + weather, then a "watch now" list, flowering bee warning, organic toolbox, search known examples.
+- **Diagnose** (opening screen): a search box for farmers who already know the pest's name; crop stage, weather and a one-line "watch out this stage" list.
 - **Diagnose**: 3-step wizard → the likely pest group, the evidence behind it, and **what works** right on the result:
   the first non-chemical steps, the top organic options and the top conventional options, each with real products.
 - **Group page**: what it is, why it matters for control, how to confirm it, action threshold, non-chemical steps first.
@@ -137,12 +137,13 @@ First time only: **Settings → Pages → Source: GitHub Actions**.
 ## Look & feel
 
 The app shares a look with the Pest-MoA rotation guide: a cream page (`#fcfbf7`), a light header (`#f4f2ea`),
-forest green (`#114b2d`) as the only accent, underline tabs at the top (Diagnose · Groups · Rotate · Learn),
+forest green (`#114b2d`) as the only accent, underline tabs at the top (Diagnose · Rotate · Learn),
 an A/A/A text-size switch, and icon tile grids where the selected tile turns solid green.
 
-**Images:** real reference photos come from Wikimedia Commons, with author and licence shown. Each group page
-opens with one, the group tiles have thumbnails, and every known example shows a photo strip. Photos are cached for
-offline use (service worker, 60 days). Without a connection the page falls back to the drawn icons. The two
+**Images:** each advice page opens with ONE fixed, hand-checked Wikimedia Commons photo (`src/core/photos.js`),
+credited to its author and licence. Photos are never searched at runtime: live search once returned a crab for
+shot-hole beetles. Groups without a good photo show none on purpose. Known examples keep their per-species photo
+strips. Photos are cached for offline use (service worker, 60 days). The two
 leaf-curl diagnostic drawings from the original app (`src/components/LeafCurl.jsx`) illustrate the curl-down and
 curl-up signs in the diagnosis.
 
