@@ -253,3 +253,14 @@ test('flowering blocks every option that shows a highly bee-toxic active', () =>
     }
   }
 });
+
+import { RELATED } from '../src/core/related.js';
+test('related links point at real groups, both ways, bilingual', () => {
+  for (const [from, list] of Object.entries(RELATED)) {
+    assert.ok(groupIds.has(from), from);
+    for (const [to, why] of list) {
+      assert.ok(groupIds.has(to), to); assert.ok(why.en && why.zh, from + '>' + to);
+      assert.ok((RELATED[to] || []).some(([back]) => back === from), to + ' does not link back to ' + from);
+    }
+  }
+});

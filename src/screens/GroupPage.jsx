@@ -11,6 +11,7 @@ import { GROUP_NAMES } from '../core/moaDb.js';
 import { moaKeyFromIrac } from '../core/chemDb.js';
 import { examplesFor } from '../core/examples.js';
 import { SPRAY_WHERE } from '../core/sprayWhere.js';
+import { RELATED } from '../core/related.js';
 import { coverFor } from '../core/photos.js';
 import { STAGES } from '../core/stages.js';
 import { href } from '../hooks/useRoute.js';
@@ -115,6 +116,19 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
         <p className={SPRAY_WHERE[g.id] && g.chem.length > 0 ? 'pb-1.5' : ''}><b>{ui('diag.first')}:</b> {t(g.nonChem[0])}</p>
         {SPRAY_WHERE[g.id] && g.chem.length > 0 && <p className="pt-1.5"><b>{ui('group.sprayWhere')}:</b> {t(SPRAY_WHERE[g.id])}</p>}
       </div>
+      {RELATED[g.id] && (
+        <div className="mt-2 rounded-xl bg-amber-50 border border-amber-200 px-3 py-2">
+          <div className="text-[0.875rem] font-extrabold text-amber-900">{ui('group.related')}</div>
+          <div className="mt-1 space-y-1.5">
+            {RELATED[g.id].map(([rid, why]) => (
+              <a key={rid} href={href(`group/${rid}`)} className="flex items-start gap-2 active:opacity-70">
+                <GroupArt id={rid} className="w-6 h-6 text-slate-700 shrink-0 mt-0.5" />
+                <span className="min-w-0 flex-1 text-[0.875rem] leading-snug"><b className="text-[#114b2d] underline">{t(groupById(rid).name)}</b> — {t(why)}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
       {g.chem.length === 0 ? (
         <Section><Callout tone="blue" icon="leaf">{ui('group.noChem')}</Callout></Section>
       ) : (

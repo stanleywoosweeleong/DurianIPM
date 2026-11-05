@@ -52,7 +52,7 @@ export const SIGNS = [
   { id: 'sawdust', parts: ['trunk'], label: { en: 'Sawdust or frass pushed out of a hole', zh: '孔口有推出的木屑或虫粪' }, w: { 'trunk-borers': 3, 'red-branch-borer': 3, 'shot-hole': 2 } },
   { id: 'stringy-frass', parts: ['trunk'], label: { en: 'Large holes (~1 cm) on the main trunk with coarse, stringy sawdust and sap', zh: '主干上有大孔（约1厘米），推出粗糙丝状木屑并流胶' }, w: { 'trunk-borers': 5 } },
   { id: 'pellet-frass', parts: ['trunk'], label: { en: 'Round holes on branches pushing out pellet-like sawdust; shoot tips wilting', zh: '枝条圆孔推出颗粒状虫粪；梢尖萎蔫' }, w: { 'red-branch-borer': 5 } },
-  { id: 'pinholes', parts: ['trunk'], label: { en: 'Many tiny holes (1–2 mm) with fine powder', zh: '许多小孔（1–2毫米）并有细粉' }, w: { 'shot-hole': 5 } },
+  { id: 'pinholes', parts: ['trunk'], label: { en: 'Many tiny holes (1–2 mm) with fine powder', zh: '许多小孔（1–2毫米）并有细粉' }, w: { 'shot-hole': 5, fusarium: 2, oomycete: 1 } },
   { id: 'branch-wilt', parts: ['trunk'], label: { en: 'One branch wilting beyond a hole or ring', zh: '某枝条在孔洞或环痕以外萎蔫' }, w: { 'trunk-borers': 3, 'canker-dieback': 2 } },
   { id: 'ooze', parts: ['trunk'], label: { en: 'Wet dark patch with reddish-brown ooze', zh: '湿润深色斑块并流出红褐色胶液' }, w: { oomycete: 5, 'canker-dieback': 1, 'shot-hole': 1 } },
   { id: 'dieback', parts: ['trunk', 'leaf'], label: { en: 'Twigs dying back from the tips', zh: '枝梢从顶端向下枯死' }, w: { 'canker-dieback': 4, oomycete: 1 } },
