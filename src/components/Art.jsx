@@ -162,7 +162,8 @@ export const EXTRA_GLYPHS = {
 };
 
 const GROUP_ART = {
-  'phloem-suckers': { pest: 'leafhopper' },
+  'phloem-suckers': { pest: 'psyllid' },
+  leafhoppers: { pest: 'leafhopper' },
   'scale-mealybug': { pest: 'mealybug' },
   thrips: { pest: 'thrips' },
   'plant-bugs': { glyph: 'Hemiptera' },

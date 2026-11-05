@@ -188,7 +188,7 @@ test('one-tap diagnosis: short sign lists, decisive signs skip the creature ques
 test('common-problem shortcuts point at real pest groups', async () => {
   const src = (await import('node:fs')).readFileSync(new URL('../src/screens/Diagnose.jsx', import.meta.url), 'utf8');
   const ids = [...src.matchAll(/\['([a-z-]+)', \{ en:/g)].map(m => m[1]);
-  assert.equal(ids.length, 8);
+  assert.equal(ids.length, 9);
   for (const id of ids) assert.ok(groupIds.has(id), id);
 });
 
@@ -196,7 +196,7 @@ import { PART_PESTS } from '../src/core/diagnosis.js';
 test('part → pest lists: real groups, bilingual, short', () => {
   for (const p of PARTS) {
     const list = PART_PESTS[p.id];
-    assert.ok(list && list.length >= 4 && list.length <= 11, p.id);
+    assert.ok(list && list.length >= 4 && list.length <= 12, p.id);
     for (const [gid, look] of list) { assert.ok(groupIds.has(gid), `${p.id}/${gid}`); bi(look, `${p.id}/${gid}`); }
   }
 });

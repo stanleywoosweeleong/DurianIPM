@@ -13,7 +13,8 @@ export { CHART_PESTS };
 
 /** Chart pests a pest-group can use for rotation. */
 export const CHART_FOR_GROUP = {
-  'phloem-suckers': ['leafhopper', 'psyllid'],
+  'phloem-suckers': ['psyllid'],
+  leafhoppers: ['leafhopper'],
   'scale-mealybug': ['mealybug'],
   thrips: ['thrips'],
   mites: ['spider_mite'],
@@ -22,7 +23,7 @@ export const CHART_FOR_GROUP = {
   'leaf-beetles': ['grasshopper'],
 };
 export const GROUP_FOR_CHART = {
-  leafhopper: 'phloem-suckers', psyllid: 'phloem-suckers', mealybug: 'scale-mealybug', thrips: 'thrips',
+  leafhopper: 'leafhoppers', psyllid: 'phloem-suckers', mealybug: 'scale-mealybug', thrips: 'thrips',
   spider_mite: 'mites', caterpillar: 'leaf-caterpillars', grasshopper: 'leaf-beetles',
 };
 

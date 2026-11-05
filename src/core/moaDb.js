@@ -451,6 +451,8 @@ const BEE_TAGS = {
   "Cyantraniliprole": "high",
   // Added 2026-11-05 — PPDB/IUPAC record 136: oral LD50 0.13 ug/bee, rated High.
   "Chlorfenapyr": "high",
+  // Added 2026-11-05 — PPDB/IUPAC: sulfoxaflor highly toxic to honey bees.
+  "Sulfoxaflor": "high",
   "Bacillus thuringiensis": "low",
   // Added 2026-08-03 — these four were absent while PPDB rated them HIGH for
   // acute bee toxicity. Each is taken from the record's own ecotoxicity

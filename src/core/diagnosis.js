@@ -21,7 +21,7 @@ export const SIGNS = [
   // Leaf-curl direction is a classic scouting clue (drawings from the original app):
   // DOWN = feeding on the underside; UP = damage to the margins / upper surface.
   { id: 'curl-down', parts: ['leaf'], art: 'downward_curl', label: { en: 'Leaves curl DOWN like a tent — flip them: pests underneath', zh: '叶片向下卷如帐篷——翻开看：害虫在叶背' }, w: { 'phloem-suckers': 4, mites: 2 } },
-  { id: 'curl-up', parts: ['leaf'], art: 'upward_curl', label: { en: 'Leaves curl UP like a boat, edges brown and crispy', zh: '叶片向上卷如小船，叶缘焦褐' }, w: { thrips: 3, 'phloem-suckers': 2, mites: 2 } },
+  { id: 'curl-up', parts: ['leaf'], art: 'upward_curl', label: { en: 'Leaves curl UP like a boat, edges brown and crispy', zh: '叶片向上卷如小船，叶缘焦褐' }, w: { leafhoppers: 4, thrips: 3, mites: 2 } },
   { id: 'twisted', parts: ['leaf'], label: { en: 'New leaves twisted or deformed', zh: '新叶扭曲或畸形' }, w: { 'phloem-suckers': 2, mites: 2, thrips: 2 } },
   { id: 'sticky', parts: ['leaf', 'fruit', 'flower'], label: { en: 'Sticky shiny surface or black sooty coating', zh: '表面黏稠发亮或覆盖黑色煤烟' }, w: { 'phloem-suckers': 3, 'scale-mealybug': 3, 'ants-wasps': 1 } },
   { id: 'stipple', parts: ['leaf'], label: { en: 'Tiny pale or yellow speckles', zh: '细小的灰白或黄色斑点' }, w: { mites: 3, 'phloem-suckers': 1, thrips: 1 } },
@@ -70,7 +70,7 @@ export const SIGNS = [
 export const CULPRITS = [
   { id: 'soft-cluster', label: { en: 'Tiny soft insects in groups', zh: '成群的微小软体虫' }, w: { 'phloem-suckers': 4 } },
   { id: 'white-flies', label: { en: 'Tiny white flies rise when shaken', zh: '摇动时飞起微小白色飞虫' }, w: { 'phloem-suckers': 5 } },
-  { id: 'jumpers', label: { en: 'Small wedge-shaped insects that jump sideways', zh: '横着跳的楔形小虫' }, w: { 'phloem-suckers': 4 } },
+  { id: 'jumpers', label: { en: 'Small green wedge-shaped insects that run sideways or jump', zh: '横着爬或会跳的绿色楔形小虫（青蚊）' }, w: { leafhoppers: 5 } },
   { id: 'waxy-fixed', label: { en: 'White waxy or shell-like bugs that hardly move', zh: '几乎不动的白色蜡质或硬壳虫' }, w: { 'scale-mealybug': 5 } },
   { id: 'slender', label: { en: 'Very tiny slender insects (seen on white paper)', zh: '极小细长的虫（在白纸上可见）' }, w: { thrips: 5 } },
   { id: 'shield-bug', label: { en: 'Shield-shaped or long-legged bugs', zh: '盾形或长腿的蝽' }, w: { 'plant-bugs': 5 } },
@@ -185,6 +185,7 @@ export function nextAfterSign(signId) {
 const L = (en, zh) => ({ en, zh });
 export const PART_PESTS = {
   leaf: [
+    ['leafhoppers', L('Young leaf edges yellow then brown and crispy; green insects run sideways', '嫩叶叶缘先黄后褐焦；有横着爬的绿色小虫')],
     ['phloem-suckers', L('Leaves curl down; sticky honeydew; tiny soft insects under the leaf', '叶片向下卷；有黏稠蜜露；叶背有微小软体虫')],
     ['rhizoctonia', L('Young leaves brown in patches, stuck together by fine threads', '嫩叶成片变褐，被细丝粘在一起')],
     ['thrips', L('Silvery scars; new leaves curl up with brown, crispy edges', '银白色疤痕；新叶向上卷，叶缘焦褐')],

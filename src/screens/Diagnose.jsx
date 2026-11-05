@@ -247,6 +247,7 @@ function KnownSearch() {
 // "Best fit". Edit this list to change the shortcuts (order = display order).
 const COMMON = [
   ['fruit-borers', { en: 'Fruit borer', zh: '果实蛀虫' }],
+  ['leafhoppers', { en: 'Leafhoppers', zh: '叶蝉（青蚊）' }],
   ['phloem-suckers', { en: 'Psyllids & aphids', zh: '木虱与蚜虫' }],
   ['scale-mealybug', { en: 'Mealybugs & scales', zh: '粉蚧与介壳虫' }],
   ['thrips', { en: 'Thrips', zh: '蓟马' }],

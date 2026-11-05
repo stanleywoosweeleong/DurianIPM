@@ -159,7 +159,7 @@ const EXTRA_REMOVED = [
 // The rotation guide records the CHART pests each removed active was used on;
 // translate those to pest groups so the notice can point to legal options.
 const CHART_TO_GROUPS = {
-  leafhopper: ['phloem-suckers'], psyllid: ['phloem-suckers'], mealybug: ['scale-mealybug'],
+  leafhopper: ['leafhoppers'], psyllid: ['phloem-suckers'], mealybug: ['scale-mealybug'],
   thrips: ['thrips'], spider_mite: ['mites'], caterpillar: ['leaf-caterpillars', 'fruit-borers'], grasshopper: ['leaf-beetles'],
 };
 export const REMOVED = [

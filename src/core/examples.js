@@ -6,7 +6,8 @@
 import { ALL_PESTS } from '../data/pests.js';
 
 const MAP = {
-  'phloem-suckers': ['aphid-nymph', 'aphid-adult', 'whitefly-nymph', 'whitefly-adult', 'psyllid-nymph', 'psyllid-adult', 'green-leafhopper-nymph', 'green-leafhopper-adult'],
+  'phloem-suckers': ['aphid-nymph', 'aphid-adult', 'whitefly-nymph', 'whitefly-adult', 'psyllid-nymph', 'psyllid-adult'],
+  leafhoppers: ['green-leafhopper-nymph', 'green-leafhopper-adult'],
   'scale-mealybug': ['durian-pit-scale-crawler', 'durian-pit-scale-adult', 'soft-scale', 'durian-mealybug-crawler', 'durian-mealybug-adult', 'coffee-mealybug'],
   thrips: ['thrips-nymph', 'thrips-adult'],
   'plant-bugs': ['leaf-footed-bug', 'stink-bug'],
