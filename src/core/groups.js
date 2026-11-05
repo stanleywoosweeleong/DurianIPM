@@ -63,8 +63,8 @@ export const GROUPS = [
     ],
     chem: [
       { moa: 'IRAC 23', fit: 'best', why: { en: 'Moves down AND up in the sap — reaches insects anywhere on the flush.', zh: '在汁液中上下双向传导——可到达新梢任何部位的害虫。' } },
-      { moa: 'IRAC 29', fit: 'best', why: { en: 'Stops feeding within hours; safe for bees and predators.', zh: '数小时内停止取食；对蜜蜂和天敌安全。' } },
-      { moa: 'IRAC 9B', fit: 'best', why: { en: 'Feeding blocker for aphids and whiteflies; selective.', zh: '针对蚜虫和粉虱的取食阻断剂；选择性强。' } },
+      { moa: 'IRAC 29', fit: 'best', why: { en: 'Flonicamid stops feeding within hours; low bee risk, but moderately harmful to some predators and parasitic wasps.', zh: '氟啶虫酰胺数小时内停止取食；对蜜蜂风险低，但对部分捕食者和寄生蜂有中等伤害。' } },
+      { moa: 'IRAC 9B', fit: 'best', why: { en: 'Pymetrozine: feeding blocker for aphids and whiteflies; selective. Whitefly resistance to neonicotinoids can also reduce its effect.', zh: '吡蚜酮：蚜虫和粉虱的取食阻断剂；选择性强。粉虱对新烟碱的抗性也可能削弱其效果。' } },
       { moa: 'IRAC 4C', fit: 'good', why: { en: 'Works on many neonic-resistant populations.', zh: '对许多抗新烟碱种群有效。' } },
       { moa: 'IRAC 16', fit: 'good', why: { en: 'Kills nymphs of whiteflies and leafhoppers.', zh: '杀灭粉虱和叶蝉若虫。' } },
       { moa: 'IRAC 7C', fit: 'good', why: { en: 'Stops whitefly eggs and nymphs developing.', zh: '阻止粉虱卵和若虫发育。' } },
@@ -111,7 +111,7 @@ export const GROUPS = [
     ],
     chem: [
       { moa: 'IRAC 23', fit: 'best', why: { en: 'Spirotetramat travels in the sap to insects hidden under wax and on roots.', zh: '螺虫乙酯随汁液到达蜡壳下及根部的害虫。' } },
-      { moa: 'IRAC 16', fit: 'best', why: { en: 'Buprofezin kills crawlers and nymphs at moulting.', zh: '噻嗪酮在蜕皮时杀灭爬虫和若虫。' } },
+      { moa: 'IRAC 16', fit: 'good', why: { en: 'Buprofezin kills crawlers and nymphs at moulting — but gave mixed results against vine mealybug, behind spirotetramat.', zh: '噻嗪酮在蜕皮时杀灭爬虫和若虫——但对葡萄粉蚧效果不稳定，不及螺虫乙酯。' } },
       { moa: 'IRAC UN', fit: 'best', why: { en: 'Mineral oil smothers crawlers and softens wax; add to other sprays for penetration.', zh: '矿物油窒息爬虫并软化蜡层；加入其他药剂可提高渗透。' } },
       { moa: 'IRAC 7C', fit: 'good', why: { en: 'Pyriproxyfen stops young scales maturing.', zh: '吡丙醚阻止幼蚧发育成熟。' } },
       { moa: 'BIO-INS', only: ['lecanicillium', 'beauveria-bassiana'], fit: 'good', why: { en: 'Beauveria works in humid canopies.', zh: '白僵菌在湿润的树冠中有效。' } },
@@ -154,7 +154,7 @@ export const GROUPS = [
       { en: 'Irrigate in dry spells; outbreaks explode in hot dry weather.', zh: '干旱期及时灌溉；高温干旱时易爆发。' },
     ],
     chem: [
-      { moa: 'IRAC 5', fit: 'best', why: { en: 'Spinosyns (spinosad — organic; spinetoram — conventional) reach thrips in buds; gentle on predators. Do not alternate the two: same target.', zh: '多杀菌素类（多杀霉素——有机；乙基多杀菌素——常规）可到达花蕾内的蓟马；对天敌温和。两者靶标相同，不能互相轮换。' } },
+      { moa: 'IRAC 5', fit: 'best', why: { en: 'Spinosyns (spinosad — organic; spinetoram — conventional) reach thrips in buds. Moderately toxic to bees and some predators while wet — spray at sunset. Do not alternate the two: same target.', zh: '多杀菌素类（多杀霉素——有机；乙基多杀菌素——常规）可到达花蕾内的蓟马。药液未干时对蜜蜂和部分天敌有中等毒性——日落时喷施。两者靶标相同，不能互相轮换。' } },
       { moa: 'IRAC 6', fit: 'good', why: { en: 'Abamectin is translaminar and reaches folded leaves. Handle with care; never in flowering.', zh: '阿维菌素具渗透性，可到达卷叶内部。注意防护；开花期禁用。' } },
       { moa: 'IRAC 28', fit: 'good', why: { en: 'Cyantraniliprole has thrips activity and low bee risk.', zh: '溴氰虫酰胺对蓟马有效，对蜜蜂风险低。' } },
       { moa: 'IRAC 15', fit: 'good', why: { en: 'Benzoylureas kill young thrips when they moult.', zh: '苯甲酰脲类在若虫蜕皮时将其杀死。' } },
@@ -233,9 +233,9 @@ export const GROUPS = [
       { en: 'Parasitic wasps are common — avoid broad-spectrum sprays.', zh: '寄生蜂很常见——避免使用广谱药剂。' },
     ],
     chem: [
-      { moa: 'IRAC 11A', fit: 'best', why: { en: 'Bt: only kills caterpillars; safe for everything else.', zh: 'Bt：只杀毛虫；对其他生物安全。' } },
+      { moa: 'IRAC 11A', fit: 'best', why: { en: 'Bt: only kills caterpillars and spares predators. The kurstaki strain needs no bee precaution; the aizawai strain should not be sprayed on open flowers.', zh: 'Bt：只杀毛虫，不伤天敌。库斯塔克亚种无需防蜂措施；鲇泽亚种不宜喷在盛开的花上。' } },
       { moa: 'IRAC 28', fit: 'best', why: { en: 'Diamides stop feeding in minutes, long lasting, bee-safe.', zh: '双酰胺类数分钟内停止取食，持效长，对蜂安全。' } },
-      { moa: 'IRAC 5', fit: 'best', why: { en: 'Spinosyns: fast, gentle on predators.', zh: '多杀菌素：速效，对天敌温和。' } },
+      { moa: 'IRAC 5', fit: 'best', why: { en: 'Spinosyns: fast-acting; moderately toxic to bees and some predators while wet — spray at sunset.', zh: '多杀菌素：速效；药液未干时对蜜蜂和部分天敌有中等毒性——日落时喷施。' } },
       { moa: 'IRAC 6', fit: 'good', why: { en: 'Emamectin benzoate: very potent on caterpillars.', zh: '甲维盐：对毛虫活性极高。' } },
       { moa: 'IRAC 22A', fit: 'good', why: { en: 'Indoxacarb: stomach action.', zh: '茚虫威：胃毒作用。' } },
       { moa: 'IRAC 15', fit: 'good', why: { en: 'Benzoylureas (lufenuron etc.): for young larvae.', zh: '苯甲酰脲类（虱螨脲等）：用于低龄幼虫。' } },
@@ -317,7 +317,7 @@ export const GROUPS = [
     ],
     avoid: [
       { moa: 'IRAC 2A', why: { en: 'Old organochlorines are banned worldwide; any product sold is illegal, and residues mean export rejection.', zh: '老式有机氯已全球禁用；市售产品均属非法，残留会导致出口被拒。' } },
-      { moa: 'IRAC 4A', why: { en: 'Systemic neonics do not move into fruit flesh well and do little against borers.', zh: '内吸性新烟碱难以进入果肉，对钻蛀虫效果甚微。' } },
+      { moa: 'IRAC 4A', why: { en: 'Neonicotinoids give only partial control of fruit-boring caterpillars (well below diamides or Bt) and are highly toxic to the bees that visit durian flowers.', zh: '新烟碱类对蛀果毛虫只有部分防效（远不及双酰胺或Bt），且对访花的蜜蜂高毒。' } },
     ],
     refs: [
       { t: "Thai trial: bagging durian 6 weeks after fruit set gave 100% protection from seed borer Mudaria luteileprosa", url: "https://agris.fao.org/search/en/records/6472418353aa8c89630377f3", supports: "Bag fruit early: bagging at 6 wk prevented all damage; bagging at 8 wk was too late (2.86% vs 17.14% unbagged)", scope: "durian" },
@@ -389,12 +389,12 @@ export const GROUPS = [
       { en: 'Whitewash the lower trunk (lime + copper), spray neem on the trunk, or wrap it with netting/sacking in the peak beetle season to deter egg-laying.', zh: '涂白树干下部（石灰+铜剂）、在树干喷印楝油，或在成虫高峰期用网或麻袋包扎树干，以阻止产卵。' },
     ],
     chem: [
-      { moa: 'BIO-NEM', fit: 'best', why: { en: 'Inject Steinernema nematodes into the tunnel; they hunt the grub and leave no residue.', zh: '向虫道注入斯氏线虫；它们会主动寻找幼虫，且无残留。' } },
+      { moa: 'BIO-NEM', fit: 'good', why: { en: 'Inject beneficial nematodes into the tunnel — in a mango Batocera trial they cut damage by 82% (Heterorhabditis indica did best); no residue.', zh: '向虫道注入有益线虫——在芒果天牛试验中可减少82%的危害（印度异小杆线虫效果最好）；无残留。' } },
       { moa: 'IRAC 28', only: ['chlorantraniliprole'], fit: 'good', why: { en: 'Inject into the tunnel, then seal.', zh: '注入虫道后封口。' } },
       { moa: 'IRAC 6', only: ['emamectin-benzoate'], fit: 'good', why: { en: 'Emamectin benzoate injected into the tunnel, then sealed.', zh: '向虫道注入甲氨基阿维菌素苯甲酸盐后封口。' } },
       { moa: 'BIO-INS', only: ['metarhizium', 'beauveria-bassiana'], fit: 'good', why: { en: 'Metarhizium or Beauveria suspension injected into the hole or sprayed on the trunk.', zh: '将绿僵菌或白僵菌菌液注入虫孔或喷于树干。' } },
       { moa: 'IRAC 3A', only: ['cypermethrin', 'lambda-cyhalothrin', 'bifenthrin'], fit: 'good', why: { en: 'Trunk spray on the lower 1–2 m and the main forks at the start of the rains, when adults lay eggs — kills newly hatched larvae before they bore in.', zh: '雨季初成虫产卵时，喷洒树干下部1–2米及主枝杈——在初孵幼虫钻入前将其杀死。' } },
-      { moa: 'IRAC 4A', only: ['imidacloprid', 'thiamethoxam'], fit: 'limited', why: { en: 'Injected into the tunnel and sealed only — never sprayed, and never in flowering.', zh: '只能注入虫道并封口——切勿喷洒，花期禁用。' } },
+      { moa: 'IRAC 4A', only: ['imidacloprid', 'acetamiprid', 'thiamethoxam'], fit: 'best', why: { en: 'Injected into the tunnel and sealed: in a Thai durian trial imidacloprid, acetamiprid and thiamethoxam gave the best larval control. Injection only — never spray it, never in flowering.', zh: '注入虫道并封口：泰国榴莲试验中，吡虫啉、啶虫脒和噻虫嗪对幼虫的防效最好。只能注射——切勿喷洒，花期禁用。' } },
     ],
     avoid: [
       { moa: 'IRAC 1A', why: { en: 'Old carbamate granules are highly hazardous and poison birds and soil life.', zh: '老式氨基甲酸酯颗粒剂高危，会毒杀鸟类和土壤生物。' } },
@@ -433,8 +433,8 @@ export const GROUPS = [
       { en: 'Light traps placed AWAY from the trees catch the moths without drawing them into the orchard. Pheromone lures are for monitoring only.', zh: '灯光诱捕器要放在远离果树的地方，以免把蛾子引入果园。性诱剂仅用于监测。' },
     ],
     chem: [
-      { moa: 'IRAC 28', only: ['chlorantraniliprole'], fit: 'best', why: { en: 'Inject or plug the tunnel and seal; also spray new flush while egg-laying is visible, to stop young larvae boring in.', zh: '注入或塞入虫道后封口；产卵期间也可喷洒新梢，阻止初孵幼虫钻入。' } },
-      { moa: 'IRAC 6', only: ['emamectin-benzoate'], fit: 'best', why: { en: 'Same use as chlorantraniliprole: tunnel injection, or a flush spray during egg-laying.', zh: '用法同氯虫苯甲酰胺：虫道注射，或产卵期喷洒新梢。' } },
+      { moa: 'IRAC 28', only: ['chlorantraniliprole'], fit: 'good', why: { en: 'Inject or plug the tunnel and seal; or spray new flush during egg-laying. No trial on this species was found — pruning and wiring (above) remain the main control.', zh: '注入或塞入虫道后封口；或在产卵期喷洒新梢。未找到针对此虫的试验——剪枝和铁丝钩杀（见上）仍是主要防治方法。' } },
+      { moa: 'IRAC 6', only: ['emamectin-benzoate'], fit: 'good', why: { en: 'Same use as chlorantraniliprole; also not trialled on this species.', zh: '用法同氯虫苯甲酰胺；同样未在此虫上试验过。' } },
       { moa: 'BIO-NEM', fit: 'good', why: { en: 'Inject Steinernema carpocapsae — works well for this pest, but the tunnel must stay moist.', zh: '注入小卷蛾斯氏线虫——对此虫效果好，但虫道须保持湿润。' } },
       { moa: 'IRAC 3A', only: ['cypermethrin'], fit: 'good', why: { en: 'Cypermethrin injected or on a cotton plug, then sealed.', zh: '注入氯氰菊酯或用浸药棉球塞入后封口。' } },
     ],
@@ -457,8 +457,8 @@ export const GROUPS = [
     hides: { en: '1 mm galleries deep in the wood, where they grow a fungus (often Fusarium) that the larvae eat', zh: '木质部深处1毫米的坑道，在其中培养真菌（常为镰刀菌）供幼虫取食' },
     damagingStage: { en: 'Adult females boring in; the fungus they carry can kill branches by itself', zh: '钻入的雌成虫；它们携带的真菌本身就能杀死枝条' },
     why: {
-      en: 'Usually a TREE-HEALTH problem: fix the stress or disease first, then the beetles. They are drawn to ethanol from stressed or dying tissue — on durian nearly always Phytophthora patch canker, waterlogging, drought or sunscald. They eat fungus, not wood, so systemic insecticides work poorly.',
-      zh: '通常是树体健康问题：先解决胁迫或病害，再处理甲虫。它们会被衰弱或濒死组织释放的乙醇吸引——在榴莲上几乎总是疫霉斑块溃疡、积水、干旱或日灼。它们吃真菌而不是木材，所以内吸杀虫剂效果差。',
+      en: 'Usually a TREE-HEALTH problem: fix the stress or disease first, then the beetles. Most are drawn to ethanol from stressed or dying tissue — on durian usually Phytophthora patch canker, waterlogging, drought or sunscald. Some Euwallacea shot-hole borers can also attack healthy trees and ignore ethanol (quercivorol lures attract them). They eat fungus, not wood, so systemic insecticides work poorly.',
+      zh: '通常是树体健康问题：先解决胁迫或病害，再处理甲虫。多数会被衰弱或濒死组织释放的乙醇吸引——在榴莲上通常是疫霉斑块溃疡、积水、干旱或日灼。部分优材小蠹也会攻击健康树且不受乙醇吸引（可用quercivorol诱芯）。它们吃真菌而不是木材，所以内吸杀虫剂效果差。',
     },
     scout: {
       en: 'Many 1 mm pinholes with fine powdery sawdust. STEP 1 — scrape the bark around the holes: reddish-brown, wet, sour-smelling tissue (often with gum or dark ooze) = Phytophthora is active, treat it first. Pale, healthy tissue = the beetle is the main problem, but still check roots, drainage and sun damage.',
@@ -474,7 +474,7 @@ export const GROUPS = [
       { en: 'Whitewash the trunk (lime + copper) after treatment — it reduces sunscald and Phytophthora, which both attract the beetles.', zh: '处理后涂白树干（石灰+铜剂）——可减少日灼和疫霉，这两者都会吸引小蠹虫。' },
     ],
     chem: [
-      { moa: 'FRAC P07', fit: 'best', why: { en: 'Phosphonic acid (potassium phosphonate) trunk injection, usually 2–3 times a year at the label dose for the tree size — the most important long-term treatment for durian Phytophthora.', zh: '亚磷酸（亚磷酸钾）树干注射，通常每年2–3次，按标签对应树体大小的剂量——防治榴莲疫霉最重要的长期措施。' } },
+      { moa: 'FRAC P07', fit: 'best', why: { en: 'Phosphonic acid (potassium phosphonate) trunk injection, usually 2–3 times a year at the label dose for the tree size — the most important long-term treatment for durian Phytophthora. Too much damages durian — injury reported above about 25 g active ingredient per tree per year.', zh: '亚磷酸（亚磷酸钾）树干注射，通常每年2–3次，按标签对应树体大小的剂量——防治榴莲疫霉最重要的长期措施。过量会伤害榴莲——每株每年超过约25克有效成分即有药害报告。' } },
       { moa: 'FRAC M01', fit: 'good', why: { en: 'Copper paste on scraped cankers.', zh: '刮除溃疡后涂抹铜剂膏。' } },
       { moa: 'FRAC 4', fit: 'good', why: { en: 'Metalaxyl paste on scraped cankers where Phytophthora is active.', zh: '疫霉活跃时，刮除溃疡后涂抹精甲霜灵膏。' } },
       { moa: 'IRAC 3A', only: ['bifenthrin', 'cypermethrin', 'lambda-cyhalothrin'], fit: 'good', why: { en: 'Then the beetles: spray the attacked area and surrounding bark to kill beetles while they bore in; repeat per label during active attack.', zh: '再处理甲虫：喷洒受害部位及周围树皮，在甲虫钻入时将其杀死；危害期间按标签重复。' } },
@@ -589,10 +589,10 @@ export const GROUPS = [
       { en: 'Reduce road dust on leaves.', zh: '减少叶片上的道路扬尘。' },
     ],
     chem: [
-      { moa: 'IRAC 10', fit: 'best', why: { en: 'Kills eggs and young mites; long-lasting, predator-safe.', zh: '杀卵和幼螨；持效长，对捕食螨安全。' } },
+      { moa: 'IRAC 10', fit: 'best', why: { en: 'Kills eggs and young mites; long-lasting. Hexythiazox can harm predatory mites for up to 6 weeks.', zh: '杀卵和幼螨；持效长。噻螨酮对捕食螨的影响可长达6周。' } },
       { moa: 'IRAC 23', fit: 'best', why: { en: 'Spiromesifen/spirodiclofen: all stages incl. eggs.', zh: '螺甲螨酯/螺螨酯：包括卵在内的所有虫态。' } },
       { moa: 'IRAC 20D', fit: 'good', why: { en: 'Bifenazate: different target from nerve miticides; soft on predatory mites.', zh: '联苯肼酯：与神经类杀螨剂靶标不同；对捕食螨温和。' } },
-      { moa: 'IRAC 25A', fit: 'good', why: { en: 'Cyflumetofen: respiration target, gentle on predators.', zh: '丁氟螨酯：作用于呼吸，对天敌温和。' } },
+      { moa: 'IRAC 25A', fit: 'good', why: { en: 'Cyflumetofen: respiration target; affects predatory mites only briefly.', zh: '丁氟螨酯：作用于呼吸；对捕食螨的影响短暂。' } },
       { moa: 'IRAC 6', fit: 'good', why: { en: 'Abamectin: fast on adult mites, soaks into the leaf. Handle with care; never in flowering.', zh: '阿维菌素：快速杀成螨，渗入叶片。注意防护；开花期禁用。' } },
       { moa: 'IRAC 12C', fit: 'good', why: { en: 'Propargite: contact on adults (avoid hot midday).', zh: '炔螨特：触杀成螨（避开正午高温）。' } },
       { moa: 'SULFUR', fit: 'good', why: { en: 'Good on broad and eriophyid mites; cheap, no resistance.', zh: '对茶黄螨和瘿螨效果好；便宜，无抗性。' } },
@@ -638,7 +638,7 @@ export const GROUPS = [
       { en: 'Nursery: raise benches off the ground, keep a bare gravel strip around it, and put copper bands round pots and young trunks.', zh: '苗圃：苗床架离地面，四周保留一圈裸露的碎石带，并在花盆和幼树干上缠铜带。' },
     ],
     chem: [
-      { moa: 'MOLL', fit: 'best', why: { en: 'Iron-phosphate pellets: scatter thinly around seedlings in the evening after rain; safe for pets, birds and earthworms. Repeat after heavy rain. Metaldehyde also works but poisons dogs and wildlife.', zh: '磷酸铁颗粒：雨后傍晚在幼苗周围薄撒；对宠物、鸟类和蚯蚓安全。大雨后补施。四聚乙醛也有效，但会毒害狗和野生动物。' } },
+      { moa: 'MOLL', fit: 'best', why: { en: 'Iron-phosphate pellets: scatter thinly around seedlings in the evening after rain; much safer than metaldehyde for pets, birds and earthworms, though dogs have been sickened after eating large amounts — store and scatter thinly. Repeat after heavy rain. Metaldehyde also works but poisons dogs and wildlife.', zh: '磷酸铁颗粒：雨后傍晚在幼苗周围薄撒；对宠物、鸟类和蚯蚓比四聚乙醛安全得多，但狗大量误食后也曾中毒——妥善存放并薄撒。大雨后补施。四聚乙醛也有效，但会毒害狗和野生动物。' } },
     ],
     avoid: [],
     refs: [
@@ -659,12 +659,12 @@ export const GROUPS = [
     feeding: 'sap-tissue',
     hides: { en: 'Inside roots', zh: '在根内' },
     damagingStage: { en: 'Juveniles entering roots', zh: '侵入根部的幼虫' },
-    why: { en: 'Microscopic worms inside roots. Chemical nematicides are rarely economical on mature durian and the old ones are highly hazardous. Healthy soil biology is the main defence.', zh: '寄生在根内的微小线虫。化学杀线虫剂在成年榴莲上很少划算，老式药剂又高危。健康的土壤生物是主要防线。' },
+    why: { en: 'Microscopic worms inside roots. Chemical nematicides are rarely economical on mature durian and the old ones are highly hazardous. Clean planting material and good soil care are the main defence; compost helps but works inconsistently against nematodes.', zh: '寄生在根内的微小线虫。化学杀线虫剂在成年榴莲上很少划算，老式药剂又高危。无病种苗和良好的土壤管理是主要防线；堆肥有帮助，但对线虫的效果不稳定。' },
     scout: { en: 'Dig feeder roots of stunted trees: look for knots/galls or dark lesions. Send soil to a lab to confirm.', zh: '挖出生长不良树的吸收根：查看根结/虫瘿或深色病斑。送土样到实验室确认。' },
     threshold: { en: 'Confirm with a lab test before acting.', zh: '处理前应通过实验室检测确认。' },
     nonChem: [
       { en: 'Use nematode-free planting material; solarise nursery soil.', zh: '使用无线虫种苗；苗圃土壤日晒消毒。' },
-      { en: 'Add compost and organic matter to feed antagonistic microbes.', zh: '施用堆肥和有机质，滋养拮抗微生物。' },
+      { en: 'Add compost and organic matter to support antagonistic microbes — a supporting tool; results vary.', zh: '施用堆肥和有机质，培养拮抗微生物——属辅助手段，效果因地而异。' },
     ],
     chem: [
       { moa: 'BIO-FUN', fit: 'good', why: { en: 'Trichoderma and Bacillus products with compost.', zh: '木霉菌和芽孢杆菌产品配合堆肥使用。' } },
@@ -700,12 +700,12 @@ export const GROUPS = [
     nonChem: [
       { en: 'Drainage: no standing water around trees, build mounds for new plantings.', zh: '排水：树周不能积水，新植树需起墩种植。' },
       { en: 'Prune lower branches (skirt) to 1 m so rain splash cannot carry spores up.', zh: '修剪下部枝条至1米高，防止雨水溅射携带孢子。' },
-      { en: 'Scrape canker to healthy tissue, then paint with copper or phosphonate paste.', zh: '刮除溃疡至健康组织，然后涂抹铜剂或亚磷酸膏。' },
+      { en: 'Scraping cankers and painting them (copper or phosphonate paste) helps on small lesions, but gave inconsistent results in durian trials — trunk injection is more reliable.', zh: '刮除溃疡并涂药（铜剂或亚磷酸膏）对小病斑有帮助，但在榴莲试验中效果不稳定——树干注射更可靠。' },
       { en: 'Avoid wounding roots and trunk with machinery.', zh: '避免机械损伤根部和树干。' },
       { en: 'Apply Trichoderma with compost under the canopy.', zh: '在树冠下施用木霉菌配合堆肥。' },
     ],
     chem: [
-      { moa: 'FRAC P07', fit: 'best', why: { en: 'Phosphonate trunk injection or spray: moves to roots and boosts tree defences.', zh: '亚磷酸盐树干注射或喷施：可传导至根部并增强树体防御。' } },
+      { moa: 'FRAC P07', fit: 'best', why: { en: 'Phosphonate trunk injection: moves to roots and boosts tree defences; in durian trials it beat metalaxyl and fosetyl sprays. Do not overdose — injury reported above about 25 g active ingredient per tree per year.', zh: '亚磷酸盐树干注射：可传导至根部并增强树体防御；榴莲试验中效果优于精甲霜灵和三乙膦酸铝喷施。切勿过量——每株每年超过约25克有效成分即有药害报告。' } },
       { moa: 'FRAC 4', fit: 'good', why: { en: 'Metalaxyl-M soil drench for root rot — max 2 per season.', zh: '精甲霜灵灌根防治根腐——每季最多2次。' } },
       { moa: 'FRAC 40', fit: 'good', why: { en: 'Dimethomorph: rotation partner for foliar/fruit phases.', zh: '烯酰吗啉：叶片/果实阶段的轮换药剂。' } },
       { moa: 'FRAC 21', fit: 'good', why: { en: 'Cyazofamid: preventive on fruit and leaves.', zh: '氰霜唑：对果实和叶片有预防作用。' } },
@@ -776,9 +776,9 @@ export const GROUPS = [
       { en: 'Remove fallen infected leaves.', zh: '清除落地病叶。' },
     ],
     chem: [
-      { moa: 'FRAC M03', fit: 'best', why: { en: 'Mancozeb/propineb: cheap protectant, no resistance.', zh: '代森锰锌/丙森锌：便宜的保护剂，无抗性。' } },
-      { moa: 'FRAC 3', only: ['difenoconazole', 'hexaconazole', 'propiconazole', 'tebuconazole'], fit: 'best', why: { en: 'Difenoconazole/hexaconazole: systemic and curative on anthracnose; the usual choice in Malaysian orchards.', zh: '苯醚甲环唑/己唑醇：内吸性，对炭疽病有治疗作用；马来西亚果园常用。' } },
-      { moa: 'FRAC 11', fit: 'good', why: { en: 'Azoxystrobin: preventive — max 2 in a row.', zh: '嘧菌酯：预防性——连续不超过2次。' } },
+      { moa: 'FRAC M03', fit: 'good', why: { en: 'Mancozeb/propineb: cheap protectant and mixing partner — but a Thai durian study found 6 of 15 anthracnose isolates resistant to mancozeb.', zh: '代森锰锌/丙森锌：便宜的保护剂和混配伙伴——但泰国榴莲研究发现15个炭疽菌株中有6个对代森锰锌有抗性。' } },
+      { moa: 'FRAC 3', only: ['difenoconazole', 'hexaconazole', 'propiconazole', 'tebuconazole'], fit: 'best', why: { en: 'Difenoconazole first: a Thai durian study found ALL anthracnose isolates sensitive to it. Systemic and curative.', zh: '首选苯醚甲环唑：泰国榴莲研究中所有炭疽菌株都对其敏感。内吸并有治疗作用。' } },
+      { moa: 'FRAC 11', fit: 'limited', why: { en: 'Azoxystrobin group (QoI): most durian anthracnose isolates tested were insensitive to this group — use only in rotation, max 2 in a row.', zh: '嘧菌酯类（QoI）：所测的榴莲炭疽菌株大多对此类不敏感——只可轮换使用，连续不超过2次。' } },
       { moa: 'FRAC M01', fit: 'good', why: { en: 'Copper for algal leaf spot.', zh: '铜剂防治藻斑病。' } },
       { moa: 'BIO-FUN', fit: 'good', why: { en: 'Bacillus-based products protect flush and flowers from anthracnose.', zh: '芽孢杆菌类产品保护新梢和花朵免受炭疽病。' } },
     ],
@@ -935,11 +935,11 @@ export const GROUPS = [
     feeding: 'none',
     hides: { en: 'On bark in shady, humid canopies', zh: '在阴凉潮湿树冠的树皮上' },
     damagingStage: { en: '—', zh: '—' },
-    why: { en: 'Usually harmless — a sign of a humid, shaded canopy. Thick growth hides cankers and borers, so keep the trunk visible.', zh: '通常无害——表明树冠潮湿荫蔽。生长过密会掩盖溃疡和蛀孔，因此应保持树干可见。' },
+    why: { en: 'Algae and moss are harmless — a sign of a humid, shaded canopy. Dragon\'s scale fern is a mild parasite: branches fully covered by it can dry and die. Thick growth also hides cankers and borers.', zh: '藻类和苔藓无害——表明树冠潮湿荫蔽。抱树莲是轻度寄生植物：被完全覆盖的枝条可能干枯死亡。生长过密也会掩盖溃疡和蛀孔。' },
     scout: { en: 'Green film, ferns or moss on trunk and branches.', zh: '树干和枝条上有绿色薄膜、蕨类或苔藓。' },
     threshold: { en: 'Only when it hides the bark or is very thick.', zh: '仅在掩盖树皮或非常厚时处理。' },
     nonChem: [
-      { en: 'Scrape off by hand; prune to let light and air in.', zh: '人工刮除；修剪以增加透光和通风。' },
+      { en: 'Prune to let light and air in — the lasting fix. Pull dragon\'s scale fern off heavily covered branches, but do not scrape or jet-wash bark for algae: it damages the bark and the growth returns.', zh: '修剪以增加透光和通风——这是长久之计。可从覆盖严重的枝条上拔除抱树莲，但不要为清除藻类而刮或高压冲洗树皮：会损伤树皮且藻类会再长。' },
     ],
     chem: [
       { moa: 'FRAC M01', fit: 'limited', why: { en: 'Copper wash only if algae is very heavy.', zh: '仅在藻类非常严重时使用铜剂清洗。' } },
