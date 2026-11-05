@@ -10,7 +10,10 @@ const chemByEn = new Map(CHEMICALS.map(c => [c.name.en, c]));
 const clusterOf = (irac) => CROSS_RESISTANCE_CLUSTERS.find(c => c.groups.includes(irac));
 
 /** Actives for one MoA class, restricted to the rotation chart for this group when we have one. */
-function activesFor(group, key) {
+function activesFor(group, key, only) {
+  // `only`: exact active ids for this pest, in display order. A class can hold
+  // members that do not work on every pest (e.g. most diamides only kill caterpillars).
+  if (only) return only.map(id => CHEMICALS.find(c => c.id === id)).filter(Boolean);
   const chart = CHART_FOR_GROUP[group.id];
   let list;
   if (chart) {
@@ -41,7 +44,7 @@ export function recommend(group, ctx = {}) {
 
   const options = group.chem.map((c, index) => {
     const info = moaInfo(c.moa);
-    const all = activesFor(group, c.moa);
+    const all = activesFor(group, c.moa, c.only);
     const actives = track === 'organic' ? all.filter(a => a.organic) : track === 'conventional' ? all.filter(a => !a.organic) : all;
     const warnings = [];
     let score = FIT_SCORE[c.fit] ?? 1;

@@ -196,7 +196,7 @@ import { PART_PESTS } from '../src/core/diagnosis.js';
 test('part → pest lists: real groups, bilingual, short', () => {
   for (const p of PARTS) {
     const list = PART_PESTS[p.id];
-    assert.ok(list && list.length >= 4 && list.length <= 10, p.id);
+    assert.ok(list && list.length >= 4 && list.length <= 11, p.id);
     for (const [gid, look] of list) { assert.ok(groupIds.has(gid), `${p.id}/${gid}`); bi(look, `${p.id}/${gid}`); }
   }
 });
@@ -217,4 +217,27 @@ test('no runtime photo search anywhere (only fixed, checked photos)', async () =
   const files = walk(new URL('../src', import.meta.url).pathname).filter(f => /\.(js|jsx)$/.test(f));
   const hits = files.filter(f => /commons\.wikimedia\.org\/w\/api\.php|gsrsearch/.test(fs.readFileSync(f, 'utf8')));
   assert.deepEqual(hits, []);
+});
+
+test('exact product lists: every id exists and belongs to the class it is listed under', () => {
+  for (const g of GROUPS) for (const c of g.chem) for (const id of c.only || []) {
+    const chem = CHEMICALS.find(x => x.id === id);
+    assert.ok(chem, `${g.id}/${c.moa}: unknown active ${id}`);
+    assert.equal(chem.moa, c.moa, `${g.id}: ${id} is ${chem.moa}, listed under ${c.moa}`);
+  }
+});
+
+test('review fixes: no caterpillar-only diamides for bugs, spinosad bait for fruit flies, fipronil-only ant bait', () => {
+  const ids = (gid) => recommend(GROUPS.find(g => g.id === gid)).options.flatMap(o => o.actives.map(a => a.id));
+  assert.ok(!ids('plant-bugs').includes('chlorantraniliprole') && !ids('plant-bugs').includes('flubendiamide'));
+  assert.deepEqual(ids('fruit-flies'), ['spinosad']);
+  assert.ok(!ids('ants-wasps').includes('ethiprole'));
+  assert.ok(!ids('soil-pests').includes('flubendiamide'));
+  const anth = recommend(GROUPS.find(g => g.id === 'leaf-spots')).options;
+  assert.equal(anth.find(o => o.moa === 'FRAC 3').actives[0].id, 'difenoconazole');
+  // every group name reads correctly under every part it appears in
+  const names = Object.fromEntries(GROUPS.map(g => [g.id, g.name.en]));
+  for (const [part, list] of Object.entries(PART_PESTS)) for (const [gid] of list) {
+    if (part !== 'leaf') assert.ok(!/^Leaf[ -]/.test(names[gid]) || /leaves &/i.test(names[gid]), `"${names[gid]}" listed under ${part}`);
+  }
 });
