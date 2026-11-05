@@ -35,8 +35,9 @@ questions (where, what you see, what creature), and gets sound advice.
   Then the spray options ranked on effectiveness, with stage/bee/harvest/resistance warnings and a 3-spray
   rotation. Organic products are marked 🌿 (organic status lives on each active, `ORGANIC_IDS` in
   `src/core/chemDb.js`), with an optional "Organic only" switch. A list of what **not** to use follows.
-- **Rotate**: the Rotation Helper (see below). Pick a pest and the IRAC group used last; it returns Avoid,
-  Caution (shared target), and Rotate to, ranked by switching to a different target site and then by WHO toxicity.
+- **Rotation, inside every pest page:** one "Last sprayed" choice drives the Best-fit ranking, the suggested
+  rotation and the full IRAC table (avoid / caution — shared target / rotate to, coloured by target site). There is
+  no separate Rotate tab and no second pest picker. Old `#/rotate/<pest>` links open the matching pest page.
 - **Products** (reached from product chips and from Learn, not the bottom bar): an MoA reference of organic, biological and conventional actives (with an Organic filter). Search by active ingredient (EN/中文). Each entry shows MoA, how it reaches the pest, WHO class,
   bee hazard, effect on natural enemies, weather timing, EU status, cross-resistance, resistance risk by pest,
   and links to the live China MRL table (GB 2763-2026). Searching for a **banned** active gives an honest
@@ -142,7 +143,7 @@ First time only: **Settings → Pages → Source: GitHub Actions**.
 ## Look & feel
 
 The app shares a look with the Pest-MoA rotation guide: a cream page (`#fcfbf7`), a light header (`#f4f2ea`),
-forest green (`#114b2d`) as the only accent, underline tabs at the top (Diagnose · Rotate · Learn),
+forest green (`#114b2d`) as the only accent, two underline tabs at the top (Diagnose · Learn),
 an A/A/A text-size switch, and icon tile grids where the selected tile turns solid green.
 
 **Images:** each advice page opens with ONE fixed, hand-checked Wikimedia Commons photo (`src/core/photos.js`),

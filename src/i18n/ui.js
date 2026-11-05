@@ -181,6 +181,9 @@ export const UI_STRINGS = {
     sub: s('Short lessons to share with your workers and neighbours', '可分享给工人和邻居的简短课程'),
   },
   rot: {
+    tableTitle: s('Full rotation table (IRAC)', '完整轮替表（IRAC）'),
+    pickLast: s('Choose “Last sprayed” above to see what to avoid and what to switch to.', '在上方选择“上次喷的”，即可看到该避开什么、换成什么。'),
+    notForPest: s('That group is not used on this pest — no change needed.', '该组别不用于此害虫——无需调整。'),
     title: s('Rotation helper', '轮替助手'),
     sub: s('Pick the pest and the IRAC group you sprayed last — the helper shows what to switch to.', '选择害虫和上次使用的IRAC组别——助手会告诉你该换成什么。'),
     aboutTitle: s('About this data', '资料说明'),

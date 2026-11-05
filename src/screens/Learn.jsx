@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLang } from '../i18n/useLang.jsx';
-import { Card, Section, Icon, BackBar } from '../ui/kit.jsx';
+import { Card, Section, Icon, BackBar, Fold } from '../ui/kit.jsx';
+import { MOA_LABELS } from '../core/moaDb.js';
 import { MouthpartsFigure, LifecycleFigure } from '../components/Art.jsx';
 import { LESSONS } from '../core/lessons.js';
 import { MIX_SEQUENCE } from '../core/moaDb.js';
@@ -44,7 +45,7 @@ const FIGURE_TITLE = {
 };
 
 export function LearnList() {
-  const { t, ui } = useLang();
+  const { t, ui, lang } = useLang();
   return (
     <div>
       <h1 className="text-xl font-extrabold text-slate-900">{ui('learn.title')}</h1>
@@ -67,6 +68,10 @@ export function LearnList() {
           <a href={href('chem')} className="p-4 rounded-xl bg-white border border-slate-300 font-bold flex items-center justify-between">{ui('chem.filterAll')} <Icon name="chevron" className="w-5 h-5" /></a>
         </div>
       </Section>
+      <Fold title={ui('rot.aboutTitle')}>
+        <p className="text-[14px] text-slate-600 leading-snug">{ui('rot.aboutText')}</p>
+        <p className="text-[14px] text-slate-600 leading-snug mt-2"><b>{MOA_LABELS[lang].safetyTitle}:</b> {MOA_LABELS[lang].safetyText}</p>
+      </Fold>
     </div>
   );
 }

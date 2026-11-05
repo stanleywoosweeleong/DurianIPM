@@ -6,14 +6,13 @@ import { Icon } from './ui/kit.jsx';
 import Diagnose from './screens/Diagnose.jsx';
 import GroupPage from './screens/GroupPage.jsx';
 import { ChemicalList, ChemicalDetail } from './screens/Chemicals.jsx';
-import Rotate from './screens/Rotate.jsx';
+import { GROUP_FOR_CHART } from './core/rotation.js';
 import { LearnList, Lesson } from './screens/Learn.jsx';
 
 // Same family look as the Pest-MoA rotation guide: cream page, light header,
 // forest-green accent, underline tabs at the top, A/A/A text size.
 const TABS = [
   { id: 'diagnose', icon: 'search', path: '', match: ['home', 'diagnose', 'group', 'groups'] },
-  { id: 'rotate', icon: 'rotate', path: 'rotate', match: ['rotate'] },
   { id: 'learn', icon: 'book', path: 'learn', match: ['learn', 'chem', 'organic'] },
 ];
 
@@ -46,7 +45,8 @@ function Shell() {
     case 'group': screen = <GroupPage id={route.id} orchard={orchard} setOrchard={setOrchard} />; break;
     case 'chem': screen = route.id ? <ChemicalDetail id={route.id} /> : <ChemicalList key="all" />; break;
     case 'organic': screen = <ChemicalList key="organic" initialKind="organic" />; break;
-    case 'rotate': screen = <Rotate pestId={route.id} />; break;
+    case 'rotate': // the Rotate tab was merged into pest pages; keep old links working
+      screen = GROUP_FOR_CHART[route.id] ? <GroupPage id={GROUP_FOR_CHART[route.id]} orchard={orchard} setOrchard={setOrchard} /> : <Diagnose orchard={orchard} setOrchard={setOrchard} />; break;
     case 'learn': screen = route.id ? <Lesson id={route.id} /> : <LearnList />; break;
     default: screen = <Diagnose orchard={orchard} setOrchard={setOrchard} />;
   }
@@ -75,7 +75,7 @@ function Shell() {
           </div>
         </header>
         <nav className="bg-white border-b border-slate-200">
-          <div className="max-w-2xl mx-auto px-2 grid grid-cols-3">
+          <div className="max-w-2xl mx-auto px-2 grid grid-cols-2">
             {TABS.map(tb => {
               const on = tb.match.includes(route.name);
               return (

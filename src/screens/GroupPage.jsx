@@ -5,7 +5,10 @@ import { GroupArt } from '../components/Art.jsx';
 import { groupById, FEEDING } from '../core/groups.js';
 import { recommend } from '../core/recommend.js';
 import { OrganicToggle } from '../ui/OrganicToggle.jsx';
-import { CHART_FOR_GROUP } from '../core/rotation.js';
+import { CHART_FOR_GROUP, groupsForChartPest } from '../core/rotation.js';
+import { RotationTable } from '../ui/RotationTable.jsx';
+import { GROUP_NAMES } from '../core/moaDb.js';
+import { moaKeyFromIrac } from '../core/chemDb.js';
 import { examplesFor } from '../core/examples.js';
 import { coverFor } from '../core/photos.js';
 import { STAGES } from '../core/stages.js';
@@ -44,7 +47,17 @@ export default function GroupPage({ id, orchard, setOrchard }) {
 
   const examples = examplesFor(g.id);
   const chart = CHART_FOR_GROUP[g.id];
-  const setLast = (key) => setOrchard({ recentMoa: key ? [key] : [] });
+  // ONE "Last sprayed" choice drives the Best-fit ranking, the suggested
+  // rotation and the full IRAC table. Insect/mite pests in the rotation chart
+  // choose from every IRAC group used on them; other groups from their options.
+  const chartGroups = chart ? [...new Set(chart.flatMap(groupsForChartPest))].sort((a, b) => {
+    const A = a.startsWith('UN') ? 999 : parseInt(a, 10), B = b.startsWith('UN') ? 999 : parseInt(b, 10);
+    return A - B || a.localeCompare(b);
+  }) : null;
+  const lastValue = chart ? (orchard.lastIrac || '') : (orchard.recentMoa[0] || '');
+  const setLast = (v) => (chart
+    ? setOrchard({ lastIrac: v || null, recentMoa: v ? [moaKeyFromIrac(v)] : [] })
+    : setOrchard({ lastIrac: null, recentMoa: v ? [v] : [] }));
 
   const share = () => {
     const lines = [
@@ -98,10 +111,12 @@ export default function GroupPage({ id, orchard, setOrchard }) {
             <div className="mt-3 grid grid-cols-2 gap-2 text-[14px]">
               <label className="block min-w-0">
                 <span className="block font-bold text-slate-600 leading-tight mb-1">{ui('group.lastUsedShort')}</span>
-                <select value={orchard.recentMoa[0] || ''} onChange={e => setLast(e.target.value || null)}
+                <select value={lastValue} onChange={e => setLast(e.target.value || null)}
                   className="block w-full max-w-full min-h-[44px] rounded-lg border border-slate-300 bg-white px-2 font-bold text-[15px]">
                   <option value="">{ui('group.lastUsedNone')}</option>
-                  {rec.options.map(o => <option key={o.moa} value={o.moa}>{moaCode(o.moaInfo) ? `${moaCode(o.moaInfo)} · ${t(o.moaInfo.name)}` : t(o.moaInfo.name)}</option>)}
+                  {chartGroups
+                    ? chartGroups.map(code => <option key={code} value={code}>{`IRAC ${code} · ${GROUP_NAMES[lang][code] || ''}`}</option>)
+                    : rec.options.map(o => <option key={o.moa} value={o.moa}>{moaCode(o.moaInfo) ? `${moaCode(o.moaInfo)} · ${t(o.moaInfo.name)}` : t(o.moaInfo.name)}</option>)}
                 </select>
               </label>
               <label className="block min-w-0">
@@ -135,12 +150,13 @@ export default function GroupPage({ id, orchard, setOrchard }) {
                 ))}
               </ol>
               <p className="mt-2 text-[13px] text-slate-600 leading-snug">🌿 {ui('alt.tip')} <a href={href('learn/alternate')} className="font-bold text-[#114b2d] underline">{ui('alt.learn')}</a></p>
-              {chart && (
-                <a href={href(`rotate/${chart[0]}`)} className="mt-2 inline-flex items-center gap-1 font-bold text-[#114b2d] underline text-[15px]">
-                  {ui('group.fullRotation')} <Icon name="chevron" className="w-4 h-4" />
-                </a>
-              )}
             </div>
+          )}
+          {chart && (
+            <Fold key={lastValue || 'none'} open={!!lastValue} title={ui('rot.tableTitle')}
+              hint={lastValue ? `${ui('group.lastUsedShort')}: IRAC ${lastValue}` : ui('rot.pickLast')}>
+              <RotationTable pests={chart} last={lastValue} />
+            </Fold>
           )}
         </Section>
       )}
