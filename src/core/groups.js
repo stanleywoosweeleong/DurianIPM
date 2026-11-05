@@ -76,6 +76,12 @@ export const GROUPS = [
       { moa: 'IRAC 3A', why: { en: 'Pyrethroids kill their predators and cause rapid resurgence; whiteflies are widely resistant.', zh: '拟除虫菊酯会杀死天敌导致害虫迅速再猖獗；粉虱普遍抗药。' } },
       { moa: 'IRAC 1B', why: { en: 'Organophosphates: high resistance, high human risk.', zh: '有机磷：抗性高，对人风险大。' } },
     ],
+    refs: [
+      { t: "IRAC: Bemisia tabaci resistance overview (2020) — pyrethroid and OP resistance globally widespread; 4C unaffected by neonic P450 mechanism", url: "https://irac-online.org/documents/bemisia-tabaci-resistance-overview", supports: "Do not use IRAC 3A/1B (whiteflies widely resistant); 4A 'limited' due to resistance; sulfoxaflor (4C) works on neonic-resistant populations", scope: "general" },
+      { t: "Brück et al. 2009, Crop Protection — Movento (spirotetramat) ambimobile: moves via xylem and phloem to shoots and roots", url: "https://peeref.com/works/8723114", supports: "Spirotetramat (IRAC 23) moves down AND up in the sap, reaching hidden sucking pests", scope: "general" },
+      { t: "PubMed 17659536 — flonicamid inhibits aphid feeding within 0.5 h; kills by starvation", url: "https://pubmed.ncbi.nlm.nih.gov/17659536/", supports: "Flonicamid (IRAC 29) stops feeding within hours", scope: "other" },
+      { t: "UC IPM Pest Notes: Aphids — ants protect aphids; excess nitrogen boosts aphids; oils/soaps smother; broad-spectrum sprays kill natural enemies", url: "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7404.html", supports: "Non-chemical steps: control ants, avoid over-applying nitrogen, protect ladybirds/lacewings/hoverflies; oil/soap smothers soft bodies", scope: "other" },
+    ],
     stages: ['vegetative', 'flowering', 'post-harvest'],
     weather: 'dry',
   },
@@ -113,6 +119,12 @@ export const GROUPS = [
     ],
     avoid: [
       { moa: 'IRAC 3A', why: { en: 'Cannot get through wax; kills the parasitic wasps that normally control scales.', zh: '无法穿透蜡层；会杀死原本控制介壳虫的寄生蜂。' } },
+    ],
+    refs: [
+      { t: "Anutrakunchai & Thongkamngam 2025, IJAT — indigenous B. bassiana killed up to 97% of Planococcus minor nymphs on durian fruit; wax limits sprays", url: "https://li04.tci-thaijo.org/index.php/IJAT/article/download/4310/187", supports: "Beauveria bassiana for durian mealybug; ants spread mealybugs; chemicals may not penetrate mealybug wax", scope: "durian" },
+      { t: "UC IPM Pest Notes: Scales — armour/wax covers adults; time sprays to crawlers; oil controls; ant barriers; pyrethroids toxic to parasitoids", url: "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7408.html", supports: "Key biology (adults protected, crawlers exposed); control ants first; mineral oil on crawlers; do not use IRAC 3A (kills parasitic wasps, causes outbreaks)", scope: "other" },
+      { t: "Daane et al., CDFA vine mealybug report (2017) — May spirotetramat (Movento) gave good control across regions; better than other spring materials", url: "https://static.cdfa.ca.gov/PiercesDisease/reports%2f2018%2fDaane%20%20Final%20Report%20CDFA%20Vine%20Mealybug%20Bioassays.pdf", supports: "best | IRAC 23 Spirotetramat systemic against mealybugs, including populations moving from trunk/roots", scope: "other" },
+      { t: "Mendel et al. 1991 (ScaleNet) — buprofezin gave 91-99% nymph mortality of Planococcus citri crawlers and strong ovicidal effect", url: "https://scalenet.info/references/MendelBlIs1991/", supports: "best | IRAC 16 Buprofezin kills crawlers and nymphs", scope: "other" },
     ],
     stages: ['fruit-set', 'fruit-growth', 'harvest'],
     weather: 'dry',
@@ -153,6 +165,11 @@ export const GROUPS = [
       { moa: 'IRAC 3A', why: { en: 'Thrips are widely resistant and pyrethroids kill predatory mites and bugs.', zh: '蓟马普遍抗药，且拟除虫菊酯会杀死捕食螨和捕食蝽。' } },
       { moa: 'IRAC 1B', why: { en: 'Old organophosphates: resistance and high hazard.', zh: '老式有机磷：有抗性且高危。' } },
     ],
+    refs: [
+      { t: "UC IPM Pest Notes: Thrips — spinosad moves into tissue to reach hidden thrips; avoid pyrethroids/OPs; 2-week life cycle in warm weather", url: "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7429.html", supports: "best | IRAC 5 spinosad reaches thrips in buds; do not use IRAC 3A/1B (ineffective on most thrips, toxic to natural enemies, cause mite outbreaks); short life cycle; blue sticky traps; oil/neem as limited contact options", scope: "other" },
+      { t: "UF/IFAS EDIS IN1298 — chilli thrips in blueberry: spinetoram systemic/translaminar; cyantraniliprole and novaluron listed as reduced-risk options", url: "https://ask.ifas.ufl.edu/publication/IN1298", supports: "best | spinetoram translaminar; good | cyantraniliprole (IRAC 28) and novaluron (IRAC 15) for chilli thrips", scope: "other" },
+      { t: "Florida Entomologist — flupyradifurone cut S. dorsalis 68-83% in strawberry but spinetoram more effective; cyantraniliprole active", url: "https://journals.flvc.org/flaent/article/download/122276/132947/228437", supports: "best | spinetoram for chilli thrips; good | cyantraniliprole", scope: "other" },
+    ],
     stages: ['vegetative', 'flowering', 'fruit-set'],
     weather: 'dry',
   },
@@ -186,6 +203,12 @@ export const GROUPS = [
       { moa: 'IRAC UN', only: ['azadirachtin'], fit: 'limited', why: { en: 'Neem repels and reduces feeding.', zh: '印楝素可驱避并减少取食。' } },
     ],
     avoid: [],
+    refs: [
+      { t: "C.T. Ho — Helopeltis theivora from Peninsular Malaysia cocoa estates showed no resistance to cypermethrin, deltamethrin, lambda-cyhalothrin", url: "https://repositorio.fedepalma.org/items/b4dbc498-d366-44d1-b179-32c1f5dba57d/full", supports: "good | IRAC 3A pyrethroids effective on mosquito bugs (Helopeltis) in Malaysia", scope: "other" },
+      { t: "Chung & Wood 1989 (AGRIS) — lambda-cyhalothrin beat the old organochlorine standard against Helopeltis in Malaysian cocoa field trials", url: "https://agris.fao.org/search/en/records/647753a3a3fd11e4303972a4", supports: "good | IRAC 3A lambda-cyhalothrin fast knockdown of exposed mosquito bugs", scope: "other" },
+      { t: "Siebert et al. 2012, J. Cotton Science — sulfoxaflor ≥50 g ai/ha matched acephate against tarnished plant bug over 49 trials", url: "https://journal.cotton.org/?p=2409", supports: "good | IRAC 4C sulfoxaflor reaches feeding plant bugs (Miridae)", scope: "other" },
+      { t: "Chayopas et al. 1997 (AGRIS) — weaver ant nests cut Helopeltis shoot damage in cashew from 46% to 17%", url: "https://agris.fao.org/search/es/records/6472417953aa8c89630373db", supports: "Encourage weaver ants (kerengga) as natural bug predators", scope: "other" },
+    ],
     stages: ['fruit-set', 'fruit-growth'],
   },
   {
@@ -222,6 +245,11 @@ export const GROUPS = [
       { moa: 'IRAC 1B', why: { en: 'Kills the parasitic wasps that keep caterpillars in check.', zh: '会杀死控制毛虫的寄生蜂。' } },
       { moa: 'IRAC 1A', why: { en: 'Old carbamates: broad-spectrum and hazardous; selective options work better.', zh: '老式氨基甲酸酯：广谱且高危；选择性药剂效果更好。' } },
     ],
+    refs: [
+      { t: "UC IPM: relative toxicity of insecticides to natural enemies and honey bees (cole crops) — Bt, diamide, spinosyns low; pyrethroids, OPs, carbamates high", url: "https://ipm.ucanr.edu/agriculture/cole-crops/Relative-Toxicities-of-Insecticides-and-Miticides-Used-in-Cole-Crops-to-Natural-Enemies-and-Honey-Bees", supports: "Bt narrow (caterpillars), low toxicity to predators/parasites; chlorantraniliprole low to natural enemies, honey bee category III (no bee precaution); do-not-use broad-spectrum carbamates and OPs (ac", scope: "general" },
+      { t: "Univ. of Missouri Extension: Bt must be eaten, targets mainly caterpillars, best on small larvae, breaks down in sun/rain", url: "https://extension.missouri.edu/news/bt-biological-insecticide-timing-and-target-matter", supports: "Stomach-acting Bt kills caterpillars only and spares beneficials; young larvae are much easier to kill than mature ones", scope: "general" },
+      { t: "Brunner et al. 2005 J Insect Sci: neonicotinoids lacked activity against leafrollers in apple", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC1307575", supports: "Supports preferring caterpillar-selective classes over others; neonicotinoids insufficient against leafrollers (Pandemis, obliquebanded)", scope: "general" },
+    ],
     stages: ['vegetative', 'post-harvest'],
   },
   {
@@ -252,6 +280,11 @@ export const GROUPS = [
       { moa: 'IRAC 3A', fit: 'limited', why: { en: 'Contact knockdown on young trees only, never in flowering.', zh: '仅用于幼树的触杀击倒，切勿在花期使用。' } },
     ],
     avoid: [],
+    refs: [
+      { t: "UC IPM toxicity table: pyrethroids broad-spectrum, high toxicity to natural enemies, honey bee category I (do not apply to flowering plants)", url: "https://ipm.ucanr.edu/agriculture/cole-crops/Relative-Toxicities-of-Insecticides-and-Miticides-Used-in-Cole-Crops-to-Natural-Enemies-and-Honey-Bees", supports: "Pyrethroids (IRAC 3A, e.g. zeta-cypermethrin, lambda-cyhalothrin) limited, never during flowering", scope: "general" },
+      { t: "SciDev.Net: FAO-recommended Metarhizium fungal biopesticide (Green Muscle) kills only locusts and grasshoppers", url: "https://www.scidev.net/global/news/fungal-pesticide-saves-crops-from-locusts/", supports: "Metarhizium infects grasshoppers (from search-result text; slow kill, better for prevention)", scope: "general" },
+      { t: "Field test of a light trap for mass trapping May/June beetles (Scarabaeidae) in an apple orchard, J Plant Dis Prot 2023", url: "https://avesis.akdeniz.edu.tr/yayin/1e0a51b7-2d38-4821-9d5a-b0c2e90b35ec/field-testing-of-a-new-designed-light-trap-for-mass-trapping-of-mayjune-beetles-coleoptera-scarabaeidae-in-horticultural-areas", supports: "Light traps for chafer beetles (from search-result text; mostly males caught)", scope: "general" },
+    ],
     stages: ['vegetative'],
   },
   {
@@ -286,6 +319,12 @@ export const GROUPS = [
       { moa: 'IRAC 2A', why: { en: 'Old organochlorines are banned worldwide; any product sold is illegal, and residues mean export rejection.', zh: '老式有机氯已全球禁用；市售产品均属非法，残留会导致出口被拒。' } },
       { moa: 'IRAC 4A', why: { en: 'Systemic neonics do not move into fruit flesh well and do little against borers.', zh: '内吸性新烟碱难以进入果肉，对钻蛀虫效果甚微。' } },
     ],
+    refs: [
+      { t: "Thai trial: bagging durian 6 weeks after fruit set gave 100% protection from seed borer Mudaria luteileprosa", url: "https://agris.fao.org/search/en/records/6472418353aa8c89630377f3", supports: "Bag fruit early: bagging at 6 wk prevented all damage; bagging at 8 wk was too late (2.86% vs 17.14% unbagged)", scope: "durian" },
+      { t: "Integrated management of durian fruit borer Conogethes punctiferalis, Thailand 2022: spray plus spun-bonded bagging gave 100% protection", url: "https://li01.tci-thaijo.org/index.php/yru_jst/article/view/259187", supports: "Fruit bagging (with sprays) is highly effective against durian fruit borer; untreated losses 53–67%", scope: "durian" },
+      { t: "An et al. 2024: C. punctiferalis larvae inside plant tissue are shielded from conventional insecticides; chlorantraniliprole widely used", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11487570", supports: "Once the larva is inside, sprays cannot reach it; chlorantraniliprole/emamectin listed as main options", scope: "other" },
+      { t: "Brunner et al. 2005: neonicotinoids gave weaker codling moth (fruit borer) control than the standard", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC1307575", supports: "Do not use IRAC 4A: neonics do little against borers (only partly; see contradictions)", scope: "general" },
+    ],
     stages: ['fruit-set', 'fruit-growth', 'harvest'],
   },
   {
@@ -314,6 +353,12 @@ export const GROUPS = [
     ],
     avoid: [
       { moa: 'IRAC 1B', why: { en: 'Organophosphate cover sprays: hazardous to the sprayer and leave residues on fruit.', zh: '有机磷全面喷洒：对施药者危险，并在果实上留下残留。' } },
+    ],
+    refs: [
+      { t: "UH CTAHR: protein baits (GF-120 spinosad) attract and kill both sexes; flies need protein to reproduce; bury fruit ≥18 in; methyl eugenol traps", url: "https://www3.ctahr.hawaii.edu/UHMG/EastHI/fruit-fly.asp", supports: "Adults need protein to reproduce; spinosad protein bait sprayed on leaf undersides; bury fallen fruit at least 18 in (~46 cm) or seal in bags; methyl eugenol traps for oriental fruit fly", scope: "other" },
+      { t: "WA DPIRD Naturalure FAQ: spinosad protein bait applied as 20 ml spots, not on fruit; low risk to beneficials", url: "https://www.dpird.wa.gov.au/siteassets/documents/biosecurity/incidents/qfly/naturalure-fruit-fly-bait-faqs-2026.pdf", supports: "Spinosad protein bait as spot sprays on foliage, not fruit; low risk to non-target beneficials", scope: "general" },
+      { t: "J Econ Entomol 2009 102:1123: GF-120 spinosad bait sprays plus sanitation reduced B. dorsalis in papaya; parasitoid unharmed", url: "https://wiki.pestinfo.org/wiki/Journal_of_Economic_Entomology_(2009)_102,_1123-1132", supports: "Spinosad protein bait spot/row sprays plus field sanitation control oriental fruit fly without covering every tree", scope: "other" },
+      { t: "UC IPM toxicity table: OPs (acephate, diazinon) broad-spectrum, high toxicity to natural enemies and bees; spinosad bait low", url: "https://ipm.ucanr.edu/agriculture/cole-crops/Relative-Toxicities-of-Insecticides-and-Miticides-Used-in-Cole-Crops-to-Natural-Enemies-and-Honey-Bees", supports: "Do not use OP cover sprays; bait formulations (spinosad bait) have low non-target impact", scope: "general" },
     ],
     stages: ['harvest'],
   },
@@ -354,6 +399,12 @@ export const GROUPS = [
     avoid: [
       { moa: 'IRAC 1A', why: { en: 'Old carbamate granules are highly hazardous and poison birds and soil life.', zh: '老式氨基甲酸酯颗粒剂高危，会毒杀鸟类和土壤生物。' } },
     ],
+    refs: [
+      { t: "Importance of longhorn stem borers in durian and their control (Thai DOA) — Batocera rufomaculata main species; larvae move into heartwood; heavy attack kills trees", url: "https://li01.tci-thaijo.org/index.php/thaiagriculturalresearch/article/view/102253", supports: "Key biology: Batocera is the most destructive durian trunk borer and the grub lives deep in the trunk (phloem then heartwood); symptoms are holes, frass and sap ooze", scope: "durian" },
+      { t: "Entomopathogenic nematodes vs mango stem borer Batocera rufomaculata — trunk injection cut damage 81.7% (insecticide 90.8%)", url: "https://indianjournals.com/article/pmhe-30-2-009", supports: "Nematodes injected into the trunk/tunnel control Batocera grubs (best strain was Heterorhabditis indica; S. carpocapsae also tested)", scope: "other" },
+      { t: "Control of jackfruit stem borer Batocera — hole treatments sealed with Bordeaux paste or cow dung; best arm gave 83% control", url: "https://banglajol.info/index.php/BJZ/article/view/23320", supports: "Practice of treating the tunnel and sealing the hole so the treatment stays inside", scope: "other" },
+      { t: "Bernama (13 Aug 2022): Malaysian agriculture told to stop using two old high-hazard insecticides", url: "https://www.bernama.com/en/news.php?id=2110674", supports: "Do not use IRAC 1A carbamate granules (being withdrawn from Malaysian agriculture)", scope: "general" },
+    ],
     stages: ['post-harvest', 'vegetative'],
   },
   {
@@ -388,6 +439,11 @@ export const GROUPS = [
       { moa: 'IRAC 3A', only: ['cypermethrin'], fit: 'good', why: { en: 'Cypermethrin injected or on a cotton plug, then sealed.', zh: '注入氯氰菊酯或用浸药棉球塞入后封口。' } },
     ],
     avoid: [],
+    refs: [
+      { t: "TNAU Agritech: red borer Zeuzera coffeae on coffee — wilting shoots, pellet-like frass, cut and burn twigs, Beauveria and braconid release", url: "https://agritech.tnau.ac.in/crop_protection/coffeepest/coffee_11.html", supports: "Scouting signs (wilting tips, pellet-like frass) and pruning/burning infested branches", scope: "other" },
+      { t: "FAO Arabica coffee manual for Lao PDR — red stemborer Zeuzera coffeae: burn affected branches with borers inside", url: "https://www.fao.org/4/AE939E/ae939e0b.htm", supports: "Burn/destroy infested branches", scope: "other" },
+      { t: "Biocontrol of leopard moth Zeuzera pyrina with entomopathogenic nematodes injected into galleries (Iran, IOBC-WPRS)", url: "https://iobc-wprs.org/?p=21773", supports: "Steinernema carpocapsae injected into tunnels kills cossid larvae (congener Z. pyrina, not Z. coffeae)", scope: "other" },
+    ],
     stages: ['vegetative', 'post-harvest'],
   },
   {
@@ -427,6 +483,12 @@ export const GROUPS = [
     avoid: [
       { moa: 'IRAC 4A', why: { en: 'Systemic insecticides work poorly — the beetles feed on fungus, not on the tree sap.', zh: '内吸性杀虫剂效果差——小蠹虫吃的是真菌，不是树液。' } },
     ],
+    refs: [
+      { t: "Durian tree phenology and control of Phytophthora using phosphonate trunk injection (ACIAR Proc./Monograph, Diczbalis et al.)", url: "https://agris.fao.org/search/en/providers/122669/records/674842c57625988a37199539", supports: "Best: phosphonate trunk injection controls durian Phytophthora; 16 g a.i./tree/yr beat metalaxyl or Aliette sprays; 48 g a.i. every 3 months under high pressure; persists 128+ days", scope: "durian" },
+      { t: "Myanmar (Mon State) durian Phytophthora palmivora root and stem rot — 20% phosphorous acid injection twice a year gave effective control", url: "https://meral.edu.mm/records/140", supports: "Phosphonate trunk injection 2-3 times a year", scope: "durian" },
+      { t: "Integrated Phytophthora management in durian, Chanthaburi (ISHS Acta Hort.) — phosphorous acid trunk injection, Trichoderma, metalaxyl", url: "https://ishs.org/ishs-article/1186_21/", supports: "Phosphonate injection plus metalaxyl as durian trunk-rot controls", scope: "durian" },
+      { t: "Durian shot-hole borer (Xyleborus fornicatus) — attacks bole and boughs of trees already with root rot (Thai grower/agro-supply page)", url: "https://thepwatana.com/en/blog/durian-pest-durian-shot-hole-borer-xyleborus-fornicates-eichhoff", supports: "Shot-hole beetles on durian mainly attack diseased (root-rot) trees; commercial source, weaker evidence", scope: "durian" },
+    ],
     stages: ['post-harvest', 'vegetative'],
     weather: 'wet',
   },
@@ -460,6 +522,12 @@ export const GROUPS = [
       { moa: 'IRAC 2A', why: { en: 'Old organochlorine soil insecticides are banned worldwide.', zh: '老式有机氯土壤杀虫剂已全球禁用。' } },
       { moa: 'IRAC 1B', why: { en: 'Old organophosphate soil drenches: high hazard, and the best-known one is now banned for farm use in Malaysia.', zh: '老式有机磷灌根：高危，其中最常见的品种已在马来西亚禁止农用。' } },
     ],
+    refs: [
+      { t: "Colony suppression of Coptotermes formosanus by discontinuous fipronil soil treatment (Itakura et al., Insects 2021)", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8068406/", supports: "Fipronil soil treatment suppresses Coptotermes colonies (no activity 28 months; later reinvasion; single replicate)", scope: "other" },
+      { t: "Fipronil-loaded silica nanocapsule baits failed to eliminate Coptotermes lacteus colonies in the field (Heliyon 2019)", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6699461", supports: "Fipronil bait ranked only 'limited' — baits carried into mounds but no colony eliminated", scope: "other" },
+      { t: "Bernama (13 Aug 2022): Malaysian agriculture told to stop using two old high-hazard insecticides; one is now limited to public-health use", url: "https://www.bernama.com/en/news.php?id=2110674", supports: "Do not use IRAC 1B: the best-known OP soil drench is banned for farm use in Malaysia", scope: "general" },
+      { t: "Stockholm Convention Annex A (elimination) — the old organochlorine termiticides are listed for global elimination (Canada NIP table)", url: "https://www.canada.ca/en/environment-climate-change/services/canadian-environmental-protection-act-registry/historical/public-consultations/draft-national-implementation-plan-stockholm-persistent-organic-pollutants-2005/part-iii/annex-a.html", supports: "Do not use IRAC 2A: old organochlorine soil insecticides are listed for global elimination", scope: "general" },
+    ],
     stages: ['vegetative', 'post-harvest'],
   },
   {
@@ -489,6 +557,11 @@ export const GROUPS = [
     ],
     avoid: [
       { moa: 'IRAC 1B', why: { en: 'Blanket spraying the canopy for ants kills the predators of sap-suckers.', zh: '为杀蚂蚁而全面喷洒树冠会杀死刺吸害虫的天敌。' } },
+    ],
+    refs: [
+      { t: "Excluding ground-nesting ants with sticky bands boosts mealybug biocontrol in persimmon (Agric. Ecosyst. Environ. 2024)", url: "https://redivia.gva.es/handle/20.500.11939/8971?show=full", supports: "Ants protect mealybugs from natural enemies; sticky trunk bands increase biocontrol (caveat: favoured an exotic canopy-nesting ant)", scope: "other" },
+      { t: "Weaver ants (Oecophylla smaragdina) as biocontrol agents in South Vietnam fruit orchards (CIRAD, 2019)", url: "https://publications.cirad.fr/une_notice.php?dk=591690", supports: "Weaver ants are beneficial predators used for pest control in Asian fruit orchards", scope: "other" },
+      { t: "Liquid baits vs field Anoplolepis gracilipes: 0.01% fipronil >90% worker reduction in 3 d, 100% in 7 d (J. Econ. Entomol. 2009)", url: "https://www.bioone.org/journals/journal-of-economic-entomology/volume-102/issue-4/029.102.0424/Evaluation-of-Liquid-Baits-Against-Field-Populations-of-the-Longlegged/10.1603/029.102.0424.full", supports: "Fipronil baits control crazy ants (A. gracilipes) in the field", scope: "other" },
     ],
     stages: ['fruit-set', 'fruit-growth'],
   },
@@ -531,6 +604,12 @@ export const GROUPS = [
       { moa: 'IRAC 4A', why: { en: 'Neonicotinoids do not kill mites and can increase their egg-laying.', zh: '新烟碱杀不死螨，还可能促进其产卵。' } },
       { moa: 'IRAC 1B', why: { en: 'Organophosphates: mites are widely resistant.', zh: '有机磷：螨类普遍抗药。' } },
     ],
+    refs: [
+      { t: "Szczepaniec et al. 2011, PLoS ONE — imidacloprid raised spider mite egg-laying ~40% via the plant; mites insensitive to neonics", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3104998", supports: "Do not use IRAC 4A: neonicotinoids do not kill mites and can increase their egg-laying", scope: "other" },
+      { t: "UC IPM Pest Notes: Spider Mites — broad-spectrum sprays and pyrethroids trigger outbreaks; dust and water stress favour mites; water sprays, oils, sulfur", url: "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7405.html", supports: "Do not use IRAC 3A (outbreaks); non-chemical steps (water spray, reduce dust, protect predatory mites); oil smothers mites; sulfur", scope: "other" },
+      { t: "UC IPM Citrus: Citrus red mite — hexythiazox prevents egg hatch; bifenazate and oil least harmful to predatory mites", url: "https://ipm.ucanr.edu/agriculture/citrus/citrus-red-mite/", supports: "best | IRAC 10 hexythiazox targets eggs; good | bifenazate (20D) soft on predatory mites; IRAC 23 spirodiclofen as specific miticide", scope: "other" },
+      { t: "Chomchajchawarn et al. 1999 (AGRIS) — fenazaquin and propargite gave ~89-98% control of African red mite on durian, Chanthaburi", url: "https://agris.fao.org/search/es/records/6472456753aa8c8963043947", supports: "good | IRAC 12C propargite effective on durian mites; field acaricide resistance noted, supporting use of specific miticides and rotation", scope: "durian" },
+    ],
     stages: ['vegetative', 'flowering'],
     weather: 'dry',
   },
@@ -562,6 +641,11 @@ export const GROUPS = [
       { moa: 'MOLL', fit: 'best', why: { en: 'Iron-phosphate pellets: scatter thinly around seedlings in the evening after rain; safe for pets, birds and earthworms. Repeat after heavy rain. Metaldehyde also works but poisons dogs and wildlife.', zh: '磷酸铁颗粒：雨后傍晚在幼苗周围薄撒；对宠物、鸟类和蚯蚓安全。大雨后补施。四聚乙醛也有效，但会毒害狗和野生动物。' } },
     ],
     avoid: [],
+    refs: [
+      { t: "CDC: rat lungworm causes eosinophilic meningitis; wear gloves and wash hands when handling snails or slugs", url: "https://www.cdc.gov/angiostrongylus/about/index.html", supports: "Giant African snails can carry rat lungworm (meningitis); always wear gloves", scope: "general" },
+      { t: "UC IPM Pest Notes: snails and slugs — handpick at night, remove hiding places, board traps, copper bands, iron phosphate safer than metaldehyde", url: "https://ipm.ucanr.edu/home-and-landscape/snails-and-slugs/", supports: "Night hand-collecting; clearing hiding places; boards as overnight traps; copper bands; iron phosphate safer for dogs, children and wildlife; metaldehyde poisonous to dogs and cats", scope: "general" },
+      { t: "NPIC (Oregon State): iron phosphate baits less hazardous to dogs than metaldehyde, but dogs have been sickened", url: "https://www.npic.orst.edu/pestibytes/ep20.html", supports: "Iron phosphate preferred over metaldehyde for dog safety (relative only; see contradictions)", scope: "general" },
+    ],
     stages: ['vegetative', 'fruit-growth'],
     weather: 'wet',
   },
@@ -587,6 +671,11 @@ export const GROUPS = [
     ],
     avoid: [
       { moa: 'IRAC 1A', why: { en: 'Old carbamate nematicides: highly hazardous, kill birds and soil life.', zh: '老式氨基甲酸酯杀线虫剂：高危，毒杀鸟类和土壤生物。' } },
+    ],
+    refs: [
+      { t: "Radopholus duriophilus sp. n. (Nematology 2003): burrowing nematode linked to decline and death of durian in Vietnamese nurseries", url: "https://www.sciencegate.app/document/10.1163/156854103322683265", supports: "Key biology: root-endoparasitic nematodes damage durian, with nurseries hit hard (supports using nematode-free planting material). Note: the species is a burrowing nematode, not root-knot/lesion", scope: "durian" },
+      { t: "PPDB (Univ. Hertfordshire) record for the old carbamate nematicide: IRAC 1A, WHO class Ib, highly toxic to birds, HHP, banned in EU/GB", url: "https://sitem.herts.ac.uk/aeru/ppdb/en/Reports/118.htm", supports: "Do not use IRAC 1A old carbamate nematicides: highly hazardous and kill birds", scope: "general" },
+      { t: "Vasantha-Srinivasan et al. 2025 review: Bacillus spp. suppress root-knot nematodes via nematicidal compounds, induced resistance, cuticle degradation", url: "https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2024.1510036/full", supports: "BIO-FUN 'good': Bacillus products have activity against root-knot nematodes; chemical nematicides under scrutiny for environmental/health hazards", scope: "other" },
     ],
     stages: ['vegetative'],
   },
@@ -628,7 +717,10 @@ export const GROUPS = [
       { moa: 'FRAC 3', why: { en: 'Triazoles (hexaconazole etc.) do not work on oomycetes.', zh: '三唑类（己唑醇等）对卵菌无效。' } },
     ],
     refs: [
-      { t: 'Phytophthora diseases of durian, and durian decline syndrome in northern Queensland, Australia (Queensland DAF) — P. palmivora causes seedling dieback, leaf blight (more common in nurseries than orchards), root rot and trunk canker', url: 'https://era.daf.qld.gov.au/id/eprint/10667/1/Phytophthora%20diseases%20of%20durian,%20and%20durian-decline%20syndrome%20in%20northern%20Queensland,%20Australia.pdf' },
+      { t: "O'Gara et al. 2004 (ACIAR) — P. palmivora is durian's greatest threat; drainage, lower-branch pruning; phosphonate trunk injection works on durian", url: "https://era.daf.qld.gov.au/id/eprint/10667/1/Phytophthora%20diseases%20of%20durian,%20and%20durian-decline%20syndrome%20in%20northern%20Queensland,%20Australia.pdf", supports: "No.1 killer of durian; drainage and pruning lower branches; phosphonate trunk injection (best) and metalaxyl as oomycete systemics; metalaxyl resistance risk (limit applications)", scope: "durian" },
+      { t: "Diczbalis et al. 2004 — phosphonate trunk injection beat metalaxyl or Aliette sprays for durian canker control in Vietnam", url: "https://agris.fao.org/search/en/providers/122669/records/674842c57625988a37199539", supports: "Phosphonate trunk injection is the best chemistry for durian Phytophthora; it moves through the tree to all organs", scope: "durian" },
+      { t: "Nor Daniala et al. 2024 (MARDI) — Bacillus and Streptomyces drench/spray reduced P. palmivora canker lesions on durian seedlings", url: "https://journal.unisza.edu.my/agrobiotechnology/index.php/agrobiotechnology/article/download/369/351", supports: "BIO-FUN (Bacillus) as a preventive biocontrol for durian Phytophthora; root-zone drench application", scope: "durian" },
+      { t: "William-Woodward & DeMott 2014 — oomycetes are not true fungi, closer to brown algae; many fungicides have no activity on them", url: "https://agris.fao.org/search/en/records/65de30adb766d82b18fc8b8f", supports: "Key biology claim: water moulds are not fungi, so many common fungicides do not work; oomycete-specific chemistry needed", scope: "other" },
     ],
     stages: ['vegetative', 'fruit-growth', 'harvest', 'post-harvest'],
     weather: 'wet',
@@ -658,6 +750,11 @@ export const GROUPS = [
       { moa: 'BIO-FUN', fit: 'good', why: { en: 'Trichoderma paste on pruning wounds.', zh: '修剪伤口涂抹木霉菌膏。' } },
     ],
     avoid: [],
+    refs: [
+      { t: "Queensland Government — pink disease: durian among hosts; pink crust at branch forks; remove and burn affected branches", url: "https://www.business.qld.gov.au/industries/farms-fishing-forestry/forests-wood/pests-diseases/trees-timber/pink-disease", supports: "Pink disease affects durian; pink crust on branch forks; burn removed wood; fungicide can be effective", scope: "durian" },
+      { t: "Pacific Pests, Pathogens & Weeds — cocoa pink disease: prune 30 cm below fungus, remove prunings, copper paste on cuts", url: "https://apps.lucidcentral.org/pppw_v10/text/web_full/entities/cocoa_pink_disease_012.htm", supports: "Prune infected branches well below the lesion; remove prunings; copper paste on cuts and early pink disease", scope: "other" },
+      { t: "Kerala Agricultural University — rubber pink disease: hexaconazole/propiconazole in rubber kote 'very effective'; Bordeaux paste; burn dead branches", url: "https://celkau.in/crops/cashcrops/rubber/Pink.php", supports: "Triazoles (hexaconazole, propiconazole) and copper (Bordeaux) for pink disease; cut and burn affected branches", scope: "other" },
+    ],
     stages: ['post-harvest', 'vegetative'],
     weather: 'wet',
   },
@@ -686,6 +783,10 @@ export const GROUPS = [
       { moa: 'BIO-FUN', fit: 'good', why: { en: 'Bacillus-based products protect flush and flowers from anthracnose.', zh: '芽孢杆菌类产品保护新梢和花朵免受炭疽病。' } },
     ],
     avoid: [],
+    refs: [
+      { t: "Apithanasakulngeon et al. 2025 — durian anthracnose Colletotrichum (E. Thailand): all isolates sensitive to difenoconazole and prochloraz", url: "https://li01.tci-thaijo.org/index.php/anres/article/view/266994", supports: "Difenoconazole (FRAC 3) is systemic and effective on durian anthracnose; rotate modes of action", scope: "durian" },
+      { t: "Mississippi State Extension — Cephaleuros algal leaf spot: copper fungicides, thin canopy for air flow, rake up fallen leaves", url: "https://extension.msstate.edu/publications/algal-leaf-spot-southern-magnolia", supports: "Copper for algal leaf spot; open canopy so leaves dry; remove fallen infected leaves", scope: "other" },
+    ],
     stages: ['vegetative', 'flowering', 'fruit-set'],
     weather: 'wet',
   },
@@ -715,7 +816,7 @@ export const GROUPS = [
       { moa: 'FRAC 3', only: ['difenoconazole', 'hexaconazole', 'tebuconazole'], fit: 'best', why: { en: 'Difenoconazole, hexaconazole, tebuconazole: systemic, and the strongest lab activity against R. solani across several studies.', zh: '苯醚甲环唑、己唑醇、戊唑醇：内吸性，多项研究中对立枯丝核菌的室内活性最强。' } },
       { moa: 'FRAC 11', fit: 'best', why: { en: 'Azoxystrobin: the usual field choice as a preventive, often premixed with difenoconazole. Weak in lab-dish tests (typical for this group) — protect before infection. Max 2 sprays in a row.', zh: '嘧菌酯：田间常用的预防药剂，常与苯醚甲环唑复配。培养皿试验中效果较弱（此类药剂的常见情况）——应在侵染前保护。连续不超过2次。' } },
       { moa: 'FRAC 20', fit: 'good', why: { en: 'Pencycuron is made specifically for Rhizoctonia and is strong in lab tests.', zh: '戊菌隆专门防治丝核菌，室内试验效果强。' } },
-      { moa: 'BIO-FUN', fit: 'good', why: { en: 'Trichoderma: a durian field trial found it comparable to fungicides; best in nurseries and leaf litter.', zh: '木霉菌：一项榴莲田间试验显示其效果与杀菌剂相当；苗圃和落叶层中效果最好。' } },
+      { moa: 'BIO-FUN', fit: 'good', why: { en: 'Trichoderma and other antagonist fungi: in a durian leaf assay an antagonist still protected leaves at day 15, when copper-treated leaves were fully infected. Best in nurseries and leaf litter.', zh: '木霉菌等拮抗真菌：榴莲叶片试验中，第15天时拮抗菌仍能保护叶片，而铜剂处理的叶片已全部感染。苗圃和落叶层中效果最好。' } },
       { moa: 'FRAC 26', fit: 'limited', why: { en: 'Validamycin targets Rhizoctonia, but the evidence is from rice sheath blight, not durian.', zh: '井冈霉素针对丝核菌，但证据来自水稻纹枯病，而非榴莲。' } },
       { moa: 'FRAC M01', fit: 'limited', why: { en: 'Copper protects healthy leaves but cannot stop an established blight.', zh: '铜剂可保护健康叶片，但无法控制已发生的叶枯。' } },
     ],
@@ -724,11 +825,11 @@ export const GROUPS = [
       { moa: 'FRAC P07', why: { en: 'Phosphonates target Phytophthora, not Rhizoctonia — useful only where Phytophthora is also present.', zh: '亚磷酸盐针对疫霉而非丝核菌——仅在同时存在疫霉时有用。' } },
     ],
     refs: [
-      { t: 'Controlling leaf blight of durian caused by Rhizoctonia solani (Philippines field trial; Trichoderma and plant extracts comparable to fungicides)', url: 'https://agris.fao.org/agris-search/search.do?recordID=PH2003001522' },
-      { t: 'Leaf assay screening antagonistic microorganisms to control R. solani leaf web blight of durian — Acta Horticulturae 1024', url: 'https://www.actahort.org/books/1024/1024_40.htm' },
-      { t: 'Evaluation of selected fungicides for the control of Rhizoctonia brown patch in vitro (Malaysia; tebuconazole and pencycuron most potent)', url: 'https://agris.fao.org/search/es/records/6474739f425ec3c088f34b83' },
-      { t: 'Evaluation of various fungicides against sheath blight (R. solani) in vitro — hexaconazole strongest', url: 'https://www.phytojournal.com/special-issue/2019.v8.i2S.7382/evaluation-of-various-fungicides-against-sheath-blight-under-ltemgtin-vitroltemgt-condition' },
-      { t: 'Efficiency of drone, air-blast and hose sprayers applying fungicide against leaf blight (R. solani) in durian', url: 'https://www.researchgate.net/publication/382448460_Efficiency_of_AI_drone_air-blast_and_long_hose_pump_sprayers_in_spraying_fungicide_to_manage_leaf_sheath_blight_caused_by_Rhizoctonia_solani_in_durian' },
+      { t: "Thai MOAC/DOAE pest alert (2021): durian Rhizoctonia leaf blight - symptoms, rainy-season spread, pruning, sanitation, fungicide list", url: "https://www.opsmoac.go.th/nan-warning-files-431191791511", supports: "Key biology (R. solani on young leaves; scald-like lesions turning brown; web-like threads glue leaves together; hot humid rainy weather); non-chemical steps (prune to open canopy, remove and destroy infected leaves and ", scope: "durian" },
+      { t: "Durian leaf disease image dataset, Vietnam (Data in Brief 2025) - R. solani leaf blight: water-soaked lesions turning brown, web-like threads", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12272783/", supports: "Key biology / scouting: R. solani causes durian leaf blight; water-soaked lesions that expand and turn brown; web-like fungal threads across leaves", scope: "durian" },
+      { t: "Preecha, Acta Hort 1024: antagonist fungus beat copper oxychloride against R. solani leaf web blight of durian in leaf assays", url: "https://www.actahort.org/books/1024/1024_40.htm", supports: "BIO-FUN 'good' (antagonistic microbes active against durian R. solani) and copper 'limited' (copper-treated leaves fully infected by day 15 while antagonist still controlled infection); also that the disease is serious i", scope: "durian" },
+      { t: "Ooi et al. 1999 (Malaysia): in-vitro fungicide screen vs Rhizoctonia brown patch - tebuconazole and pencycuron most potent, azoxystrobin weak", url: "https://agris.fao.org/search/es/records/6474739f425ec3c088f34b83", supports: "FRAC 3 tebuconazole 'best' and FRAC 20 pencycuron 'good' (strongest in vitro); azoxystrobin weak in lab-dish tests (ED50 748.8 ppm), consistent with the app's note", scope: "other" },
+      { t: "Evaluation of various fungicides against sheath blight (R. solani) in vitro — hexaconazole strongest", url: "https://www.phytojournal.com/special-issue/2019.v8.i2S.7382/evaluation-of-various-fungicides-against-sheath-blight-under-ltemgtin-vitroltemgt-condition", scope: "other" },
     ],
     stages: ['vegetative', 'post-harvest'],
     weather: 'wet',
@@ -755,6 +856,10 @@ export const GROUPS = [
       { moa: 'BIO-FUN', fit: 'good', why: { en: 'Trichoderma prevents re-infection.', zh: '木霉菌预防再侵染。' } },
     ],
     avoid: [],
+    refs: [
+      { t: "RRISL 2013 — white root disease spreads by root contact with infected stumps; remove roots, sulphur in holes; hexaconazole/tebuconazole drench", url: "https://www.rrisl.gov.lk/content/files/downDoc/10. Management of White Root Disease.pdf", supports: "Spread from stumps through roots; remove stumps and infected roots (never leave debris); sulphur in root zone; triazole collar drench", scope: "other" },
+      { t: "Jayaratne et al. 2001, J. Rubber Res. Inst. Sri Lanka — triazole drenches (hexaconazole, tebuconazole, propiconazole) control white root disease", url: "https://dl.nsf.gov.lk/bitstreams/87651736-7a22-46de-8db1-315951976a01/download", supports: "Hexaconazole/propiconazole collar drench is effective; cultural practices before replanting are the most effective control (source removal matters more than chemicals)", scope: "other" },
+    ],
     stages: ['post-harvest'],
     weather: 'wet',
   },
@@ -782,6 +887,10 @@ export const GROUPS = [
       { moa: 'FRAC 3', why: { en: 'Fungicides do not affect bacteria.', zh: '杀菌剂（抗真菌）对细菌无效。' } },
       { moa: 'FRAC 1', why: { en: 'Fungicides do not affect bacteria.', zh: '杀菌剂（抗真菌）对细菌无效。' } },
     ],
+    refs: [
+      { t: "UC Cooperative Extension (Fake, 2015) — copper is an effective bactericide and fungicide, but works only as a preventive; apply before rain", url: "https://ccfruitandnuts.ucanr.edu/sites/default/files/2015-04/64320.pdf", supports: "Copper is the main protective tool for bacterial spot; spray before rain", scope: "general" },
+      { t: "Cornell Cooperative Extension — bacterial leaf spot: avoid touching wet plants, remove infected leaves/debris, copper sprays", url: "https://allegany.cce.cornell.edu/gardening/pest-management/bacterial-leaf-spot-in-peppers-how-to-identify-treat-and-prevent-it", supports: "Do not work in plants when wet; remove infected tissue; copper as the main treatment", scope: "other" },
+    ],
     stages: ['vegetative'],
     weather: 'wet',
   },
@@ -808,6 +917,12 @@ export const GROUPS = [
     ],
     chem: [],
     avoid: [],
+    refs: [
+      { t: "Wildlife Conservation Act 2010 (Act 716), s.79: using poison or poisoned bait to hunt any wildlife is an offence (fine up to RM50,000 / 2 yrs)", url: "https://sherloc.unodc.org/cld/uploads/res/document/mys/2010/wildlife_conservation_act_2010_html/Act_716.pdf", supports: "Poisoning wildlife is illegal in Peninsular Malaysia (s.79; s.86 cruelty to wildlife). Note s.79(2) exempts public officers controlling agricultural pests under the Director's supervision; Act covers Peninsular Malaysia ", scope: "general" },
+      { t: "The Star 2024: 400+ Kelantan durian farmers lose crops to squirrels, monkeys, wild boar and bears", url: "https://thestar.com.my/news/nation/2024/07/24/over-400-kelantan-durian-farmers-hit-hard-by-pest-invasion", supports: "Squirrels, macaques/monkeys, wild boar and bears damage durian in Malaysia (fruit left hollow and unsellable near ripening)", scope: "durian" },
+      { t: "Kross & Baldwin (UC Davis) review: barn owl nest boxes cut rat damage in Malaysian oil palm (19.5% to 1.4%) and rice", url: "https://baldwin.ucdavis.edu/download_file/view/162/269", supports: "Barn owl nest boxes for rat control (evidence from Malaysian oil palm and rice; models suggest owls control rats best when rat densities are low)", scope: "general" },
+      { t: "The Star 2026: Perhilitan handles elephant raids on fruit orchards; report via hotline 1-800-88-5151 or wildlife.gov.my", url: "https://www.thestar.com.my/news/nation/2026/10/21/steps-being-taken-to-reduce-human-elephant-conflict-near-chemor-says-perhilitan", supports: "Elephants and other protected animals: contact PERHILITAN (it monitors and carries out control measures for elephant incursions into orchards)", scope: "general" },
+    ],
     stages: ['fruit-growth', 'harvest'],
   },
   {
@@ -830,6 +945,11 @@ export const GROUPS = [
       { moa: 'FRAC M01', fit: 'limited', why: { en: 'Copper wash only if algae is very heavy.', zh: '仅在藻类非常严重时使用铜剂清洗。' } },
     ],
     avoid: [],
+    refs: [
+      { t: "Lim & Sijam 1989 (UPM): Trentepohlia green algae form thick felty crusts on durian trunks and primary branches", url: "https://cendekia.unisza.edu.my/neuaxis-e/Record/upm-38721", supports: "Green trunk algae (Trentepohlia aurea, T. arborum, T. monile) occur on durian trunks/branches; abstract only - harm assessment not visible", scope: "durian" },
+      { t: "RHS: algae, lichens and mosses on trees are not parasitic and do no harm; reflect conditions; improve light/airflow by pruning", url: "https://www.rhs.org.uk/biodiversity/algae-lichens-moss-on-trees-shrubs", supports: "Key biology (usually harmless; a sign of growing conditions) and 'prune to let light and air in'", scope: "general" },
+      { t: "MyBIS (Malaysia biodiversity database): Pyrrosia longifolia - epiphyte (not parasitic), common on trees in rubber plantations", url: "https://www.mybis.gov.my/sp/45686", supports: "Pyrrosia ferns are epiphytes common on plantation trees in Malaysia, defined as growing on the host without being parasitic", scope: "general" },
+    ],
     stages: [],
   },
 ];
