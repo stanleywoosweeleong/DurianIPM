@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { useLang } from '../i18n/useLang.jsx';
-import { Card, Section, Icon, Badge, Callout, BackBar, Bullets, Fold } from '../ui/kit.jsx';
+import { Card, Section, Icon, Badge, Callout, BackBar, Bullets, Fold, openExternal } from '../ui/kit.jsx';
 import { GroupArt } from '../components/Art.jsx';
 import { groupById, FEEDING } from '../core/groups.js';
 import { recommend } from '../core/recommend.js';
@@ -206,6 +206,19 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
           </div>
         </Fold>
       )}
+
+      <Fold title={ui('group.sources')} hint={g.refs?.length ? `${g.refs.length} ${ui('group.refsCount')}` : ui('group.refsBasis')}>
+        {g.refs?.length ? (
+          <ol className="space-y-2 list-decimal pl-5">
+            {g.refs.map(r => (
+              <li key={r.url} className="text-[14px] leading-snug">
+                <a href={r.url} onClick={e => openExternal(e, r.url)} className="text-[#114b2d] underline">{r.t}</a>
+              </li>
+            ))}
+          </ol>
+        ) : null}
+        <p className={`text-[13px] text-slate-500 leading-snug ${g.refs?.length ? 'mt-3' : ''}`}>{ui('group.refsBasis')}</p>
+      </Fold>
 
       <button onClick={share} className="mt-5 w-full min-h-[52px] rounded-xl bg-[#25D366] text-white font-extrabold flex items-center justify-center gap-2">
         <Icon name="share" /> {ui('group.share')}

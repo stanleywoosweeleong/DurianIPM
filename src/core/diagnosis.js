@@ -192,6 +192,7 @@ export const PART_PESTS = {
     ['leaf-beetles', L('Leaves chewed overnight; beetles or grasshoppers', '叶片一夜间被啃；有甲虫或蝗虫')],
     ['leaf-spots', L('Brown/black spots with a yellow halo; orange-red velvety spots', '褐/黑色斑点带黄晕；橙红色绒状斑点')],
     ['bacterial', L('Angular, water-soaked spots between the veins', '叶脉间多角形水渍状斑')],
+    ['snails', L('Slime trails; ragged holes on seedlings and rasped green bark', '黏液痕迹；幼苗上有不规则孔洞，绿色树皮被刮食')],
   ],
   flower: [
     ['thrips', L('Buds and flowers turn brown and drop; silvery scars', '花蕾和花变褐脱落；银白色疤痕')],
