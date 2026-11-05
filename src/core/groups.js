@@ -576,6 +576,9 @@ export const GROUPS = [
       { moa: 'FRAC 1', why: { en: 'Carbendazim/benomyl have NO effect on water moulds.', zh: '多菌灵/苯菌灵对水霉菌完全无效。' } },
       { moa: 'FRAC 3', why: { en: 'Triazoles (hexaconazole etc.) do not work on oomycetes.', zh: '三唑类（己唑醇等）对卵菌无效。' } },
     ],
+    refs: [
+      { t: 'Phytophthora diseases of durian, and durian decline syndrome in northern Queensland, Australia (Queensland DAF) — P. palmivora causes seedling dieback, leaf blight (more common in nurseries than orchards), root rot and trunk canker', url: 'https://era.daf.qld.gov.au/id/eprint/10667/1/Phytophthora%20diseases%20of%20durian,%20and%20durian-decline%20syndrome%20in%20northern%20Queensland,%20Australia.pdf' },
+    ],
     stages: ['vegetative', 'fruit-growth', 'harvest', 'post-harvest'],
     weather: 'wet',
   },

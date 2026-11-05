@@ -191,7 +191,7 @@ export const PART_PESTS = {
     ['leaf-caterpillars', L('Holes and chewed edges; leaves rolled with silk and droppings', '孔洞和缺刻；叶片被丝卷起并有虫粪')],
     ['leaf-beetles', L('Leaves chewed overnight; beetles or grasshoppers', '叶片一夜间被啃；有甲虫或蝗虫')],
     ['leaf-spots', L('Brown/black spots with a yellow halo; orange-red velvety spots', '褐/黑色斑点带黄晕；橙红色绒状斑点')],
-    ['oomycete', L('Large dark, wet blotches on young leaves in rainy weather; leaves drop', '雨季嫩叶出现大片深色湿斑；叶片脱落')],
+    ['oomycete', L('Mainly nursery seedlings: dark, wet leaf blotches; the top dies back', '主要见于苗圃幼苗：叶片出现深色湿斑，顶部枯死')],
     ['bacterial', L('Angular, water-soaked spots between the veins', '叶脉间多角形水渍状斑')],
     ['snails', L('Slime trails; ragged holes on seedlings and rasped green bark', '黏液痕迹；幼苗上有不规则孔洞，绿色树皮被刮食')],
   ],
