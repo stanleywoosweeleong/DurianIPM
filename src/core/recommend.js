@@ -56,6 +56,7 @@ export function recommend(group, ctx = {}) {
     } else if (bee === 'medium' && flowering) {
       score -= 0.5; warnings.push('beeEvening');
     }
+    if (flowering && actives.some(a => a.id === 'copper')) { score -= 1; warnings.push('copperFlower'); }
     if (nearHarvest && info.kind !== 'bio' && info.kind !== 'physical') warnings.push('phi');
     if (info.resistance === 'high') warnings.push('resistance');
 

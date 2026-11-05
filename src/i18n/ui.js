@@ -111,6 +111,7 @@ export const UI_STRINGS = {
     scope: { durian: s('Durian study', '榴莲研究'), other: s('Same pest, other crop', '同种病虫，其他作物'), general: s('General guidance', '通用指引') },
     refsCount: s('references', '篇参考资料'),
     refsBasis: s('Modes of action follow the IRAC/FRAC classifications; rankings combine published trials (where listed) with Malaysian durian field practice. Always follow the product label.', '作用机制依据IRAC/FRAC分类；排序综合了已发表的试验（如有列出）与马来西亚榴莲田间经验。务必遵照产品标签使用。'),
+    sprayWhere: s('Where to spray', '喷哪里'),
     whyFlowering: s('Why? →', '为什么？→'),
     treeStage: s('Tree stage (optional)', '物候期（可选）'),
     share: s('Share on WhatsApp', '分享到 WhatsApp'),
@@ -126,6 +127,7 @@ export const UI_STRINGS = {
 
     beeBlock: s('Not during flowering — highly toxic to bees', '开花期禁用——对蜜蜂剧毒'),
     beeHigh: s('Toxic to bees — never during flowering', '对蜜蜂有毒——花期禁用'),
+    copperFlower: s('Keep copper off open flowers and tiny fruitlets — it can burn them', '铜剂不要喷到盛开的花和小幼果上——可能灼伤'),
     beeEvening: s('Some bee risk — spray in the morning, not before flowers open', '对蜂有一定风险——早上喷，不要在开花前喷'),
     phi: s('Near harvest: check the pre-harvest interval on the label', '临近采收：请查看标签上的安全间隔期'),
     resistance: s('High resistance risk — max 2 in a row', '抗性风险高——连续不超过2次'),

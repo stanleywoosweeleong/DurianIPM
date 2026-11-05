@@ -10,6 +10,7 @@ import { RotationTable } from '../ui/RotationTable.jsx';
 import { GROUP_NAMES } from '../core/moaDb.js';
 import { moaKeyFromIrac } from '../core/chemDb.js';
 import { examplesFor } from '../core/examples.js';
+import { SPRAY_WHERE } from '../core/sprayWhere.js';
 import { coverFor } from '../core/photos.js';
 import { STAGES } from '../core/stages.js';
 import { href } from '../hooks/useRoute.js';
@@ -20,7 +21,7 @@ import { WikiCover } from '../components/WikiPhotoStrip.jsx';
 const FIT_TONE = { best: 'green', good: 'blue', limited: 'grey' };
 // How directly a reference applies: a durian study beats the same pest on another crop.
 const SCOPE_TONE = { durian: 'green', other: 'amber', general: 'grey' };
-const WARN_TONE = { beeBlock: 'red', beeHigh: 'amber', beeEvening: 'amber', phi: 'violet', resistance: 'grey', rotate: 'red', crossRes: 'amber', noAdults: 'red', noYoung: 'red', youngBest: 'green', ovicide: 'green', pairAdult: 'amber' };
+const WARN_TONE = { beeBlock: 'red', beeHigh: 'amber', beeEvening: 'amber', copperFlower: 'amber', phi: 'violet', resistance: 'grey', rotate: 'red', crossRes: 'amber', noAdults: 'red', noYoung: 'red', youngBest: 'green', ovicide: 'green', pairAdult: 'amber' };
 const TOX_TONE = { Ia: 'red', Ib: 'red', II: 'amber', III: 'grey', U: 'green', NL: 'grey' };
 
 export const moaCode = (info) => (info.irac ? `IRAC ${info.irac}` : info.key.startsWith('FRAC') ? info.key : null);
@@ -97,6 +98,9 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
       <p className="mt-3 text-[16px] leading-relaxed text-slate-800">{t(g.why)}</p>
 
       <p className="mt-3 text-[15px] leading-snug rounded-xl bg-white border border-slate-200 px-3 py-2"><b>{ui('diag.first')}:</b> {t(g.nonChem[0])}</p>
+      {SPRAY_WHERE[g.id] && g.chem.length > 0 && (
+        <p className="mt-2 text-[15px] leading-snug rounded-xl bg-white border border-slate-200 px-3 py-2"><b>{ui('group.sprayWhere')}:</b> {t(SPRAY_WHERE[g.id])}</p>
+      )}
       {g.chem.length === 0 ? (
         <Section><Callout tone="blue" icon="leaf">{ui('group.noChem')}</Callout></Section>
       ) : (
@@ -242,7 +246,7 @@ function Fact({ label, value }) {
 }
 
 // Warnings that matter most first; at most two are shown on the card face.
-const WARN_PRIORITY = ['beeBlock', 'rotate', 'noAdults', 'noYoung', 'crossRes', 'youngBest', 'ovicide', 'pairAdult', 'beeHigh', 'beeEvening', 'phi', 'resistance'];
+const WARN_PRIORITY = ['beeBlock', 'rotate', 'noAdults', 'noYoung', 'crossRes', 'youngBest', 'ovicide', 'pairAdult', 'copperFlower', 'beeHigh', 'beeEvening', 'phi', 'resistance'];
 
 function OptionCard({ o, rank }) {
   const { t, ui } = useLang();
