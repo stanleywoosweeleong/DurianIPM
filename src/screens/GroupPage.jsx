@@ -255,8 +255,8 @@ function OptionCard({ o, rank }) {
         <span className="w-7 h-7 rounded-full bg-slate-100 text-slate-700 font-extrabold text-[14px] flex items-center justify-center shrink-0">{rank}</span>
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
-            <div className="font-extrabold text-[16px] leading-tight">{t(info.name)}{moaCode(info) && <span className="text-[#114b2d]"> · {moaCode(info)}</span>}</div>
-            <Badge tone={FIT_TONE[o.fit]}>{ui(`fit.${o.fit}`)}</Badge>
+            <div className="min-w-0 font-extrabold text-[16px] leading-tight">{t(info.name)}{moaCode(info) && <span className="text-[#114b2d]"> · {moaCode(info)}</span>}</div>
+            <Badge tone={FIT_TONE[o.fit]} className="shrink-0 whitespace-nowrap">{ui(`fit.${o.fit}`)}</Badge>
           </div>
           <p className="text-[15px] leading-snug mt-1 text-slate-800">{t(o.why)}</p>
           <div className="mt-1.5"><KillsBadges stages={info.stages} /></div>
