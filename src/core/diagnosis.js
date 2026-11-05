@@ -20,7 +20,7 @@ export const SIGNS = [
   // ─ leaves
   // Leaf-curl direction is a classic scouting clue (drawings from the original app):
   // DOWN = feeding on the underside; UP = damage to the margins / upper surface.
-  { id: 'curl-down', parts: ['leaf'], art: 'downward_curl', label: { en: 'Leaves curl DOWN like a tent — flip them: pests underneath', zh: '叶片向下卷如帐篷——翻开看：害虫在叶背' }, w: { 'phloem-suckers': 4, mites: 2 } },
+  { id: 'curl-down', parts: ['leaf'], art: 'downward_curl', label: { en: 'Leaves curl DOWN like a tent — flip them: pests underneath', zh: '叶片向下卷如帐篷——翻开看：害虫在叶背' }, w: { 'phloem-suckers': 4, mites: 2, leafhoppers: 2 } },
   { id: 'curl-up', parts: ['leaf'], art: 'upward_curl', label: { en: 'Leaves curl UP like a boat, edges brown and crispy', zh: '叶片向上卷如小船，叶缘焦褐' }, w: { leafhoppers: 4, thrips: 3, mites: 2 } },
   { id: 'twisted', parts: ['leaf'], label: { en: 'New leaves twisted or deformed', zh: '新叶扭曲或畸形' }, w: { 'phloem-suckers': 2, mites: 2, thrips: 2 } },
   { id: 'sticky', parts: ['leaf', 'fruit', 'flower'], label: { en: 'Sticky shiny surface or black sooty coating', zh: '表面黏稠发亮或覆盖黑色煤烟' }, w: { 'phloem-suckers': 3, 'scale-mealybug': 3, 'ants-wasps': 1 } },
@@ -58,7 +58,7 @@ export const SIGNS = [
   { id: 'dieback', parts: ['trunk', 'leaf'], label: { en: 'Twigs dying back from the tips', zh: '枝梢从顶端向下枯死' }, w: { 'canker-dieback': 4, oomycete: 1 } },
   { id: 'pink-crust', parts: ['trunk'], label: { en: 'Pink or white crust spreading over branch forks', zh: '粉红色或白色菌壳在枝杈上蔓延' }, w: { 'canker-dieback': 4 } },
   { id: 'black-dots', parts: ['trunk'], label: { en: 'Pinpoint black dots on sunken bark', zh: '凹陷树皮上有针尖大小的黑点' }, w: { 'canker-dieback': 5 } },
-  { id: 'pink-mould', parts: ['trunk'], label: { en: 'Powdery white, pink or orange mould on a lesion near the trunk base', zh: '根颈附近病斑上有粉白、粉红或橙色粉状霉层' }, w: { fusarium: 5 } },
+  { id: 'pink-mould', parts: ['trunk'], label: { en: 'Branches die back fast: leaves yellow and drop within a week, wood brown-black inside, often with beetle pinholes', zh: '枝条迅速枯死：叶片一周内发黄脱落，木质部内呈褐黑色，常伴有小蠹针孔' }, w: { fusarium: 5 } },
   { id: 'mud-tubes', parts: ['trunk', 'root'], label: { en: 'Mud tubes or mud sheets on trunk', zh: '树干上有泥道或泥被' }, w: { 'soil-pests': 5 } },
   { id: 'bark-silk', parts: ['trunk'], label: { en: 'Bark eaten under silky frass ribbons', zh: '丝状虫粪带下的树皮被啃食' }, w: { 'trunk-borers': 4 } },
   { id: 'green-bark', parts: ['trunk'], label: { en: 'Green film, moss or ferns on bark', zh: '树皮上有绿色薄膜、苔藓或蕨类' }, w: { epiphytes: 5 } },
@@ -221,7 +221,7 @@ export const PART_PESTS = {
     ['trunk-borers', L('Large holes (~1 cm) on the main trunk; coarse, stringy sawdust and sap', '主干上有大孔（约1厘米）；粗糙丝状木屑并流胶')],
     ['red-branch-borer', L('Round holes on branches pushing out pellet-like sawdust; shoot tips wilting', '枝条圆孔推出颗粒状虫粪；梢尖萎蔫')],
     ['shot-hole', L('Many 1 mm pinholes, fine powder, often dark wet patches — check for Phytophthora', '许多1毫米针孔和细粉，常有深色湿斑——检查是否有疫霉')],
-    ['fusarium', L('Powdery white, pink or orange mould on a lesion near the trunk base; leaves yellow and drop', '根颈附近病斑上有粉白、粉红或橙色霉层；叶片发黄脱落')],
+    ['fusarium', L('Branches die back fast — leaves yellow and drop within a week; wood brown-black inside; often beetle pinholes nearby', '枝条迅速枯死——叶片一周内发黄脱落；木质部内呈褐黑色；附近常有小蠹针孔')],
     ['canker-dieback', L('Pinpoint black dots on sunken bark; twigs dying back; pink crust on branch forks', '凹陷树皮上有针尖黑点；枝梢枯死；枝杈上有粉红色菌壳')],
     ['scale-mealybug', L('White waxy insects or shells in bark cracks; ants', '树皮缝里有白色蜡质虫或硬壳；有蚂蚁')],
     ['soil-pests', L('Mud tubes or mud sheets on the trunk', '树干上有泥道或泥被')],

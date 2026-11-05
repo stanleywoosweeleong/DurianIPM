@@ -165,7 +165,7 @@ test('no banned or excluded active is named anywhere in the visible text', () =>
   // Removed actives may only appear as a search ANSWER (chemDb REMOVED), never in
   // UI strings, lessons or pest-group advice — not even as an example.
   const terms = REMOVED.flatMap(r => r.terms).filter(t => t.length >= 3);
-  const texts = JSON.stringify([UI_STRINGS, LESSONS, GROUPS]).toLowerCase();
+  const texts = JSON.stringify([UI_STRINGS, LESSONS, GROUPS], (k, v) => (k === 'url' ? undefined : v)).toLowerCase(); // link addresses are not shown
   const hits = terms.filter(t => texts.includes(t.toLowerCase()));
   assert.deepEqual(hits, []);
 });

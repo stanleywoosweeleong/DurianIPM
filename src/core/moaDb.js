@@ -451,6 +451,8 @@ const BEE_TAGS = {
   "Cyantraniliprole": "high",
   // Added 2026-11-05 — PPDB/IUPAC record 136: oral LD50 0.13 ug/bee, rated High.
   "Chlorfenapyr": "high",
+  // Added 2026-11-05 — UC IPM bee precaution rating I (most hazardous) for novaluron.
+  "Novaluron": "high",
   // Added 2026-11-05 — PPDB/IUPAC: sulfoxaflor highly toxic to honey bees.
   "Sulfoxaflor": "high",
   "Bacillus thuringiensis": "low",
