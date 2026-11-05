@@ -174,3 +174,13 @@ test('alternating programme: chemical, organic, chemical, organic — no repeate
   // flowering: nothing bee-toxic in the plan
   for (const g of GROUPS) for (const p of alternatingPlan(g, { stage: 'flowering' })) assert.notEqual(p.option.moaInfo.bee, 'high', g.id);
 });
+
+import { UI_STRINGS } from '../src/i18n/ui.js';
+test('no banned or excluded active is named anywhere in the visible text', () => {
+  // Removed actives may only appear as a search ANSWER (chemDb REMOVED), never in
+  // UI strings, lessons or pest-group advice — not even as an example.
+  const terms = REMOVED.flatMap(r => r.terms).filter(t => t.length >= 3);
+  const texts = JSON.stringify([UI_STRINGS, LESSONS, GROUPS]).toLowerCase();
+  const hits = terms.filter(t => texts.includes(t.toLowerCase()));
+  assert.deepEqual(hits, []);
+});
