@@ -184,3 +184,10 @@ test('one-tap diagnosis: short sign lists, decisive signs skip the creature ques
   // every non-decisive sign offers a short list
   for (const s of SIGNS) { const n = nextAfterSign(s.id); if (!n.decisive) assert.ok(n.culprits.length <= 9, `${s.id}: ${n.culprits.length}`); }
 });
+
+test('common-problem shortcuts point at real pest groups', async () => {
+  const src = (await import('node:fs')).readFileSync(new URL('../src/screens/Diagnose.jsx', import.meta.url), 'utf8');
+  const ids = [...src.matchAll(/\['([a-z-]+)', \{ en:/g)].map(m => m[1]);
+  assert.equal(ids.length, 8);
+  for (const id of ids) assert.ok(groupIds.has(id), id);
+});

@@ -95,8 +95,9 @@ export default function Diagnose({ orchard }) {
     return (
       <div>
         <KnownSearch />
-        <p className="text-[15px] text-slate-600 leading-snug mt-4 mb-3">{ui('diag.intro')}</p>
-        <h1 className="text-xl font-extrabold text-slate-900">{ui('diag.q1')}</h1>
+        <CommonProblems />
+        <h1 className="text-xl font-extrabold text-slate-900 mt-6">{ui('diag.q1')}</h1>
+        <p className="text-[14px] text-slate-500 leading-snug">{ui('diag.intro')}</p>
         <div className="grid grid-cols-3 gap-2 mt-3">
           {PARTS.map(p => (
             <Tile key={p.id} onClick={() => setPart(p.id)}>
@@ -264,5 +265,36 @@ function KnownSearch() {
         </div>
       )}
     </div>
+  );
+}
+
+// The most common durian problems in Malaysian orchards — one tap straight to
+// "Best fit". Edit this list to change the shortcuts (order = display order).
+const COMMON = [
+  ['oomycete', { en: 'Phytophthora', zh: '疫霉病' }],
+  ['fruit-borers', { en: 'Fruit borer', zh: '果实蛀虫' }],
+  ['phloem-suckers', { en: 'Psyllids & aphids', zh: '木虱与蚜虫' }],
+  ['scale-mealybug', { en: 'Mealybugs & scales', zh: '粉蚧与介壳虫' }],
+  ['thrips', { en: 'Thrips', zh: '蓟马' }],
+  ['mites', { en: 'Mites', zh: '螨类' }],
+  ['trunk-borers', { en: 'Stem borers', zh: '枝干蛀虫' }],
+  ['leaf-spots', { en: 'Leaf spots', zh: '叶斑病' }],
+];
+
+function CommonProblems() {
+  const { t, ui } = useLang();
+  return (
+    <section className="mt-4">
+      <h2 className="text-[13px] font-extrabold text-slate-500 uppercase tracking-wider">{ui('diag.common')}</h2>
+      <div className="grid grid-cols-4 gap-2 mt-2">
+        {COMMON.map(([id, label]) => (
+          <a key={id} href={href(`group/${id}`)}
+            className="flex flex-col items-center justify-center gap-1 p-1.5 min-h-[84px] rounded-xl border border-slate-200 bg-white text-center active:bg-slate-50">
+            <GroupArt id={id} className="w-8 h-8 text-slate-700" />
+            <span className="text-[12px] font-bold text-slate-700 leading-tight">{t(label)}</span>
+          </a>
+        ))}
+      </div>
+    </section>
   );
 }

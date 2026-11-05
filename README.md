@@ -23,6 +23,9 @@ questions (where, what you see, what creature), and gets sound advice.
 
 ## Screens
 
+- **Common durian problems** (top of the opening screen): eight one-tap shortcuts straight to "Best fit": Phytophthora,
+  fruit borer, psyllids & aphids, mealybugs & scales, thrips, mites, stem borers and leaf spots. Edit `COMMON` in
+  `src/screens/Diagnose.jsx` to change them.
 - **Diagnose** (opening screen): purely visual — what the farmer sees, regardless of tree stage or weather. A name
   search for farmers who already know the pest, then where → what you see → what creature. Tree stage is asked
   only on the advice page (optional), where it triggers the flowering bee warning and the near-harvest reminder.

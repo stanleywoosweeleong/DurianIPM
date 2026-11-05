@@ -45,7 +45,7 @@ export const UI_STRINGS = {
   },
   diag: {
     step: s('Step', '步骤'),
-    intro: s('Spotted something wrong on a tree? Tap what you see — two or three taps, no typing.', '发现树上有异常？点选你看到的——只需两三下。'),
+    intro: s('Not sure what it is? Tap what you see — two or three taps.', '不确定是什么？点选你看到的——只需两三下。'),
     q1: s('Where is the problem?', '问题出现在哪里？'),
     q1Sub: s('Choose one or more', '可多选'),
     q2: s('What do you see?', '你看到了什么？'),
@@ -63,6 +63,7 @@ export const UI_STRINGS = {
     none: s('No match. Try selecting more signs.', '没有匹配结果。请尝试选择更多症状。'),
     open: s('Full plan', '完整方案'),
     whatWorks: s('What works', '有效方法'),
+    common: s('Common durian problems — tap for the best fit', '常见榴莲问题——点击查看最佳方案'),
     somethingElse: s('Something else…', '其他症状…'),
     bestFirst: s('Most effective first', '效果最好的排前面'),
     first: s('First', '首先'),
