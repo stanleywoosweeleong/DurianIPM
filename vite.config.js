@@ -17,7 +17,7 @@ export default defineConfig({
         name: 'Durian IPM · 榴莲综合防治',
         short_name: 'Durian IPM',
         description:
-          '榴莲综合防治 — 按取食方式诊断、轮替用药、查农药是否违禁。Durian IPM: diagnose by how pests feed, rotate by MoA, check chemicals.',
+          '榴莲综合防治 — 看到问题，找到最合适的用药与轮换。Durian IPM: spot a problem, get the best-fit treatment and rotation.',
         theme_color: '#059669',
         background_color: '#f0fdf4',
         display: 'standalone',
