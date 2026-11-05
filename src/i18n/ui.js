@@ -178,7 +178,9 @@ export const UI_STRINGS = {
   },
   rot: {
     title: s('Rotation helper', '轮替助手'),
-    sub: s('Pick the pest and the IRAC group you sprayed last. Merged from the Pest-MoA rotation guide (Bunting A chart, audited).', '选择害虫和上次使用的IRAC组别。整合自《虫药轮替》指南（Bunting A 机制图，已审核）。'),
+    sub: s('Pick the pest and the IRAC group you sprayed last — the helper shows what to switch to.', '选择害虫和上次使用的IRAC组别——助手会告诉你该换成什么。'),
+    aboutTitle: s('About this data', '资料说明'),
+    aboutText: s('Built on the AgriPro DIPM durian pest database and field experience in Malaysian durian orchards. Modes of action and cross-resistance follow the IRAC classification, toxicity is labelled by WHO hazard class, and actives banned in Malaysia are excluded. Rotate to a different IRAC group every spray to slow resistance.', '以 AgriPro DIPM 榴莲病虫害数据库及马来西亚榴莲园的实地经验为基础。作用机制与交叉抗性依据IRAC分类，毒性按WHO危害等级标示，马来西亚禁用的成分已排除。每次喷药请轮换不同的IRAC组别，以延缓抗药性。'),
     groupLink: s('Full advice for this pest group', '该类群的完整防治建议'),
     order: s('Different target first, then the gentlest (lowest WHO class) options.', '优先换靶标，其次选择毒性最低（WHO等级）的选项。'),
     colourTitle: s('Why the colours matter', '颜色代表什么'),

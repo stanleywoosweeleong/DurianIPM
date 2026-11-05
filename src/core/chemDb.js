@@ -204,6 +204,20 @@ const STAGES_EXTRA = {
   '30': ['young', 'adult'], '36': ['young', 'adult'],
 };
 
+/**
+ * Per-pest resistance notes carried over from the rotation table were written as
+ * audit notes against its source chart. For farmers, keep only the facts: drop
+ * sentences that refer to the chart and tidy what remains. Returns '' if nothing is left.
+ */
+export function cleanNote(text, lang) {
+  if (!text) return '';
+  const parts = lang === 'zh' ? text.split(/(?<=[；。;])/) : text.split(/(?<=[.;])\s+/);
+  let out = parts.filter(p => !/Bunting/i.test(p)).join(lang === 'zh' ? '' : ' ').trim();
+  out = out.replace(/^[；;,，\s]+/, '').replace(/^(however|but),?\s*/i, '').replace(/^但\s*/, '');
+  if (lang !== 'zh' && out) out = out[0].toUpperCase() + out.slice(1);
+  return out;
+}
+
 /** Class-level info for a MoA key: our plain-language entry + the rotation guide's detail. */
 export function moaInfo(key) {
   const base = MOA[key];

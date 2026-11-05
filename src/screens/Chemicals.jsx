@@ -4,7 +4,7 @@ import { Section, Icon, Badge, Callout, BackBar, Chip, Fold, openExternal } from
 import { KillsBadges } from '../ui/StagePicker.jsx';
 import { GroupArt } from '../components/Art.jsx';
 import {
-  CHEMICALS, searchChemicals, findRemovedActive, chemById, moaInfo, chemsForMoa, CAUTION_TEXT, LAST_REVIEWED, organicNote,
+  CHEMICALS, searchChemicals, findRemovedActive, chemById, moaInfo, chemsForMoa, CAUTION_TEXT, LAST_REVIEWED, organicNote, cleanNote,
 } from '../core/chemDb.js';
 import { MOA_LABELS, TOX_LABEL, BEE_LABEL, BENEFICIAL_LABEL, FUNGUS_LABEL, ENV_LABEL, CHART_PESTS } from '../core/moaDb.js';
 import { GROUPS, groupById } from '../core/groups.js';
@@ -59,7 +59,7 @@ export function ChemicalList({ initialKind = 'all' }) {
 
   return (
     <div>
-      <h1 className="text-xl font-extrabold text-slate-900">{kind === 'organic' ? ui('chem.organicTitle') : ui('chem.title')}</h1>
+      <BackBar title={kind === 'organic' ? ui('chem.organicTitle') : ui('chem.title')} />
       <p className="text-[15px] text-slate-600 leading-snug">{kind === 'organic' ? ui('chem.organicHint') : ui('chem.hint')}</p>
       <div className="relative mt-3">
         <Icon name="search" className="w-5 h-5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
@@ -186,7 +186,7 @@ export function ChemicalDetail({ id }) {
                       <span className="font-bold text-[15px]">{lang === 'zh' ? pest.zh : pest.en}</span>
                       <Badge tone={RISK_TONE[r]}>{L[`risk_${r}`]}</Badge>
                     </div>
-                    {c.notes[p] && <p className="text-[13px] text-slate-600 leading-snug">{L[`note_${c.notes[p]}`]}</p>}
+                    {c.notes[p] && cleanNote(L[`note_${c.notes[p]}`], lang) && <p className="text-[13px] text-slate-600 leading-snug">{cleanNote(L[`note_${c.notes[p]}`], lang)}</p>}
                   </div>
                 );
               })}

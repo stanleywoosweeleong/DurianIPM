@@ -73,7 +73,11 @@ hydrochloride. Searching for it returns a short "avoid" notice with alternatives
 formulations are far more dilute than the technical material WHO rates. Today that is only **abamectin**, kept
 with a handling note on its page. The tests enforce both rules.
 
-## What was merged from the other apps
+## Foundations
+
+The main base is **AgriPro DIPM**, the original durian pest app: its pest catalogue (now the examples under each
+group), the bilingual data, reference photos and diagnostic drawings, and its field-tested advice. Two sister apps
+contributed parts:
 
 - **[Pest MoA rotation guide](https://github.com/stanleywoosweeleong/moarotationguide)**: the entire audited
   insecticide database (69 actives from the Bunting A chart), cross-resistance clusters, WHO / bee /

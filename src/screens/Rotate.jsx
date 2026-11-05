@@ -18,8 +18,8 @@ import { KillsBadges } from '../ui/StagePicker.jsx';
 import { href, go } from '../hooks/useRoute.js';
 
 const SITE = {
-  neural: 'border-l-violet-500 bg-violet-50', respiratory: 'border-l-sky-500 bg-sky-50',
-  growth: 'border-l-emerald-500 bg-emerald-50', midgut: 'border-l-amber-500 bg-amber-50', unknown: 'border-l-slate-400 bg-slate-50',
+  neural: 'border-l-sky-500 bg-sky-50', respiratory: 'border-l-orange-500 bg-orange-50',
+  growth: 'border-l-violet-500 bg-violet-50', midgut: 'border-l-amber-500 bg-amber-50', unknown: 'border-l-slate-400 bg-slate-50',
 };
 const RISK_TONE = { low: 'green', mid: 'amber', high: 'red' };
 
@@ -71,6 +71,14 @@ export default function Rotate({ pestId }) {
               );
             })}
           </div>
+          <Fold title={ui('rot.colourTitle')}>
+        <p className="text-[15px] leading-snug">{ui('rot.colourText')}</p>
+        <div className="flex flex-wrap gap-1.5 mt-2">
+          {['neural', 'respiratory', 'growth', 'midgut', 'unknown'].map(s => (
+            <span key={s} className={`px-2 py-1 rounded-md border text-[13px] font-bold ${SITE_TILE[s]} border-l-4`}>{L[`site_${s}`]}</span>
+          ))}
+        </div>
+          </Fold>
         </Section>
       )}
 
@@ -100,16 +108,8 @@ export default function Rotate({ pestId }) {
         </>
       )}
 
-      <Fold title={ui('rot.colourTitle')}>
-        <p className="text-[15px] leading-snug">{ui('rot.colourText')}</p>
-        <div className="flex flex-wrap gap-1.5 mt-2">
-          {['neural', 'respiratory', 'growth', 'midgut', 'unknown'].map(s => (
-            <span key={s} className={`px-2 py-1 rounded-md border-l-4 text-[13px] font-bold ${SITE[s]}`}>{L[`site_${s}`]}</span>
-          ))}
-        </div>
-      </Fold>
-      <Fold title={L.about}>
-        <p className="text-[14px] text-slate-600 leading-snug">{L.aboutText}</p>
+      <Fold title={ui('rot.aboutTitle')}>
+        <p className="text-[14px] text-slate-600 leading-snug">{ui('rot.aboutText')}</p>
         <p className="text-[14px] text-slate-600 leading-snug mt-2"><b>{L.safetyTitle}:</b> {L.safetyText}</p>
       </Fold>
     </div>
