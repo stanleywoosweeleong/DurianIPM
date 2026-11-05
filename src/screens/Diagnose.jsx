@@ -256,6 +256,8 @@ const COMMON = [
   ['trunk-borers', { en: 'Stem borers', zh: '枝干蛀虫' }],
   ['oomycete', { en: 'Phytophthora', zh: '疫霉病' }],
   ['rhizoctonia', { en: 'Rhizoctonia', zh: '丝核菌叶枯' }],
+  ['fusarium', { en: 'Fusarium rot', zh: '镰刀菌茎腐' }],
+  ['canker-dieback', { en: 'Dieback & canker', zh: '枝枯与溃疡' }],
 ];
 
 function CommonProblems() {
@@ -274,7 +276,7 @@ function CommonProblems() {
                 <a key={id} href={href(`group/${id}`)}
                   className="flex flex-col items-center justify-center gap-1 p-2 min-h-[80px] rounded-xl border border-slate-200 bg-white text-center active:bg-slate-50">
                   <GroupArt id={id} className="w-8 h-8 text-slate-700" />
-                  <span className="text-[0.875rem] font-bold text-slate-700 leading-tight">{t(label)}</span>
+                  <span className="text-[0.8125rem] font-bold text-slate-700 leading-tight">{t(label)}</span>
                 </a>
               ))}
             </div>

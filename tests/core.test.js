@@ -188,7 +188,7 @@ test('one-tap diagnosis: short sign lists, decisive signs skip the creature ques
 test('common-problem shortcuts point at real pest groups', async () => {
   const src = (await import('node:fs')).readFileSync(new URL('../src/screens/Diagnose.jsx', import.meta.url), 'utf8');
   const ids = [...src.matchAll(/\['([a-z-]+)', \{ en:/g)].map(m => m[1]);
-  assert.equal(ids.length, 9);
+  assert.equal(ids.length, 11);
   for (const id of ids) assert.ok(groupIds.has(id), id);
 });
 

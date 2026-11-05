@@ -158,12 +158,13 @@ export const EXTRA_GLYPHS = {
   partFlower: G('<circle cx="32" cy="26" r="6"/><path d="M32 20c-4-10 4-14 0-14s4 4 0 14M38 26c10-4 14 4 14 0s-4 4-14 0M32 32c4 10-4 14 0 14s-4-4 0-14M26 26c-10 4-14-4-14 0s4-4 14 0"/><path d="M32 46v14M32 54c-6-2-10-6-10-10M32 52c6-2 10-6 10-10"/>'),
   partFruit: G('<ellipse cx="32" cy="38" rx="18" ry="20"/><path d="M32 18V8M28 9h8"/><path d="M18 28l-5-3M46 28l5-3M14 38h-5M50 38h5M18 48l-5 3M46 48l5 3M26 22l-2-5M38 22l2-5M24 56l-2 4M40 56l2 4"/>'),
   partTrunk: G('<path d="M24 60V30M40 60V30"/><path d="M24 30C24 18 14 14 8 10M40 30c0-12 10-16 16-20M32 30V8"/><path d="M28 42c2 2 2 6 0 8M36 36c-2 2-2 4 0 6"/><path d="M8 60h48"/>'),
+  mould: G('<path d="M18 60V6M46 60V6"/><ellipse cx="32" cy="40" rx="8" ry="12"/><circle cx="29" cy="36" r="1.6"/><circle cx="35" cy="40" r="1.6"/><circle cx="30" cy="45" r="1.6"/>'),
   fern: G('<path d="M32 60V6"/><path d="M32 14c-8-2-12-6-14-10M32 14c8-2 12-6 14-10M32 26c-10-2-16-6-18-12M32 26c10-2 16-6 18-12M32 38c-10-2-18-6-20-12M32 38c10-2 18-6 20-12M32 50c-8-2-14-6-16-10M32 50c8-2 14-6 16-10"/>'),
 };
 
 const GROUP_ART = {
   'phloem-suckers': { pest: 'psyllid' },
-  fusarium: { extra: 'trunk' },
+  fusarium: { extra: 'mould' },
   leafhoppers: { pest: 'leafhopper' },
   'scale-mealybug': { pest: 'mealybug' },
   thrips: { pest: 'thrips' },
