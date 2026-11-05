@@ -103,3 +103,44 @@ export function groupsForMoa(groups, key) {
 
 /** Removed (banned) actives that were used against this group — search notices only. */
 export const removedForGroup = (gid) => REMOVED.filter(r => (r.groups || []).includes(gid));
+
+/**
+ * Alternating programme — the approach this app teaches: one round of a
+ * conventional chemical, then one round of an organic / biological product,
+ * and so on. Cuts chemical load and residues roughly in half, the organic
+ * rounds add no resistance pressure, and natural enemies recover in between.
+ *
+ * Rules: start with a conventional knock-down; never repeat a MoA class;
+ * never put two classes from the same cross-resistance cluster in the plan;
+ * skip anything blocked at this crop stage or used last time.
+ * Falls back to whatever is available when one side has no options.
+ *
+ * @returns {{ round: number, kind: 'conventional'|'organic', option: object }[]}
+ */
+export function alternatingPlan(group, ctx = {}, rounds = 4) {
+  const usable = (track) => recommend(group, { ...ctx, track }).options
+    .filter(o => !o.warnings.includes('beeBlock') && !o.recentlyUsed && !o.warnings.includes('noAdults') && !o.warnings.includes('noYoung'));
+  const pools = { conventional: usable('conventional'), organic: usable('organic') };
+  const usedMoa = new Set();
+  const usedClusters = new Set();
+  const clusterKey = (o) => {
+    const irac = o.moaInfo.irac;
+    return irac ? clusterOf(irac === '10' ? '10A' : irac) : null;
+  };
+  const take = (kind) => {
+    const pick = pools[kind].find(o => !usedMoa.has(o.moa) && !(clusterKey(o) && usedClusters.has(clusterKey(o))));
+    if (!pick) return null;
+    usedMoa.add(pick.moa);
+    if (clusterKey(pick)) usedClusters.add(clusterKey(pick));
+    return pick;
+  };
+  const plan = [];
+  for (let i = 0; i < rounds; i++) {
+    const want = i % 2 === 0 ? 'conventional' : 'organic';
+    const other = want === 'conventional' ? 'organic' : 'conventional';
+    const o = take(want) || take(other);
+    if (!o) break;
+    plan.push({ round: i + 1, kind: o.actives.every(a => a.organic) ? 'organic' : 'conventional', option: o });
+  }
+  return plan;
+}

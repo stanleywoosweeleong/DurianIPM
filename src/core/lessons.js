@@ -3,6 +3,40 @@
 
 export const LESSONS = [
   {
+    id: 'alternate',
+    icon: 'rotate',
+    title: { en: 'One round chemical, one round organic', zh: '一轮化学，一轮有机' },
+    summary: { en: 'You don\'t have to go fully organic. Alternating already cuts the harm in half.', zh: '不必完全有机。交替用药就能把危害减半。' },
+    body: {
+      en: [
+        'Going 100% organic is expensive and slow, and most orchards cannot afford it. But you do not have to choose between "all chemical" and "all organic". Alternate them: one round of a chemical, the next round an organic or biological product, and repeat.',
+        'Why it works:',
+        '• Half the chemical rounds means roughly half the residue on your fruit, half the exposure for you and your workers, and half the run-off into drains and ponds.',
+        '• Pests build resistance to chemicals they meet again and again. Oils, soaps, Bt and insect-killing fungi give resistance almost nothing to work on, so every organic round "resets" the pressure.',
+        '• Ladybirds, parasitic wasps and predatory mites recover during the organic round. They then keep pests down for free.',
+        '• You pay the organic price on only half the rounds.',
+        'How to do it:',
+        '• When pests are many, start with the CHEMICAL round to knock them down. Follow with the ORGANIC round 5–7 days later to hold them down.',
+        '• Each chemical round uses a different IRAC/FRAC group from the last chemical round. The app\'s programme does this for you.',
+        '• Spray organic products in the late afternoon (sunlight kills Bt and fungi), and do not mix insect-killing fungi with fungicides.',
+        '• Keep scouting. If the pest is back below the action level, skip a round. The cheapest spray is the one you did not need.',
+      ],
+      zh: [
+        '完全有机既贵又慢，大多数果园负担不起。但你不必在“全化学”和“全有机”之间二选一。交替使用：一轮化学药剂，下一轮有机或生物产品，如此循环。',
+        '为什么有效：',
+        '• 化学轮次减半，意味着果实残留大约减半、你和工人的接触减半、流入水沟和池塘的药液也减半。',
+        '• 害虫对反复接触的化学药剂会产生抗性。矿物油、皂液、Bt和昆虫病原真菌几乎不会产生抗性，所以每一轮有机都能让抗性压力“归零”。',
+        '• 在有机轮次期间，瓢虫、寄生蜂和捕食螨得以恢复，之后它们会免费帮你压制害虫。',
+        '• 只有一半的轮次需要支付有机产品的价格。',
+        '怎么做：',
+        '• 虫口多时，先用化学轮次压下去；5–7天后用有机轮次稳住。',
+        '• 每一轮化学都要用与上一轮化学不同的IRAC/FRAC组别。应用里的方案会自动帮你安排。',
+        '• 有机产品在下午晚些时候喷施（阳光会杀死Bt和真菌），且不要把昆虫病原真菌与杀菌剂混用。',
+        '• 持续监测。如果害虫已降到防治阈值以下，就跳过一轮。最便宜的一次喷药，就是不需要喷的那一次。',
+      ],
+    },
+  },
+  {
     id: 'organic',
     icon: 'leaf',
     title: { en: 'Making organic & biological products work', zh: '如何用好有机与生物药剂' },

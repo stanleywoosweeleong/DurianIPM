@@ -3,7 +3,8 @@ import { useLang } from '../i18n/useLang.jsx';
 import { Card, Section, Icon, Badge, Callout, BackBar, Bullets, Fold } from '../ui/kit.jsx';
 import { GroupArt } from '../components/Art.jsx';
 import { groupById, FEEDING } from '../core/groups.js';
-import { recommend } from '../core/recommend.js';
+import { recommend, alternatingPlan } from '../core/recommend.js';
+import { AltPlan } from '../ui/AltPlan.jsx';
 import { CHART_FOR_GROUP } from '../core/rotation.js';
 import { examplesFor, photoNamesFor } from '../core/examples.js';
 import { stageById } from '../core/stages.js';
@@ -50,7 +51,10 @@ export default function GroupPage({ id, orchard, setOrchard }) {
       `${ui('app.title')} — ${t(g.name)}`, t(g.examples), '', t(g.why), '',
       `${ui('group.nonChem')}:`, ...g.nonChem.map(n => `• ${t(n)}`),
     ];
-    if (rec.rotation.length) {
+    if (plan.length) {
+      lines.push('', `${ui('alt.title')}:`);
+      plan.forEach(({ round, kind, option: o }) => lines.push(`${ui('alt.round')} ${round} (${kind === 'organic' ? ui('alt.organic') : ui('alt.chemical')}): ${t(o.moaInfo.name)}${moaCode(o.moaInfo) ? ` (${moaCode(o.moaInfo)})` : ''} — ${o.actives.slice(0, 3).map(a => t(a.name)).join(', ')}`));
+    } else if (rec.rotation.length) {
       lines.push('', `${ui('group.rotation')}:`);
       rec.rotation.forEach((o, i) => lines.push(`${i + 1}. ${t(o.moaInfo.name)}${moaCode(o.moaInfo) ? ` (${moaCode(o.moaInfo)})` : ''} — ${o.actives.slice(0, 3).map(a => t(a.name)).join(', ')}`));
     }
@@ -59,6 +63,7 @@ export default function GroupPage({ id, orchard, setOrchard }) {
     window.open(url, '_blank', 'noopener');
   };
 
+  const plan = track === 'all' ? alternatingPlan(g, { stage: orchard.stage, recentMoa: orchard.recentMoa, pestStage }) : [];
   const TOP = 3;
   const shown = showAll ? rec.options : rec.options.slice(0, TOP);
   const hidden = rec.options.length - shown.length;
@@ -140,7 +145,19 @@ export default function GroupPage({ id, orchard, setOrchard }) {
             <p className="mt-2 text-[14px] text-lime-800 font-semibold leading-snug">🌿 {ui('group.convNote')}</p>
           )}
 
-          {rec.rotation.length > 1 && (
+          {plan.length > 1 && (
+            <div className="mt-4 rounded-2xl bg-[#f4f2ea] border border-slate-300 p-3">
+              <div className="font-extrabold text-[16px]">{ui('alt.title')}</div>
+              <p className="text-[13px] text-slate-600 mb-2">{ui('alt.sub')}</p>
+              <AltPlan plan={plan} ChemChip={ChemChip} />
+              {chart && (
+                <a href={href(`rotate/${chart[0]}`)} className="mt-2 inline-flex items-center gap-1 font-bold text-[#114b2d] underline text-[15px]">
+                  {ui('group.fullRotation')} <Icon name="chevron" className="w-4 h-4" />
+                </a>
+              )}
+            </div>
+          )}
+          {plan.length <= 1 && rec.rotation.length > 1 && (
             <div className="mt-4 rounded-2xl bg-emerald-50 border border-emerald-200 p-3">
               <div className="font-extrabold text-[16px]">{ui('group.rotation')}</div>
               <ol className="mt-2 space-y-1.5">

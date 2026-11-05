@@ -5,7 +5,8 @@ import { GroupArt, Glyph } from '../components/Art.jsx';
 import { OrchardBar } from '../ui/OrchardBar.jsx';
 import { LeafCurlArt } from '../components/LeafCurl.jsx';
 import { PARTS, CULPRITS, signsForPart, diagnose } from '../core/diagnosis.js';
-import { recommend } from '../core/recommend.js';
+import { recommend, alternatingPlan } from '../core/recommend.js';
+import { AltPlan } from '../ui/AltPlan.jsx';
 import { ChemChip, moaCode } from './GroupPage.jsx';
 import { StagePicker } from '../ui/StagePicker.jsx';
 import { href } from '../hooks/useRoute.js';
@@ -197,6 +198,7 @@ function WhatWorks({ g, orchard, culprits }) {
   const [track, setTrack] = React.useState(orchard?.track || 'all');
   const ctx = { stage: orchard?.stage, recentMoa: orchard?.recentMoa || [], pestStage, track };
   const list = recommend(g, ctx).options.filter(o => !o.warnings.includes('beeBlock')).slice(0, 3);
+  const plan = track === 'all' ? alternatingPlan(g, ctx) : [];
   return (
     <div className="mt-4 border-t border-slate-200 pt-3">
       <div className="text-lg font-extrabold">{ui('diag.whatWorks')}</div>
@@ -212,7 +214,7 @@ function WhatWorks({ g, orchard, culprits }) {
               </button>
             ))}
           </div>
-          <ol className="mt-2 space-y-2">
+          {plan.length > 1 ? <div className="mt-2"><AltPlan plan={plan} ChemChip={ChemChip} /></div> : <ol className="mt-2 space-y-2">
             {list.map((o, i) => {
               const note = ['youngBest', 'pairAdult', 'ovicide', 'noAdults'].find(w => o.warnings.includes(w));
               return (
@@ -226,7 +228,7 @@ function WhatWorks({ g, orchard, culprits }) {
                 </li>
               );
             })}
-          </ol>
+          </ol>}
           {!list.length && track === 'organic' && <p className="mt-2 text-[15px]">{ui('group.organicEmpty')}</p>}
         </>
       )}

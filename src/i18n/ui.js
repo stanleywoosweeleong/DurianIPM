@@ -184,6 +184,15 @@ export const UI_STRINGS = {
     colourTitle: s('Why the colours matter', '颜色代表什么'),
     colourText: s('Colour = the target a pesticide attacks. If spray B is the same colour as spray A, it hits the same body system. Changing the colour (target site) breaks the resistance cycle best.', '颜色 = 农药攻击的靶标。如果B药与A药颜色相同，就是攻击同一身体系统。换颜色（换靶标部位）最能打破抗药性循环。'),
   },
+  alt: {
+    title: s('Suggested programme: alternate', '建议方案：交替用药'),
+    sub: s('One round chemical, one round organic — each round a different group.', '一轮化学药剂、一轮有机方法——每轮换不同组别。'),
+    round: s('Round', '轮次'),
+    chemical: s('Chemical', '化学'),
+    organic: s('Organic', '有机'),
+    why: s('Alternating halves the chemical load and residues; organic rounds add no resistance and let natural enemies recover.', '交替用药可使化学药量和残留减半；有机轮次不增加抗性，并让天敌得以恢复。'),
+    learn: s('Why alternate →', '为什么要交替 →'),
+  },
   stage: {
     question: s('Which stage do you see most?', '你看到最多的是哪个虫态？'),
     why: s('Why it matters', '为什么重要'),

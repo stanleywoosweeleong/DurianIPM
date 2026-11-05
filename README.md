@@ -41,6 +41,14 @@ questions (where, what you see, what creature), and gets sound advice.
   "same chemical, different danger" (hazard vs. dilution, using abamectin as the example),
   pollinators, systemic vs contact, safe mixing + tank-mix order).
 
+## The alternating programme (the app's default advice)
+
+The app does not push farmers to go fully organic. It teaches **one round chemical, one round organic**.
+`alternatingPlan()` in `src/core/recommend.js` builds a 4-round plan for every group: chemical → organic →
+chemical → organic. It never repeats a MoA class, never uses two classes that share a target, and skips anything
+blocked at the crop stage or used last time. It appears on group pages and on the diagnosis result in the
+default **All** view, and the first lesson in Learn explains why it works.
+
 ## Life stages
 
 Many products only work on some life stages. Growth regulators (IRAC 7, 10, 15, 16, 18, 23) kill eggs and
