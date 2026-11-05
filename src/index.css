@@ -16,6 +16,17 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
+  /* Chinese: PingFang/Noto at weight 400 looks much thinner than Latin text
+     at the same size, so regular Chinese text is set one step heavier. */
+  html:lang(zh-CN) body {
+    font-family: ui-sans-serif, system-ui, -apple-system, "PingFang SC", "Hiragino Sans GB",
+      "Noto Sans SC", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif;
+    font-weight: 500;
+  }
+  html:lang(zh-CN) .font-normal { font-weight: 500; }
+  /* Thin CJK strokes in light grey fade out — one shade darker for Chinese. */
+  html:lang(zh-CN) .text-slate-400 { color: rgb(100 116 139); }
+  html:lang(zh-CN) .text-slate-500 { color: rgb(71 85 105); }
   /* Sticky headers must clear the iOS status bar / notch themselves —
      body padding does not affect position:sticky elements. */
   .safe-top {
