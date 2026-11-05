@@ -3,8 +3,8 @@ import { useLang } from '../i18n/useLang.jsx';
 import { Card, Section, Icon, Badge, Callout, BackBar, Bullets, Fold } from '../ui/kit.jsx';
 import { GroupArt } from '../components/Art.jsx';
 import { groupById, FEEDING } from '../core/groups.js';
-import { recommend, alternatingPlan } from '../core/recommend.js';
-import { AltPlan } from '../ui/AltPlan.jsx';
+import { recommend } from '../core/recommend.js';
+import { OrganicToggle } from '../ui/OrganicToggle.jsx';
 import { CHART_FOR_GROUP } from '../core/rotation.js';
 import { examplesFor, photoNamesFor } from '../core/examples.js';
 import { stageById } from '../core/stages.js';
@@ -37,7 +37,7 @@ export default function GroupPage({ id, orchard, setOrchard }) {
   const [showAll, setShowAll] = useState(false);
   const [pestStage, setPestStage] = useState(null);
 
-  const track = orchard.track || 'all';
+  const track = orchard.track === 'organic' ? 'organic' : 'all';
   const rec = useMemo(() => g && recommend(g, { stage: orchard.stage, recentMoa: orchard.recentMoa, track, pestStage }), [g, orchard.stage, orchard.recentMoa, track, pestStage]);
   if (!g) return <div><BackBar /><p>Not found.</p></div>;
 
@@ -51,10 +51,7 @@ export default function GroupPage({ id, orchard, setOrchard }) {
       `${ui('app.title')} — ${t(g.name)}`, t(g.examples), '', t(g.why), '',
       `${ui('group.nonChem')}:`, ...g.nonChem.map(n => `• ${t(n)}`),
     ];
-    if (plan.length) {
-      lines.push('', `${ui('alt.title')}:`);
-      plan.forEach(({ round, kind, option: o }) => lines.push(`${ui('alt.round')} ${round} (${kind === 'organic' ? ui('alt.organic') : ui('alt.chemical')}): ${t(o.moaInfo.name)}${moaCode(o.moaInfo) ? ` (${moaCode(o.moaInfo)})` : ''} — ${o.actives.slice(0, 3).map(a => t(a.name)).join(', ')}`));
-    } else if (rec.rotation.length) {
+    if (rec.rotation.length) {
       lines.push('', `${ui('group.rotation')}:`);
       rec.rotation.forEach((o, i) => lines.push(`${i + 1}. ${t(o.moaInfo.name)}${moaCode(o.moaInfo) ? ` (${moaCode(o.moaInfo)})` : ''} — ${o.actives.slice(0, 3).map(a => t(a.name)).join(', ')}`));
     }
@@ -63,7 +60,6 @@ export default function GroupPage({ id, orchard, setOrchard }) {
     window.open(url, '_blank', 'noopener');
   };
 
-  const plan = track === 'all' ? alternatingPlan(g, { stage: orchard.stage, recentMoa: orchard.recentMoa, pestStage }) : [];
   const TOP = 3;
   const shown = showAll ? rec.options : rec.options.slice(0, TOP);
   const hidden = rec.options.length - shown.length;
@@ -107,16 +103,8 @@ export default function GroupPage({ id, orchard, setOrchard }) {
         <Section><Callout tone="blue" icon="leaf">{ui('group.noChem')}</Callout></Section>
       ) : (
         <Section title={ui('group.chem')}>
-          {/* Organic first, conventional equally complete */}
-          <div className="grid grid-cols-3 gap-1 p-1 rounded-2xl bg-slate-200 mb-3" role="tablist">
-            {[['all', 'group.trackAll', 'grid'], ['organic', 'group.trackOrganic', 'leaf'], ['conventional', 'group.trackConv', 'flask']].map(([k, label, icon]) => (
-              <button key={k} role="tab" aria-selected={track === k} onClick={() => { setOrchard({ track: k }); setShowAll(false); }}
-                className={`min-h-[44px] rounded-xl font-extrabold text-[14px] flex items-center justify-center gap-1 ${track === k
-                  ? (k === 'organic' ? 'bg-lime-600 text-white shadow' : 'bg-white text-slate-900 shadow') : 'text-slate-600'}`}>
-                <Icon name={icon} className="w-5 h-5" />{ui(label)}
-              </button>
-            ))}
-          </div>
+          <p className="text-[13px] text-slate-500 mb-2 leading-snug">{ui('group.rankedNote')}</p>
+          <div className="mb-3"><OrganicToggle on={track === 'organic'} onChange={v => { setOrchard({ track: v ? 'organic' : 'all' }); setShowAll(false); }} /></div>
           <StagePicker groupId={g.id} value={pestStage} onChange={setPestStage} compact />
 
           {rec.options.length === 0 && track === 'organic' && <div className="mt-3"><Callout tone="lime" icon="leaf">{ui('group.organicEmpty')}</Callout></div>}
@@ -141,23 +129,7 @@ export default function GroupPage({ id, orchard, setOrchard }) {
               + {hidden} {ui('group.moreOptions')}
             </button>
           )}
-          {track === 'conventional' && rec.options.length > 0 && (
-            <p className="mt-2 text-[14px] text-lime-800 font-semibold leading-snug">🌿 {ui('group.convNote')}</p>
-          )}
-
-          {plan.length > 1 && (
-            <div className="mt-4 rounded-2xl bg-[#f4f2ea] border border-slate-300 p-3">
-              <div className="font-extrabold text-[16px]">{ui('alt.title')}</div>
-              <p className="text-[13px] text-slate-600 mb-2">{ui('alt.sub')}</p>
-              <AltPlan plan={plan} ChemChip={ChemChip} />
-              {chart && (
-                <a href={href(`rotate/${chart[0]}`)} className="mt-2 inline-flex items-center gap-1 font-bold text-[#114b2d] underline text-[15px]">
-                  {ui('group.fullRotation')} <Icon name="chevron" className="w-4 h-4" />
-                </a>
-              )}
-            </div>
-          )}
-          {plan.length <= 1 && rec.rotation.length > 1 && (
+          {rec.rotation.length > 1 && (
             <div className="mt-4 rounded-2xl bg-emerald-50 border border-emerald-200 p-3">
               <div className="font-extrabold text-[16px]">{ui('group.rotation')}</div>
               <ol className="mt-2 space-y-1.5">
@@ -168,6 +140,7 @@ export default function GroupPage({ id, orchard, setOrchard }) {
                   </li>
                 ))}
               </ol>
+              <p className="mt-2 text-[13px] text-slate-600 leading-snug">🌿 {ui('alt.tip')} <a href={href('learn/alternate')} className="font-bold text-[#114b2d] underline">{ui('alt.learn')}</a></p>
               {chart && (
                 <a href={href(`rotate/${chart[0]}`)} className="mt-2 inline-flex items-center gap-1 font-bold text-[#114b2d] underline text-[15px]">
                   {ui('group.fullRotation')} <Icon name="chevron" className="w-4 h-4" />

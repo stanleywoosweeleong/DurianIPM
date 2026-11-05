@@ -27,10 +27,9 @@ questions (where, what you see, what creature), and gets sound advice.
 - **Diagnose**: 3-step wizard → the likely pest group, the evidence behind it, and **what works** right on the result:
   the first non-chemical steps, the top organic options and the top conventional options, each with real products.
 - **Group page**: what it is, why it matters for control, how to confirm it, action threshold, non-chemical steps first.
-  Then the spray options ranked on effectiveness under **All** (default), with **Organic** and **Conventional**
-  filters. Organic products carry a leaf mark; organic status lives on each active (`ORGANIC_IDS` in
-  `src/core/chemDb.js`). Each view has its stage/bee/harvest/resistance warnings and its own 3-spray rotation,
-  followed by a list of what **not** to use.
+  Then the spray options ranked on effectiveness, with stage/bee/harvest/resistance warnings and a 3-spray
+  rotation. Organic products are marked 🌿 (organic status lives on each active, `ORGANIC_IDS` in
+  `src/core/chemDb.js`), with an optional "Organic only" switch. A list of what **not** to use follows.
 - **Rotate**: the Rotation Helper (see below). Pick a pest and the IRAC group used last; it returns Avoid,
   Caution (shared target), and Rotate to, ranked by switching to a different target site and then by WHO toxicity.
 - **Products** (reached from product chips and from Learn, not the bottom bar): an MoA reference of organic, biological and conventional actives (with an Organic filter). Search by active ingredient (EN/中文). Each entry shows MoA, how it reaches the pest, WHO class,
@@ -41,13 +40,13 @@ questions (where, what you see, what creature), and gets sound advice.
   "same chemical, different danger" (hazard vs. dilution, using abamectin as the example),
   pollinators, systemic vs contact, safe mixing + tank-mix order).
 
-## The alternating programme (the app's default advice)
+## Spray advice: most effective first
 
-The app does not push farmers to go fully organic. It teaches **one round chemical, one round organic**.
-`alternatingPlan()` in `src/core/recommend.js` builds a 4-round plan for every group: chemical → organic →
-chemical → organic. It never repeats a MoA class, never uses two classes that share a target, and skips anything
-blocked at the crop stage or used last time. It appears on group pages and on the diagnosis result in the
-default **All** view, and the first lesson in Learn explains why it works.
+Options are ranked purely on how well they work for the pest group, crop stage, life stage and last spray.
+Organic and conventional products share one list. Organic products carry a 🌿 leaf, and an optional
+**Organic only** switch (off by default) filters the list. Many organic products are costly or hard to find in
+Malaysian shops, so the app never forces them. The suggested rotation uses the best options, and a tip (plus
+the first lesson in Learn) encourages alternating with an organic round whenever one is available.
 
 ## Life stages
 

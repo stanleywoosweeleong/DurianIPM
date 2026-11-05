@@ -5,8 +5,8 @@ import { GroupArt, Glyph } from '../components/Art.jsx';
 import { OrchardBar } from '../ui/OrchardBar.jsx';
 import { LeafCurlArt } from '../components/LeafCurl.jsx';
 import { PARTS, CULPRITS, signsForPart, diagnose } from '../core/diagnosis.js';
-import { recommend, alternatingPlan } from '../core/recommend.js';
-import { AltPlan } from '../ui/AltPlan.jsx';
+import { recommend } from '../core/recommend.js';
+import { OrganicToggle } from '../ui/OrganicToggle.jsx';
 import { ChemChip, moaCode } from './GroupPage.jsx';
 import { StagePicker } from '../ui/StagePicker.jsx';
 import { href } from '../hooks/useRoute.js';
@@ -195,10 +195,9 @@ const YOUNG_CULPRITS = new Set(['caterpillar', 'grub', 'maggot']);
 function WhatWorks({ g, orchard, culprits }) {
   const { t, ui } = useLang();
   const [pestStage, setPestStage] = React.useState(() => (culprits.some(c => YOUNG_CULPRITS.has(c)) ? 'young' : null));
-  const [track, setTrack] = React.useState(orchard?.track || 'all');
+  const [track, setTrack] = React.useState(orchard?.track === 'organic' ? 'organic' : 'all');
   const ctx = { stage: orchard?.stage, recentMoa: orchard?.recentMoa || [], pestStage, track };
   const list = recommend(g, ctx).options.filter(o => !o.warnings.includes('beeBlock')).slice(0, 3);
-  const plan = track === 'all' ? alternatingPlan(g, ctx) : [];
   return (
     <div className="mt-4 border-t border-slate-200 pt-3">
       <div className="text-lg font-extrabold">{ui('diag.whatWorks')}</div>
@@ -206,15 +205,11 @@ function WhatWorks({ g, orchard, culprits }) {
       {g.chem.length > 0 && (
         <>
           <div className="mt-3"><StagePicker groupId={g.id} value={pestStage} onChange={setPestStage} /></div>
-          <div className="grid grid-cols-3 gap-1 p-1 rounded-xl bg-slate-200 mt-3" role="tablist">
-            {[['all', 'group.trackAll'], ['organic', 'group.trackOrganic'], ['conventional', 'group.trackConv']].map(([k, label]) => (
-              <button key={k} role="tab" aria-selected={track === k} onClick={() => setTrack(k)}
-                className={`min-h-[44px] rounded-lg font-extrabold text-[14px] ${track === k ? (k === 'organic' ? 'bg-lime-600 text-white' : 'bg-white') : 'text-slate-600'}`}>
-                {ui(label)}
-              </button>
-            ))}
+          <div className="mt-3 flex items-center justify-between gap-2 flex-wrap">
+            <span className="text-[13px] font-extrabold text-slate-500 uppercase tracking-wider">{ui('diag.bestFirst')}</span>
+            <OrganicToggle on={track === 'organic'} onChange={v => setTrack(v ? 'organic' : 'all')} />
           </div>
-          {plan.length > 1 ? <div className="mt-2"><AltPlan plan={plan} ChemChip={ChemChip} /></div> : <ol className="mt-2 space-y-2">
+          <ol className="mt-2 space-y-2">
             {list.map((o, i) => {
               const note = ['youngBest', 'pairAdult', 'ovicide', 'noAdults'].find(w => o.warnings.includes(w));
               return (
@@ -228,7 +223,7 @@ function WhatWorks({ g, orchard, culprits }) {
                 </li>
               );
             })}
-          </ol>}
+          </ol>
           {!list.length && track === 'organic' && <p className="mt-2 text-[15px]">{ui('group.organicEmpty')}</p>}
         </>
       )}

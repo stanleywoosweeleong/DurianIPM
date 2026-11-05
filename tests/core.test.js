@@ -159,22 +159,6 @@ test('life stage steers the ranking', () => {
     for (const o of recommend(g).options.filter(o => o.moaInfo.kind !== 'fungicide')) assert.ok(o.moaInfo.stages.length, `${g.id}/${o.moa}`);
 });
 
-import { alternatingPlan } from '../src/core/recommend.js';
-test('alternating programme: chemical, organic, chemical, organic — no repeated MoA', () => {
-  for (const id of ['thrips', 'phloem-suckers', 'scale-mealybug', 'mites', 'leaf-caterpillars', 'fruit-borers', 'oomycete']) {
-    const plan = alternatingPlan(GROUPS.find(g => g.id === id));
-    assert.ok(plan.length >= 3, `${id}: ${plan.length} rounds`);
-    assert.equal(plan[0].kind, 'conventional', id);
-    assert.equal(plan[1].kind, 'organic', id);
-    assert.equal(new Set(plan.map(p => p.option.moa)).size, plan.length, `${id}: repeated MoA`);
-  }
-  // thrips: spinosad (organic) and spinetoram (conventional) are the same MoA — only one may appear
-  const thrips = alternatingPlan(GROUPS.find(g => g.id === 'thrips'));
-  assert.ok(thrips.filter(p => p.option.moa === 'IRAC 5').length <= 1);
-  // flowering: nothing bee-toxic in the plan
-  for (const g of GROUPS) for (const p of alternatingPlan(g, { stage: 'flowering' })) assert.notEqual(p.option.moaInfo.bee, 'high', g.id);
-});
-
 import { UI_STRINGS } from '../src/i18n/ui.js';
 test('no banned or excluded active is named anywhere in the visible text', () => {
   // Removed actives may only appear as a search ANSWER (chemDb REMOVED), never in
