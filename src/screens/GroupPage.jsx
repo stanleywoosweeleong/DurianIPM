@@ -15,7 +15,7 @@ import { STAGES } from '../core/stages.js';
 import { href } from '../hooks/useRoute.js';
 import { StagePicker, KillsBadges } from '../ui/StagePicker.jsx';
 
-import { WikiPhotoStrip, WikiCover } from '../components/WikiPhotoStrip.jsx';
+import { WikiCover } from '../components/WikiPhotoStrip.jsx';
 
 const FIT_TONE = { best: 'green', good: 'blue', limited: 'grey' };
 const WARN_TONE = { beeBlock: 'red', beeHigh: 'amber', beeEvening: 'amber', phi: 'violet', resistance: 'grey', rotate: 'red', crossRes: 'amber', noAdults: 'red', noYoung: 'red', youngBest: 'green', ovicide: 'green', pairAdult: 'amber' };
@@ -200,7 +200,6 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
                 <div className="font-extrabold text-[16px]">{t(p.common)}</div>
                 <div className="text-[13px] italic text-slate-500">{p.scientific}</div>
                 <p className="text-[15px] mt-1 leading-snug">{t(p.symptoms)}</p>
-                <div className="mt-2"><WikiPhotoStrip scientificName={p.scientific} lang={lang} /></div>
               </div>
             ))}
           </div>

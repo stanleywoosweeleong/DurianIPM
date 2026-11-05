@@ -210,3 +210,11 @@ test('Rhizoctonia: own group, Rhizoctonia-active fungicides, never oomycete-only
   assert.ok(!r.options.some(o => ['FRAC 4', 'FRAC P07', 'FRAC 40', 'FRAC 21'].includes(o.moa)));
   assert.equal(diagnose({ signs: ['web-blight'], culprits: [] })[0].group.id, 'rhizoctonia');
 });
+
+test('no runtime photo search anywhere (only fixed, checked photos)', async () => {
+  const fs = await import('node:fs');
+  const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap(e => e.isDirectory() ? walk(`${d}/${e.name}`) : [`${d}/${e.name}`]);
+  const files = walk(new URL('../src', import.meta.url).pathname).filter(f => /\.(js|jsx)$/.test(f));
+  const hits = files.filter(f => /commons\.wikimedia\.org\/w\/api\.php|gsrsearch/.test(fs.readFileSync(f, 'utf8')));
+  assert.deepEqual(hits, []);
+});
