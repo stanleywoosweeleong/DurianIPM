@@ -76,6 +76,7 @@ const LOCAL = [
   X('azoxystrobin', 'Azoxystrobin', '嘧菌酯', 'FRAC 11', 'fungicide'),
   X('pencycuron', 'Pencycuron', '戊菌隆', 'FRAC 20', 'fungicide'),
   X('cyazofamid', 'Cyazofamid', '氰霜唑', 'FRAC 21', 'fungicide'),
+  X('validamycin', 'Validamycin A', '井冈霉素', 'FRAC 26', 'fungicide', { aliases: ['validamycin', 'validoxylamine'] }),
   X('dimethomorph', 'Dimethomorph', '烯酰吗啉', 'FRAC 40', 'fungicide'),
   X('phosphonate', 'Phosphorous acid / potassium phosphonate', '亚磷酸 / 亚磷酸钾', 'FRAC P07', 'fungicide', { aliases: ['phosphonic', 'phosphite'] }),
   X('fosetyl', 'Fosetyl-aluminium', '三乙膦酸铝', 'FRAC P07', 'fungicide', { aliases: ['fosetyl', '乙磷铝'] }),

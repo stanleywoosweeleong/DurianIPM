@@ -238,6 +238,13 @@ export const MOA = {
     how: { en: 'Specific to Rhizoctonia.', zh: '专门防治丝核菌。' },
     route: ['contact'], stages: [], bee: 'low', resistance: 'low',
   },
+  'FRAC 26': {
+    kind: 'fungicide',
+    name: { en: 'Validamycin', zh: '井冈霉素' },
+    how: { en: 'Blocks a sugar enzyme (trehalase) in Rhizoctonia, so its threads stop growing and spreading.', zh: '抑制丝核菌的糖代谢酶（海藻糖酶），使菌丝停止生长和蔓延。' },
+    route: ['contact', 'translaminar'], stages: [], bee: 'low', resistance: 'low',
+    note: { en: 'Specific to Rhizoctonia; low toxicity to people and bees.', zh: '专门针对丝核菌；对人和蜜蜂低毒。' },
+  },
   'FRAC 21': {
     kind: 'fungicide',
     name: { en: 'Cyazofamid', zh: '氰霜唑' },

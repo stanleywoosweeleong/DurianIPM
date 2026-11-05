@@ -33,7 +33,8 @@ export const SIGNS = [
   { id: 'slime', parts: ['leaf', 'fruit'], label: { en: 'Shiny slime trails', zh: '发亮的黏液痕迹' }, w: { snails: 5 } },
   { id: 'spots-halo', parts: ['leaf', 'fruit', 'flower'], label: { en: 'Brown/black spots, often with yellow halo', zh: '褐/黑色斑点，常带黄晕' }, w: { 'leaf-spots': 3, bacterial: 1 } },
   { id: 'angular', parts: ['leaf'], label: { en: 'Angular water-soaked spots between veins', zh: '叶脉间的多角形水渍状斑' }, w: { bacterial: 4 } },
-  { id: 'blight', parts: ['leaf', 'flower'], label: { en: 'Large dead patches spreading fast in wet weather', zh: '潮湿天气下迅速扩展的大片枯斑' }, w: { 'leaf-spots': 2, oomycete: 2 } },
+  { id: 'blight', parts: ['leaf', 'flower'], label: { en: 'Large dead patches spreading fast in wet weather', zh: '潮湿天气下迅速扩展的大片枯斑' }, w: { rhizoctonia: 3, 'leaf-spots': 2, oomycete: 2 } },
+  { id: 'web-blight', parts: ['leaf'], label: { en: 'Young leaves turn brown in patches and stick together with fine threads', zh: '嫩叶成片变褐，并被细丝粘在一起' }, w: { rhizoctonia: 5 } },
   { id: 'rust-raised', parts: ['leaf'], label: { en: 'Raised orange-red velvety spots', zh: '凸起的橙红色绒状斑点' }, w: { 'leaf-spots': 3 } },
   { id: 'white-wax', parts: ['leaf', 'fruit', 'trunk', 'root'], label: { en: 'White cottony or waxy masses', zh: '白色棉絮状或蜡质团块' }, w: { 'scale-mealybug': 4, 'phloem-suckers': 1 } },
   { id: 'bumps', parts: ['leaf', 'trunk', 'fruit'], label: { en: 'Small bumps/shells stuck on twigs or leaves', zh: '枝叶上附着小凸起或硬壳' }, w: { 'scale-mealybug': 4 } },
@@ -46,7 +47,6 @@ export const SIGNS = [
   { id: 'fruit-sunken', parts: ['fruit'], label: { en: 'Dark sunken spots; fruitlets drop', zh: '深色凹陷斑；幼果脱落' }, w: { 'plant-bugs': 3, 'leaf-spots': 2 } },
   { id: 'fruit-rot', parts: ['fruit'], label: { en: 'Wet brown/black rot spreading from tip or stalk', zh: '从果顶或果柄扩展的湿腐褐/黑斑' }, w: { oomycete: 4, 'leaf-spots': 1 } },
   { id: 'fruit-maggot', parts: ['fruit'], label: { en: 'Soft flesh with small maggots', zh: '果肉软烂有小蛆' }, w: { 'fruit-flies': 5, 'fruit-borers': 1 } },
-  { id: 'fruit-gnawed', parts: ['fruit'], label: { en: 'Fruit gnawed, torn open or missing', zh: '果实被啃咬、撕开或丢失' }, w: { vertebrates: 5 } },
   // ─ trunk
   { id: 'sawdust', parts: ['trunk'], label: { en: 'Sawdust or frass pushed out of a hole', zh: '孔口有推出的木屑或虫粪' }, w: { 'trunk-borers': 4, 'shot-hole': 2 } },
   { id: 'pinholes', parts: ['trunk'], label: { en: 'Many tiny holes (1–2 mm) with fine powder', zh: '许多小孔（1–2毫米）并有细粉' }, w: { 'shot-hole': 5 } },
@@ -57,14 +57,12 @@ export const SIGNS = [
   { id: 'mud-tubes', parts: ['trunk', 'root'], label: { en: 'Mud tubes or mud sheets on trunk', zh: '树干上有泥道或泥被' }, w: { 'soil-pests': 5 } },
   { id: 'bark-silk', parts: ['trunk'], label: { en: 'Bark eaten under silky frass ribbons', zh: '丝状虫粪带下的树皮被啃食' }, w: { 'trunk-borers': 4 } },
   { id: 'green-bark', parts: ['trunk'], label: { en: 'Green film, moss or ferns on bark', zh: '树皮上有绿色薄膜、苔藓或蕨类' }, w: { epiphytes: 5 } },
-  { id: 'bark-stripped', parts: ['trunk', 'root'], label: { en: 'Bark gnawed or stripped near the base', zh: '树基附近树皮被啃或剥' }, w: { vertebrates: 5 } },
   // ─ root / whole tree
   { id: 'tree-wilt', parts: ['root'], label: { en: 'Whole tree yellowing, wilting or dropping leaves', zh: '整株发黄、萎蔫或落叶' }, w: { oomycete: 3, 'root-fungi': 2, 'soil-pests': 1, nematodes: 1, 'canker-dieback': 1 } },
   { id: 'white-threads', parts: ['root'], label: { en: 'White fungal threads stuck on roots', zh: '根上附着白色菌索' }, w: { 'root-fungi': 5 } },
   { id: 'galls', parts: ['root'], label: { en: 'Knots or swellings on roots', zh: '根上有结或肿大' }, w: { nematodes: 5 } },
   { id: 'roots-chewed', parts: ['root'], label: { en: 'Roots chewed; white C-shaped grubs in soil', zh: '根被啃食；土中有C形白色幼虫' }, w: { 'soil-pests': 5 } },
   { id: 'roots-rotten', parts: ['root'], label: { en: 'Roots dark, soft and peeling', zh: '根部变黑、变软、脱皮' }, w: { oomycete: 4 } },
-  { id: 'soil-dug', parts: ['root'], label: { en: 'Soil dug up, roots exposed by animals', zh: '土壤被翻，根被动物刨出' }, w: { vertebrates: 4 } },
 ];
 
 export const CULPRITS = [
@@ -84,7 +82,6 @@ export const CULPRITS = [
   { id: 'ants', label: { en: 'Ants', zh: '蚂蚁' }, w: { 'ants-wasps': 3, 'scale-mealybug': 1, 'phloem-suckers': 1 } },
   { id: 'wasps', label: { en: 'Wasps or hornets', zh: '胡蜂或马蜂' }, w: { 'ants-wasps': 5 } },
   { id: 'termites', label: { en: 'Termites (pale soft ants)', zh: '白蚁（浅色软体“蚂蚁”）' }, w: { 'soil-pests': 5 } },
-  { id: 'animal', label: { en: 'Animal, bite or claw marks, droppings', zh: '动物、咬痕或爪痕、粪便' }, w: { vertebrates: 5 } },
   { id: 'nothing', label: { en: 'No creature — only the damage', zh: '没看到生物——只有危害症状' }, w: { oomycete: 1, 'canker-dieback': 1, 'leaf-spots': 1, 'root-fungi': 1, bacterial: 1, nematodes: 1, mites: 1, thrips: 1, 'fruit-borers': 1, 'shot-hole': 1 } },
   { id: 'unsure', label: { en: 'Not sure', zh: '不确定' }, w: {} },
 ];
@@ -150,11 +147,11 @@ export function diagnose({ signs = [], culprits = [], weather = null }) {
 
 /** The clearest 5–8 signs per part, in order. "Something else" opens the rest. */
 export const MAIN_SIGNS = {
-  leaf: ['curl-down', 'curl-up', 'holes', 'rolled', 'stipple', 'white-wax', 'sticky', 'spots-halo'],
+  leaf: ['curl-down', 'curl-up', 'holes', 'rolled', 'stipple', 'white-wax', 'web-blight', 'spots-halo'],
   flower: ['flower-drop', 'silver', 'holes', 'spots-halo', 'sticky'],
-  fruit: ['fruit-frass', 'fruit-maggot', 'fruit-rot', 'fruit-corky', 'fruit-sunken', 'white-wax', 'fruit-gnawed'],
-  trunk: ['sawdust', 'pinholes', 'ooze', 'dieback', 'pink-crust', 'mud-tubes', 'bark-stripped'],
-  root: ['tree-wilt', 'white-threads', 'galls', 'roots-chewed', 'roots-rotten', 'soil-dug'],
+  fruit: ['fruit-frass', 'fruit-maggot', 'fruit-rot', 'fruit-corky', 'fruit-sunken', 'white-wax'],
+  trunk: ['sawdust', 'pinholes', 'ooze', 'dieback', 'pink-crust', 'mud-tubes'],
+  root: ['tree-wilt', 'white-threads', 'galls', 'roots-chewed', 'roots-rotten'],
 };
 
 /**
@@ -176,3 +173,56 @@ export function nextAfterSign(signId) {
     culprits: decisive ? [] : [...fitting, CULPRITS.find(c => c.id === 'nothing'), CULPRITS.find(c => c.id === 'unsure')],
   };
 }
+
+// Wildlife is deliberately left out of the diagnosis: the app has no practical
+// control to offer. Its page stays reachable by name search (prevention tips only).
+// ── Part → pest list ───────────────────────────────────────────────────────
+// After tapping where the problem is, the farmer sees the pests and diseases
+// that attack that part on durian, each with what to look for — tap one and the
+// advice opens. The step-by-step questions remain behind "Not sure?".
+const L = (en, zh) => ({ en, zh });
+export const PART_PESTS = {
+  leaf: [
+    ['phloem-suckers', L('Leaves curl down; sticky honeydew; tiny soft insects under the leaf', '叶片向下卷；有黏稠蜜露；叶背有微小软体虫')],
+    ['rhizoctonia', L('Young leaves brown in patches, stuck together by fine threads', '嫩叶成片变褐，被细丝粘在一起')],
+    ['thrips', L('Silvery scars; new leaves curl up with brown, crispy edges', '银白色疤痕；新叶向上卷，叶缘焦褐')],
+    ['mites', L('Pale speckles; very fine webbing under the leaf', '细小灰白斑点；叶背有极细丝网')],
+    ['scale-mealybug', L('White cottony masses or small shells on leaves and twigs', '叶片和枝条上有白色棉絮或小硬壳')],
+    ['leaf-caterpillars', L('Holes and chewed edges; leaves rolled with silk and droppings', '孔洞和缺刻；叶片被丝卷起并有虫粪')],
+    ['leaf-beetles', L('Leaves chewed overnight; beetles or grasshoppers', '叶片一夜间被啃；有甲虫或蝗虫')],
+    ['leaf-spots', L('Brown/black spots with a yellow halo; orange-red velvety spots', '褐/黑色斑点带黄晕；橙红色绒状斑点')],
+    ['bacterial', L('Angular, water-soaked spots between the veins', '叶脉间多角形水渍状斑')],
+  ],
+  flower: [
+    ['thrips', L('Buds and flowers turn brown and drop; silvery scars', '花蕾和花变褐脱落；银白色疤痕')],
+    ['phloem-suckers', L('Sticky flowers, black sooty mould, tiny soft insects', '花上黏稠、有黑色煤烟、微小软体虫')],
+    ['leaf-spots', L('Flowers blacken and rot in wet weather', '潮湿天气下花朵变黑腐烂')],
+    ['leaf-caterpillars', L('Flowers chewed; caterpillars in the clusters', '花被啃食；花序中有毛虫')],
+    ['mites', L('Bronzed flower stalks; tiny moving dots', '花梗变古铜色；有移动的小点')],
+  ],
+  fruit: [
+    ['fruit-borers', L('Holes in the rind with brown frass, often where fruits touch', '果皮有孔并带褐色虫粪，常在果实相接处')],
+    ['scale-mealybug', L('White waxy insects between the spines and on the stalk; ants', '果刺间和果柄上有白色蜡质虫；有蚂蚁')],
+    ['oomycete', L('Wet brown/black rot spreading from the tip or stalk', '从果顶或果柄扩展的湿腐褐/黑斑')],
+    ['fruit-flies', L('Soft, rotting flesh with small maggots', '果肉软烂并有小蛆')],
+    ['plant-bugs', L('Dark sunken spots; fruitlets drop', '深色凹陷斑；幼果脱落')],
+    ['thrips', L('Corky, scabby brown scars on the skin', '果皮有木栓化褐色疤痕')],
+    ['leaf-spots', L('Dark spots and rot on the skin', '果皮上有深色斑点和腐烂')],
+  ],
+  trunk: [
+    ['oomycete', L('Wet dark patch on the bark with reddish-brown ooze', '树皮上有湿润深色斑块并流出红褐色胶液')],
+    ['trunk-borers', L('Sawdust or frass from a hole; branch wilts beyond it', '孔口有木屑或虫粪；孔以外的枝条萎蔫')],
+    ['shot-hole', L('Many tiny pinholes with fine powder, on weak trees', '衰弱树上有许多小针孔和细粉')],
+    ['canker-dieback', L('Twigs dying back from the tips; pink crust on branches', '枝梢从顶端枯死；枝条上有粉红色菌壳')],
+    ['scale-mealybug', L('White waxy insects or shells in bark cracks; ants', '树皮缝里有白色蜡质虫或硬壳；有蚂蚁')],
+    ['soil-pests', L('Mud tubes or mud sheets on the trunk', '树干上有泥道或泥被')],
+    ['epiphytes', L('Ferns, moss or green film on the bark (mostly harmless)', '树皮上有蕨类、苔藓或绿膜（多数无害）')],
+  ],
+  root: [
+    ['oomycete', L('Whole tree yellowing; roots dark, soft and peeling', '整株发黄；根部变黑、变软、脱皮')],
+    ['root-fungi', L('White fungal threads stuck on the roots and collar', '根部和根颈上附着白色菌索')],
+    ['soil-pests', L('Roots chewed; white C-shaped grubs or termites in the soil', '根被啃食；土中有C形白色幼虫或白蚁')],
+    ['nematodes', L('Knots or swellings on feeder roots; stunted tree', '吸收根上有结或肿大；树体矮小')],
+    ['scale-mealybug', L('White waxy mealybugs on the roots', '根上有白色蜡质粉蚧')],
+  ],
+};

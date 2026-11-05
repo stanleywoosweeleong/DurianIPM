@@ -180,6 +180,7 @@ const GROUP_ART = {
   oomycete: { extra: 'drop' },
   'canker-dieback': { extra: 'branch' },
   'leaf-spots': { extra: 'leafSpot' },
+  rhizoctonia: { extra: 'leafSpot' },
   'root-fungi': { extra: 'root' },
   bacterial: { extra: 'bacteria' },
   vertebrates: { extra: 'paw' },

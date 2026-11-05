@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { GROUPS } from '../src/core/groups.js';
 import { CHEMICALS, REMOVED, findRemovedActive, moaInfo, searchChemicals, HHP_EXCEPTIONS } from '../src/core/chemDb.js';
 import { REMOVED_MY, CHART_ROWS, EU_BANNED, BEE_TAGS, TOX_WHO } from '../src/core/moaDb.js';
-import { SIGNS, CULPRITS, diagnose } from '../src/core/diagnosis.js';
+import { SIGNS, CULPRITS, PARTS, diagnose } from '../src/core/diagnosis.js';
 import { recommend } from '../src/core/recommend.js';
 import { rotationFor, groupsForChartPest, CHART_FOR_GROUP } from '../src/core/rotation.js';
 import { MAPPED_IDS } from '../src/core/examples.js';
@@ -190,4 +190,23 @@ test('common-problem shortcuts point at real pest groups', async () => {
   const ids = [...src.matchAll(/\['([a-z-]+)', \{ en:/g)].map(m => m[1]);
   assert.equal(ids.length, 8);
   for (const id of ids) assert.ok(groupIds.has(id), id);
+});
+
+import { PART_PESTS } from '../src/core/diagnosis.js';
+test('part → pest lists: real groups, bilingual, short', () => {
+  for (const p of PARTS) {
+    const list = PART_PESTS[p.id];
+    assert.ok(list && list.length >= 4 && list.length <= 9, p.id);
+    for (const [gid, look] of list) { assert.ok(groupIds.has(gid), `${p.id}/${gid}`); bi(look, `${p.id}/${gid}`); }
+  }
+});
+
+test('Rhizoctonia: own group, Rhizoctonia-active fungicides, never oomycete-only chemistry', () => {
+  const g = GROUPS.find(x => x.id === 'rhizoctonia');
+  assert.ok(g);
+  const r = recommend(g);
+  const ids = r.options.flatMap(o => o.actives.map(a => a.id));
+  for (const a of ['pencycuron', 'validamycin', 'hexaconazole']) assert.ok(ids.includes(a), a);
+  assert.ok(!r.options.some(o => ['FRAC 4', 'FRAC P07', 'FRAC 40', 'FRAC 21'].includes(o.moa)));
+  assert.equal(diagnose({ signs: ['web-blight'], culprits: [] })[0].group.id, 'rhizoctonia');
 });

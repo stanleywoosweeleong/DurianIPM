@@ -3,9 +3,9 @@ import { useLang } from '../i18n/useLang.jsx';
 import { Icon, Badge } from '../ui/kit.jsx';
 import { GroupArt, Glyph } from '../components/Art.jsx';
 import { LeafCurlArt } from '../components/LeafCurl.jsx';
-import { PARTS, SIGNS, signsForPart, diagnose, MAIN_SIGNS, nextAfterSign } from '../core/diagnosis.js';
+import { PARTS, SIGNS, signsForPart, diagnose, MAIN_SIGNS, nextAfterSign, PART_PESTS } from '../core/diagnosis.js';
 import GroupPage from './GroupPage.jsx';
-import { href } from '../hooks/useRoute.js';
+import { href, go, back as historyBack, useRoute } from '../hooks/useRoute.js';
 import { searchKnownPests } from '../core/examples.js';
 import { groupById } from '../core/groups.js';
 
@@ -29,21 +29,28 @@ function Tile({ on, onClick, children }) {
 export default function Diagnose({ orchard, setOrchard }) {
   const { t, ui, lang } = useLang();
   // One tap per question: part → sign → (only if needed) creature → result.
-  const [part, setPart] = useState(null);
+  // The part (and "describe" mode) live in the address — #/diagnose/fruit[/describe] —
+  // so Back from a pest page returns to the same list instead of the start.
+  const route = useRoute();
+  const part = route.name === 'diagnose' && PARTS.some(p => p.id === route.id) ? route.id : null;
+  const describe = !!part && route.sub === 'describe'; // false = pick from the part's pest list
+  const setPart = (id) => go(id ? `diagnose/${id}` : '');
+  const setDescribe = (on) => (on ? go(`diagnose/${part}/describe`) : historyBack());
   const [sign, setSign] = useState(null);
   const [culprit, setCulprit] = useState(null);
   const [showAllSigns, setShowAllSigns] = useState(false);
+  React.useEffect(() => { setSign(null); setCulprit(null); setShowAllSigns(false); }, [part, describe]);
 
   const step = !part ? 0 : !sign ? 1 : (culprit || nextAfterSign(sign).decisive) ? 3 : 2;
   const results = useMemo(
     () => (step === 3 ? diagnose({ signs: [sign], culprits: culprit ? [culprit] : [] }) : []), // purely what the farmer sees
     [step, sign, culprit]
   );
-  const restart = () => { setPart(null); setSign(null); setCulprit(null); setShowAllSigns(false); };
+  const restart = () => { setSign(null); setCulprit(null); setShowAllSigns(false); go(''); };
   const back = () => {
     if (step === 3 && culprit) setCulprit(null);
     else if (step >= 2 || (step === 3 && !culprit)) { setSign(null); }
-    else if (step === 1) { setPart(null); setShowAllSigns(false); }
+    else if (step === 1) historyBack(); // describe → list, list → part tiles
   };
   const steps = sign && nextAfterSign(sign).decisive ? 2 : 3;
 
@@ -118,6 +125,38 @@ export default function Diagnose({ orchard, setOrchard }) {
             </Tile>
           ))}
         </div>
+      </div>
+    );
+  }
+
+  if (step === 1 && !describe) {
+    // The part's pests & diseases, each with what to look for — one tap to the advice.
+    return (
+      <div>
+        <div className="flex items-center gap-2 mb-2">
+          <button onClick={back} aria-label={ui('diag.back')} className="w-10 h-10 -ml-2 rounded-xl flex items-center justify-center active:bg-slate-100">
+            <Icon name="back" className="w-6 h-6" />
+          </button>
+          <Glyph name={PART_GLYPH[part]} className="w-7 h-7 text-slate-700" />
+          <h1 className="text-xl font-extrabold text-slate-900">{t(PARTS.find(p => p.id === part).name)}</h1>
+        </div>
+        <p className="text-[14px] text-slate-500 mb-2">{ui('diag.pickOne')}</p>
+        <div className="space-y-2">
+          {(PART_PESTS[part] || []).map(([gid, look]) => (
+            <a key={gid} href={href(`group/${gid}`)} className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 active:bg-slate-50">
+              <span className="w-11 h-11 rounded-xl bg-slate-50 flex items-center justify-center shrink-0"><GroupArt id={gid} className="w-8 h-8 text-slate-700" /></span>
+              <span className="min-w-0 flex-1">
+                <span className="block font-extrabold text-[16px] leading-tight text-slate-900">{t(groupById(gid).name)}</span>
+                <span className="block text-[14px] text-slate-600 leading-snug mt-0.5">{t(look)}</span>
+              </span>
+              <Icon name="chevron" className="w-5 h-5 text-slate-400 shrink-0" />
+            </a>
+          ))}
+        </div>
+        <button onClick={() => setDescribe(true)}
+          className="mt-3 w-full rounded-xl border-2 border-dashed border-slate-300 px-3.5 py-3 text-[15px] font-bold text-slate-600 text-left">
+          {ui('diag.notSure')}
+        </button>
       </div>
     );
   }
@@ -206,7 +245,7 @@ const COMMON = [
   ['thrips', { en: 'Thrips', zh: '蓟马' }],
   ['mites', { en: 'Mites', zh: '螨类' }],
   ['trunk-borers', { en: 'Stem borers', zh: '枝干蛀虫' }],
-  ['leaf-spots', { en: 'Leaf spots', zh: '叶斑病' }],
+  ['rhizoctonia', { en: 'Rhizoctonia', zh: '丝核菌叶枯' }],
 ];
 
 function CommonProblems() {
