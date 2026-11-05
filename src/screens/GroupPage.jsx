@@ -130,6 +130,12 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
             </div>
           )}
 
+          {orchard.stage === 'flowering' && rec.options.length > 0 && (
+            <a href={href('learn/pollinators')} className="mt-3 flex items-start gap-2 rounded-xl bg-amber-50 border border-amber-300 p-3 active:bg-amber-100">
+              <Icon name="bee" className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
+              <span className="flex-1 text-[14px] leading-snug"><b>{ui('home.flowerWarn')}</b> <span className="text-[#114b2d] underline font-bold">{ui('group.whyFlowering')}</span></span>
+            </a>
+          )}
           <div className="space-y-2 mt-3">
             {rec.options.map((o, i) => <OptionCard key={o.moa} o={o} rank={i + 1} />)}
           </div>

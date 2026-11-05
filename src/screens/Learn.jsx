@@ -1,6 +1,8 @@
 import React from 'react';
 import { useLang } from '../i18n/useLang.jsx';
-import { Card, Section, Icon, BackBar } from '../ui/kit.jsx';
+import { Card, Section, Icon, BackBar, Badge, Fold, openExternal } from '../ui/kit.jsx';
+
+const SCOPE_TONE = { durian: 'green', other: 'amber', general: 'grey' };
 import { MouthpartsFigure, LifecycleFigure } from '../components/Art.jsx';
 import { LESSONS } from '../core/lessons.js';
 import { MIX_SEQUENCE } from '../core/moaDb.js';
@@ -86,6 +88,23 @@ export function Lesson({ id }) {
       </Card>
       {FIGURES[l.id] && (
         <Section title={t(FIGURE_TITLE[l.id])}>{FIGURES[l.id](t, lang)}</Section>
+      )}
+      {l.refs?.length > 0 && (
+        <div className="mt-4">
+          <Fold title={ui('group.sources')} hint={`${l.refs.length} ${ui('group.refsCount')}`}>
+            <ol className="space-y-2 list-decimal pl-5">
+              {l.refs.map(r => (
+                <li key={r.url} className="text-[14px] leading-snug">
+                  <a href={r.url} onClick={e => openExternal(e, r.url)} className="text-[#114b2d] underline">{r.t}</a>
+                  <div className="mt-0.5 flex flex-wrap items-center gap-1.5">
+                    {r.scope && <Badge tone={SCOPE_TONE[r.scope] || 'grey'}>{ui(`group.scope.${r.scope}`)}</Badge>}
+                    {r.supports && <span className="text-[13px] text-slate-500">{ui('group.supports')}: {r.supports}</span>}
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </Fold>
+        </div>
       )}
       <button onClick={share} className="mt-6 w-full min-h-[52px] rounded-xl bg-[#25D366] text-white font-extrabold flex items-center justify-center gap-2">
         <Icon name="share" /> {ui('group.share')}

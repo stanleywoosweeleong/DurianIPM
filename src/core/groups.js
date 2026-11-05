@@ -154,7 +154,7 @@ export const GROUPS = [
       { en: 'Irrigate in dry spells; outbreaks explode in hot dry weather.', zh: '干旱期及时灌溉；高温干旱时易爆发。' },
     ],
     chem: [
-      { moa: 'IRAC 5', fit: 'best', why: { en: 'Spinosyns (spinosad — organic; spinetoram — conventional) reach thrips in buds. Moderately toxic to bees and some predators while wet — spray at sunset. Do not alternate the two: same target.', zh: '多杀菌素类（多杀霉素——有机；乙基多杀菌素——常规）可到达花蕾内的蓟马。药液未干时对蜜蜂和部分天敌有中等毒性——日落时喷施。两者靶标相同，不能互相轮换。' } },
+      { moa: 'IRAC 5', fit: 'best', why: { en: 'Spinosyns (spinosad — organic; spinetoram — conventional) reach thrips in buds. Moderately toxic to bees and some predators until the spray dries. At flowering, spray in the morning so it is dry before flowers open (about 4 pm). Do not alternate the two: same target.', zh: '多杀菌素类（多杀霉素——有机；乙基多杀菌素——常规）可到达花蕾内的蓟马。药液未干时对蜜蜂和部分天敌有中等毒性。开花期请早上喷，让药液在下午4点左右开花前干透。两者靶标相同，不能互相轮换。' } },
       { moa: 'IRAC 6', fit: 'good', why: { en: 'Abamectin is translaminar and reaches folded leaves. Handle with care; never in flowering.', zh: '阿维菌素具渗透性，可到达卷叶内部。注意防护；开花期禁用。' } },
       { moa: 'IRAC 28', fit: 'good', why: { en: 'Cyantraniliprole has thrips activity and low bee risk.', zh: '溴氰虫酰胺对蓟马有效，对蜜蜂风险低。' } },
       { moa: 'IRAC 15', fit: 'good', why: { en: 'Benzoylureas kill young thrips when they moult.', zh: '苯甲酰脲类在若虫蜕皮时将其杀死。' } },
@@ -235,7 +235,7 @@ export const GROUPS = [
     chem: [
       { moa: 'IRAC 11A', fit: 'best', why: { en: 'Bt: only kills caterpillars and spares predators. The kurstaki strain needs no bee precaution; the aizawai strain should not be sprayed on open flowers.', zh: 'Bt：只杀毛虫，不伤天敌。库斯塔克亚种无需防蜂措施；鲇泽亚种不宜喷在盛开的花上。' } },
       { moa: 'IRAC 28', fit: 'best', why: { en: 'Diamides stop feeding in minutes, long lasting, bee-safe.', zh: '双酰胺类数分钟内停止取食，持效长，对蜂安全。' } },
-      { moa: 'IRAC 5', fit: 'best', why: { en: 'Spinosyns: fast-acting; moderately toxic to bees and some predators while wet — spray at sunset.', zh: '多杀菌素：速效；药液未干时对蜜蜂和部分天敌有中等毒性——日落时喷施。' } },
+      { moa: 'IRAC 5', fit: 'best', why: { en: 'Spinosyns: fast-acting; moderately toxic to bees and some predators until the spray dries. At flowering, spray in the morning so it is dry before flowers open.', zh: '多杀菌素：速效；药液未干时对蜜蜂和部分天敌有中等毒性。开花期请早上喷，让药液在开花前干透。' } },
       { moa: 'IRAC 6', fit: 'good', why: { en: 'Emamectin benzoate: very potent on caterpillars.', zh: '甲维盐：对毛虫活性极高。' } },
       { moa: 'IRAC 22A', fit: 'good', why: { en: 'Indoxacarb: stomach action.', zh: '茚虫威：胃毒作用。' } },
       { moa: 'IRAC 15', fit: 'good', why: { en: 'Benzoylureas (lufenuron etc.): for young larvae.', zh: '苯甲酰脲类（虱螨脲等）：用于低龄幼虫。' } },
