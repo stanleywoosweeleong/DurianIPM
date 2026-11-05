@@ -171,6 +171,7 @@ const GROUP_ART = {
   'fruit-borers': { extra: 'fruitBorer' },
   'fruit-flies': { glyph: 'Diptera' },
   'trunk-borers': { extra: 'trunk' },
+  'red-branch-borer': { pest: 'caterpillar' },
   'shot-hole': { extra: 'holes' },
   'soil-pests': { glyph: 'Isoptera' },
   'ants-wasps': { glyph: 'Hymenoptera' },

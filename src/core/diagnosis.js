@@ -48,7 +48,9 @@ export const SIGNS = [
   { id: 'fruit-rot', parts: ['fruit'], label: { en: 'Wet brown/black rot spreading from tip or stalk', zh: '从果顶或果柄扩展的湿腐褐/黑斑' }, w: { oomycete: 4, 'leaf-spots': 1 } },
   { id: 'fruit-maggot', parts: ['fruit'], label: { en: 'Soft flesh with small maggots', zh: '果肉软烂有小蛆' }, w: { 'fruit-flies': 5, 'fruit-borers': 1 } },
   // ─ trunk
-  { id: 'sawdust', parts: ['trunk'], label: { en: 'Sawdust or frass pushed out of a hole', zh: '孔口有推出的木屑或虫粪' }, w: { 'trunk-borers': 4, 'shot-hole': 2 } },
+  { id: 'sawdust', parts: ['trunk'], label: { en: 'Sawdust or frass pushed out of a hole', zh: '孔口有推出的木屑或虫粪' }, w: { 'trunk-borers': 3, 'red-branch-borer': 3, 'shot-hole': 2 } },
+  { id: 'stringy-frass', parts: ['trunk'], label: { en: 'Large holes (~1 cm) on the main trunk with coarse, stringy sawdust and sap', zh: '主干上有大孔（约1厘米），推出粗糙丝状木屑并流胶' }, w: { 'trunk-borers': 5 } },
+  { id: 'pellet-frass', parts: ['trunk'], label: { en: 'Round holes on branches pushing out pellet-like sawdust; shoot tips wilting', zh: '枝条圆孔推出颗粒状虫粪；梢尖萎蔫' }, w: { 'red-branch-borer': 5 } },
   { id: 'pinholes', parts: ['trunk'], label: { en: 'Many tiny holes (1–2 mm) with fine powder', zh: '许多小孔（1–2毫米）并有细粉' }, w: { 'shot-hole': 5 } },
   { id: 'branch-wilt', parts: ['trunk'], label: { en: 'One branch wilting beyond a hole or ring', zh: '某枝条在孔洞或环痕以外萎蔫' }, w: { 'trunk-borers': 3, 'canker-dieback': 2 } },
   { id: 'ooze', parts: ['trunk'], label: { en: 'Wet dark patch with reddish-brown ooze', zh: '湿润深色斑块并流出红褐色胶液' }, w: { oomycete: 5, 'canker-dieback': 1, 'shot-hole': 1 } },
@@ -150,7 +152,7 @@ export const MAIN_SIGNS = {
   leaf: ['curl-down', 'curl-up', 'holes', 'rolled', 'stipple', 'white-wax', 'web-blight', 'spots-halo'],
   flower: ['flower-drop', 'silver', 'holes', 'spots-halo', 'sticky'],
   fruit: ['fruit-frass', 'fruit-maggot', 'fruit-rot', 'fruit-corky', 'fruit-sunken', 'white-wax'],
-  trunk: ['sawdust', 'pinholes', 'ooze', 'dieback', 'pink-crust', 'mud-tubes'],
+  trunk: ['stringy-frass', 'pellet-frass', 'pinholes', 'ooze', 'dieback', 'pink-crust', 'mud-tubes'],
   root: ['tree-wilt', 'white-threads', 'galls', 'roots-chewed', 'roots-rotten'],
 };
 
@@ -212,8 +214,9 @@ export const PART_PESTS = {
   ],
   trunk: [
     ['oomycete', L('Wet dark patch on the bark with reddish-brown ooze', '树皮上有湿润深色斑块并流出红褐色胶液')],
-    ['trunk-borers', L('Sawdust or frass from a hole; branch wilts beyond it', '孔口有木屑或虫粪；孔以外的枝条萎蔫')],
-    ['shot-hole', L('Many tiny pinholes with fine powder, on weak trees', '衰弱树上有许多小针孔和细粉')],
+    ['trunk-borers', L('Large holes (~1 cm) on the main trunk; coarse, stringy sawdust and sap', '主干上有大孔（约1厘米）；粗糙丝状木屑并流胶')],
+    ['red-branch-borer', L('Round holes on branches pushing out pellet-like sawdust; shoot tips wilting', '枝条圆孔推出颗粒状虫粪；梢尖萎蔫')],
+    ['shot-hole', L('Many 1 mm pinholes, fine powder, often dark wet patches — check for Phytophthora', '许多1毫米针孔和细粉，常有深色湿斑——检查是否有疫霉')],
     ['canker-dieback', L('Twigs dying back from the tips; pink crust on branches', '枝梢从顶端枯死；枝条上有粉红色菌壳')],
     ['scale-mealybug', L('White waxy insects or shells in bark cracks; ants', '树皮缝里有白色蜡质虫或硬壳；有蚂蚁')],
     ['soil-pests', L('Mud tubes or mud sheets on the trunk', '树干上有泥道或泥被')],
