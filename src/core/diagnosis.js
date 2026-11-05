@@ -199,7 +199,6 @@ export const PART_PESTS = {
     ['phloem-suckers', L('Sticky flowers, black sooty mould, tiny soft insects', '花上黏稠、有黑色煤烟、微小软体虫')],
     ['leaf-spots', L('Flowers blacken and rot in wet weather', '潮湿天气下花朵变黑腐烂')],
     ['leaf-caterpillars', L('Flowers chewed; caterpillars in the clusters', '花被啃食；花序中有毛虫')],
-    ['mites', L('Bronzed flower stalks; tiny moving dots', '花梗变古铜色；有移动的小点')],
   ],
   fruit: [
     ['fruit-borers', L('Holes in the rind with brown frass, often where fruits touch', '果皮有孔并带褐色虫粪，常在果实相接处')],
