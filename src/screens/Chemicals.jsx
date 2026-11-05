@@ -61,8 +61,11 @@ export function ChemicalList({ initialKind = 'all' }) {
     <div>
       <h1 className="text-xl font-extrabold text-slate-900">{kind === 'organic' ? ui('chem.organicTitle') : ui('chem.title')}</h1>
       <p className="text-[15px] text-slate-600 leading-snug">{kind === 'organic' ? ui('chem.organicHint') : ui('chem.hint')}</p>
-      <input value={q} onChange={e => setQ(e.target.value)} placeholder={ui('chem.search')} autoComplete="off"
-        className="mt-3 w-full min-h-[52px] rounded-xl border border-slate-300 px-3 bg-white focus:border-[#114b2d] outline-none" />
+      <div className="relative mt-3">
+        <Icon name="search" className="w-5 h-5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+        <input value={q} onChange={e => setQ(e.target.value)} aria-label={ui('chem.title')} autoComplete="off"
+          className="w-full min-h-[52px] rounded-xl border border-slate-300 pl-10 pr-3 bg-white focus:border-[#114b2d] outline-none" />
+      </div>
       <div className="flex gap-2 mt-3 overflow-x-auto pb-1 -mx-1 px-1">
         {KINDS.map(k => <Chip key={k} on={kind === k} onClick={() => setKind(k)} className="whitespace-nowrap">{t(KIND_LABEL[k])}</Chip>)}
       </div>

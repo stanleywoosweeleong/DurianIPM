@@ -137,7 +137,6 @@ export const UI_STRINGS = {
     mrlNote: s('Residue limits change often, so the app links to the live source instead of storing numbers. Verify against the official standard.', '残留限量经常修订，因此本应用链接到最新来源而不储存数值。请以官方标准原文为准。'),
 
     title: s('Products & MoA library', '药剂与作用机制库'),
-    search: s('Active ingredient, e.g. "spinosad", "吡虫啉"', '有效成分，例如“多杀霉素”、“spinosad”'),
     hint: s('Organic, biological and conventional actives — how each works, what it controls, and how to rotate it.', '有机、生物与常规有效成分——作用原理、防治对象与轮换方法。'),
     organicTitle: s('Organic & biological toolbox', '有机与生物药剂'),
     organicHint: s('Products generally allowed in organic farming. Use them early, in the evening, with full coverage.', '一般可用于有机种植的产品。尽早使用、傍晚喷施、充分覆盖。'),
