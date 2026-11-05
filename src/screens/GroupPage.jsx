@@ -77,6 +77,20 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
   };
 
 
+  const avoidCard = rec.avoid.length > 0 && (
+    <div className="mt-3 rounded-2xl bg-rose-50 border border-rose-200 p-3">
+      <div className="font-extrabold text-[1rem] text-rose-900">{ui('group.avoid')}</div>
+      <div className="mt-2 space-y-2">
+        {rec.avoid.map(a => (
+          <div key={a.moa}>
+            <div className="font-extrabold text-[0.9375rem] text-rose-900">✕ {t(a.moaInfo.name)} {moaCode(a.moaInfo) && `· ${moaCode(a.moaInfo)}`}</div>
+            <div className="text-[0.9375rem] text-rose-900 leading-snug">{t(a.why)}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
   return (
     <div>
       <BackBar onBack={onBack} />
@@ -157,6 +171,7 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
               <p className="mt-2 text-[0.8125rem] text-slate-600 leading-snug">🌿 {ui('alt.tip')} <a href={href('learn/alternate')} className="font-bold text-[#114b2d] underline">{ui('alt.learn')}</a></p>
             </div>
           )}
+          {avoidCard}
           {chart && (
             <Fold key={lastValue || 'none'} open={!!lastValue} title={ui('rot.tableTitle')}
               hint={lastValue ? `${ui('group.lastUsedShort')}: IRAC ${lastValue}` : ui('rot.pickLast')}>
@@ -182,18 +197,7 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
         </div>
       </Fold>
 
-      {rec.avoid.length > 0 && (
-        <Fold title={ui('group.avoid')} hint={rec.avoid.map(a => moaCode(a.moaInfo) || t(a.moaInfo.name)).join(' · ')} tone="rose">
-          <div className="space-y-2">
-            {rec.avoid.map(a => (
-              <div key={a.moa}>
-                <div className="font-extrabold text-[0.9375rem] text-rose-900">✕ {t(a.moaInfo.name)} {moaCode(a.moaInfo) && `· ${moaCode(a.moaInfo)}`}</div>
-                <div className="text-[0.9375rem] text-rose-900 leading-snug">{t(a.why)}</div>
-              </div>
-            ))}
-          </div>
-        </Fold>
-      )}
+      {g.chem.length === 0 && avoidCard}
 
       {examples.length > 0 && (
         <Fold title={`${ui('group.examples')} (${examples.length})`} hint={examples.slice(0, 3).map(p => t(p.common)).join(', ')}>
