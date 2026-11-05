@@ -157,6 +157,6 @@ leaf-curl diagnostic drawings from the original app (`src/components/LeafCurl.js
 curl-up signs in the diagnosis.
 
 Long pages are kept short on purpose. Secondary detail sits in collapsible sections (`Fold` in
-`src/ui/kit.jsx`), and option lists show the top 3, with the rest behind "show more".
+`src/ui/kit.jsx`), and every option is listed in full, with no "show more" step.
 
 *Guidance only. The legal reference is the Malaysian Pesticides Board (LRMP) register and the product label.*

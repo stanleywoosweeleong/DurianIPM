@@ -39,7 +39,6 @@ export function ChemChip({ c }) {
 export default function GroupPage({ id, orchard, setOrchard, intro = null, onBack, initialPestStage = null }) {
   const { t, ui, lang } = useLang();
   const g = groupById(id);
-  const [showAll, setShowAll] = useState(false);
   const [pestStage, setPestStage] = useState(initialPestStage);
 
   const track = orchard.track === 'organic' ? 'organic' : 'all';
@@ -74,9 +73,6 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
     window.open(url, '_blank', 'noopener');
   };
 
-  const TOP = 3;
-  const shown = showAll ? rec.options : rec.options.slice(0, TOP);
-  const hidden = rec.options.length - shown.length;
 
   return (
     <div>
@@ -104,7 +100,7 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
       ) : (
         <Section title={ui('group.chem')}>
           <p className="text-[13px] text-slate-500 mb-2 leading-snug">{ui('group.rankedNote')}</p>
-          <div className="mb-3"><OrganicToggle on={track === 'organic'} onChange={v => { setOrchard({ track: v ? 'organic' : 'all' }); setShowAll(false); }} /></div>
+          <div className="mb-3"><OrganicToggle on={track === 'organic'} onChange={v => setOrchard({ track: v ? 'organic' : 'all' })} /></div>
           <StagePicker groupId={g.id} value={pestStage} onChange={setPestStage} compact />
 
           {rec.options.length === 0 && track === 'organic' && <div className="mt-3"><Callout tone="lime" icon="leaf">{ui('group.organicEmpty')}</Callout></div>}
@@ -133,13 +129,8 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
           )}
 
           <div className="space-y-2 mt-3">
-            {shown.map((o, i) => <OptionCard key={o.moa} o={o} rank={i + 1} />)}
+            {rec.options.map((o, i) => <OptionCard key={o.moa} o={o} rank={i + 1} />)}
           </div>
-          {hidden > 0 && (
-            <button onClick={() => setShowAll(true)} className="mt-2 w-full min-h-[48px] rounded-xl border-2 border-dashed border-slate-300 font-bold text-slate-700">
-              + {hidden} {ui('group.moreOptions')}
-            </button>
-          )}
           {rec.rotation.length > 1 && (
             <div className="mt-4 rounded-2xl bg-emerald-50 border border-emerald-200 p-3">
               <div className="font-extrabold text-[16px]">{ui('group.rotation')}</div>
@@ -261,8 +252,7 @@ function OptionCard({ o, rank }) {
             </div>
           )}
           <div className="flex flex-wrap gap-1.5 mt-2">
-            {o.actives.slice(0, 4).map(c => <ChemChip key={c.id} c={c} />)}
-            {o.actives.length > 4 && <span className="text-[13px] font-bold text-slate-500 self-center">+{o.actives.length - 4}</span>}
+            {o.actives.map(c => <ChemChip key={c.id} c={c} />)}
           </div>
         </div>
       </div>

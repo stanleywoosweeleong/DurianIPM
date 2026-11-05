@@ -23,7 +23,6 @@ export function RotationTable({ pests, last }) {
   const { t, lang, ui } = useLang();
   const L = MOA_LABELS[lang];
   const [pest, setPest] = useState(pests[0]);
-  const [all, setAll] = useState(false);
   const usable = useMemo(() => groupsForChartPest(pest), [pest]);
   const rot = useMemo(() => (last && usable.includes(last) ? rotationFor(pest, last) : null), [pest, last, usable]);
   const gName = (g) => `${g} · ${GROUP_NAMES[lang][g] || ''}`;
@@ -61,10 +60,7 @@ export function RotationTable({ pests, last }) {
           <div>
             <div className="text-[13px] font-extrabold text-[#114b2d] uppercase tracking-wider">✓ {L.rotateTo}</div>
             <p className="text-[13px] text-slate-500 mb-1.5">{ui('rot.order')}</p>
-            <div className="space-y-2">{(all ? rot.suggested : rot.suggested.slice(0, 5)).map(grp => <GroupBlock key={grp.g} grp={grp} gName={gName} L={L} />)}</div>
-            {!all && rot.suggested.length > 5 && (
-              <button onClick={() => setAll(true)} className="mt-2 w-full min-h-[44px] rounded-xl border-2 border-dashed border-slate-300 font-bold text-slate-700">+ {rot.suggested.length - 5} {ui('group.moreOptions')}</button>
-            )}
+            <div className="space-y-2">{rot.suggested.map(grp => <GroupBlock key={grp.g} grp={grp} gName={gName} L={L} />)}</div>
           </div>
         </div>
       )}

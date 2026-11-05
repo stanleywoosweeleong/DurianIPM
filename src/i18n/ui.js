@@ -78,7 +78,6 @@ export const UI_STRINGS = {
     taxon: s('Group (taxonomy)', '分类'),
     fullRotation: s('Open the full rotation helper', '打开完整轮替助手'),
     about: s('About this group', '关于此类群'),
-    moreOptions: s('more options', '个其他选项'),
 
     whatItIs: s('What it is', '这是什么'),
     feeds: s('How it feeds', '取食方式'),
