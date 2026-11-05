@@ -227,9 +227,9 @@ export function MouthpartsFigure({ t }) {
       {MOUTH.map(m => (
         <div key={m.k} className="rounded-xl border border-slate-200 bg-white p-2 text-center">
           <svg viewBox="0 0 120 96" className="w-full h-20 text-slate-800" aria-hidden="true" dangerouslySetInnerHTML={{ __html: `<g ${g}>${m.draw}</g>` }} />
-          <div className="font-bold text-[15px] text-slate-900">{t(MOUTH_TEXT[m.k].name)}</div>
-          <div className="text-[13px] text-slate-600 leading-snug">{t(MOUTH_TEXT[m.k].who)}</div>
-          <div className="text-[13px] text-[#114b2d] font-semibold leading-snug mt-1">→ {t(MOUTH_TEXT[m.k].use)}</div>
+          <div className="font-bold text-[0.9375rem] text-slate-900">{t(MOUTH_TEXT[m.k].name)}</div>
+          <div className="text-[0.8125rem] text-slate-600 leading-snug">{t(MOUTH_TEXT[m.k].who)}</div>
+          <div className="text-[0.8125rem] text-[#114b2d] font-semibold leading-snug mt-1">→ {t(MOUTH_TEXT[m.k].use)}</div>
         </div>
       ))}
     </div>
@@ -240,13 +240,13 @@ export function MouthpartsFigure({ t }) {
 export function LifecycleFigure({ t }) {
   const row = (title, stages) => (
     <div className="rounded-xl border border-slate-200 bg-white p-3">
-      <div className="font-bold text-[15px] mb-2">{t(title)}</div>
+      <div className="font-bold text-[0.9375rem] mb-2">{t(title)}</div>
       <div className="flex items-stretch gap-1">
         {stages.map((s, i) => (
           <React.Fragment key={i}>
             <div className="flex-1 text-center">
-              <div className={`rounded-lg py-2 text-[13px] font-bold ${s.hit ? 'bg-emerald-100 text-[#114b2d] ring-2 ring-[#114b2d]' : 'bg-slate-100 text-slate-700'}`}>{t(s.name)}</div>
-              {s.hit && <div className="text-[12px] text-[#114b2d] mt-1 leading-tight">{t(s.hit)}</div>}
+              <div className={`rounded-lg py-2 text-[0.8125rem] font-bold ${s.hit ? 'bg-emerald-100 text-[#114b2d] ring-2 ring-[#114b2d]' : 'bg-slate-100 text-slate-700'}`}>{t(s.name)}</div>
+              {s.hit && <div className="text-[0.75rem] text-[#114b2d] mt-1 leading-tight">{t(s.hit)}</div>}
             </div>
             {i < stages.length - 1 && <div className="self-start pt-2 text-slate-400">→</div>}
           </React.Fragment>

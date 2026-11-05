@@ -30,13 +30,13 @@ function LanguageGate() {
   );
 }
 
-const SIZES = [{ v: 1, cls: 'text-xs' }, { v: 1.15, cls: 'text-sm' }, { v: 1.3, cls: 'text-base' }];
+const SIZES = [{ v: 1, cls: 'text-[12px]' }, { v: 1.1, cls: 'text-[14px]' }, { v: 1.2, cls: 'text-[16px]' }];
 
 function Shell() {
   const { lang, setLang, ui, chosen } = useLang();
   const route = useRoute();
   const [orchard, setOrchard] = useOrchard();
-  const [scale, setScale] = useFontScale();
+  const [scale, setScale] = useFontScale(lang);
 
   if (!chosen) return <LanguageGate />;
 
@@ -55,33 +55,33 @@ function Shell() {
     <div className="min-h-screen bg-[#fcfbf7] text-slate-800">
       <div className="sticky top-0 z-40">
         <header className="bg-[#f4f2ea] border-b border-slate-300 safe-top">
-          <div className="max-w-2xl mx-auto px-4 py-2.5 flex items-center gap-2">
-            <a href={href('')} className="flex items-center gap-2.5 min-w-0 flex-1">
-              <span className="w-9 h-9 bg-[#114b2d] rounded-xl flex items-center justify-center text-white shadow-sm shrink-0">
-                <Icon name="leaf" className="w-5 h-5" />
+          <div className="max-w-2xl mx-auto px-[16px] py-[10px] flex items-center gap-[8px]">
+            <a href={href('')} className="flex items-center gap-[10px] min-w-0 flex-1">
+              <span className="w-[36px] h-[36px] bg-[#114b2d] rounded-xl flex items-center justify-center text-white shadow-sm shrink-0">
+                <Icon name="leaf" className="w-[20px] h-[20px]" />
               </span>
-              <span className="font-extrabold text-[16px] text-slate-900 truncate">{ui('app.title')}</span>
+              <span className="font-extrabold text-[17px] text-slate-900 truncate">{ui('app.title')}</span>
             </a>
-            <div className="flex items-center h-10 bg-white border border-slate-300 rounded-xl shadow-sm overflow-hidden shrink-0" role="group" aria-label={ui('app.textSize')}>
+            <div className="flex items-center h-[40px] bg-white border border-slate-300 rounded-xl shadow-sm overflow-hidden shrink-0" role="group" aria-label={ui('app.textSize')}>
               {SIZES.map(s => (
                 <button key={s.v} onClick={() => setScale(s.v)} aria-pressed={scale === s.v}
-                  className={`h-full w-8 font-extrabold ${s.cls} ${scale === s.v ? 'bg-[#114b2d] text-white' : 'text-slate-600'}`}>A</button>
+                  className={`h-full w-[32px] font-extrabold ${s.cls} ${scale === s.v ? 'bg-[#114b2d] text-white' : 'text-slate-600'}`}>A</button>
               ))}
             </div>
             <button onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')}
-              className="h-10 px-3 rounded-xl bg-white border border-slate-300 shadow-sm text-sm font-bold text-slate-700 shrink-0">
+              className="h-[40px] px-[12px] rounded-xl bg-white border border-slate-300 shadow-sm text-[14px] font-bold text-slate-700 shrink-0">
               {lang === 'zh' ? 'EN' : '中文'}
             </button>
           </div>
         </header>
         <nav className="bg-white border-b border-slate-200">
-          <div className="max-w-2xl mx-auto px-2 grid grid-cols-2">
+          <div className="max-w-2xl mx-auto px-[8px] grid grid-cols-2">
             {TABS.map(tb => {
               const on = tb.match.includes(route.name);
               return (
                 <a key={tb.id} href={href(tb.path)} aria-current={on ? 'page' : undefined}
-                  className={`flex items-center justify-center gap-1.5 py-3 text-[15px] font-bold border-b-2 ${on ? 'text-[#114b2d] border-[#114b2d]' : 'text-slate-400 border-transparent'}`}>
-                  <Icon name={tb.icon} className="w-4 h-4" />{ui(`nav.${tb.id}`)}
+                  className={`flex items-center justify-center gap-[6px] py-[12px] text-[15px] font-bold border-b-2 ${on ? 'text-[#114b2d] border-[#114b2d]' : 'text-slate-400 border-transparent'}`}>
+                  <Icon name={tb.icon} className="w-[16px] h-[16px]" />{ui(`nav.${tb.id}`)}
                 </a>
               );
             })}

@@ -16,8 +16,8 @@ const FIGURES = {
     <ol className="space-y-1.5">
       {MIX_SEQUENCE.map(s => (
         <li key={s.step} className="flex gap-2.5 items-start">
-          <span className="w-7 h-7 rounded-full bg-[#114b2d] text-white font-extrabold text-[14px] flex items-center justify-center shrink-0">{s.step}</span>
-          <span className="text-[16px] leading-snug pt-0.5">{lang === 'zh' ? s.zh : s.en}</span>
+          <span className="w-7 h-7 rounded-full bg-[#114b2d] text-white font-extrabold text-[0.875rem] flex items-center justify-center shrink-0">{s.step}</span>
+          <span className="text-[1rem] leading-snug pt-0.5">{lang === 'zh' ? s.zh : s.en}</span>
         </li>
       ))}
     </ol>
@@ -30,9 +30,9 @@ const FIGURES = {
         [{ en: 'Spray tank', zh: '药箱' }, { en: 'Diluted again hundreds of times', zh: '再稀释几百倍' }, { en: 'Keep off water & flowers', zh: '远离水源和花朵' }, 'bg-emerald-100 border-emerald-400'],
       ].map(([title, conc, note, cls], i) => (
         <div key={i} className={`rounded-xl border-2 p-2 ${cls}`}>
-          <div className="font-extrabold text-[15px] leading-tight">{t(title)}</div>
-          <div className="text-[13px] mt-1 leading-tight">{t(conc)}</div>
-          <div className="text-[12px] font-bold mt-1.5 leading-tight">{t(note)}</div>
+          <div className="font-extrabold text-[0.9375rem] leading-tight">{t(title)}</div>
+          <div className="text-[0.8125rem] mt-1 leading-tight">{t(conc)}</div>
+          <div className="text-[0.75rem] font-bold mt-1.5 leading-tight">{t(note)}</div>
         </div>
       ))}
     </div>
@@ -50,14 +50,14 @@ export function LearnList() {
   return (
     <div>
       <h1 className="text-xl font-extrabold text-slate-900">{ui('learn.title')}</h1>
-      <p className="text-[15px] text-slate-600">{ui('learn.sub')}</p>
+      <p className="text-[0.9375rem] text-slate-600">{ui('learn.sub')}</p>
       <div className="space-y-2 mt-4">
         {LESSONS.map((l, i) => (
           <a key={l.id} href={href(`learn/${l.id}`)} className="flex items-center gap-3 p-4 rounded-xl bg-white border border-slate-200 active:bg-slate-50">
             <span className="w-9 h-9 rounded-full bg-emerald-100 text-[#114b2d] font-extrabold flex items-center justify-center shrink-0">{i + 1}</span>
             <div className="flex-1 min-w-0">
-              <div className="font-extrabold text-[16px] leading-tight">{t(l.title)}</div>
-              <div className="text-[14px] text-slate-600 leading-snug">{t(l.summary)}</div>
+              <div className="font-extrabold text-[1rem] leading-tight">{t(l.title)}</div>
+              <div className="text-[0.875rem] text-slate-600 leading-snug">{t(l.summary)}</div>
             </div>
             <Icon name="chevron" className="w-5 h-5 text-slate-400" />
           </a>
@@ -80,11 +80,11 @@ export function Lesson({ id }) {
     <div>
       <BackBar />
       <h1 className="text-xl font-extrabold leading-tight text-slate-900">{t(l.title)}</h1>
-      <p className="text-[15px] text-slate-500 mt-1 leading-snug">{t(l.summary)}</p>
+      <p className="text-[0.9375rem] text-slate-500 mt-1 leading-snug">{t(l.summary)}</p>
       <Card className="px-3.5 py-3.5 mt-3 space-y-2.5 text-slate-800">
         {body.map((p, i) => p.startsWith('• ')
-          ? <div key={i} className="flex gap-2 text-[16px] leading-[1.55]"><span className="text-emerald-600 font-bold">•</span><span>{p.slice(2)}</span></div>
-          : <p key={i} className="text-[16px] leading-[1.6]">{p}</p>)}
+          ? <div key={i} className="flex gap-2 text-[1rem] leading-[1.55]"><span className="text-emerald-600 font-bold">•</span><span>{p.slice(2)}</span></div>
+          : <p key={i} className="text-[1rem] leading-[1.6]">{p}</p>)}
       </Card>
       {FIGURES[l.id] && (
         <Section title={t(FIGURE_TITLE[l.id])}>{FIGURES[l.id](t, lang)}</Section>
@@ -94,11 +94,11 @@ export function Lesson({ id }) {
           <Fold title={ui('group.sources')} hint={`${l.refs.length} ${ui('group.refsCount')}`}>
             <ol className="space-y-2 list-decimal pl-5">
               {l.refs.map(r => (
-                <li key={r.url} className="text-[14px] leading-snug">
+                <li key={r.url} className="text-[0.875rem] leading-snug">
                   <a href={r.url} onClick={e => openExternal(e, r.url)} className="text-[#114b2d] underline">{r.t}</a>
                   <div className="mt-0.5 flex flex-wrap items-center gap-1.5">
                     {r.scope && <Badge tone={SCOPE_TONE[r.scope] || 'grey'}>{ui(`group.scope.${r.scope}`)}</Badge>}
-                    {r.supports && <span className="text-[13px] text-slate-500">{ui('group.supports')}: {r.supports}</span>}
+                    {r.supports && <span className="text-[0.8125rem] text-slate-500">{ui('group.supports')}: {r.supports}</span>}
                   </div>
                 </li>
               ))}

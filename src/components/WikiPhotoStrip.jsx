@@ -97,7 +97,7 @@ export function WikiCover({ photo, lang = 'en', className = 'h-44' }) {
       <button onClick={() => setOpen(true)} className={`relative block w-full ${className} rounded-2xl overflow-hidden bg-slate-100 border border-slate-200`} aria-label={photo.title}>
         <img src={big ? sized(photo.thumb, 500) : photo.thumb} alt={photo.title}
           onError={() => (big ? setBig(false) : setFailed(true))} className="w-full h-full object-cover" />
-        <span className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent text-white text-[11px] px-2.5 pt-4 pb-1.5 text-left truncate">
+        <span className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent text-white text-[0.6875rem] px-2.5 pt-4 pb-1.5 text-left truncate">
           {photo.author ? `${photo.author} · ` : ''}{photo.license || 'Wikimedia Commons'}
         </span>
       </button>

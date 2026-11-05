@@ -19,7 +19,7 @@ const topGroupOf = (c) => Object.entries(c.w).sort((a, b) => b[1] - a[1])[0]?.[0
 function Tile({ on, onClick, children, className = "" }) {
   return (
     <button type="button" onClick={onClick} aria-pressed={!!on}
-      className={`flex flex-col items-center justify-center gap-1 p-2 min-h-[80px] rounded-xl border text-center text-[14px] font-bold leading-tight transition-colors ${className} ${on
+      className={`flex flex-col items-center justify-center gap-1 p-2 min-h-[80px] rounded-xl border text-center text-[0.875rem] font-bold leading-tight transition-colors ${className} ${on
         ? 'bg-[#114b2d] border-[#114b2d] text-white shadow-md' : 'bg-white border-slate-200 text-slate-700 active:bg-slate-50'}`}>
       {children}
     </button>
@@ -65,7 +65,7 @@ export default function Diagnose({ orchard, setOrchard }) {
         </div>
       </div>
       <h1 className="text-xl font-extrabold text-slate-900">{title}</h1>
-      {sub && <p className="text-[14px] text-slate-500">{sub}</p>}
+      {sub && <p className="text-[0.875rem] text-slate-500">{sub}</p>}
     </>
   );
 
@@ -75,7 +75,7 @@ export default function Diagnose({ orchard, setOrchard }) {
     if (!top) {
       return (
         <div>
-          <p className="mt-3 text-[16px]">{ui('diag.none')}</p>
+          <p className="mt-3 text-[1rem]">{ui('diag.none')}</p>
           <button onClick={restart} className="mt-5 w-full min-h-[52px] rounded-xl border border-slate-300 bg-white font-bold">{ui('diag.restart')}</button>
         </div>
       );
@@ -85,13 +85,13 @@ export default function Diagnose({ orchard, setOrchard }) {
     const intro = (
       <div className="mb-3 rounded-xl border border-slate-200 bg-white p-3">
         <div className="flex items-center justify-between gap-2">
-          <span className="text-[13px] font-extrabold text-slate-500 uppercase tracking-wider">{ui('diag.resultTitle')}</span>
+          <span className="text-[0.8125rem] font-extrabold text-slate-500 uppercase tracking-wider">{ui('diag.resultTitle')}</span>
           <Badge tone={tone}>{ui(`diag.conf.${top.confidence}`)}</Badge>
         </div>
-        <p className="mt-1 text-[13px] text-slate-500 leading-snug">{ui('diag.because')}: {[...new Map(top.evidence.map(e => [e.id, e])).values()].map(e => t(e.label)).join(' · ')}</p>
-        {top.confidence === 'low' && <p className="mt-1 text-[13px] text-amber-900 leading-snug">{ui('diag.lowConf')}</p>}
+        <p className="mt-1 text-[0.8125rem] text-slate-500 leading-snug">{ui('diag.because')}: {[...new Map(top.evidence.map(e => [e.id, e])).values()].map(e => t(e.label)).join(' · ')}</p>
+        {top.confidence === 'low' && <p className="mt-1 text-[0.8125rem] text-amber-900 leading-snug">{ui('diag.lowConf')}</p>}
         {others.length > 0 && (
-          <p className="mt-1.5 text-[14px] leading-snug">
+          <p className="mt-1.5 text-[0.875rem] leading-snug">
             <span className="text-slate-500">{ui('diag.others')}: </span>
             {others.map((r, i) => (
               <React.Fragment key={r.group.id}>
@@ -101,7 +101,7 @@ export default function Diagnose({ orchard, setOrchard }) {
             ))}
           </p>
         )}
-        <button onClick={restart} className="mt-2 text-[14px] font-bold text-slate-600 underline">{ui('diag.restart')}</button>
+        <button onClick={restart} className="mt-2 text-[0.875rem] font-bold text-slate-600 underline">{ui('diag.restart')}</button>
       </div>
     );
     return (
@@ -116,8 +116,8 @@ export default function Diagnose({ orchard, setOrchard }) {
         <KnownSearch />
         <CommonProblems />
         <h1 className="text-lg font-extrabold text-slate-900 mt-5">{ui('diag.q1')}</h1>
-        <p className="text-[14px] text-slate-500 leading-snug">{ui('diag.intro')}</p>
-        <div className="grid grid-cols-3 gap-2 mt-2.5">
+        <p className="text-[0.875rem] text-slate-500 leading-snug">{ui('diag.intro')}</p>
+        <div className="grid grid-cols-3 auto-rows-fr gap-2 mt-2.5">
           {PARTS.map(p => (
             <Tile key={p.id} onClick={() => setPart(p.id)}>
               <Glyph name={PART_GLYPH[p.id]} className="w-8 h-8" />
@@ -140,20 +140,20 @@ export default function Diagnose({ orchard, setOrchard }) {
           <Glyph name={PART_GLYPH[part]} className="w-7 h-7 text-slate-700" />
           <h1 className="text-xl font-extrabold text-slate-900">{t(PARTS.find(p => p.id === part).name)}</h1>
         </div>
-        <p className="text-[14px] text-slate-500 mb-2">{ui('diag.pickOne')}</p>
+        <p className="text-[0.875rem] text-slate-500 mb-2">{ui('diag.pickOne')}</p>
         {/* Pests together first, then fungal/bacterial diseases together. */}
         {[['pests', (PART_PESTS[part] || []).filter(([gid]) => groupById(gid).kingdom !== 'disease')],
           ['diseases', (PART_PESTS[part] || []).filter(([gid]) => groupById(gid).kingdom === 'disease')]]
           .filter(([, list]) => list.length).map(([kind, list]) => (
             <section key={kind} className="mt-3 first:mt-0">
-              <h2 className="text-[13px] font-extrabold text-slate-500 uppercase tracking-wider mb-1.5">{ui(`diag.${kind}`)}</h2>
+              <h2 className="text-[0.8125rem] font-extrabold text-slate-500 uppercase tracking-wider mb-1.5">{ui(`diag.${kind}`)}</h2>
               <div className="space-y-2">
                 {list.map(([gid, look]) => (
                   <a key={gid} href={href(`group/${gid}`)} className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 active:bg-slate-50">
                     <span className="w-11 h-11 rounded-xl bg-slate-50 flex items-center justify-center shrink-0"><GroupArt id={gid} className="w-8 h-8 text-slate-700" /></span>
                     <span className="min-w-0 flex-1">
-                      <span className="block font-extrabold text-[16px] leading-tight text-slate-900">{t(groupById(gid).name)}</span>
-                      <span className="block text-[14px] text-slate-600 leading-snug mt-0.5">{t(look)}</span>
+                      <span className="block font-extrabold text-[1rem] leading-tight text-slate-900">{t(groupById(gid).name)}</span>
+                      <span className="block text-[0.875rem] text-slate-600 leading-snug mt-0.5">{t(look)}</span>
                     </span>
                     <Icon name="chevron" className="w-5 h-5 text-slate-400 shrink-0" />
                   </a>
@@ -162,7 +162,7 @@ export default function Diagnose({ orchard, setOrchard }) {
             </section>
           ))}
         <button onClick={() => setDescribe(true)}
-          className="mt-3 w-full rounded-xl border-2 border-dashed border-slate-300 px-3.5 py-3 text-[15px] font-bold text-slate-600 text-left">
+          className="mt-3 w-full rounded-xl border-2 border-dashed border-slate-300 px-3.5 py-3 text-[0.9375rem] font-bold text-slate-600 text-left">
           {ui('diag.notSure')}
         </button>
       </div>
@@ -178,14 +178,14 @@ export default function Diagnose({ orchard, setOrchard }) {
         <div className="grid grid-cols-1 gap-2 mt-3">
           {list.map(s => (
             <button key={s.id} type="button" onClick={() => setSign(s.id)}
-              className="text-left rounded-xl border border-slate-200 bg-white px-3.5 py-3 text-[15px] font-bold text-slate-800 active:bg-slate-50">
+              className="text-left rounded-xl border border-slate-200 bg-white px-3.5 py-3 text-[0.9375rem] font-bold text-slate-800 active:bg-slate-50">
               {s.art && <div className="mb-2 rounded-lg overflow-hidden bg-white"><LeafCurlArt id={s.art} alt={t(s.label)} lang={lang} className="h-24" /></div>}
               <span className="flex items-center justify-between gap-2">{t(s.label)}<Icon name="chevron" className="w-5 h-5 text-slate-400 shrink-0" /></span>
             </button>
           ))}
           {!showAllSigns && signsForPart([part]).length > main.length && (
             <button type="button" onClick={() => setShowAllSigns(true)}
-              className="rounded-xl border-2 border-dashed border-slate-300 px-3.5 py-3 text-[15px] font-bold text-slate-600">
+              className="rounded-xl border-2 border-dashed border-slate-300 px-3.5 py-3 text-[0.9375rem] font-bold text-slate-600">
               {ui('diag.somethingElse')}
             </button>
           )}
@@ -199,13 +199,13 @@ export default function Diagnose({ orchard, setOrchard }) {
   return (
     <div>
       <Header title={ui('diag.q3')} sub={ui('diag.q3Sub')} />
-      <div className="grid grid-cols-3 gap-2 mt-3">
+      <div className="grid grid-cols-3 auto-rows-fr gap-2 mt-3">
         {culprits.map(c => (
           <Tile key={c.id} onClick={() => setCulprit(c.id)}>
             {c.id === 'unsure' ? <span className="text-3xl leading-none">?</span>
               : c.id === 'nothing' ? <Glyph name="leafSpot" className="w-9 h-9" />
               : <GroupArt id={topGroupOf(c)} className="w-9 h-9" />}
-            <span className="text-[13px]">{t(c.label)}</span>
+            <span className="text-[0.8125rem]">{t(c.label)}</span>
           </Tile>
         ))}
       </div>
@@ -227,12 +227,12 @@ function KnownSearch() {
       </div>
       {q && (
         <div className="mt-2 space-y-1.5">
-          {hits.length === 0 && <p className="text-[14px] text-slate-600">{ui('home.noKnown')}</p>}
+          {hits.length === 0 && <p className="text-[0.875rem] text-slate-600">{ui('home.noKnown')}</p>}
           {hits.map(({ pest, groupId }) => (
             <a key={pest.id} href={href(`group/${groupId}`)} className="flex items-center justify-between gap-2 p-3 rounded-xl bg-white border border-slate-200">
               <div className="min-w-0">
-                <div className="font-bold text-[15px] leading-tight">{t(pest.common)}</div>
-                <div className="text-[13px] italic text-slate-500 truncate">{pest.scientific}</div>
+                <div className="font-bold text-[0.9375rem] leading-tight">{t(pest.common)}</div>
+                <div className="text-[0.8125rem] italic text-slate-500 truncate">{pest.scientific}</div>
               </div>
               <Badge tone="green">{t(groupById(groupId)?.name)}</Badge>
             </a>
@@ -261,19 +261,19 @@ function CommonProblems() {
   const { t, ui } = useLang();
   return (
     <section className="mt-4">
-      <h2 className="text-[13px] font-bold text-slate-500 tracking-wide">{ui('diag.common')}</h2>
+      <h2 className="text-[0.8125rem] font-bold text-slate-500 tracking-wide">{ui('diag.common')}</h2>
       {/* Pests together, then diseases together — same order as the part lists. */}
       {[['pests', COMMON.filter(([id]) => groupById(id).kingdom !== 'disease')],
         ['diseases', COMMON.filter(([id]) => groupById(id).kingdom === 'disease')]]
         .filter(([, list]) => list.length).map(([kind, list]) => (
           <div key={kind} className="mt-2.5">
-            <div className="text-[12px] font-semibold text-slate-400 mb-1">{ui(`diag.${kind}`)}</div>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="text-[0.75rem] font-semibold text-slate-400 mb-1">{ui(`diag.${kind}`)}</div>
+            <div className="grid grid-cols-3 auto-rows-fr gap-2">
               {list.map(([id, label]) => (
                 <a key={id} href={href(`group/${id}`)}
                   className="flex flex-col items-center justify-center gap-1 p-2 min-h-[80px] rounded-xl border border-slate-200 bg-white text-center active:bg-slate-50">
                   <GroupArt id={id} className="w-8 h-8 text-slate-700" />
-                  <span className="text-[14px] font-bold text-slate-700 leading-tight">{t(label)}</span>
+                  <span className="text-[0.875rem] font-bold text-slate-700 leading-tight">{t(label)}</span>
                 </a>
               ))}
             </div>

@@ -13,11 +13,14 @@ export function useOrchard() {
 }
 
 const FS_KEY = 'durianipm_fontscale';
-export function useFontScale() {
-  const [scale, setScale] = useState(() => { try { return Number(localStorage.getItem(FS_KEY)) || 1; } catch { return 1; } });
+// Chinese characters read smaller and thinner than Latin text at the same size,
+// so every size step is a little larger in Chinese.
+const ZH_BOOST = 1.1;
+export function useFontScale(lang) {
+  const [scale, setScale] = useState(() => { try { const v = Number(localStorage.getItem(FS_KEY)) || 1; return v >= 1.2 ? 1.2 : v > 1 ? 1.1 : 1; } catch { return 1; } });
   useEffect(() => {
-    document.documentElement.style.fontSize = `${scale * 100}%`;
+    document.documentElement.style.fontSize = `${scale * (lang === 'zh' ? ZH_BOOST : 1) * 100}%`;
     try { localStorage.setItem(FS_KEY, String(scale)); } catch { /* ignore */ }
-  }, [scale]);
+  }, [scale, lang]);
   return [scale, setScale];
 }

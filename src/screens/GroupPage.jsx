@@ -29,11 +29,11 @@ export const moaCode = (info) => (info.irac ? `IRAC ${info.irac}` : info.key.sta
 export function ChemChip({ c }) {
   const { t } = useLang();
   return (
-    <a href={href(`chem/${c.id}`)} className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-slate-300 bg-white text-[14px] font-bold active:bg-slate-100">
+    <a href={href(`chem/${c.id}`)} className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-slate-300 bg-white text-[0.875rem] font-bold active:bg-slate-100">
       {c.organic && <Icon name="leaf" className="w-4 h-4 text-lime-700" />}
       <span>{t(c.name)}</span>
       {c.bee === 'high' && <Icon name="bee" className="w-4 h-4 text-rose-600" />}
-      {(c.tox === 'Ia' || c.tox === 'Ib') && <span className="text-rose-700 text-[12px]">WHO {c.tox}</span>}
+      {(c.tox === 'Ia' || c.tox === 'Ib') && <span className="text-rose-700 text-[0.75rem]">WHO {c.tox}</span>}
     </a>
   );
 }
@@ -88,16 +88,16 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
         </div>
         <div className="min-w-0">
           <h1 className="text-xl font-extrabold leading-tight text-slate-900">{t(g.name)}</h1>
-          <p className="text-[14px] text-slate-600 leading-snug line-clamp-2">{t(g.examples)}</p>
+          <p className="text-[0.875rem] text-slate-600 leading-snug line-clamp-2">{t(g.examples)}</p>
         </div>
       </div>
       <div className="mt-2 flex flex-wrap gap-1.5">
         <Badge tone="blue">{t(FEEDING[g.feeding])}</Badge>
       </div>
 
-      <p className="mt-3 text-[16px] leading-relaxed text-slate-800">{t(g.why)}</p>
+      <p className="mt-3 text-[1rem] leading-relaxed text-slate-800">{t(g.why)}</p>
 
-      <div className="mt-3 text-[15px] leading-snug rounded-xl bg-white border border-slate-200 px-3 py-2 divide-y divide-slate-100">
+      <div className="mt-3 text-[0.9375rem] leading-snug rounded-xl bg-white border border-slate-200 px-3 py-2 divide-y divide-slate-100">
         <p className={SPRAY_WHERE[g.id] && g.chem.length > 0 ? 'pb-1.5' : ''}><b>{ui('diag.first')}:</b> {t(g.nonChem[0])}</p>
         {SPRAY_WHERE[g.id] && g.chem.length > 0 && <p className="pt-1.5"><b>{ui('group.sprayWhere')}:</b> {t(SPRAY_WHERE[g.id])}</p>}
       </div>
@@ -105,18 +105,18 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
         <Section><Callout tone="blue" icon="leaf">{ui('group.noChem')}</Callout></Section>
       ) : (
         <Section title={ui('group.chem')}>
-          <p className="text-[13px] text-slate-500 mb-2 leading-snug">{ui('group.rankedNote')}</p>
+          <p className="text-[0.8125rem] text-slate-500 mb-2 leading-snug">{ui('group.rankedNote')}</p>
           <div className="mb-3"><OrganicToggle on={track === 'organic'} onChange={v => setOrchard({ track: v ? 'organic' : 'all' })} /></div>
           <StagePicker groupId={g.id} value={pestStage} onChange={setPestStage} compact />
 
           {rec.options.length === 0 && track === 'organic' && <div className="mt-3"><Callout tone="lime" icon="leaf">{ui('group.organicEmpty')}</Callout></div>}
 
           {rec.options.length > 0 && (
-            <div className="mt-3 grid grid-cols-2 gap-2 text-[14px]">
+            <div className="mt-3 grid grid-cols-2 gap-2 text-[0.875rem]">
               <label className="block min-w-0">
                 <span className="block font-bold text-slate-600 leading-tight mb-1">{ui('group.lastUsedShort')}</span>
                 <select value={lastValue} onChange={e => setLast(e.target.value || null)}
-                  className="block w-full max-w-full min-h-[44px] rounded-lg border border-slate-300 bg-white px-2 font-bold text-[15px]">
+                  className="block w-full max-w-full min-h-[44px] rounded-lg border border-slate-300 bg-white px-2 font-bold text-[0.9375rem]">
                   <option value="">{ui('group.lastUsedNone')}</option>
                   {chartGroups
                     ? chartGroups.map(code => <option key={code} value={code}>{`IRAC ${code} · ${GROUP_NAMES[lang][code] || ''}`}</option>)
@@ -126,7 +126,7 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
               <label className="block min-w-0">
                 <span className="block font-bold text-slate-600 leading-tight mb-1">{ui('group.treeStage')}</span>
                 <select value={orchard.stage || ''} onChange={e => setOrchard({ stage: e.target.value || null })}
-                  className="block w-full max-w-full min-h-[44px] rounded-lg border border-slate-300 bg-white px-2 font-bold text-[15px]">
+                  className="block w-full max-w-full min-h-[44px] rounded-lg border border-slate-300 bg-white px-2 font-bold text-[0.9375rem]">
                   <option value="">—</option>
                   {STAGES.map(st => <option key={st.id} value={st.id}>{t(st.name)}</option>)}
                 </select>
@@ -137,7 +137,7 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
           {orchard.stage === 'flowering' && rec.options.length > 0 && (
             <a href={href('learn/pollinators')} className="mt-3 flex items-start gap-2 rounded-xl bg-amber-50 border border-amber-300 p-3 active:bg-amber-100">
               <Icon name="bee" className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
-              <span className="flex-1 text-[14px] leading-snug"><b>{ui('home.flowerWarn')}</b> <span className="text-[#114b2d] underline font-bold">{ui('group.whyFlowering')}</span></span>
+              <span className="flex-1 text-[0.875rem] leading-snug"><b>{ui('home.flowerWarn')}</b> <span className="text-[#114b2d] underline font-bold">{ui('group.whyFlowering')}</span></span>
             </a>
           )}
           <div className="space-y-2 mt-3">
@@ -145,16 +145,16 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
           </div>
           {rec.rotation.length > 1 && (
             <div className="mt-4 rounded-2xl bg-emerald-50 border border-emerald-200 p-3">
-              <div className="font-extrabold text-[16px]">{ui('group.rotation')}</div>
+              <div className="font-extrabold text-[1rem]">{ui('group.rotation')}</div>
               <ol className="mt-2 space-y-1.5">
                 {rec.rotation.map((o, i) => (
                   <li key={o.moa} className="flex gap-2 items-start">
-                    <span className="w-6 h-6 rounded-full bg-[#114b2d] text-white font-extrabold text-[13px] flex items-center justify-center shrink-0 mt-0.5">{i + 1}</span>
-                    <span className="text-[15px] leading-snug"><b>{moaCode(o.moaInfo) || t(o.moaInfo.name)}</b> — {o.actives.slice(0, 2).map(a => t(a.name)).join(', ')}</span>
+                    <span className="w-6 h-6 rounded-full bg-[#114b2d] text-white font-extrabold text-[0.8125rem] flex items-center justify-center shrink-0 mt-0.5">{i + 1}</span>
+                    <span className="text-[0.9375rem] leading-snug"><b>{moaCode(o.moaInfo) || t(o.moaInfo.name)}</b> — {o.actives.slice(0, 2).map(a => t(a.name)).join(', ')}</span>
                   </li>
                 ))}
               </ol>
-              <p className="mt-2 text-[13px] text-slate-600 leading-snug">🌿 {ui('alt.tip')} <a href={href('learn/alternate')} className="font-bold text-[#114b2d] underline">{ui('alt.learn')}</a></p>
+              <p className="mt-2 text-[0.8125rem] text-slate-600 leading-snug">🌿 {ui('alt.tip')} <a href={href('learn/alternate')} className="font-bold text-[#114b2d] underline">{ui('alt.learn')}</a></p>
             </div>
           )}
           {chart && (
@@ -170,9 +170,9 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
         <Bullets items={g.nonChem} t={t} />
       </Fold>
       <Fold title={ui('group.scout')} hint={t(g.threshold)}>
-        <p className="text-[16px] leading-snug">{t(g.scout)}</p>
-        <div className="mt-3 text-[14px] font-bold text-slate-500">{ui('group.threshold')}</div>
-        <p className="text-[16px] leading-snug font-semibold">{t(g.threshold)}</p>
+        <p className="text-[1rem] leading-snug">{t(g.scout)}</p>
+        <div className="mt-3 text-[0.875rem] font-bold text-slate-500">{ui('group.threshold')}</div>
+        <p className="text-[1rem] leading-snug font-semibold">{t(g.threshold)}</p>
       </Fold>
       <Fold title={ui('group.about')} hint={t(g.hides)}>
         <div className="grid grid-cols-1 gap-3">
@@ -187,8 +187,8 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
           <div className="space-y-2">
             {rec.avoid.map(a => (
               <div key={a.moa}>
-                <div className="font-extrabold text-[15px] text-rose-900">✕ {t(a.moaInfo.name)} {moaCode(a.moaInfo) && `· ${moaCode(a.moaInfo)}`}</div>
-                <div className="text-[15px] text-rose-900 leading-snug">{t(a.why)}</div>
+                <div className="font-extrabold text-[0.9375rem] text-rose-900">✕ {t(a.moaInfo.name)} {moaCode(a.moaInfo) && `· ${moaCode(a.moaInfo)}`}</div>
+                <div className="text-[0.9375rem] text-rose-900 leading-snug">{t(a.why)}</div>
               </div>
             ))}
           </div>
@@ -200,9 +200,9 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
           <div className="space-y-3">
             {examples.map(p => (
               <div key={p.id} className="border-t border-slate-100 pt-2 first:border-0 first:pt-0">
-                <div className="font-extrabold text-[16px]">{t(p.common)}</div>
-                <div className="text-[13px] italic text-slate-500">{p.scientific}</div>
-                <p className="text-[15px] mt-1 leading-snug">{t(p.symptoms)}</p>
+                <div className="font-extrabold text-[1rem]">{t(p.common)}</div>
+                <div className="text-[0.8125rem] italic text-slate-500">{p.scientific}</div>
+                <p className="text-[0.9375rem] mt-1 leading-snug">{t(p.symptoms)}</p>
               </div>
             ))}
           </div>
@@ -213,25 +213,25 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
         {g.refs?.length ? (
           <ol className="space-y-2 list-decimal pl-5">
             {g.refs.map(r => (
-              <li key={r.url} className="text-[14px] leading-snug">
+              <li key={r.url} className="text-[0.875rem] leading-snug">
                 <a href={r.url} onClick={e => openExternal(e, r.url)} className="text-[#114b2d] underline">{r.t}</a>
                 {(r.scope || r.supports) && (
                   <div className="mt-0.5 flex flex-wrap items-center gap-1.5">
                     {r.scope && <Badge tone={SCOPE_TONE[r.scope] || 'grey'}>{ui(`group.scope.${r.scope}`)}</Badge>}
-                    {r.supports && <span className="text-[13px] text-slate-500">{ui('group.supports')}: {r.supports}</span>}
+                    {r.supports && <span className="text-[0.8125rem] text-slate-500">{ui('group.supports')}: {r.supports}</span>}
                   </div>
                 )}
               </li>
             ))}
           </ol>
         ) : null}
-        <p className={`text-[13px] text-slate-500 leading-snug ${g.refs?.length ? 'mt-3' : ''}`}>{ui('group.refsBasis')}</p>
+        <p className={`text-[0.8125rem] text-slate-500 leading-snug ${g.refs?.length ? 'mt-3' : ''}`}>{ui('group.refsBasis')}</p>
       </Fold>
 
       <button onClick={share} className="mt-5 w-full min-h-[52px] rounded-xl bg-[#25D366] text-white font-extrabold flex items-center justify-center gap-2">
         <Icon name="share" /> {ui('group.share')}
       </button>
-      <p className="mt-3 text-[13px] text-slate-500 leading-snug">{ui('common.disclaimer')}</p>
+      <p className="mt-3 text-[0.8125rem] text-slate-500 leading-snug">{ui('common.disclaimer')}</p>
     </div>
   );
 }
@@ -239,8 +239,8 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
 function Fact({ label, value }) {
   return (
     <div>
-      <div className="text-[13px] font-bold text-slate-500 uppercase tracking-wide">{label}</div>
-      <div className="text-[16px] font-semibold leading-snug">{value}</div>
+      <div className="text-[0.8125rem] font-bold text-slate-500 uppercase tracking-wide">{label}</div>
+      <div className="text-[1rem] font-semibold leading-snug">{value}</div>
     </div>
   );
 }
@@ -256,13 +256,13 @@ function OptionCard({ o, rank }) {
   return (
     <Card className={`p-3 ${blocked ? 'opacity-70' : ''}`}>
       <div className="flex items-start gap-2">
-        <span className="w-7 h-7 rounded-full bg-slate-100 text-slate-700 font-extrabold text-[14px] flex items-center justify-center shrink-0">{rank}</span>
+        <span className="w-7 h-7 rounded-full bg-slate-100 text-slate-700 font-extrabold text-[0.875rem] flex items-center justify-center shrink-0">{rank}</span>
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
-            <div className="min-w-0 font-extrabold text-[16px] leading-tight">{t(info.name)}{moaCode(info) && <span className="text-[#114b2d]"> · {moaCode(info)}</span>}</div>
+            <div className="min-w-0 font-extrabold text-[1rem] leading-tight">{t(info.name)}{moaCode(info) && <span className="text-[#114b2d]"> · {moaCode(info)}</span>}</div>
             <Badge tone={FIT_TONE[o.fit]} className="shrink-0 whitespace-nowrap">{ui(`fit.${o.fit}`)}</Badge>
           </div>
-          <p className="text-[15px] leading-snug mt-1 text-slate-800">{t(o.why)}</p>
+          <p className="text-[0.9375rem] leading-snug mt-1 text-slate-800">{t(o.why)}</p>
           <div className="mt-1.5"><KillsBadges stages={info.stages} /></div>
           {warns.length > 0 && (
             <div className="flex flex-wrap gap-1.5 mt-1.5">

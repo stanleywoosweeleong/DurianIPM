@@ -19,15 +19,15 @@ export function StagePicker({ groupId, value, onChange }) {
   return (
     <div className="rounded-xl border-2 border-sky-200 bg-sky-50 p-3">
       <div className="flex items-baseline justify-between gap-2">
-        <div className="font-extrabold text-[15px]">{ui('stage.question')}</div>
-        <a href={href('learn/lifecycle')} className="text-[13px] font-bold text-sky-800 underline shrink-0">{ui('stage.why')}</a>
+        <div className="font-extrabold text-[0.9375rem]">{ui('stage.question')}</div>
+        <a href={href('learn/lifecycle')} className="text-[0.8125rem] font-bold text-sky-800 underline shrink-0">{ui('stage.why')}</a>
       </div>
       <div className="grid grid-cols-2 gap-2 mt-2">
         {opts.map(([k, label]) => (
-          <Chip key={k} on={value === k} onClick={() => onChange(value === k ? null : k)} className="text-[14px] py-2">{label}</Chip>
+          <Chip key={k} on={value === k} onClick={() => onChange(value === k ? null : k)} className="text-[0.875rem] py-2">{label}</Chip>
         ))}
       </div>
-      {value === 'adults' && terms.adultNote && <p className="mt-2 text-[14px] text-sky-900 leading-snug font-semibold">{t(terms.adultNote)}</p>}
+      {value === 'adults' && terms.adultNote && <p className="mt-2 text-[0.875rem] text-sky-900 leading-snug font-semibold">{t(terms.adultNote)}</p>}
     </div>
   );
 }
@@ -38,7 +38,7 @@ export function KillsBadges({ stages }) {
   if (!stages?.length) return null;
   return (
     <div className="flex flex-wrap items-center gap-1.5">
-      <span className="text-[13px] font-bold text-slate-500">{ui('stage.kills')}</span>
+      <span className="text-[0.8125rem] font-bold text-slate-500">{ui('stage.kills')}</span>
       {['egg', 'young', 'adult'].map(s => (
         <Badge key={s} tone={stages.includes(s) ? 'blue' : 'grey'} className={stages.includes(s) ? '' : 'line-through opacity-60'}>{t(STAGE_LABEL[s])}</Badge>
       ))}

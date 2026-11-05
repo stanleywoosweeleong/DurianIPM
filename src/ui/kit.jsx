@@ -36,8 +36,8 @@ export const Card = ({ className = '', children, ...p }) => (
 export function Section({ title, sub, children, className = '' }) {
   return (
     <section className={`mt-5 ${className}`}>
-      {title && <h2 className="text-[13px] font-extrabold text-slate-500 uppercase tracking-wider">{title}</h2>}
-      {sub && <p className="text-[15px] text-slate-600 mt-0.5 leading-snug">{sub}</p>}
+      {title && <h2 className="text-[0.8125rem] font-extrabold text-slate-500 uppercase tracking-wider">{title}</h2>}
+      {sub && <p className="text-[0.9375rem] text-slate-600 mt-0.5 leading-snug">{sub}</p>}
       <div className="mt-2">{children}</div>
     </section>
   );
@@ -46,7 +46,7 @@ export function Section({ title, sub, children, className = '' }) {
 export function Chip({ on, onClick, children, className = '' }) {
   return (
     <button type="button" onClick={onClick} aria-pressed={!!on}
-      className={`min-h-[44px] px-3.5 py-2 rounded-xl border text-[15px] font-bold text-left transition-colors ${on
+      className={`min-h-[44px] px-3.5 py-2 rounded-xl border text-[0.9375rem] font-bold text-left transition-colors ${on
         ? 'bg-[#114b2d] border-[#114b2d] text-white shadow-md'
         : 'bg-white border-slate-200 text-slate-700 active:bg-slate-50'} ${className}`}>
       {children}
@@ -64,14 +64,14 @@ const TONE = {
   lime: 'bg-lime-50 text-lime-900 border-lime-400',
 };
 export const Badge = ({ tone = 'grey', children, className = '' }) => (
-  <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md border text-[13px] font-bold leading-tight ${TONE[tone]} ${className}`}>{children}</span>
+  <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md border text-[0.8125rem] font-bold leading-tight ${TONE[tone]} ${className}`}>{children}</span>
 );
 
 export function Callout({ tone = 'amber', icon = 'warn', title, children }) {
   return (
     <div className={`rounded-xl border-2 p-3 flex gap-2.5 ${TONE[tone]}`}>
       <Icon name={icon} className="w-5 h-5 shrink-0 mt-0.5" />
-      <div className="text-[15px] leading-snug">
+      <div className="text-[0.9375rem] leading-snug">
         {title && <div className="font-extrabold mb-0.5">{title}</div>}
         {children}
       </div>
@@ -94,7 +94,7 @@ export function BackBar({ title, onBack }) {
 export const Bullets = ({ items, t }) => (
   <ul className="space-y-1.5">
     {items.map((x, i) => (
-      <li key={i} className="flex gap-2 text-[16px] leading-snug text-slate-800">
+      <li key={i} className="flex gap-2 text-[1rem] leading-snug text-slate-800">
         <span className="text-emerald-600 font-black mt-0.5">•</span><span>{t(x)}</span>
       </li>
     ))}
@@ -115,8 +115,8 @@ export function Fold({ title, hint, open = false, tone = 'white', children }) {
     <details className={`group mt-3 rounded-2xl border ${bg}`} open={open}>
       <summary className="list-none cursor-pointer select-none flex items-center gap-2 min-h-[52px] px-4 py-2">
         <span className="flex-1 min-w-0">
-          <span className="block font-extrabold text-[16px] leading-tight">{title}</span>
-          {hint && <span className="block text-[13px] text-slate-500 leading-snug mt-0.5 group-open:hidden">{hint}</span>}
+          <span className="block font-extrabold text-[1rem] leading-tight">{title}</span>
+          {hint && <span className="block text-[0.8125rem] text-slate-500 leading-snug mt-0.5 group-open:hidden">{hint}</span>}
         </span>
         <svg viewBox="0 0 24 24" className="w-5 h-5 text-slate-500 shrink-0 transition-transform group-open:rotate-90" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6" /></svg>
       </summary>
