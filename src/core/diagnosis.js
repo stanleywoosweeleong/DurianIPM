@@ -44,7 +44,7 @@ export const SIGNS = [
   // ─ fruit
   { id: 'fruit-frass', parts: ['fruit'], label: { en: 'Holes in rind with brown frass/sawdust', zh: '果皮有孔并带褐色虫粪/木屑' }, w: { 'fruit-borers': 5 } },
   { id: 'fruit-corky', parts: ['fruit'], label: { en: 'Corky, scabby brown scars on skin', zh: '果皮出现木栓化褐色疤痕' }, w: { thrips: 3, 'plant-bugs': 1, mites: 1 } },
-  { id: 'fruit-sunken', parts: ['fruit'], label: { en: 'Dark sunken spots; fruitlets drop', zh: '深色凹陷斑；幼果脱落' }, w: { 'plant-bugs': 3, 'leaf-spots': 2 } },
+  { id: 'fruit-sunken', parts: ['fruit'], label: { en: 'Dark sunken spots; fruitlets drop', zh: '深色凹陷斑；幼果脱落' }, w: { 'leaf-spots': 2, 'plant-bugs': 1 } },
   { id: 'fruit-rot', parts: ['fruit'], label: { en: 'Wet brown rot starting on the side touching the ground or a branch', zh: '从贴地或贴枝一面开始的湿腐褐斑' }, w: { oomycete: 5, 'leaf-spots': 1 } },
   { id: 'stem-end-rot', parts: ['fruit'], label: { en: 'Rot spreading down from the stalk end, often after harvest', zh: '从果柄一端向下扩展的腐烂，常在采后出现' }, w: { 'canker-dieback': 5 } },
   { id: 'fruit-maggot', parts: ['fruit'], label: { en: 'Soft flesh with small maggots', zh: '果肉软烂有小蛆' }, w: { 'fruit-borers': 3, 'fruit-flies': 2 } },
@@ -189,6 +189,7 @@ const L = (en, zh) => ({ en, zh });
 export const PART_PESTS = {
   leaf: [
     ['leafhoppers', L('Young leaf edges yellow then brown and crispy; green insects run sideways', '嫩叶叶缘先黄后褐焦；有横着爬的绿色小虫')],
+    ['plant-bugs', L('Young trees: dark dead spots on new shoots and leaves; shoot tips wilt', '幼树：新梢和叶片上有深色坏死斑；梢尖萎蔫')],
     ['phloem-suckers', L('Leaves curl down; sticky honeydew; tiny soft insects under the leaf', '叶片向下卷；有黏稠蜜露；叶背有微小软体虫')],
     ['rhizoctonia', L('Young leaves brown in patches, stuck together by fine threads', '嫩叶成片变褐，被细丝粘在一起')],
     ['thrips', L('Silvery scars; new leaves curl up with brown, crispy edges', '银白色疤痕；新叶向上卷，叶缘焦褐')],
@@ -212,7 +213,6 @@ export const PART_PESTS = {
     ['scale-mealybug', L('White waxy insects between the spines and on the stalk; ants', '果刺间和果柄上有白色蜡质虫；有蚂蚁')],
     ['oomycete', L('Wet rot starting on the side touching the ground or a branch; white mould when humid', '从贴地或贴枝一面开始的湿腐；潮湿时长白霉')],
     ['canker-dieback', L('Rot spreading down from the stalk end, often days after harvest', '从果柄一端向下扩展的腐烂，常在采后几天出现')],
-    ['plant-bugs', L('Dark sunken spots; fruitlets drop', '深色凹陷斑；幼果脱落')],
     ['thrips', L('Corky, scabby brown scars on the skin', '果皮有木栓化褐色疤痕')],
     ['leaf-spots', L('Dark spots and rot on the skin', '果皮上有深色斑点和腐烂')],
   ],

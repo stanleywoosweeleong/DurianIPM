@@ -232,20 +232,20 @@ export const GROUPS = [
     kingdom: 'insect',
     icon: 'bug',
     name: { en: 'Plant bugs', zh: '蝽类' },
-    examples: { en: 'Stink bugs, leaf-footed bugs, mosquito bugs', zh: '蝽象、缘蝽、盲蝽（茶角盲蝽）' },
+    examples: { en: 'Mosquito bugs (Helopeltis), stink bugs and other sap-feeding bugs', zh: '盲蝽（茶角盲蝽）、蝽象等吸汁蝽类' },
     taxon: { en: 'Hemiptera: Heteroptera', zh: '半翅目：异翅亚目' },
     feeding: 'sap-tissue',
-    hides: { en: 'Mobile in the canopy; drop or fly when disturbed', zh: '在树冠中活动；受惊时坠落或飞走' },
+    hides: { en: 'On the new shoots of young trees; drop or fly when disturbed', zh: '在幼树的新梢上；受惊时坠落或飞走' },
     damagingStage: { en: 'Nymphs and adults', zh: '若虫和成虫' },
     why: {
-      en: 'Large, mobile bugs that inject digestive saliva, killing the tissue around the bite (dark sunken spots, fruitlet drop). Because they move around and are exposed, contact sprays can work here — but timing matters.',
-      zh: '体型较大、活动性强的蝽类，注入消化性唾液，杀死叮咬处周围组织（形成深色凹陷斑、幼果脱落）。因为它们活动且暴露，触杀药剂在这里可以起作用——但时机很重要。',
+            en: 'Mobile bugs that inject digestive saliva, killing the tissue around each bite: dark dead spots on new shoots and leaves, and wilting shoot tips. They matter most on young trees, where the new flush is most of the tree. Damage to durian fruit is not confirmed. Because they move around and are exposed, contact sprays can work here — but timing matters.',
+            zh: '活动性强的蝽类，注入消化性唾液，杀死每个叮咬处周围的组织：新梢和叶片上出现深色坏死斑，梢尖萎蔫。对幼树影响最大，因为新梢就是幼树的大部分。对榴莲果实的危害尚未确认。因为它们活动且暴露，触杀药剂在这里可以起作用——但时机很重要。',
     },
-    scout: { en: 'Check fruitlets early in the morning when bugs are sluggish.', zh: '清晨蝽类行动迟缓时检查幼果。' },
-    threshold: { en: 'Act when bites appear on more than 1 in 10 fruitlets.', zh: '超过十分之一的幼果出现叮咬时采取行动。' },
+    scout: { en: 'Check the new shoots of young trees early in the morning, when bugs are sluggish: look for fresh dark bite spots and the bugs themselves.', zh: '清晨蝽类行动迟缓时，检查幼树的新梢：寻找新鲜的深色叮咬斑和虫体。' },
+    threshold: { en: 'Rule of thumb: act when fresh dark bite spots appear on more than 1 in 10 new shoots of young trees.', zh: '经验做法：幼树超过十分之一的新梢出现新鲜深色叮咬斑时采取行动。' },
     nonChem: [
       { en: 'Hand-collect in the early morning into soapy water.', zh: '清晨手工捕捉放入肥皂水中。' },
-      { en: 'Bag fruit after fruit set.', zh: '坐果后套袋。' },
+      { en: 'Cut off and destroy badly bitten shoot tips on young trees.', zh: '剪除并销毁幼树上严重被叮的梢尖。' },
       { en: 'Encourage weaver ants (kerengga) — natural bug predators.', zh: '保护黄猄蚁（kerengga）——蝽类的天然捕食者。' },
     ],
     chem: [
@@ -257,7 +257,7 @@ export const GROUPS = [
       { moa: 'IRAC UN', only: ['azadirachtin'], fit: 'limited', why: { en: 'Neem repels and reduces feeding.', zh: '印楝素可驱避并减少取食。' } },
     ],
     avoid: [
-      { moa: 'IRAC 1B', why: { en: 'Organophosphates: high hazard to the sprayer, kill the natural enemies of bugs, and leave residues on young fruit.', zh: '有机磷：对施药者高危，会杀死蝽类的天敌，并在幼果上留下残留。' } },
+      { moa: 'IRAC 1B', why: { en: 'Organophosphates: high hazard to the sprayer, and they kill the natural enemies of bugs.', zh: '有机磷：对施药者高危，并会杀死蝽类的天敌。' } },
     ],
     refs: [
       { t: "C.T. Ho — Helopeltis theivora from Peninsular Malaysia cocoa estates showed no resistance to cypermethrin, deltamethrin, lambda-cyhalothrin", url: "https://repositorio.fedepalma.org/items/b4dbc498-d366-44d1-b179-32c1f5dba57d/full", supports: "good | IRAC 3A pyrethroids effective on mosquito bugs (Helopeltis) in Malaysia", scope: "other" },
@@ -265,7 +265,7 @@ export const GROUPS = [
       { t: "Siebert et al. 2012, J. Cotton Science — sulfoxaflor ≥50 g ai/ha matched acephate against tarnished plant bug over 49 trials", url: "https://journal.cotton.org/?p=2409", supports: "good | IRAC 4C sulfoxaflor reaches feeding plant bugs (Miridae)", scope: "other" },
       { t: "Chayopas et al. 1997 (AGRIS) — weaver ant nests cut Helopeltis shoot damage in cashew from 46% to 17%", url: "https://agris.fao.org/search/es/records/6472417953aa8c89630373db", supports: "Encourage weaver ants (kerengga) as natural bug predators", scope: "other" },
     ],
-    stages: ['fruit-set', 'fruit-growth'],
+    stages: ['vegetative'],
   },
   {
     id: 'leaf-caterpillars',
