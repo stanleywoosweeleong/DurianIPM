@@ -395,8 +395,8 @@ export const GROUPS = [
     hides: { en: 'Maggots inside ripe or damaged fruit; pupate in soil', zh: '蛆在成熟或受损果实内；在土中化蛹' },
     damagingStage: { en: 'Maggots; adults lay eggs through the skin', zh: '蛆；成虫通过果皮产卵' },
     why: {
-      en: 'Adults need protein to lay eggs — so a little insecticide mixed into protein bait, sprayed as spots, kills them without covering the whole tree. Cover sprays are wasteful and kill pollinators.',
-      zh: '成虫需要蛋白质才能产卵——因此将少量杀虫剂混入蛋白饵剂进行点喷即可杀死它们，无需全树喷洒。全面喷洒既浪费又杀伤传粉昆虫。',
+      en: 'Not a major durian pest: the thick rind protects sound fruit, and maggots are found mostly in fruit that is already cracked, bored or fallen. Clearing fallen and damaged fruit is usually all that is needed. If flies are a problem: adults need protein to lay eggs — so a little insecticide mixed into protein bait, sprayed as spots, kills them without covering the whole tree. Cover sprays are wasteful and kill pollinators.',
+      zh: '不是榴莲的主要害虫：完好果实有厚皮保护，蛆主要出现在已开裂、被蛀或掉落的果实中。通常只要清理落果和受损果就够了。如果实蝇确实成问题：成虫需要蛋白质才能产卵——因此将少量杀虫剂混入蛋白饵剂进行点喷即可杀死它们，无需全树喷洒。全面喷洒既浪费又杀伤传粉昆虫。',
     },
     scout: { en: 'Methyl eugenol traps (males) — count weekly.', zh: '使用甲基丁香酚诱捕器（诱雄虫）——每周计数。' },
     threshold: { en: 'Rising trap counts near harvest.', zh: '临近采收时诱捕数量上升。' },
