@@ -264,3 +264,15 @@ test('related links point at real groups, both ways, bilingual', () => {
     }
   }
 });
+
+import { CHINA_DURIAN_BY_NAME, CHINA_DURIAN_BY_ID, CHINA_EXEMPT, chinaMrl } from '../src/core/mrl.js';
+test('China MRL data: numeric limits, durian-covering basis only, exempt ids exist', () => {
+  for (const v of [...Object.values(CHINA_DURIAN_BY_NAME), ...Object.values(CHINA_DURIAN_BY_ID)]) {
+    assert.ok(!Number.isNaN(parseFloat(v.mrl)), v.mrl);
+    assert.ok(['durian', 'spiny', 'inedible', 'tropical', 'fruit'].includes(v.basis), v.basis);
+  }
+  const ids = new Set(CHEMICALS.map(c => c.id));
+  for (const id of CHINA_EXEMPT) assert.ok(ids.has(id) || id === 'purpureocillium', id);
+  const cyper = CHEMICALS.find(c => c.id === 'cypermethrin');
+  assert.equal(chinaMrl(cyper).kind, 'value');
+});

@@ -11,6 +11,7 @@ import { GROUPS, groupById } from '../core/groups.js';
 import { groupsForMoa } from '../core/recommend.js';
 import { GROUP_FOR_CHART } from '../core/rotation.js';
 import { href } from '../hooks/useRoute.js';
+import { MrlCard } from '../ui/MrlLine.jsx';
 import { moaCode, TOX_TONE } from './GroupPage.jsx';
 
 const KINDS = ['all', 'organic', 'insecticide', 'fungicide'];
@@ -131,6 +132,7 @@ export function ChemicalDetail({ id }) {
       {c.hhpNote && <div className="mt-3"><Callout tone="amber" title={ui('chem.hhpNote')}>{t(c.hhpNote)} <a href={href('learn/hazard')} className="font-extrabold underline">{ui('chem.hhpLearn')}</a></Callout></div>}
       {c.organic && <div className="mt-3"><Callout tone="lime" icon="leaf" title={ui('chem.organic')}>{t(organicNote(c))}</Callout></div>}
       {c.caution && <div className="mt-3"><Callout>{t(CAUTION_TEXT[c.caution])}</Callout></div>}
+      <MrlCard c={c} />
 
       {info.how && <p className="mt-3 text-[1rem] leading-snug font-semibold">{t(info.how)}</p>}
       <div className="flex flex-wrap gap-1.5 mt-2">

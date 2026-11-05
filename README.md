@@ -100,7 +100,10 @@ contributed parts:
   rotation algorithm. Copied verbatim into `src/core/moaDb.js`, including its audit log and "rejected by
   design" notes. Its policies apply to the whole app:
   - Banned actives are not browsable. They appear only as a search answer.
-  - No MRL values or PHI numbers are stored. The app links out to live sources instead.
+  - MRLs: each option and product shows the **China GB 2763-2026** limit that applies to durian (a durian row, else
+    the fruit group durian belongs to; another single fruit's limit never counts), "exempt" for GB 2763-exempt
+    biologicals, and otherwise the **0.01 mg/kg default** used by the EU and Japan. Data in `src/core/mrl.js`,
+    fetched from 2763.foodmate.net — re-run when GB 2763 is revised. No PHI numbers: follow the label.
   - No half-life figures.
 - **[Taijiang insect guide](https://stanleywoosweeleong.github.io/taijiang-insects/)**: the original line-art
   insect-order glyphs and the mouthparts figure (`src/components/Art.jsx`), the step-by-step identification

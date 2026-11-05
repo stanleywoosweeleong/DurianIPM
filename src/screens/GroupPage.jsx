@@ -13,6 +13,7 @@ import { examplesFor } from '../core/examples.js';
 import { SPRAY_WHERE } from '../core/sprayWhere.js';
 import { RELATED } from '../core/related.js';
 import { BorerGrade } from '../ui/BorerGrade.jsx';
+import { MrlLine } from '../ui/MrlLine.jsx';
 import { coverFor } from '../core/photos.js';
 import { STAGES } from '../core/stages.js';
 import { href } from '../hooks/useRoute.js';
@@ -292,6 +293,7 @@ function OptionCard({ o, rank }) {
           <div className="flex flex-wrap gap-1.5 mt-2">
             {o.actives.map(c => <ChemChip key={c.id} c={c} />)}
           </div>
+          {o.actives.length > 0 && <MrlLine actives={o.actives} />}
         </div>
       </div>
     </Card>
