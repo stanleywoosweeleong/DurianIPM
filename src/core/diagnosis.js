@@ -143,3 +143,36 @@ export function diagnose({ signs = [], culprits = [], weather = null }) {
       : r.score >= top * 0.75 && r.score >= 4 ? 'medium' : 'low',
   }));
 }
+
+// ── One-tap flow ───────────────────────────────────────────────────────────
+// Farmers get carried away by long tick-lists. The flow is one tap per question:
+// part → the clearest sign → (only if still ambiguous) the creature they can see.
+
+/** The clearest 5–8 signs per part, in order. "Something else" opens the rest. */
+export const MAIN_SIGNS = {
+  leaf: ['curl-down', 'curl-up', 'holes', 'rolled', 'stipple', 'white-wax', 'sticky', 'spots-halo'],
+  flower: ['flower-drop', 'silver', 'holes', 'spots-halo', 'sticky'],
+  fruit: ['fruit-frass', 'fruit-maggot', 'fruit-rot', 'fruit-corky', 'fruit-sunken', 'white-wax', 'fruit-gnawed'],
+  trunk: ['sawdust', 'pinholes', 'ooze', 'dieback', 'pink-crust', 'mud-tubes', 'bark-stripped'],
+  root: ['tree-wilt', 'white-threads', 'galls', 'roots-chewed', 'roots-rotten', 'soil-dug'],
+};
+
+/**
+ * After a sign is tapped: is it decisive, or do we need to ask what creature
+ * they can see? If we ask, offer only the creatures that fit this sign.
+ * @returns {{ decisive: boolean, culprits: object[] }}
+ */
+export function nextAfterSign(signId) {
+  const s = SIGNS.find(x => x.id === signId);
+  if (!s) return { decisive: false, culprits: CULPRITS };
+  const ranked = Object.entries(s.w).sort((a, b) => b[1] - a[1]);
+  const [top, second] = ranked;
+  const candidates = new Set(ranked.map(([g]) => g));
+  const fitting = CULPRITS.filter(c =>
+    c.id !== 'nothing' && c.id !== 'unsure' && Object.entries(c.w).some(([g, w]) => w >= 3 && candidates.has(g)));
+  const decisive = (top && top[1] >= 5 && (!second || second[1] < 3)) || fitting.length === 0;
+  return {
+    decisive,
+    culprits: decisive ? [] : [...fitting, CULPRITS.find(c => c.id === 'nothing'), CULPRITS.find(c => c.id === 'unsure')],
+  };
+}

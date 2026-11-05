@@ -168,3 +168,19 @@ test('no banned or excluded active is named anywhere in the visible text', () =>
   const hits = terms.filter(t => texts.includes(t.toLowerCase()));
   assert.deepEqual(hits, []);
 });
+
+import { MAIN_SIGNS, nextAfterSign } from '../src/core/diagnosis.js';
+test('one-tap diagnosis: short sign lists, decisive signs skip the creature question', () => {
+  for (const [part, ids] of Object.entries(MAIN_SIGNS)) {
+    assert.ok(ids.length >= 5 && ids.length <= 8, part);
+    for (const id of ids) assert.ok(SIGNS.some(s => s.id === id && s.parts.includes(part)), `${part}/${id}`);
+  }
+  for (const id of ['fruit-frass', 'slime', 'white-threads', 'galls', 'pinholes', 'mud-tubes', 'ooze']) assert.ok(nextAfterSign(id).decisive, id);
+  const curl = nextAfterSign('curl-down');
+  assert.ok(!curl.decisive);
+  assert.ok(curl.culprits.length <= 7, `curl-down offers ${curl.culprits.length}`);
+  assert.ok(curl.culprits.some(c => c.id === 'mite-dots') && curl.culprits.some(c => c.id === 'soft-cluster'));
+  assert.ok(!curl.culprits.some(c => c.id === 'snail'));
+  // every non-decisive sign offers a short list
+  for (const s of SIGNS) { const n = nextAfterSign(s.id); if (!n.decisive) assert.ok(n.culprits.length <= 9, `${s.id}: ${n.culprits.length}`); }
+});

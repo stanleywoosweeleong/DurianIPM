@@ -3,7 +3,7 @@ import { useLang } from '../i18n/useLang.jsx';
 import { Card, Chip, Icon, Badge, Callout } from '../ui/kit.jsx';
 import { GroupArt, Glyph } from '../components/Art.jsx';
 import { LeafCurlArt } from '../components/LeafCurl.jsx';
-import { PARTS, CULPRITS, signsForPart, diagnose } from '../core/diagnosis.js';
+import { PARTS, SIGNS, signsForPart, diagnose, MAIN_SIGNS, nextAfterSign } from '../core/diagnosis.js';
 import { recommend } from '../core/recommend.js';
 import { OrganicToggle } from '../ui/OrganicToggle.jsx';
 import { ChemChip, moaCode } from './GroupPage.jsx';
@@ -13,8 +13,6 @@ import { WikiCover } from '../components/WikiPhotoStrip.jsx';
 import { coverFor } from '../core/photos.js';
 import { searchKnownPests } from '../core/examples.js';
 import { groupById } from '../core/groups.js';
-
-const toggle = (arr, v) => (arr.includes(v) ? arr.filter(x => x !== v) : [...arr, v]);
 
 const PART_GLYPH = { leaf: 'partLeaf', flower: 'partFlower', fruit: 'partFruit', trunk: 'partTrunk', root: 'root' };
 // A culprit tile shows the art of the group it points to most strongly.
@@ -30,55 +28,60 @@ function Tile({ on, onClick, children }) {
   );
 }
 
-export default function Diagnose({ orchard, setOrchard }) {
+export default function Diagnose({ orchard }) {
   const { t, ui, lang } = useLang();
-  const [step, setStep] = useState(0);
-  const [parts, setParts] = useState([]);
-  const [signs, setSigns] = useState([]);
-  const [culprits, setCulprits] = useState([]);
+  // One tap per question: part → sign → (only if needed) creature → result.
+  const [part, setPart] = useState(null);
+  const [sign, setSign] = useState(null);
+  const [culprit, setCulprit] = useState(null);
+  const [showAllSigns, setShowAllSigns] = useState(false);
 
-  const signOptions = useMemo(() => signsForPart(parts), [parts]);
+  const step = !part ? 0 : !sign ? 1 : (culprit || nextAfterSign(sign).decisive) ? 3 : 2;
   const results = useMemo(
-    () => (step === 3 ? diagnose({ signs, culprits }) : []), // purely what the farmer sees
-    [step, signs, culprits]
+    () => (step === 3 ? diagnose({ signs: [sign], culprits: culprit ? [culprit] : [] }) : []), // purely what the farmer sees
+    [step, sign, culprit]
   );
+  const restart = () => { setPart(null); setSign(null); setCulprit(null); setShowAllSigns(false); };
+  const back = () => {
+    if (step === 3 && culprit) setCulprit(null);
+    else if (step >= 2 || (step === 3 && !culprit)) { setSign(null); }
+    else if (step === 1) { setPart(null); setShowAllSigns(false); }
+  };
+  const steps = sign && nextAfterSign(sign).decisive ? 2 : 3;
 
-  const restart = () => { setStep(0); setParts([]); setSigns([]); setCulprits([]); };
-  const canNext = [parts.length > 0, signs.length > 0, culprits.length > 0][step];
-
-  const Progress = () => (
-    <div className="flex items-center gap-2 mb-3" aria-hidden="true">
-      <span className="text-[13px] font-extrabold text-slate-500 uppercase tracking-wider">{ui('diag.step')} {step + 1}/3</span>
-      <div className="flex gap-1 flex-1">{[0, 1, 2].map(i => <div key={i} className={`h-1.5 flex-1 rounded-full ${i <= step ? 'bg-[#114b2d]' : 'bg-slate-200'}`} />)}</div>
-    </div>
-  );
-
-  const Nav = () => (
-    <div className="sticky bottom-0 mt-5 flex gap-2 bg-[#fcfbf7]/95 py-2" style={{ paddingBottom: 'calc(0.5rem + env(safe-area-inset-bottom))' }}>
-      {step > 0 && (
-        <button onClick={() => setStep(step - 1)} className="min-h-[52px] px-5 rounded-xl border border-slate-300 bg-white font-bold">{ui('diag.back')}</button>
-      )}
-      <button disabled={!canNext} onClick={() => setStep(step + 1)}
-        className="flex-1 min-h-[52px] rounded-xl bg-[#114b2d] text-white font-extrabold text-[17px] disabled:bg-slate-300 disabled:text-slate-500">
-        {step === 2 ? ui('diag.results') : ui('diag.next')}
-      </button>
-    </div>
+  const Header = ({ title, sub }) => (
+    <>
+      <div className="flex items-center gap-2 mb-3">
+        <button onClick={back} aria-label={ui('diag.back')} className="w-10 h-10 -ml-2 rounded-xl flex items-center justify-center active:bg-slate-100">
+          <Icon name="back" className="w-6 h-6" />
+        </button>
+        <div className="flex gap-1 flex-1" aria-hidden="true">
+          {Array.from({ length: steps }).map((_, i) => <div key={i} className={`h-1.5 flex-1 rounded-full ${i <= step ? 'bg-[#114b2d]' : 'bg-slate-200'}`} />)}
+        </div>
+      </div>
+      <h1 className="text-xl font-extrabold text-slate-900">{title}</h1>
+      {sub && <p className="text-[14px] text-slate-500">{sub}</p>}
+    </>
   );
 
   if (step === 3) {
     const [top, ...rest] = results;
+    const culpritsAsked = sign && !nextAfterSign(sign).decisive ? [culprit] : [];
     return (
       <div>
-        <h1 className="text-[13px] font-extrabold text-slate-500 uppercase tracking-wider">{ui('diag.resultTitle')}</h1>
+        <div className="flex items-center justify-between">
+          <h1 className="text-[13px] font-extrabold text-slate-500 uppercase tracking-wider">{ui('diag.resultTitle')}</h1>
+          <button onClick={back} className="text-[14px] font-bold text-[#114b2d] underline">{ui('diag.back')}</button>
+        </div>
         {!top && <p className="mt-3 text-[16px]">{ui('diag.none')}</p>}
         {top && (
           <>
             {top.confidence === 'low' && <div className="mt-3"><Callout>{ui('diag.lowConf')}</Callout></div>}
-            <ResultCard r={top} big orchard={orchard} culprits={culprits} />
+            <ResultCard r={top} big orchard={orchard} culprits={culpritsAsked} />
             {rest.length > 0 && (
               <>
                 <h2 className="mt-5 text-[13px] font-extrabold text-slate-500 uppercase tracking-wider">{ui('diag.others')}</h2>
-                <div className="space-y-2 mt-2">{rest.slice(0, 3).map(r => <ResultCard key={r.group.id} r={r} />)}</div>
+                <div className="space-y-2 mt-2">{rest.slice(0, 2).map(r => <ResultCard key={r.group.id} r={r} />)}</div>
               </>
             )}
           </>
@@ -88,62 +91,64 @@ export default function Diagnose({ orchard, setOrchard }) {
     );
   }
 
+  if (step === 0) {
+    return (
+      <div>
+        <KnownSearch />
+        <p className="text-[15px] text-slate-600 leading-snug mt-4 mb-3">{ui('diag.intro')}</p>
+        <h1 className="text-xl font-extrabold text-slate-900">{ui('diag.q1')}</h1>
+        <div className="grid grid-cols-3 gap-2 mt-3">
+          {PARTS.map(p => (
+            <Tile key={p.id} onClick={() => setPart(p.id)}>
+              <Glyph name={PART_GLYPH[p.id]} className="w-9 h-9" />
+              {t(p.name)}
+            </Tile>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (step === 1) {
+    const main = MAIN_SIGNS[part] || [];
+    const list = showAllSigns ? signsForPart([part]) : main.map(id => SIGNS.find(x => x.id === id)).filter(Boolean);
+    return (
+      <div>
+        <Header title={ui('diag.q2')} sub={t(PARTS.find(p => p.id === part).name)} />
+        <div className="grid grid-cols-1 gap-2 mt-3">
+          {list.map(s => (
+            <button key={s.id} type="button" onClick={() => setSign(s.id)}
+              className="text-left rounded-xl border border-slate-200 bg-white px-3.5 py-3 text-[15px] font-bold text-slate-800 active:bg-slate-50">
+              {s.art && <div className="mb-2 rounded-lg overflow-hidden bg-white"><LeafCurlArt id={s.art} alt={t(s.label)} lang={lang} className="h-24" /></div>}
+              <span className="flex items-center justify-between gap-2">{t(s.label)}<Icon name="chevron" className="w-5 h-5 text-slate-400 shrink-0" /></span>
+            </button>
+          ))}
+          {!showAllSigns && signsForPart([part]).length > main.length && (
+            <button type="button" onClick={() => setShowAllSigns(true)}
+              className="rounded-xl border-2 border-dashed border-slate-300 px-3.5 py-3 text-[15px] font-bold text-slate-600">
+              {ui('diag.somethingElse')}
+            </button>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  // step 2 — only the creatures that fit the sign
+  const { culprits } = nextAfterSign(sign);
   return (
     <div>
-      <Progress />
-      {step === 0 && (
-        <>
-          <KnownSearch />
-          <p className="text-[15px] text-slate-600 leading-snug mt-4 mb-3">{ui('diag.intro')}</p>
-          <h1 className="text-xl font-extrabold text-slate-900">{ui('diag.q1')}</h1>
-          <p className="text-[14px] text-slate-500">{ui('diag.q1Sub')}</p>
-          <div className="grid grid-cols-3 gap-2 mt-3">
-            {PARTS.map(p => (
-              <Tile key={p.id} on={parts.includes(p.id)} onClick={() => { setParts(toggle(parts, p.id)); setSigns([]); }}>
-                <Glyph name={PART_GLYPH[p.id]} className="w-9 h-9" />
-                {t(p.name)}
-              </Tile>
-            ))}
-          </div>
-        </>
-      )}
-      {step === 1 && (
-        <>
-          <h1 className="text-xl font-extrabold text-slate-900">{ui('diag.q2')}</h1>
-          <p className="text-[14px] text-slate-500">{ui('diag.q2Sub')}</p>
-          <div className="grid grid-cols-1 gap-2 mt-3">
-            {signOptions.map(s => (
-              <Chip key={s.id} on={signs.includes(s.id)} onClick={() => setSigns(toggle(signs, s.id))}>
-                {s.art && <div className="mb-2 rounded-lg overflow-hidden bg-white"><LeafCurlArt id={s.art} alt={t(s.label)} lang={lang} className="h-24" /></div>}
-                <span className="inline-flex gap-2 items-start">
-                  <span className={`mt-0.5 w-5 h-5 rounded border-2 shrink-0 flex items-center justify-center ${signs.includes(s.id) ? 'border-white' : 'border-slate-400'}`}>
-                    {signs.includes(s.id) && <Icon name="check" className="w-4 h-4" strokeWidth={3} />}
-                  </span>
-                  {t(s.label)}
-                </span>
-              </Chip>
-            ))}
-          </div>
-        </>
-      )}
-      {step === 2 && (
-        <>
-          <h1 className="text-xl font-extrabold text-slate-900">{ui('diag.q3')}</h1>
-          <p className="text-[14px] text-slate-500">{ui('diag.q3Sub')}</p>
-          <div className="grid grid-cols-3 gap-2 mt-3">
-            {CULPRITS.map(c => (
-              <Tile key={c.id} on={culprits.includes(c.id)}
-                onClick={() => setCulprits(c.id === 'nothing' || c.id === 'unsure' ? [c.id] : toggle(culprits.filter(x => x !== 'nothing' && x !== 'unsure'), c.id))}>
-                {c.id === 'unsure' ? <span className="text-3xl leading-none">?</span>
-                  : c.id === 'nothing' ? <Glyph name="leafSpot" className="w-9 h-9" />
-                  : <GroupArt id={topGroupOf(c)} className="w-9 h-9" />}
-                <span className="text-[13px]">{t(c.label)}</span>
-              </Tile>
-            ))}
-          </div>
-        </>
-      )}
-      <Nav />
+      <Header title={ui('diag.q3')} sub={ui('diag.q3Sub')} />
+      <div className="grid grid-cols-3 gap-2 mt-3">
+        {culprits.map(c => (
+          <Tile key={c.id} onClick={() => setCulprit(c.id)}>
+            {c.id === 'unsure' ? <span className="text-3xl leading-none">?</span>
+              : c.id === 'nothing' ? <Glyph name="leafSpot" className="w-9 h-9" />
+              : <GroupArt id={topGroupOf(c)} className="w-9 h-9" />}
+            <span className="text-[13px]">{t(c.label)}</span>
+          </Tile>
+        ))}
+      </div>
     </div>
   );
 }
