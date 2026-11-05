@@ -117,10 +117,10 @@ export default function Diagnose({ orchard, setOrchard }) {
         <CommonProblems />
         <h1 className="text-lg font-extrabold text-slate-900 mt-5">{ui('diag.q1')}</h1>
         <p className="text-[14px] text-slate-500 leading-snug">{ui('diag.intro')}</p>
-        <div className="grid grid-cols-6 gap-2 mt-2.5">
-          {PARTS.map((p, i) => (
-            <Tile key={p.id} onClick={() => setPart(p.id)} className={PARTS.length === 5 && i >= 3 ? 'col-span-3' : 'col-span-2'}>
-              <Glyph name={PART_GLYPH[p.id]} className="w-9 h-9" />
+        <div className="grid grid-cols-3 gap-2 mt-2.5">
+          {PARTS.map(p => (
+            <Tile key={p.id} onClick={() => setPart(p.id)}>
+              <Glyph name={PART_GLYPH[p.id]} className="w-8 h-8" />
               {t(p.name)}
             </Tile>
           ))}
@@ -271,9 +271,9 @@ function CommonProblems() {
             <div className="grid grid-cols-3 gap-2">
               {list.map(([id, label]) => (
                 <a key={id} href={href(`group/${id}`)}
-                  className="flex flex-col items-center justify-center gap-1 p-1.5 min-h-[76px] rounded-xl border border-slate-200 bg-white text-center active:bg-slate-50">
+                  className="flex flex-col items-center justify-center gap-1 p-2 min-h-[80px] rounded-xl border border-slate-200 bg-white text-center active:bg-slate-50">
                   <GroupArt id={id} className="w-8 h-8 text-slate-700" />
-                  <span className="text-[13px] font-bold text-slate-700 leading-tight">{t(label)}</span>
+                  <span className="text-[14px] font-bold text-slate-700 leading-tight">{t(label)}</span>
                 </a>
               ))}
             </div>
