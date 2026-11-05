@@ -268,12 +268,12 @@ function CommonProblems() {
         .filter(([, list]) => list.length).map(([kind, list]) => (
           <div key={kind} className="mt-2.5">
             <div className="text-[12px] font-semibold text-slate-400 mb-1">{ui(`diag.${kind}`)}</div>
-            <div className="flex flex-wrap gap-1.5">
+            <div className="grid grid-cols-3 gap-2">
               {list.map(([id, label]) => (
                 <a key={id} href={href(`group/${id}`)}
-                  className="inline-flex items-center gap-1.5 pl-1.5 pr-3 min-h-[44px] rounded-full border border-slate-200 bg-white active:bg-slate-50">
-                  <GroupArt id={id} className="w-7 h-7 text-slate-700 shrink-0" />
-                  <span className="text-[14px] font-semibold text-slate-800 leading-tight whitespace-nowrap">{t(label)}</span>
+                  className="flex flex-col items-center justify-center gap-1 p-1.5 min-h-[76px] rounded-xl border border-slate-200 bg-white text-center active:bg-slate-50">
+                  <GroupArt id={id} className="w-8 h-8 text-slate-700" />
+                  <span className="text-[13px] font-bold text-slate-700 leading-tight">{t(label)}</span>
                 </a>
               ))}
             </div>
