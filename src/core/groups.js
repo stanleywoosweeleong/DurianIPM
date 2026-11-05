@@ -751,6 +751,7 @@ export const GROUPS = [
     threshold: { en: 'Treat every active lesion immediately; preventive programme in the wet season.', zh: '每个活跃病斑都要立即处理；雨季实施预防方案。' },
     nonChem: [
       { en: 'Drainage: no standing water around trees, build mounds for new plantings.', zh: '排水：树周不能积水，新植树需起墩种植。' },
+      { en: 'Insects on the ooze: ants, flies and sap beetles come to drink the sugary gum. They do not cause the canker, and killing them does not cure it — the gum stops when the lesion is treated and dries. Watch instead for pinholes with fine sawdust: those beetles DO matter (see Often comes with).', zh: '流胶上的虫：蚂蚁、苍蝇和露尾甲是来吸甜胶液的。它们不会引起溃疡，杀死它们也治不好溃疡——病斑处理好、干了，流胶自然停止。要注意的是带细木屑的针孔：那种小蠹才真正要紧（见“常一起出现”）。' },
       { en: 'Prune lower branches (skirt) to 1 m so rain splash cannot carry spores up.', zh: '修剪下部枝条至1米高，防止雨水溅射携带孢子。' },
       { en: 'Scraping cankers and painting them (copper or phosphonate paste) helps on small lesions, but gave inconsistent results in durian trials — trunk injection is more reliable.', zh: '刮除溃疡并涂药（铜剂或亚磷酸膏）对小病斑有帮助，但在榴莲试验中效果不稳定——树干注射更可靠。' },
       { en: 'Avoid wounding roots and trunk with machinery.', zh: '避免机械损伤根部和树干。' },
