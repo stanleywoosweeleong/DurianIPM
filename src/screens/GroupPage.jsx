@@ -1,0 +1,243 @@
+import React, { Suspense, lazy, useMemo, useState } from 'react';
+import { useLang } from '../i18n/useLang.jsx';
+import { Card, Section, Icon, Badge, Callout, BackBar, Bullets, Fold } from '../ui/kit.jsx';
+import { GroupArt } from '../components/Art.jsx';
+import { groupById, FEEDING } from '../core/groups.js';
+import { recommend } from '../core/recommend.js';
+import { CHART_FOR_GROUP } from '../core/rotation.js';
+import { examplesFor } from '../core/examples.js';
+import { stageById } from '../core/stages.js';
+import { href } from '../hooks/useRoute.js';
+import { StagePicker, KillsBadges } from '../ui/StagePicker.jsx';
+
+const WikiPhotoStrip = lazy(() => import('../components/WikiPhotoStrip.jsx').then(m => ({ default: m.WikiPhotoStrip })));
+
+const FIT_TONE = { best: 'green', good: 'blue', limited: 'grey' };
+const WARN_TONE = { beeBlock: 'red', beeHigh: 'amber', beeEvening: 'amber', phi: 'violet', resistance: 'grey', rotate: 'red', crossRes: 'amber', noAdults: 'red', noYoung: 'red', youngBest: 'green', ovicide: 'green', pairAdult: 'amber' };
+const TOX_TONE = { Ia: 'red', Ib: 'red', II: 'amber', III: 'grey', U: 'green', NL: 'grey' };
+
+export const moaCode = (info) => (info.irac ? `IRAC ${info.irac}` : info.key.startsWith('FRAC') ? info.key : null);
+
+export function ChemChip({ c }) {
+  const { t } = useLang();
+  return (
+    <a href={href(`chem/${c.id}`)} className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-stone-300 bg-white text-[14px] font-bold active:bg-stone-100">
+      <span>{t(c.name)}</span>
+      {c.bee === 'high' && <Icon name="bee" className="w-4 h-4 text-rose-600" />}
+      {(c.tox === 'Ia' || c.tox === 'Ib') && <span className="text-rose-700 text-[12px]">WHO {c.tox}</span>}
+    </a>
+  );
+}
+
+export default function GroupPage({ id, orchard, setOrchard }) {
+  const { t, ui, lang } = useLang();
+  const g = groupById(id);
+  const [showAll, setShowAll] = useState(false);
+  const [pestStage, setPestStage] = useState(null);
+
+  const track = orchard.track || 'organic';
+  const rec = useMemo(() => g && recommend(g, { stage: orchard.stage, recentMoa: orchard.recentMoa, track, pestStage }), [g, orchard.stage, orchard.recentMoa, track, pestStage]);
+  if (!g) return <div><BackBar /><p>Not found.</p></div>;
+
+  const examples = examplesFor(g.id);
+  const stage = orchard.stage && stageById(orchard.stage);
+  const chart = CHART_FOR_GROUP[g.id];
+  const setLast = (key) => setOrchard({ recentMoa: key ? [key] : [] });
+
+  const share = () => {
+    const lines = [
+      `${ui('app.title')} — ${t(g.name)}`, t(g.examples), '', t(g.why), '',
+      `${ui('group.nonChem')}:`, ...g.nonChem.map(n => `• ${t(n)}`),
+    ];
+    if (rec.rotation.length) {
+      lines.push('', `${ui('group.rotation')}:`);
+      rec.rotation.forEach((o, i) => lines.push(`${i + 1}. ${t(o.moaInfo.name)}${moaCode(o.moaInfo) ? ` (${moaCode(o.moaInfo)})` : ''} — ${o.actives.slice(0, 3).map(a => t(a.name)).join(', ')}`));
+    }
+    lines.push('', ui('common.disclaimer'));
+    const url = `https://wa.me/?text=${encodeURIComponent(lines.join('\n'))}`;
+    window.open(url, '_blank', 'noopener');
+  };
+
+  const TOP = 3;
+  const shown = showAll ? rec.options : rec.options.slice(0, TOP);
+  const hidden = rec.options.length - shown.length;
+
+  return (
+    <div>
+      <BackBar />
+      <div className="flex items-center gap-3">
+        <div className="w-16 h-16 rounded-2xl bg-white border border-stone-200 flex items-center justify-center text-stone-700 shrink-0">
+          <GroupArt id={g.id} className="w-11 h-11" />
+        </div>
+        <div className="min-w-0">
+          <h1 className="text-2xl font-extrabold leading-tight">{t(g.name)}</h1>
+          <p className="text-[14px] text-stone-600 leading-snug line-clamp-2">{t(g.examples)}</p>
+        </div>
+      </div>
+      <div className="mt-2 flex flex-wrap gap-1.5">
+        <Badge tone="blue">{t(FEEDING[g.feeding])}</Badge>
+      </div>
+
+      <p className="mt-3 text-[16px] leading-relaxed text-stone-800">{t(g.why)}</p>
+
+      <Fold title={ui('group.nonChem')} hint={t(g.nonChem[0])} open>
+        <Bullets items={g.nonChem} t={t} />
+      </Fold>
+      <Fold title={ui('group.scout')} hint={t(g.threshold)}>
+        <p className="text-[16px] leading-snug">{t(g.scout)}</p>
+        <div className="mt-3 text-[14px] font-bold text-stone-500">{ui('group.threshold')}</div>
+        <p className="text-[16px] leading-snug font-semibold">{t(g.threshold)}</p>
+      </Fold>
+      <Fold title={ui('group.about')} hint={t(g.hides)}>
+        <div className="grid grid-cols-1 gap-3">
+          <Fact label={ui('group.hides')} value={t(g.hides)} />
+          <Fact label={ui('group.stage')} value={t(g.damagingStage)} />
+          <Fact label={ui('group.taxon')} value={t(g.taxon)} />
+        </div>
+      </Fold>
+
+      {g.chem.length === 0 ? (
+        <Section><Callout tone="blue" icon="leaf">{ui('group.noChem')}</Callout></Section>
+      ) : (
+        <Section title={ui('group.chem')}>
+          {/* Organic first, conventional equally complete */}
+          <div className="grid grid-cols-2 gap-1 p-1 rounded-2xl bg-stone-200 mb-3" role="tablist">
+            {[['organic', 'group.trackOrganic', 'leaf'], ['conventional', 'group.trackConv', 'flask']].map(([k, label, icon]) => (
+              <button key={k} role="tab" aria-selected={track === k} onClick={() => { setOrchard({ track: k }); setShowAll(false); }}
+                className={`min-h-[48px] rounded-xl font-extrabold text-[15px] flex items-center justify-center gap-1.5 ${track === k
+                  ? (k === 'organic' ? 'bg-lime-600 text-white shadow' : 'bg-white text-stone-900 shadow') : 'text-stone-600'}`}>
+                <Icon name={icon} className="w-5 h-5" />{ui(label)}
+              </button>
+            ))}
+          </div>
+          <StagePicker groupId={g.id} value={pestStage} onChange={setPestStage} compact />
+
+          {rec.options.length === 0 && <div className="mt-3"><Callout tone="lime" icon="leaf">{ui('group.organicEmpty')}</Callout></div>}
+
+          {rec.options.length > 0 && (
+            <label className="mt-3 block text-[14px]">
+              <span className="font-bold text-stone-600">{ui('group.lastUsed')}</span>
+              {stage && <Badge tone="green" className="ml-2">{t(stage.name)}</Badge>}
+              <select value={orchard.recentMoa[0] || ''} onChange={e => setLast(e.target.value || null)}
+                className="mt-1 block w-full max-w-full min-h-[44px] rounded-lg border-2 border-stone-300 bg-white px-2 font-bold text-[15px]">
+                <option value="">{ui('group.lastUsedNone')}</option>
+                {rec.options.map(o => <option key={o.moa} value={o.moa}>{moaCode(o.moaInfo) ? `${moaCode(o.moaInfo)} · ${t(o.moaInfo.name)}` : t(o.moaInfo.name)}</option>)}
+              </select>
+            </label>
+          )}
+
+          <div className="space-y-2 mt-3">
+            {shown.map((o, i) => <OptionCard key={o.moa} o={o} rank={i + 1} />)}
+          </div>
+          {hidden > 0 && (
+            <button onClick={() => setShowAll(true)} className="mt-2 w-full min-h-[48px] rounded-xl border-2 border-dashed border-stone-300 font-bold text-stone-700">
+              + {hidden} {ui('group.moreOptions')}
+            </button>
+          )}
+          {track === 'conventional' && rec.options.length > 0 && (
+            <p className="mt-2 text-[14px] text-lime-800 font-semibold leading-snug">🌿 {ui('group.convNote')}</p>
+          )}
+
+          {rec.rotation.length > 1 && (
+            <div className="mt-4 rounded-2xl bg-emerald-50 border border-emerald-200 p-3">
+              <div className="font-extrabold text-[16px]">{ui('group.rotation')}</div>
+              <ol className="mt-2 space-y-1.5">
+                {rec.rotation.map((o, i) => (
+                  <li key={o.moa} className="flex gap-2 items-start">
+                    <span className="w-6 h-6 rounded-full bg-emerald-700 text-white font-extrabold text-[13px] flex items-center justify-center shrink-0 mt-0.5">{i + 1}</span>
+                    <span className="text-[15px] leading-snug"><b>{moaCode(o.moaInfo) || t(o.moaInfo.name)}</b> — {o.actives.slice(0, 2).map(a => t(a.name)).join(', ')}</span>
+                  </li>
+                ))}
+              </ol>
+              {chart && (
+                <a href={href(`rotate/${chart[0]}`)} className="mt-2 inline-flex items-center gap-1 font-bold text-emerald-900 underline text-[15px]">
+                  {ui('group.fullRotation')} <Icon name="chevron" className="w-4 h-4" />
+                </a>
+              )}
+            </div>
+          )}
+        </Section>
+      )}
+
+      {rec.avoid.length > 0 && (
+        <Fold title={ui('group.avoid')} hint={rec.avoid.map(a => moaCode(a.moaInfo) || t(a.moaInfo.name)).join(' · ')} tone="rose">
+          <div className="space-y-2">
+            {rec.avoid.map(a => (
+              <div key={a.moa}>
+                <div className="font-extrabold text-[15px] text-rose-900">✕ {t(a.moaInfo.name)} {moaCode(a.moaInfo) && `· ${moaCode(a.moaInfo)}`}</div>
+                <div className="text-[15px] text-rose-900 leading-snug">{t(a.why)}</div>
+              </div>
+            ))}
+          </div>
+        </Fold>
+      )}
+
+      {examples.length > 0 && (
+        <Fold title={`${ui('group.examples')} (${examples.length})`} hint={examples.slice(0, 3).map(p => t(p.common)).join(', ')}>
+          <div className="space-y-3">
+            {examples.map(p => (
+              <div key={p.id} className="border-t border-stone-100 pt-2 first:border-0 first:pt-0">
+                <div className="font-extrabold text-[16px]">{t(p.common)}</div>
+                <div className="text-[13px] italic text-stone-500">{p.scientific}</div>
+                <p className="text-[15px] mt-1 leading-snug">{t(p.symptoms)}</p>
+                {p.category !== 'Verteater' && (
+                  <Suspense fallback={null}><WikiPhotoStrip scientificName={p.scientific} lang={lang} /></Suspense>
+                )}
+              </div>
+            ))}
+          </div>
+        </Fold>
+      )}
+
+      <button onClick={share} className="mt-5 w-full min-h-[52px] rounded-xl bg-[#25D366] text-white font-extrabold flex items-center justify-center gap-2">
+        <Icon name="share" /> {ui('group.share')}
+      </button>
+      <p className="mt-3 text-[13px] text-stone-500 leading-snug">{ui('common.disclaimer')}</p>
+    </div>
+  );
+}
+
+function Fact({ label, value }) {
+  return (
+    <div>
+      <div className="text-[13px] font-bold text-stone-500 uppercase tracking-wide">{label}</div>
+      <div className="text-[16px] font-semibold leading-snug">{value}</div>
+    </div>
+  );
+}
+
+// Warnings that matter most first; at most two are shown on the card face.
+const WARN_PRIORITY = ['beeBlock', 'rotate', 'noAdults', 'noYoung', 'crossRes', 'youngBest', 'ovicide', 'pairAdult', 'beeHigh', 'beeEvening', 'phi', 'resistance'];
+
+function OptionCard({ o, rank }) {
+  const { t, ui } = useLang();
+  const info = o.moaInfo;
+  const blocked = o.warnings.includes('beeBlock');
+  const warns = WARN_PRIORITY.filter(w => o.warnings.includes(w)).slice(0, 2);
+  return (
+    <Card className={`p-3 ${blocked ? 'opacity-70' : ''}`}>
+      <div className="flex items-start gap-2">
+        <span className="w-7 h-7 rounded-full bg-stone-100 text-stone-700 font-extrabold text-[14px] flex items-center justify-center shrink-0">{rank}</span>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-start justify-between gap-2">
+            <div className="font-extrabold text-[16px] leading-tight">{t(info.name)}{moaCode(info) && <span className="text-emerald-800"> · {moaCode(info)}</span>}</div>
+            <Badge tone={FIT_TONE[o.fit]}>{ui(`fit.${o.fit}`)}</Badge>
+          </div>
+          <p className="text-[15px] leading-snug mt-1 text-stone-800">{t(o.why)}</p>
+          <div className="mt-1.5"><KillsBadges stages={info.stages} /></div>
+          {warns.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 mt-1.5">
+              {warns.map(w => <Badge key={w} tone={WARN_TONE[w]}>{ui(`warn.${w}`)}</Badge>)}
+            </div>
+          )}
+          <div className="flex flex-wrap gap-1.5 mt-2">
+            {o.actives.slice(0, 4).map(c => <ChemChip key={c.id} c={c} />)}
+            {o.actives.length > 4 && <span className="text-[13px] font-bold text-stone-500 self-center">+{o.actives.length - 4}</span>}
+          </div>
+        </div>
+      </div>
+    </Card>
+  );
+}
+
+export { TOX_TONE };

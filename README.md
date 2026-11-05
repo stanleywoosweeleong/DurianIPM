@@ -1,0 +1,128 @@
+# Durian IPM · 榴莲综合防治
+
+A bilingual (中文 / English), offline PWA for durian growers in Malaysia.
+
+Live at **https://stanleywoosweeleong.github.io/DurianIPM/**.
+
+> This is the successor to [`agripro-dipm-app`](https://github.com/stanleywoosweeleong/agripro-dipm-app).
+> That repository is kept unchanged as a record of where the project started.
+
+**The core idea:** the app no longer depends on a catalogue of every pest in
+the world. Control decisions are made by **pest group**, defined by the traits that
+actually decide which chemistry works:
+
+| Trait | Why it matters |
+|---|---|
+| What it is (taxon) | Mites aren't insects; water moulds aren't fungi; many chemistries only work on one order |
+| How it feeds (mouthparts) | Chewers → stomach poisons · sap-suckers → systemic · thrips → translaminar |
+| Where it hides | Borers inside fruit/wood can't be reached by sprays |
+| Which stage does damage | Growth regulators only kill young stages |
+
+A pest nobody has catalogued still lands in one of ~22 groups through three plain
+questions (where, what you see, what creature), and gets sound advice.
+
+## Screens
+
+- **Home**: set crop stage + weather, then a "watch now" list, flowering bee warning, organic toolbox, search known examples.
+- **Diagnose**: 3-step wizard → the likely pest group, the evidence behind it, and **what works** right on the result:
+  the first non-chemical steps, the top organic options and the top conventional options, each with real products.
+- **Group page**: what it is, why it matters for control, how to confirm it, action threshold, non-chemical steps first.
+  Then two equally complete spray programmes, **Organic & biological** (default) and **Conventional**. Each has ranked
+  MoA classes with real actives, stage/bee/harvest/resistance warnings and its own 3-spray rotation. Then a list of
+  what **not** to use. Organic status lives on each active (`ORGANIC_IDS` in `src/core/chemDb.js`).
+- **Rotate**: the Rotation Helper (see below). Pick a pest and the IRAC group used last; it returns Avoid,
+  Caution (shared target), and Rotate to, ranked by switching to a different target site and then by WHO toxicity.
+- **Products** (reached from product chips and from Learn, not the bottom bar): an MoA reference of organic, biological and conventional actives (with an Organic filter). Search by active ingredient (EN/中文). Each entry shows MoA, how it reaches the pest, WHO class,
+  bee hazard, effect on natural enemies, weather timing, EU status, cross-resistance, resistance risk by pest,
+  and links to the live China MRL table (GB 2763-2026). Searching for a **banned** active gives an honest
+  "banned" answer with legal alternatives, never "no matches".
+- **Learn**: short WhatsApp-shareable lessons (making organic products work, mouthparts, life stages, rotation,
+  "same chemical, different danger" (hazard vs. dilution, using abamectin as the example),
+  pollinators, systemic vs contact, safe mixing + tank-mix order).
+
+## Life stages
+
+Many products only work on some life stages. Growth regulators (IRAC 7, 10, 15, 16, 18, 23) kill eggs and
+young stages, not adults; ovicides kill eggs. Every MoA class declares the stages it kills (`stages` in
+`moa.js`, `STAGES_EXTRA` in `chemDb.js`), shown as **Kills: eggs · young · adults** badges.
+
+A **stage picker** ("Which stage do you see most?") sits on group pages and on the diagnosis result. It uses
+each group's own words (crawlers, nymphs, caterpillars, grubs, maggots…), from `STAGE_TERMS` in `groups.js`.
+- Young → growth regulators move up (selective, spare natural enemies).
+- Adults → young-only products drop with "does not kill adults".
+- Eggs → ovicides move up.
+- Mix → young-only products are flagged "pair with an adult-killer".
+
+Reporting a caterpillar, grub or maggot pre-selects "young". Where adults do no damage (moths), the picker says so.
+
+## Safety rule: WHO highly hazardous actives are excluded
+
+Anything in WHO class Ia or Ib (extremely / highly hazardous) is excluded from all advice and from the
+rotation helper (`WHO_EXCLUDED` in `src/core/chemDb.js`). From the rotation chart this removes formetanate
+hydrochloride. Searching for it returns a short "avoid" notice with alternatives.
+
+**Documented exceptions** (`HHP_EXCEPTIONS`) are actives Malaysian growers still depend on. Their farm
+formulations are far more dilute than the technical material WHO rates. Today that is only **abamectin**, kept
+with a handling note on its page. The tests enforce both rules.
+
+## What was merged from the other apps
+
+- **[Pest MoA rotation guide](https://github.com/stanleywoosweeleong/moarotationguide)**: the entire audited
+  insecticide database (69 actives from the Bunting A chart), cross-resistance clusters, WHO / bee /
+  natural-enemy / Beauveria / weather / EU tags, Malaysian removed-actives notices, tank-mix order, and the
+  rotation algorithm. Copied verbatim into `src/core/moaDb.js`, including its audit log and "rejected by
+  design" notes. Its policies apply to the whole app:
+  - Banned actives are not browsable. They appear only as a search answer.
+  - No MRL values or PHI numbers are stored. The app links out to live sources instead.
+  - No half-life figures.
+- **[Taijiang insect guide](https://stanleywoosweeleong.github.io/taijiang-insects/)**: the original line-art
+  insect-order glyphs and the mouthparts figure (`src/components/Art.jsx`), the step-by-step identification
+  idea, and its accessibility conventions (17px+ text, large buttons, Aa text-size toggle, first-launch
+  language choice). Its photographs are **not** used, because they belong to the park and photographers.
+
+## Project structure
+
+```
+src/
+├── App.jsx                 # shell: header, bottom nav, hash router, language gate
+├── core/                   # pure JS — the "brain", fully unit-tested
+│   ├── groups.js           # ~22 trait-defined pest groups + advice
+│   ├── diagnosis.js        # signs/culprits → scored groups
+│   ├── moa.js              # plain-language MoA classes (IRAC/FRAC)
+│   ├── moaDb.js            # ← rotation-guide database (verbatim)
+│   ├── chemDb.js           # unified chemicals + banned search notices
+│   ├── recommend.js        # group + stage → ranked options & rotation
+│   ├── rotation.js         # Rotation Helper algorithm
+│   ├── stages.js, lessons.js, examples.js
+├── screens/                # Home, Diagnose, GroupPage, Chemicals, Rotate, Learn
+├── components/Art.jsx      # illustrations
+├── i18n/                   # useLang + UI strings
+└── data/                   # earlier catalogue data — now supplies examples & photos
+tests/core.test.js          # data-integrity + behaviour tests
+```
+
+## Develop
+
+```bash
+npm install
+npm run dev     # http://localhost:5173/DurianIPM/
+npm test        # run after ANY data edit
+npm run build
+```
+
+### Adding things
+
+- **New pest species:** usually nothing. It is covered by its group. To list it as an example, add its id
+  in `src/core/examples.js`.
+- **New insecticide:** add it to the rotation database in `src/core/moaDb.js` (follow its audit notes).
+- **New fungicide / biological:** add it to `LOCAL` in `src/core/chemDb.js`.
+- **New ban:** add it to `REMOVED_MY` (`moaDb.js`) and delete its rows. The tests fail if a removed active
+  is still browsable.
+
+Deploys to GitHub Pages on every push to `main` (`.github/workflows/deploy.yml`).
+First time only: **Settings → Pages → Source: GitHub Actions**.
+
+Long pages are kept short on purpose. Secondary detail sits in collapsible sections (`Fold` in
+`src/ui/kit.jsx`), and option lists show the top 3, with the rest behind "show more".
+
+*Guidance only. The legal reference is the Malaysian Pesticides Board (LRMP) register and the product label.*
