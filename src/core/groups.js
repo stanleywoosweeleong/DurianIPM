@@ -953,7 +953,7 @@ export const GROUPS = [
     ],
     avoid: [],
     refs: [
-      { t: "RRISL 2013 — white root disease spreads by root contact with infected stumps; remove roots, sulphur in holes; hexaconazole/tebuconazole drench", url: "https://www.rrisl.gov.lk/content/files/downDoc/10. Management of White Root Disease.pdf", supports: "Spread from stumps through roots; remove stumps and infected roots (never leave debris); sulphur in root zone; triazole collar drench", scope: "other" },
+      { t: "RRISL 2013 — white root disease spreads by root contact with infected stumps; remove roots, sulphur in holes; hexaconazole/tebuconazole drench", url: "https://www.rrisl.gov.lk/content/files/downDoc/10.%20Management%20of%20White%20Root%20Disease.pdf", supports: "Spread from stumps through roots; remove stumps and infected roots (never leave debris); sulphur in root zone; triazole collar drench", scope: "other" },
       { t: "Jayaratne et al. 2001, J. Rubber Res. Inst. Sri Lanka — triazole drenches (hexaconazole, tebuconazole, propiconazole) control white root disease", url: "https://dl.nsf.gov.lk/bitstreams/87651736-7a22-46de-8db1-315951976a01/download", supports: "Hexaconazole/propiconazole collar drench is effective; cultural practices before replanting are the most effective control (source removal matters more than chemicals)", scope: "other" },
     ],
     stages: ['post-harvest'],
