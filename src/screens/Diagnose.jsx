@@ -261,15 +261,23 @@ function CommonProblems() {
   return (
     <section className="mt-4">
       <h2 className="text-[13px] font-extrabold text-slate-500 uppercase tracking-wider">{ui('diag.common')}</h2>
-      <div className="grid grid-cols-4 gap-2 mt-2">
-        {COMMON.map(([id, label]) => (
-          <a key={id} href={href(`group/${id}`)}
-            className="flex flex-col items-center justify-center gap-1 p-1.5 min-h-[84px] rounded-xl border border-slate-200 bg-white text-center active:bg-slate-50">
-            <GroupArt id={id} className="w-8 h-8 text-slate-700" />
-            <span className="text-[12px] font-bold text-slate-700 leading-tight">{t(label)}</span>
-          </a>
+      {/* Pests together, then diseases together — same order as the part lists. */}
+      {[['pests', COMMON.filter(([id]) => groupById(id).kingdom !== 'disease')],
+        ['diseases', COMMON.filter(([id]) => groupById(id).kingdom === 'disease')]]
+        .filter(([, list]) => list.length).map(([kind, list]) => (
+          <div key={kind} className="mt-2">
+            <div className="text-[12px] font-bold text-slate-400 mb-1">{ui(`diag.${kind}`)}</div>
+            <div className="grid grid-cols-3 gap-2">
+              {list.map(([id, label]) => (
+                <a key={id} href={href(`group/${id}`)}
+                  className="flex flex-col items-center justify-center gap-1 p-1.5 min-h-[76px] rounded-xl border border-slate-200 bg-white text-center active:bg-slate-50">
+                  <GroupArt id={id} className="w-8 h-8 text-slate-700" />
+                  <span className="text-[13px] font-bold text-slate-700 leading-tight">{t(label)}</span>
+                </a>
+              ))}
+            </div>
+          </div>
         ))}
-      </div>
     </section>
   );
 }
