@@ -241,3 +241,15 @@ test('review fixes: no caterpillar-only diamides for bugs, spinosad bait for fru
     if (part !== 'leaf') assert.ok(!/^Leaf[ -]/.test(names[gid]) || /leaves &/i.test(names[gid]), `"${names[gid]}" listed under ${part}`);
   }
 });
+
+test('flowering blocks every option that shows a highly bee-toxic active', () => {
+  for (const g of GROUPS) {
+    const r = recommend(g, { stage: 'flowering', track: 'all' });
+    for (const o of r.options) {
+      if (o.actives.some(a => a.bee === 'high')) {
+        assert.ok(o.warnings.includes('beeBlock'), `${g.id} ${o.moa} shows a high-bee active but is not blocked`);
+        assert.ok(!r.rotation.includes(o), `${g.id} ${o.moa} is bee-blocked but in the rotation`);
+      }
+    }
+  }
+});

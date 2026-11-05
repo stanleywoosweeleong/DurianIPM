@@ -49,9 +49,11 @@ export function recommend(group, ctx = {}) {
     const warnings = [];
     let score = FIT_SCORE[c.fit] ?? 1;
 
-    if (info.bee === 'high') {
+    const activeBee = actives.some(a => a.bee === 'high') ? 'high' : actives.some(a => a.bee === 'mod' || a.bee === 'wet') ? 'medium' : null;
+    const bee = activeBee === 'high' || info.bee === 'high' ? 'high' : (activeBee || info.bee);
+    if (bee === 'high') {
       if (flowering) { score -= 2; warnings.push('beeBlock'); } else warnings.push('beeHigh');
-    } else if (info.bee === 'medium' && flowering) {
+    } else if (bee === 'medium' && flowering) {
       score -= 0.5; warnings.push('beeEvening');
     }
     if (nearHarvest && info.kind !== 'bio' && info.kind !== 'physical') warnings.push('phi');
