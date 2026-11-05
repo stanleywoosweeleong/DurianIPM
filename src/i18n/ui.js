@@ -107,6 +107,8 @@ export const UI_STRINGS = {
     lastUsedNone: s('None / not sure', '没有 / 不确定'),
     lastUsedShort: s('Last sprayed', '上次喷的'),
     sources: s('Sources', '资料来源'),
+    supports: s('Supports', '支持'),
+    scope: { durian: s('Durian study', '榴莲研究'), other: s('Same pest, other crop', '同种病虫，其他作物'), general: s('General guidance', '通用指引') },
     refsCount: s('references', '篇参考资料'),
     refsBasis: s('Modes of action follow the IRAC/FRAC classifications; rankings combine published trials (where listed) with Malaysian durian field practice. Always follow the product label.', '作用机制依据IRAC/FRAC分类；排序综合了已发表的试验（如有列出）与马来西亚榴莲田间经验。务必遵照产品标签使用。'),
     treeStage: s('Tree stage (optional)', '物候期（可选）'),

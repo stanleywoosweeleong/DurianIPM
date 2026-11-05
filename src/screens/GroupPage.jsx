@@ -18,6 +18,8 @@ import { StagePicker, KillsBadges } from '../ui/StagePicker.jsx';
 import { WikiCover } from '../components/WikiPhotoStrip.jsx';
 
 const FIT_TONE = { best: 'green', good: 'blue', limited: 'grey' };
+// How directly a reference applies: a durian study beats the same pest on another crop.
+const SCOPE_TONE = { durian: 'green', other: 'amber', general: 'grey' };
 const WARN_TONE = { beeBlock: 'red', beeHigh: 'amber', beeEvening: 'amber', phi: 'violet', resistance: 'grey', rotate: 'red', crossRes: 'amber', noAdults: 'red', noYoung: 'red', youngBest: 'green', ovicide: 'green', pairAdult: 'amber' };
 const TOX_TONE = { Ia: 'red', Ib: 'red', II: 'amber', III: 'grey', U: 'green', NL: 'grey' };
 
@@ -203,6 +205,12 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
             {g.refs.map(r => (
               <li key={r.url} className="text-[14px] leading-snug">
                 <a href={r.url} onClick={e => openExternal(e, r.url)} className="text-[#114b2d] underline">{r.t}</a>
+                {(r.scope || r.supports) && (
+                  <div className="mt-0.5 flex flex-wrap items-center gap-1.5">
+                    {r.scope && <Badge tone={SCOPE_TONE[r.scope] || 'grey'}>{ui(`group.scope.${r.scope}`)}</Badge>}
+                    {r.supports && <span className="text-[13px] text-slate-500">{ui('group.supports')}: {r.supports}</span>}
+                  </div>
+                )}
               </li>
             ))}
           </ol>
