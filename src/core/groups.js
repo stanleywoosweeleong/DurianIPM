@@ -528,7 +528,7 @@ export const GROUPS = [
       { en: 'Fix drainage — durian roots die in waterlogged soil. Build mounds or drains and keep mulch away from the trunk collar.', zh: '改善排水——榴莲根系在积水中会死亡。起墩或挖沟，覆盖物远离根颈。' },
       { en: 'Do not overcrop weak trees; thin the fruit if the tree is declining.', zh: '衰弱树不要挂果过多；树势下降时要疏果。' },
       { en: 'Cut off and destroy branches riddled with holes; burn them, or chip and cover with plastic in the sun. Never stack infested wood near healthy trees.', zh: '剪除并销毁布满虫孔的枝条；烧毁，或粉碎后用塑料布覆盖暴晒。切勿把受害木材堆在健康树附近。' },
-      { en: 'Check after rain instead of using traps: within a week after a run of rainy days, walk round every tree base and look for fresh sawdust; if you find it, spray the trunk within 3 days. Do not hang ethanol traps near trees — ethanol draws beetles from 10–30 m away onto the tree beside the trap.', zh: '用雨后巡查代替诱捕器：连续下雨后的一星期内，绕每棵树头看一圈有没有新木屑；发现就在3天内喷树干。不要在树旁挂酒精诱捕器——酒精会把10–30米内的小蠹引到诱捕器旁边那棵树上。' },
+      { en: 'Check after rain instead of using traps: within a week after a run of rainy days, walk round every tree base and look for fresh sawdust; if you find it, spray the trunk within 3 days. Do not hang ethanol traps near trees — ethanol attracts these beetles, so a trap can draw them onto the tree beside it.', zh: '用雨后巡查代替诱捕器：连续下雨后的一星期内，绕每棵树头看一圈有没有新木屑；发现就在3天内喷树干。不要在树旁挂酒精诱捕器——酒精会吸引小蠹，诱捕器可能把它们引到旁边那棵树上。' },
       { en: 'Whitewash the trunk (lime + copper) after treatment — it reduces sunscald and Phytophthora, which both attract the beetles.', zh: '处理后涂白树干（石灰+铜剂）——可减少日灼和疫霉，这两者都会吸引小蠹虫。' },
     ],
     chem: [
