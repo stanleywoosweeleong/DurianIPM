@@ -65,6 +65,8 @@ export const UI_STRINGS = {
     whatWorks: s('What works', '有效方法'),
     common: s('Common durian problems — tap for the best fit', '常见榴莲问题——点击查看最佳方案'),
     somethingElse: s('Something else…', '其他症状…'),
+    pests: s('Pests', '害虫'),
+    diseases: s('Diseases (fungi & bacteria)', '病害（真菌与细菌）'),
     pickOne: s('Which one looks like your tree? Tap it for the best treatment.', '哪一个像你的树？点击查看最佳防治方法。'),
     notSure: s('Not sure? Describe what you see →', '不确定？描述你看到的症状 →'),
     bestFirst: s('Most effective first', '效果最好的排前面'),

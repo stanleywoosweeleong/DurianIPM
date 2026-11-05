@@ -141,18 +141,26 @@ export default function Diagnose({ orchard, setOrchard }) {
           <h1 className="text-xl font-extrabold text-slate-900">{t(PARTS.find(p => p.id === part).name)}</h1>
         </div>
         <p className="text-[14px] text-slate-500 mb-2">{ui('diag.pickOne')}</p>
-        <div className="space-y-2">
-          {(PART_PESTS[part] || []).map(([gid, look]) => (
-            <a key={gid} href={href(`group/${gid}`)} className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 active:bg-slate-50">
-              <span className="w-11 h-11 rounded-xl bg-slate-50 flex items-center justify-center shrink-0"><GroupArt id={gid} className="w-8 h-8 text-slate-700" /></span>
-              <span className="min-w-0 flex-1">
-                <span className="block font-extrabold text-[16px] leading-tight text-slate-900">{t(groupById(gid).name)}</span>
-                <span className="block text-[14px] text-slate-600 leading-snug mt-0.5">{t(look)}</span>
-              </span>
-              <Icon name="chevron" className="w-5 h-5 text-slate-400 shrink-0" />
-            </a>
+        {/* Pests together first, then fungal/bacterial diseases together. */}
+        {[['pests', (PART_PESTS[part] || []).filter(([gid]) => groupById(gid).kingdom !== 'disease')],
+          ['diseases', (PART_PESTS[part] || []).filter(([gid]) => groupById(gid).kingdom === 'disease')]]
+          .filter(([, list]) => list.length).map(([kind, list]) => (
+            <section key={kind} className="mt-3 first:mt-0">
+              <h2 className="text-[13px] font-extrabold text-slate-500 uppercase tracking-wider mb-1.5">{ui(`diag.${kind}`)}</h2>
+              <div className="space-y-2">
+                {list.map(([gid, look]) => (
+                  <a key={gid} href={href(`group/${gid}`)} className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 active:bg-slate-50">
+                    <span className="w-11 h-11 rounded-xl bg-slate-50 flex items-center justify-center shrink-0"><GroupArt id={gid} className="w-8 h-8 text-slate-700" /></span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block font-extrabold text-[16px] leading-tight text-slate-900">{t(groupById(gid).name)}</span>
+                      <span className="block text-[14px] text-slate-600 leading-snug mt-0.5">{t(look)}</span>
+                    </span>
+                    <Icon name="chevron" className="w-5 h-5 text-slate-400 shrink-0" />
+                  </a>
+                ))}
+              </div>
+            </section>
           ))}
-        </div>
         <button onClick={() => setDescribe(true)}
           className="mt-3 w-full rounded-xl border-2 border-dashed border-slate-300 px-3.5 py-3 text-[15px] font-bold text-slate-600 text-left">
           {ui('diag.notSure')}
@@ -238,13 +246,13 @@ function KnownSearch() {
 // The most common durian problems in Malaysian orchards — one tap straight to
 // "Best fit". Edit this list to change the shortcuts (order = display order).
 const COMMON = [
-  ['oomycete', { en: 'Phytophthora', zh: '疫霉病' }],
   ['fruit-borers', { en: 'Fruit borer', zh: '果实蛀虫' }],
   ['phloem-suckers', { en: 'Psyllids & aphids', zh: '木虱与蚜虫' }],
   ['scale-mealybug', { en: 'Mealybugs & scales', zh: '粉蚧与介壳虫' }],
   ['thrips', { en: 'Thrips', zh: '蓟马' }],
   ['mites', { en: 'Mites', zh: '螨类' }],
   ['trunk-borers', { en: 'Stem borers', zh: '枝干蛀虫' }],
+  ['oomycete', { en: 'Phytophthora', zh: '疫霉病' }],
   ['rhizoctonia', { en: 'Rhizoctonia', zh: '丝核菌叶枯' }],
 ];
 
