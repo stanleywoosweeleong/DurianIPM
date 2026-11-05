@@ -513,13 +513,13 @@ export const GROUPS = [
       en: 'Many 1 mm pinholes with fine powdery sawdust. STEP 1 — scrape the bark around the holes: reddish-brown, wet, sour-smelling tissue (often with gum or dark ooze) = Phytophthora is active, treat it first. Pale, healthy tissue = the beetle is the main problem, but still check roots, drainage and sun damage.',
       zh: '许多1毫米针孔并有细粉状木屑。第一步——刮开孔周围树皮：红褐色、湿润、有酸味的组织（常伴流胶或黑色汁液）＝疫霉正在活动，先治疫霉。浅色健康组织＝甲虫是主要问题，但仍要检查根系、排水和日灼。',
     },
-    threshold: { en: 'Any attack means the tree is stressed. If pinholes and canker circle more than half the trunk, the tree is hard to save — concentrate on protecting the healthy trees around it.', zh: '任何危害都说明树体衰弱。若针孔和溃疡环绕超过半个树干，该树很难挽救——应重点保护周围的健康树。' },
+    threshold: { en: 'Any fresh sawdust means the beetles are active — act within 3 days. Even when pinholes and canker circle more than half the trunk, a living tree is not lost: the wood still carries water. Keep treating, and recheck at 30 and 90 days — new bark growing at the lesion edge and new leaves mean it is recovering. Cut down only a tree that is dead, and burn it quickly: dead trees breed the beetles.', zh: '只要有新木屑，说明小蠹正在活动——3天内处理。即使针孔和烂斑绕树干超过一半，活树也没有失去：木质部还在输水。继续治疗，30天和90天各复查一次——病斑边缘长出新皮、长出新叶，就是在恢复。只有死树才砍，并尽快烧掉：死树是小蠹的繁殖场。' },
     nonChem: [
       { en: 'Scrape cankers back to clean, healthy tissue; collect and burn the scrapings.', zh: '刮除溃疡至干净健康的组织；收集并烧毁刮下的组织。' },
       { en: 'Fix drainage — durian roots die in waterlogged soil. Build mounds or drains and keep mulch away from the trunk collar.', zh: '改善排水——榴莲根系在积水中会死亡。起墩或挖沟，覆盖物远离根颈。' },
       { en: 'Do not overcrop weak trees; thin the fruit if the tree is declining.', zh: '衰弱树不要挂果过多；树势下降时要疏果。' },
       { en: 'Cut off and destroy branches riddled with holes; burn them, or chip and cover with plastic in the sun. Never stack infested wood near healthy trees.', zh: '剪除并销毁布满虫孔的枝条；烧毁，或粉碎后用塑料布覆盖暴晒。切勿把受害木材堆在健康树附近。' },
-      { en: 'Where available: ethanol-baited traps (quercivorol lures for Euwallacea) show when beetles fly; verbenone pouches can repel them from valuable trees.', zh: '如有条件：乙醇诱捕器（优材小蠹可用quercivorol诱芯）可监测成虫飞行；马鞭草烯缓释袋可驱避，保护重要果树。' },
+      { en: 'Check after rain instead of using traps: within a week after a run of rainy days, walk round every tree base and look for fresh sawdust; if you find it, spray the trunk within 3 days. Do not hang ethanol traps near trees — ethanol draws beetles from 10–30 m away onto the tree beside the trap.', zh: '用雨后巡查代替诱捕器：连续下雨后的一星期内，绕每棵树头看一圈有没有新木屑；发现就在3天内喷树干。不要在树旁挂酒精诱捕器——酒精会把10–30米内的小蠹引到诱捕器旁边那棵树上。' },
       { en: 'Whitewash the trunk (lime + copper) after treatment — it reduces sunscald and Phytophthora, which both attract the beetles.', zh: '处理后涂白树干（石灰+铜剂）——可减少日灼和疫霉，这两者都会吸引小蠹虫。' },
     ],
     chem: [
