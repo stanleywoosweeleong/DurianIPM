@@ -14,7 +14,7 @@ const FIGURES = {
     <ol className="space-y-1.5">
       {MIX_SEQUENCE.map(s => (
         <li key={s.step} className="flex gap-2.5 items-start">
-          <span className="w-7 h-7 rounded-full bg-emerald-700 text-white font-extrabold text-[14px] flex items-center justify-center shrink-0">{s.step}</span>
+          <span className="w-7 h-7 rounded-full bg-[#114b2d] text-white font-extrabold text-[14px] flex items-center justify-center shrink-0">{s.step}</span>
           <span className="text-[16px] leading-snug pt-0.5">{lang === 'zh' ? s.zh : s.en}</span>
         </li>
       ))}
@@ -47,24 +47,24 @@ export function LearnList() {
   const { t, ui } = useLang();
   return (
     <div>
-      <h1 className="text-2xl font-extrabold">{ui('learn.title')}</h1>
-      <p className="text-[15px] text-stone-600">{ui('learn.sub')}</p>
+      <h1 className="text-xl font-extrabold text-slate-900">{ui('learn.title')}</h1>
+      <p className="text-[15px] text-slate-600">{ui('learn.sub')}</p>
       <div className="space-y-2 mt-4">
         {LESSONS.map((l, i) => (
-          <a key={l.id} href={href(`learn/${l.id}`)} className="flex items-center gap-3 p-4 rounded-xl bg-white border border-stone-200 active:bg-stone-50">
-            <span className="w-9 h-9 rounded-full bg-emerald-100 text-emerald-900 font-extrabold flex items-center justify-center shrink-0">{i + 1}</span>
+          <a key={l.id} href={href(`learn/${l.id}`)} className="flex items-center gap-3 p-4 rounded-xl bg-white border border-slate-200 active:bg-slate-50">
+            <span className="w-9 h-9 rounded-full bg-emerald-100 text-[#114b2d] font-extrabold flex items-center justify-center shrink-0">{i + 1}</span>
             <div className="flex-1 min-w-0">
               <div className="font-extrabold text-[16px] leading-tight">{t(l.title)}</div>
-              <div className="text-[14px] text-stone-600 leading-snug">{t(l.summary)}</div>
+              <div className="text-[14px] text-slate-600 leading-snug">{t(l.summary)}</div>
             </div>
-            <Icon name="chevron" className="w-5 h-5 text-stone-400" />
+            <Icon name="chevron" className="w-5 h-5 text-slate-400" />
           </a>
         ))}
       </div>
       <Section title={ui('learn.products')} sub={ui('learn.productsSub')}>
         <div className="grid grid-cols-2 gap-2">
           <a href={href('organic')} className="p-4 rounded-xl bg-lime-50 border border-lime-300 font-bold flex items-center justify-between">{ui('group.trackOrganic')} <Icon name="chevron" className="w-5 h-5" /></a>
-          <a href={href('chem')} className="p-4 rounded-xl bg-white border border-stone-300 font-bold flex items-center justify-between">{ui('chem.filterAll')} <Icon name="chevron" className="w-5 h-5" /></a>
+          <a href={href('chem')} className="p-4 rounded-xl bg-white border border-slate-300 font-bold flex items-center justify-between">{ui('chem.filterAll')} <Icon name="chevron" className="w-5 h-5" /></a>
         </div>
       </Section>
     </div>
@@ -83,8 +83,8 @@ export function Lesson({ id }) {
   return (
     <div>
       <BackBar />
-      <h1 className="text-2xl font-extrabold leading-tight">{t(l.title)}</h1>
-      <p className="text-[16px] text-stone-600 mt-1">{t(l.summary)}</p>
+      <h1 className="text-xl font-extrabold leading-tight text-slate-900">{t(l.title)}</h1>
+      <p className="text-[16px] text-slate-600 mt-1">{t(l.summary)}</p>
       <Card className="p-4 mt-4 space-y-3">
         {body.map((p, i) => p.startsWith('• ')
           ? <div key={i} className="flex gap-2 text-[17px] leading-snug"><span className="text-emerald-600 font-black">•</span><span>{p.slice(2)}</span></div>

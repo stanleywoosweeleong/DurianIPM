@@ -2,7 +2,15 @@ import React, { useMemo, useState, useEffect } from 'react';
 import { useLang } from '../i18n/useLang.jsx';
 import { Section, Icon, Badge, Chip, Fold } from '../ui/kit.jsx';
 import { PestIcon } from '../components/Art.jsx';
-import { MOA_LABELS, GROUP_NAMES, CHART_PESTS } from '../core/moaDb.js';
+import { MOA_LABELS, GROUP_NAMES, CHART_PESTS, CHART_ROWS, groupSite } from '../core/moaDb.js';
+
+const groupSiteOf = (g) => groupSite(g, CHART_ROWS);
+// Tile tints by target site — same colour language as the rotation guide.
+const SITE_TILE = {
+  neural: 'bg-sky-50 border-sky-200 text-sky-800', respiratory: 'bg-orange-50 border-orange-200 text-orange-800',
+  growth: 'bg-violet-50 border-violet-200 text-violet-800', midgut: 'bg-amber-50 border-amber-200 text-amber-800',
+  unknown: 'bg-slate-50 border-slate-200 text-slate-700',
+};
 import { rotationFor, groupsForChartPest, GROUP_FOR_CHART } from '../core/rotation.js';
 import { groupById } from '../core/groups.js';
 import { moaInfo, moaKeyFromIrac } from '../core/chemDb.js';
@@ -11,7 +19,7 @@ import { href, go } from '../hooks/useRoute.js';
 
 const SITE = {
   neural: 'border-l-violet-500 bg-violet-50', respiratory: 'border-l-sky-500 bg-sky-50',
-  growth: 'border-l-emerald-500 bg-emerald-50', midgut: 'border-l-amber-500 bg-amber-50', unknown: 'border-l-stone-400 bg-stone-50',
+  growth: 'border-l-emerald-500 bg-emerald-50', midgut: 'border-l-amber-500 bg-amber-50', unknown: 'border-l-slate-400 bg-slate-50',
 };
 const RISK_TONE = { low: 'green', mid: 'amber', high: 'red' };
 
@@ -30,21 +38,20 @@ export default function Rotate({ pestId }) {
 
   return (
     <div>
-      <h1 className="text-2xl font-extrabold">{ui('rot.title')}</h1>
-      <p className="text-[15px] text-stone-600 leading-snug">{ui('rot.sub')}</p>
+      <p className="text-[14px] text-slate-600 leading-snug">{ui('rot.sub')}</p>
 
       <Section title={L.selectPest}>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
           {CHART_PESTS.map(p => (
             <button key={p.id} onClick={() => go(`rotate/${p.id}`)}
-              className={`flex flex-col items-center gap-1 p-2.5 rounded-xl border-2 min-h-[88px] ${pest === p.id ? 'border-emerald-700 bg-emerald-50' : 'border-stone-200 bg-white'}`}>
+              className={`flex flex-col items-center gap-1 p-2.5 rounded-xl border-2 min-h-[88px] ${pest === p.id ? 'border-[#114b2d] bg-[#114b2d] text-white shadow-md' : 'border-slate-200 bg-white text-slate-700'}`}>
               <PestIcon pest={p.id} className="w-10 h-10" />
               <span className="text-[14px] font-bold text-center leading-tight">{lang === 'zh' ? p.zh : p.en}</span>
             </button>
           ))}
         </div>
         {pest && GROUP_FOR_CHART[pest] && (
-          <a href={href(`group/${GROUP_FOR_CHART[pest]}`)} className="mt-2 inline-flex items-center gap-1 text-[15px] font-bold text-emerald-800 underline">
+          <a href={href(`group/${GROUP_FOR_CHART[pest]}`)} className="mt-2 inline-flex items-center gap-1 text-[15px] font-bold text-[#114b2d] underline">
             {ui('rot.groupLink')}: {t(groupById(GROUP_FOR_CHART[pest]).name)} <Icon name="chevron" className="w-4 h-4" />
           </a>
         )}
@@ -52,8 +59,17 @@ export default function Rotate({ pestId }) {
 
       {pest && (
         <Section title={L.lastUsed}>
-          <div className="flex flex-wrap gap-2">
-            {groups.map(g => <Chip key={g} on={last === g} onClick={() => setLast(last === g ? '' : g)} className="text-[14px] py-1.5 min-h-[40px]">{gName(g)}</Chip>)}
+          <div className="grid grid-cols-3 gap-2">
+            {groups.map(g => {
+              const site = groupSiteOf(g);
+              return (
+                <button key={g} onClick={() => setLast(last === g ? '' : g)} aria-pressed={last === g}
+                  className={`flex flex-col items-center justify-center min-h-[60px] rounded-xl border px-1 ${last === g ? 'bg-[#114b2d] border-[#114b2d] text-white shadow-md' : `${SITE_TILE[site] || SITE_TILE.unknown}`}`}>
+                  <span className="text-[18px] font-extrabold leading-none">{g}</span>
+                  <span className={`text-[11px] font-bold mt-1 leading-tight text-center ${last === g ? 'text-white/90' : ''}`}>{GROUP_NAMES[lang][g] || ''}</span>
+                </button>
+              );
+            })}
           </div>
         </Section>
       )}
@@ -78,7 +94,7 @@ export default function Rotate({ pestId }) {
           <Section title={L.rotateTo} sub={ui('rot.order')}>
             <div className="space-y-2">{(all ? rot.suggested : rot.suggested.slice(0, 5)).map(grp => <GroupBlock key={grp.g} grp={grp} gName={gName} L={L} />)}</div>
             {!all && rot.suggested.length > 5 && (
-              <button onClick={() => setAll(true)} className="mt-2 w-full min-h-[48px] rounded-xl border-2 border-dashed border-stone-300 font-bold text-stone-700">+ {rot.suggested.length - 5} {ui('group.moreOptions')}</button>
+              <button onClick={() => setAll(true)} className="mt-2 w-full min-h-[48px] rounded-xl border-2 border-dashed border-slate-300 font-bold text-slate-700">+ {rot.suggested.length - 5} {ui('group.moreOptions')}</button>
             )}
           </Section>
         </>
@@ -93,8 +109,8 @@ export default function Rotate({ pestId }) {
         </div>
       </Fold>
       <Fold title={L.about}>
-        <p className="text-[14px] text-stone-600 leading-snug">{L.aboutText}</p>
-        <p className="text-[14px] text-stone-600 leading-snug mt-2"><b>{L.safetyTitle}:</b> {L.safetyText}</p>
+        <p className="text-[14px] text-slate-600 leading-snug">{L.aboutText}</p>
+        <p className="text-[14px] text-slate-600 leading-snug mt-2"><b>{L.safetyTitle}:</b> {L.safetyText}</p>
       </Fold>
     </div>
   );
@@ -102,7 +118,7 @@ export default function Rotate({ pestId }) {
 
 function GroupBlock({ grp, gName, L }) {
   return (
-    <div className={`rounded-xl border border-stone-200 border-l-4 p-3 ${SITE[grp.site] || SITE.unknown}`}>
+    <div className={`rounded-xl border border-slate-200 border-l-4 p-3 ${SITE[grp.site] || SITE.unknown}`}>
       <div className="flex items-center justify-between gap-2">
         <div className="font-extrabold text-[16px]">{gName(grp.g)}</div>
         {grp.differentSite === 1 && <Badge tone="green">{L.siteChanger}</Badge>}
@@ -119,7 +135,7 @@ function ActiveLink({ a, tone }) {
   const label = a.chem ? (lang === 'zh' && a.chem.name.zh !== a.n ? `${a.chem.name.zh}` : a.n) : a.n;
   return (
     <a href={a.chem ? href(`chem/${a.chem.id}`) : undefined}
-      className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border bg-white text-[14px] font-bold ${tone === 'red' ? 'border-rose-300 text-rose-900' : 'border-stone-300'}`}>
+      className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border bg-white text-[14px] font-bold ${tone === 'red' ? 'border-rose-300 text-rose-900' : 'border-slate-300'}`}>
       {label}
       <Badge tone={RISK_TONE[a.r]} className="text-[11px]">{L[`risk_${a.r}`]}</Badge>
       {a.chem?.bee === 'high' && <Icon name="bee" className="w-4 h-4 text-rose-600" />}

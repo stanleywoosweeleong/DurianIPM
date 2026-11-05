@@ -1,17 +1,35 @@
 import React, { useMemo, useState } from 'react';
 import { useLang } from '../i18n/useLang.jsx';
 import { Card, Chip, Icon, Badge, Callout } from '../ui/kit.jsx';
-import { GroupArt } from '../components/Art.jsx';
+import { GroupArt, Glyph } from '../components/Art.jsx';
+import { OrchardBar } from '../ui/OrchardBar.jsx';
+import { LeafCurlArt } from '../components/LeafCurl.jsx';
 import { PARTS, CULPRITS, signsForPart, diagnose } from '../core/diagnosis.js';
 import { recommend } from '../core/recommend.js';
 import { ChemChip, moaCode } from './GroupPage.jsx';
 import { StagePicker } from '../ui/StagePicker.jsx';
 import { href } from '../hooks/useRoute.js';
+import { WikiCover } from '../components/WikiPhotoStrip.jsx';
+import { photoNamesFor } from '../core/examples.js';
 
 const toggle = (arr, v) => (arr.includes(v) ? arr.filter(x => x !== v) : [...arr, v]);
 
-export default function Diagnose({ orchard }) {
-  const { t, ui } = useLang();
+const PART_GLYPH = { leaf: 'partLeaf', flower: 'partFlower', fruit: 'partFruit', trunk: 'partTrunk', root: 'root' };
+// A culprit tile shows the art of the group it points to most strongly.
+const topGroupOf = (c) => Object.entries(c.w).sort((a, b) => b[1] - a[1])[0]?.[0];
+
+function Tile({ on, onClick, children }) {
+  return (
+    <button type="button" onClick={onClick} aria-pressed={!!on}
+      className={`flex flex-col items-center justify-center gap-1 p-2 min-h-[92px] rounded-xl border text-center text-[14px] font-bold leading-tight transition-colors ${on
+        ? 'bg-[#114b2d] border-[#114b2d] text-white shadow-md' : 'bg-white border-slate-200 text-slate-700 active:bg-slate-50'}`}>
+      {children}
+    </button>
+  );
+}
+
+export default function Diagnose({ orchard, setOrchard }) {
+  const { t, ui, lang } = useLang();
   const [step, setStep] = useState(0);
   const [parts, setParts] = useState([]);
   const [signs, setSigns] = useState([]);
@@ -27,18 +45,19 @@ export default function Diagnose({ orchard }) {
   const canNext = [parts.length > 0, signs.length > 0, culprits.length > 0][step];
 
   const Progress = () => (
-    <div className="flex gap-1.5 mb-4" aria-hidden="true">
-      {[0, 1, 2].map(i => <div key={i} className={`h-2 flex-1 rounded-full ${i <= step ? 'bg-emerald-600' : 'bg-stone-200'}`} />)}
+    <div className="flex items-center gap-2 mb-3" aria-hidden="true">
+      <span className="text-[13px] font-extrabold text-slate-500 uppercase tracking-wider">{ui('diag.step')} {step + 1}/3</span>
+      <div className="flex gap-1 flex-1">{[0, 1, 2].map(i => <div key={i} className={`h-1.5 flex-1 rounded-full ${i <= step ? 'bg-[#114b2d]' : 'bg-slate-200'}`} />)}</div>
     </div>
   );
 
   const Nav = () => (
-    <div className="sticky bottom-[76px] mt-5 flex gap-2 bg-stone-50/95 py-2">
+    <div className="sticky bottom-0 mt-5 flex gap-2 bg-[#fcfbf7]/95 py-2" style={{ paddingBottom: 'calc(0.5rem + env(safe-area-inset-bottom))' }}>
       {step > 0 && (
-        <button onClick={() => setStep(step - 1)} className="min-h-[52px] px-5 rounded-xl border-2 border-stone-300 bg-white font-bold">{ui('diag.back')}</button>
+        <button onClick={() => setStep(step - 1)} className="min-h-[52px] px-5 rounded-xl border border-slate-300 bg-white font-bold">{ui('diag.back')}</button>
       )}
       <button disabled={!canNext} onClick={() => setStep(step + 1)}
-        className="flex-1 min-h-[52px] rounded-xl bg-emerald-700 text-white font-extrabold text-[17px] disabled:bg-stone-300 disabled:text-stone-500">
+        className="flex-1 min-h-[52px] rounded-xl bg-[#114b2d] text-white font-extrabold text-[17px] disabled:bg-slate-300 disabled:text-slate-500">
         {step === 2 ? ui('diag.results') : ui('diag.next')}
       </button>
     </div>
@@ -48,7 +67,7 @@ export default function Diagnose({ orchard }) {
     const [top, ...rest] = results;
     return (
       <div>
-        <h1 className="text-2xl font-extrabold">{ui('diag.resultTitle')}</h1>
+        <h1 className="text-[13px] font-extrabold text-slate-500 uppercase tracking-wider">{ui('diag.resultTitle')}</h1>
         {!top && <p className="mt-3 text-[16px]">{ui('diag.none')}</p>}
         {top && (
           <>
@@ -56,13 +75,13 @@ export default function Diagnose({ orchard }) {
             <ResultCard r={top} big orchard={orchard} culprits={culprits} />
             {rest.length > 0 && (
               <>
-                <h2 className="mt-6 text-lg font-extrabold">{ui('diag.others')}</h2>
+                <h2 className="mt-5 text-[13px] font-extrabold text-slate-500 uppercase tracking-wider">{ui('diag.others')}</h2>
                 <div className="space-y-2 mt-2">{rest.slice(0, 3).map(r => <ResultCard key={r.group.id} r={r} />)}</div>
               </>
             )}
           </>
         )}
-        <button onClick={restart} className="mt-6 w-full min-h-[52px] rounded-xl border-2 border-stone-300 bg-white font-bold">{ui('diag.restart')}</button>
+        <button onClick={restart} className="mt-5 w-full min-h-[52px] rounded-xl border border-slate-300 bg-white font-bold">{ui('diag.restart')}</button>
       </div>
     );
   }
@@ -72,26 +91,30 @@ export default function Diagnose({ orchard }) {
       <Progress />
       {step === 0 && (
         <>
-          <h1 className="text-2xl font-extrabold">{ui('diag.q1')}</h1>
-          <p className="text-[15px] text-stone-600">{ui('diag.q1Sub')}</p>
-          <div className="grid grid-cols-1 gap-2 mt-4">
+          <p className="text-[15px] text-slate-600 leading-snug mb-3">{ui('diag.intro')}</p>
+          <h1 className="text-xl font-extrabold text-slate-900">{ui('diag.q1')}</h1>
+          <p className="text-[14px] text-slate-500">{ui('diag.q1Sub')}</p>
+          <div className="grid grid-cols-3 gap-2 mt-3">
             {PARTS.map(p => (
-              <Chip key={p.id} on={parts.includes(p.id)} onClick={() => { setParts(toggle(parts, p.id)); setSigns([]); }} className="text-[17px] py-3">
+              <Tile key={p.id} on={parts.includes(p.id)} onClick={() => { setParts(toggle(parts, p.id)); setSigns([]); }}>
+                <Glyph name={PART_GLYPH[p.id]} className="w-9 h-9" />
                 {t(p.name)}
-              </Chip>
+              </Tile>
             ))}
           </div>
+          <div className="mt-5"><OrchardBar orchard={orchard} setOrchard={setOrchard} /></div>
         </>
       )}
       {step === 1 && (
         <>
-          <h1 className="text-2xl font-extrabold">{ui('diag.q2')}</h1>
-          <p className="text-[15px] text-stone-600">{ui('diag.q2Sub')}</p>
-          <div className="grid grid-cols-1 gap-2 mt-4">
+          <h1 className="text-xl font-extrabold text-slate-900">{ui('diag.q2')}</h1>
+          <p className="text-[14px] text-slate-500">{ui('diag.q2Sub')}</p>
+          <div className="grid grid-cols-1 gap-2 mt-3">
             {signOptions.map(s => (
               <Chip key={s.id} on={signs.includes(s.id)} onClick={() => setSigns(toggle(signs, s.id))}>
+                {s.art && <div className="mb-2 rounded-lg overflow-hidden bg-white"><LeafCurlArt id={s.art} alt={t(s.label)} lang={lang} className="h-24" /></div>}
                 <span className="inline-flex gap-2 items-start">
-                  <span className={`mt-0.5 w-5 h-5 rounded border-2 shrink-0 flex items-center justify-center ${signs.includes(s.id) ? 'border-white' : 'border-stone-400'}`}>
+                  <span className={`mt-0.5 w-5 h-5 rounded border-2 shrink-0 flex items-center justify-center ${signs.includes(s.id) ? 'border-white' : 'border-slate-400'}`}>
                     {signs.includes(s.id) && <Icon name="check" className="w-4 h-4" strokeWidth={3} />}
                   </span>
                   {t(s.label)}
@@ -103,14 +126,17 @@ export default function Diagnose({ orchard }) {
       )}
       {step === 2 && (
         <>
-          <h1 className="text-2xl font-extrabold">{ui('diag.q3')}</h1>
-          <p className="text-[15px] text-stone-600">{ui('diag.q3Sub')}</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4">
+          <h1 className="text-xl font-extrabold text-slate-900">{ui('diag.q3')}</h1>
+          <p className="text-[14px] text-slate-500">{ui('diag.q3Sub')}</p>
+          <div className="grid grid-cols-3 gap-2 mt-3">
             {CULPRITS.map(c => (
-              <Chip key={c.id} on={culprits.includes(c.id)}
+              <Tile key={c.id} on={culprits.includes(c.id)}
                 onClick={() => setCulprits(c.id === 'nothing' || c.id === 'unsure' ? [c.id] : toggle(culprits.filter(x => x !== 'nothing' && x !== 'unsure'), c.id))}>
-                {t(c.label)}
-              </Chip>
+                {c.id === 'unsure' ? <span className="text-3xl leading-none">?</span>
+                  : c.id === 'nothing' ? <Glyph name="leafSpot" className="w-9 h-9" />
+                  : <GroupArt id={topGroupOf(c)} className="w-9 h-9" />}
+                <span className="text-[13px]">{t(c.label)}</span>
+              </Tile>
             ))}
           </div>
         </>
@@ -121,28 +147,29 @@ export default function Diagnose({ orchard }) {
 }
 
 function ResultCard({ r, big, orchard, culprits = [] }) {
-  const { t, ui } = useLang();
+  const { t, ui, lang } = useLang();
   const g = r.group;
   const tone = r.confidence === 'high' ? 'green' : r.confidence === 'medium' ? 'amber' : 'grey';
   const uniq = [...new Map(r.evidence.map(e => [e.id, e])).values()];
   if (!big) {
     // "Also possible" — one compact row each.
     return (
-      <a href={href(`group/${g.id}`)} className="flex items-center gap-3 p-3 rounded-xl bg-white border border-stone-200 active:bg-stone-50">
-        <div className="w-11 h-11 rounded-xl bg-stone-100 flex items-center justify-center text-stone-700 shrink-0"><GroupArt id={g.id} className="w-8 h-8" /></div>
+      <a href={href(`group/${g.id}`)} className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 active:bg-slate-50">
+        <div className="w-11 h-11 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0"><GroupArt id={g.id} className="w-8 h-8" /></div>
         <div className="min-w-0 flex-1">
           <div className="font-extrabold text-[16px] leading-tight">{t(g.name)}</div>
-          <div className="text-[13px] text-stone-500 truncate">{t(g.examples)}</div>
+          <div className="text-[13px] text-slate-500 truncate">{t(g.examples)}</div>
         </div>
         <Badge tone={tone}>{ui(`diag.conf.${r.confidence}`)}</Badge>
-        <Icon name="chevron" className="w-5 h-5 text-stone-400 shrink-0" />
+        <Icon name="chevron" className="w-5 h-5 text-slate-400 shrink-0" />
       </a>
     );
   }
   return (
-    <Card className="mt-3 p-4 border-2 border-emerald-600">
+    <Card className="mt-2 p-3 border-l-4 border-l-[#114b2d]">
+      <WikiCover names={photoNamesFor(g.id)} lang={lang} className="h-40 mb-3" />
       <div className="flex items-center gap-3">
-        <div className="w-14 h-14 rounded-xl bg-stone-100 flex items-center justify-center text-stone-700 shrink-0">
+        <div className="w-14 h-14 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
           <GroupArt id={g.id} className="w-10 h-10" />
         </div>
         <div className="min-w-0 flex-1">
@@ -150,10 +177,10 @@ function ResultCard({ r, big, orchard, culprits = [] }) {
           <div className="mt-1"><Badge tone={tone}>{ui(`diag.conf.${r.confidence}`)}</Badge></div>
         </div>
       </div>
-      <p className="mt-2 text-[13px] text-stone-500 leading-snug">{ui('diag.because')}: {uniq.map(e => t(e.label)).join(' · ')}</p>
-      <p className="mt-2 text-[16px] leading-snug text-stone-800 line-clamp-3">{t(g.why)}</p>
+      <p className="mt-2 text-[13px] text-slate-500 leading-snug">{ui('diag.because')}: {uniq.map(e => t(e.label)).join(' · ')}</p>
+      <p className="mt-2 text-[16px] leading-snug text-slate-800 line-clamp-3">{t(g.why)}</p>
       <WhatWorks g={g} orchard={orchard} culprits={culprits} />
-      <a href={href(`group/${g.id}`)} className="mt-3 flex items-center justify-center gap-1 min-h-[48px] rounded-xl font-extrabold bg-emerald-700 text-white text-center px-3">
+      <a href={href(`group/${g.id}`)} className="mt-3 flex items-center justify-center gap-1 min-h-[48px] rounded-xl font-extrabold bg-[#114b2d] text-white text-center px-3">
         {ui('diag.open')} <Icon name="chevron" className="w-5 h-5 shrink-0" />
       </a>
     </Card>
@@ -167,20 +194,20 @@ const YOUNG_CULPRITS = new Set(['caterpillar', 'grub', 'maggot']);
 function WhatWorks({ g, orchard, culprits }) {
   const { t, ui } = useLang();
   const [pestStage, setPestStage] = React.useState(() => (culprits.some(c => YOUNG_CULPRITS.has(c)) ? 'young' : null));
-  const [track, setTrack] = React.useState(orchard?.track || 'organic');
+  const [track, setTrack] = React.useState(orchard?.track || 'all');
   const ctx = { stage: orchard?.stage, recentMoa: orchard?.recentMoa || [], pestStage, track };
   const list = recommend(g, ctx).options.filter(o => !o.warnings.includes('beeBlock')).slice(0, 3);
   return (
-    <div className="mt-4 border-t border-stone-200 pt-3">
+    <div className="mt-4 border-t border-slate-200 pt-3">
       <div className="text-lg font-extrabold">{ui('diag.whatWorks')}</div>
       <p className="mt-1 text-[15px] leading-snug"><b>{ui('diag.first')}:</b> {t(g.nonChem[0])}</p>
       {g.chem.length > 0 && (
         <>
           <div className="mt-3"><StagePicker groupId={g.id} value={pestStage} onChange={setPestStage} /></div>
-          <div className="grid grid-cols-2 gap-1 p-1 rounded-xl bg-stone-200 mt-3" role="tablist">
-            {[['organic', 'group.trackOrganic'], ['conventional', 'group.trackConv']].map(([k, label]) => (
+          <div className="grid grid-cols-3 gap-1 p-1 rounded-xl bg-slate-200 mt-3" role="tablist">
+            {[['all', 'group.trackAll'], ['organic', 'group.trackOrganic'], ['conventional', 'group.trackConv']].map(([k, label]) => (
               <button key={k} role="tab" aria-selected={track === k} onClick={() => setTrack(k)}
-                className={`min-h-[44px] rounded-lg font-extrabold text-[14px] ${track === k ? (k === 'organic' ? 'bg-lime-600 text-white' : 'bg-white') : 'text-stone-600'}`}>
+                className={`min-h-[44px] rounded-lg font-extrabold text-[14px] ${track === k ? (k === 'organic' ? 'bg-lime-600 text-white' : 'bg-white') : 'text-slate-600'}`}>
                 {ui(label)}
               </button>
             ))}
@@ -190,9 +217,9 @@ function WhatWorks({ g, orchard, culprits }) {
               const note = ['youngBest', 'pairAdult', 'ovicide', 'noAdults'].find(w => o.warnings.includes(w));
               return (
                 <li key={o.moa} className="flex gap-2 items-start">
-                  <span className="w-6 h-6 rounded-full bg-emerald-700 text-white font-extrabold text-[13px] flex items-center justify-center shrink-0 mt-0.5">{i + 1}</span>
+                  <span className="w-6 h-6 rounded-full bg-[#114b2d] text-white font-extrabold text-[13px] flex items-center justify-center shrink-0 mt-0.5">{i + 1}</span>
                   <div className="min-w-0">
-                    <div className="text-[15px] font-bold leading-tight">{t(o.moaInfo.name)}{moaCode(o.moaInfo) ? <span className="text-emerald-800"> · {moaCode(o.moaInfo)}</span> : null}</div>
+                    <div className="text-[15px] font-bold leading-tight">{t(o.moaInfo.name)}{moaCode(o.moaInfo) ? <span className="text-[#114b2d]"> · {moaCode(o.moaInfo)}</span> : null}</div>
                     {note && <div className="text-[13px] font-bold text-sky-800">{ui(`warn.${note}`)}</div>}
                     <div className="flex flex-wrap gap-1.5 mt-1">{o.actives.slice(0, 2).map(c => <ChemChip key={c.id} c={c} />)}</div>
                   </div>
@@ -200,7 +227,7 @@ function WhatWorks({ g, orchard, culprits }) {
               );
             })}
           </ol>
-          {!list.length && <p className="mt-2 text-[15px]">{ui('group.organicEmpty')}</p>}
+          {!list.length && track === 'organic' && <p className="mt-2 text-[15px]">{ui('group.organicEmpty')}</p>}
         </>
       )}
     </div>

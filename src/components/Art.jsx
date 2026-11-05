@@ -154,6 +154,10 @@ export const EXTRA_GLYPHS = {
   root: G('<path d="M32 4v22"/><path d="M32 26c-6 6-14 8-18 18M32 26c6 6 14 8 18 18M32 26v30M22 36l-8 2M42 36l8 2M32 44l-6 10M32 44l6 10"/><path d="M8 26h48"/>'),
   bacteria: G('<rect x="10" y="20" width="26" height="12" rx="6"/><rect x="28" y="36" width="26" height="12" rx="6"/><path d="M36 26c6 0 8-4 12-4M10 42c4 0 6-4 10-4"/>'),
   paw: G('<ellipse cx="32" cy="42" rx="12" ry="10"/><ellipse cx="16" cy="28" rx="5" ry="7"/><ellipse cx="26" cy="18" rx="5" ry="7"/><ellipse cx="38" cy="18" rx="5" ry="7"/><ellipse cx="48" cy="28" rx="5" ry="7"/>'),
+  partLeaf: G('<path d="M10 54C10 26 26 10 56 8c0 30-16 46-46 46Z"/><path d="M10 54c10-16 22-28 36-36"/><path d="M26 38l-2-10M36 30l-4-10M30 34l10 2M40 26l8 2"/>'),
+  partFlower: G('<circle cx="32" cy="26" r="6"/><path d="M32 20c-4-10 4-14 0-14s4 4 0 14M38 26c10-4 14 4 14 0s-4 4-14 0M32 32c4 10-4 14 0 14s-4-4 0-14M26 26c-10 4-14-4-14 0s4-4 14 0"/><path d="M32 46v14M32 54c-6-2-10-6-10-10M32 52c6-2 10-6 10-10"/>'),
+  partFruit: G('<ellipse cx="32" cy="38" rx="18" ry="20"/><path d="M32 18V8M28 9h8"/><path d="M18 28l-5-3M46 28l5-3M14 38h-5M50 38h5M18 48l-5 3M46 48l5 3M26 22l-2-5M38 22l2-5M24 56l-2 4M40 56l2 4"/>'),
+  partTrunk: G('<path d="M24 60V30M40 60V30"/><path d="M24 30C24 18 14 14 8 10M40 30c0-12 10-16 16-20M32 30V8"/><path d="M28 42c2 2 2 6 0 8M36 36c-2 2-2 4 0 6"/><path d="M8 60h48"/>'),
   fern: G('<path d="M32 60V6"/><path d="M32 14c-8-2-12-6-14-10M32 14c8-2 12-6 14-10M32 26c-10-2-16-6-18-12M32 26c10-2 16-6 18-12M32 38c-10-2-18-6-20-12M32 38c10-2 18-6 20-12M32 50c-8-2-14-6-16-10M32 50c8-2 14-6 16-10"/>'),
 };
 
@@ -218,11 +222,11 @@ export function MouthpartsFigure({ t }) {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
       {MOUTH.map(m => (
-        <div key={m.k} className="rounded-xl border border-stone-200 bg-white p-2 text-center">
-          <svg viewBox="0 0 120 96" className="w-full h-20 text-stone-800" aria-hidden="true" dangerouslySetInnerHTML={{ __html: `<g ${g}>${m.draw}</g>` }} />
-          <div className="font-bold text-[15px] text-stone-900">{t(MOUTH_TEXT[m.k].name)}</div>
-          <div className="text-[13px] text-stone-600 leading-snug">{t(MOUTH_TEXT[m.k].who)}</div>
-          <div className="text-[13px] text-emerald-800 font-semibold leading-snug mt-1">→ {t(MOUTH_TEXT[m.k].use)}</div>
+        <div key={m.k} className="rounded-xl border border-slate-200 bg-white p-2 text-center">
+          <svg viewBox="0 0 120 96" className="w-full h-20 text-slate-800" aria-hidden="true" dangerouslySetInnerHTML={{ __html: `<g ${g}>${m.draw}</g>` }} />
+          <div className="font-bold text-[15px] text-slate-900">{t(MOUTH_TEXT[m.k].name)}</div>
+          <div className="text-[13px] text-slate-600 leading-snug">{t(MOUTH_TEXT[m.k].who)}</div>
+          <div className="text-[13px] text-[#114b2d] font-semibold leading-snug mt-1">→ {t(MOUTH_TEXT[m.k].use)}</div>
         </div>
       ))}
     </div>
@@ -232,16 +236,16 @@ export function MouthpartsFigure({ t }) {
 // ── Life-cycle figure: which stage each kind of product hits. ───────────────
 export function LifecycleFigure({ t }) {
   const row = (title, stages) => (
-    <div className="rounded-xl border border-stone-200 bg-white p-3">
+    <div className="rounded-xl border border-slate-200 bg-white p-3">
       <div className="font-bold text-[15px] mb-2">{t(title)}</div>
       <div className="flex items-stretch gap-1">
         {stages.map((s, i) => (
           <React.Fragment key={i}>
             <div className="flex-1 text-center">
-              <div className={`rounded-lg py-2 text-[13px] font-bold ${s.hit ? 'bg-emerald-100 text-emerald-900 ring-2 ring-emerald-500' : 'bg-stone-100 text-stone-700'}`}>{t(s.name)}</div>
-              {s.hit && <div className="text-[12px] text-emerald-800 mt-1 leading-tight">{t(s.hit)}</div>}
+              <div className={`rounded-lg py-2 text-[13px] font-bold ${s.hit ? 'bg-emerald-100 text-[#114b2d] ring-2 ring-[#114b2d]' : 'bg-slate-100 text-slate-700'}`}>{t(s.name)}</div>
+              {s.hit && <div className="text-[12px] text-[#114b2d] mt-1 leading-tight">{t(s.hit)}</div>}
             </div>
-            {i < stages.length - 1 && <div className="self-start pt-2 text-stone-400">→</div>}
+            {i < stages.length - 1 && <div className="self-start pt-2 text-slate-400">→</div>}
           </React.Fragment>
         ))}
       </div>

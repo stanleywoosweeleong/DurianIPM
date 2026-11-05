@@ -14,6 +14,7 @@ export const UI_STRINGS = {
     rotate: s('Rotate', '轮替'),
 
     home: s('Home', '首页'),
+    groups: s('Groups', '类群'),
     diagnose: s('Diagnose', '诊断'),
     chemicals: s('Products', '药剂库'),
     learn: s('Learn', '学习'),
@@ -44,6 +45,7 @@ export const UI_STRINGS = {
   },
   diag: {
     step: s('Step', '步骤'),
+    intro: s('Spotted something wrong on a tree? Answer 3 quick questions — it works even for pests that are not in any list.', '发现树上有异常？回答3个简单问题——即使是没有记录的害虫也能判断。'),
     q1: s('Where is the problem?', '问题出现在哪里？'),
     q1Sub: s('Choose one or more', '可多选'),
     q2: s('What do you see?', '你看到了什么？'),
@@ -81,8 +83,9 @@ export const UI_STRINGS = {
     nonChem: s('Do first — no chemicals', '先做这些——无需用药'),
     chem: s('If you need to spray', '如需用药'),
     chemSub: s('Ranked for this pest group and your crop stage. Follow the product label.', '根据该类群和你的物候期排序。请遵照产品标签使用。'),
-    trackOrganic: s('Organic & biological', '有机与生物'),
-    trackConv: s('Conventional', '常规化学'),
+    trackAll: s('All', '全部'),
+    trackOrganic: s('Organic', '有机'),
+    trackConv: s('Conventional', '常规'),
     organicEmpty: s('No organic spray fits this group well — the non-chemical steps above ARE the organic programme.', '此类群没有合适的有机喷剂——上面的非化学措施就是有机方案。'),
     convNote: s('Tip: organic products (oils, Bt, Beauveria) can be slotted between these sprays to cut resistance and residues.', '提示：可在这些用药之间穿插有机产品（矿物油、Bt、白僵菌），以减少抗性和残留。'),
     rotation: s('Suggested rotation', '建议轮换方案'),

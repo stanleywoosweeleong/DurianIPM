@@ -35,7 +35,7 @@ function PWAUpdatePrompt() {
   return (
     <button
       onClick={() => updateSW(true)}
-      className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[200] bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-3 rounded-full shadow-2xl border-2 border-emerald-700 flex items-center gap-2.5 font-bold text-sm animate-in fade-in slide-in-from-bottom duration-300"
+      className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[200] bg-[#114b2d] hover:bg-[#114b2d] text-white px-5 py-3 rounded-full shadow-2xl border-2 border-[#114b2d] flex items-center gap-2.5 font-bold text-sm animate-in fade-in slide-in-from-bottom duration-300"
       style={{ paddingBottom: 'max(0.75rem, env(safe-area-inset-bottom))' }}
       aria-label={label}
     >

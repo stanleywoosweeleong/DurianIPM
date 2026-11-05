@@ -9,6 +9,7 @@ const PATHS = {
   rotate: '<path d="M3 12a9 9 0 0 1 15.5-6.3L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.5 6.3L3 16"/><path d="M3 21v-5h5"/>',
   book: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5V21h16"/>',
   back: '<path d="M15 18l-6-6 6-6"/>',
+  grid: '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
   chevron: '<path d="M9 18l6-6-6-6"/>',
   warn: '<path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/>',
   check: '<path d="M20 6 9 17l-5-5"/>',
@@ -29,15 +30,15 @@ export function Icon({ name, className = 'w-5 h-5', strokeWidth = 2 }) {
 }
 
 export const Card = ({ className = '', children, ...p }) => (
-  <div className={`bg-white rounded-2xl border border-stone-200 shadow-sm ${className}`} {...p}>{children}</div>
+  <div className={`bg-white rounded-2xl border border-slate-200 shadow-sm ${className}`} {...p}>{children}</div>
 );
 
 export function Section({ title, sub, children, className = '' }) {
   return (
-    <section className={`mt-6 ${className}`}>
-      {title && <h2 className="text-lg font-extrabold text-stone-900 leading-tight">{title}</h2>}
-      {sub && <p className="text-[15px] text-stone-600 mt-0.5 leading-snug">{sub}</p>}
-      <div className="mt-3">{children}</div>
+    <section className={`mt-5 ${className}`}>
+      {title && <h2 className="text-[13px] font-extrabold text-slate-500 uppercase tracking-wider">{title}</h2>}
+      {sub && <p className="text-[15px] text-slate-600 mt-0.5 leading-snug">{sub}</p>}
+      <div className="mt-2">{children}</div>
     </section>
   );
 }
@@ -45,20 +46,20 @@ export function Section({ title, sub, children, className = '' }) {
 export function Chip({ on, onClick, children, className = '' }) {
   return (
     <button type="button" onClick={onClick} aria-pressed={!!on}
-      className={`min-h-[44px] px-3.5 py-2 rounded-xl border-2 text-[15px] font-bold text-left transition-colors ${on
-        ? 'bg-emerald-700 border-emerald-700 text-white'
-        : 'bg-white border-stone-300 text-stone-800 active:bg-stone-100'} ${className}`}>
+      className={`min-h-[44px] px-3.5 py-2 rounded-xl border text-[15px] font-bold text-left transition-colors ${on
+        ? 'bg-[#114b2d] border-[#114b2d] text-white shadow-md'
+        : 'bg-white border-slate-200 text-slate-700 active:bg-slate-50'} ${className}`}>
       {children}
     </button>
   );
 }
 
 const TONE = {
-  green: 'bg-emerald-50 text-emerald-900 border-emerald-300',
+  green: 'bg-emerald-50 text-[#114b2d] border-emerald-300',
   amber: 'bg-amber-50 text-amber-900 border-amber-300',
   red: 'bg-rose-50 text-rose-900 border-rose-300',
   blue: 'bg-sky-50 text-sky-900 border-sky-300',
-  grey: 'bg-stone-100 text-stone-700 border-stone-300',
+  grey: 'bg-slate-100 text-slate-700 border-slate-300',
   violet: 'bg-violet-50 text-violet-900 border-violet-300',
   lime: 'bg-lime-50 text-lime-900 border-lime-400',
 };
@@ -82,10 +83,10 @@ export function BackBar({ title }) {
   const { ui } = useLang();
   return (
     <div className="flex items-center gap-2 -mx-1 mb-2">
-      <button onClick={back} className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-xl active:bg-stone-200" aria-label={ui('common.back')}>
+      <button onClick={back} className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-xl active:bg-slate-200" aria-label={ui('common.back')}>
         <Icon name="back" className="w-6 h-6" />
       </button>
-      {title && <h1 className="text-xl font-extrabold text-stone-900 leading-tight truncate">{title}</h1>}
+      {title && <h1 className="text-xl font-extrabold text-slate-900 leading-tight truncate">{title}</h1>}
     </div>
   );
 }
@@ -93,7 +94,7 @@ export function BackBar({ title }) {
 export const Bullets = ({ items, t }) => (
   <ul className="space-y-1.5">
     {items.map((x, i) => (
-      <li key={i} className="flex gap-2 text-[16px] leading-snug text-stone-800">
+      <li key={i} className="flex gap-2 text-[16px] leading-snug text-slate-800">
         <span className="text-emerald-600 font-black mt-0.5">•</span><span>{t(x)}</span>
       </li>
     ))}
@@ -109,15 +110,15 @@ export const openExternal = (e, url) => {
 
 /** Collapsible section — keeps long pages short. Closed by default unless `open`. */
 export function Fold({ title, hint, open = false, tone = 'white', children }) {
-  const bg = { white: 'bg-white border-stone-200', rose: 'bg-rose-50 border-rose-200', lime: 'bg-lime-50 border-lime-300' }[tone];
+  const bg = { white: 'bg-white border-slate-200', rose: 'bg-rose-50 border-rose-200', lime: 'bg-lime-50 border-lime-300' }[tone];
   return (
     <details className={`group mt-3 rounded-2xl border ${bg}`} open={open}>
       <summary className="list-none cursor-pointer select-none flex items-center gap-2 min-h-[52px] px-4 py-2">
         <span className="flex-1 min-w-0">
           <span className="block font-extrabold text-[16px] leading-tight">{title}</span>
-          {hint && <span className="block text-[13px] text-stone-500 leading-snug mt-0.5 group-open:hidden">{hint}</span>}
+          {hint && <span className="block text-[13px] text-slate-500 leading-snug mt-0.5 group-open:hidden">{hint}</span>}
         </span>
-        <svg viewBox="0 0 24 24" className="w-5 h-5 text-stone-500 shrink-0 transition-transform group-open:rotate-90" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+        <svg viewBox="0 0 24 24" className="w-5 h-5 text-slate-500 shrink-0 transition-transform group-open:rotate-90" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6" /></svg>
       </summary>
       <div className="px-4 pb-4">{children}</div>
     </details>

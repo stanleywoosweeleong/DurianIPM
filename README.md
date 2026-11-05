@@ -27,9 +27,10 @@ questions (where, what you see, what creature), and gets sound advice.
 - **Diagnose**: 3-step wizard → the likely pest group, the evidence behind it, and **what works** right on the result:
   the first non-chemical steps, the top organic options and the top conventional options, each with real products.
 - **Group page**: what it is, why it matters for control, how to confirm it, action threshold, non-chemical steps first.
-  Then two equally complete spray programmes, **Organic & biological** (default) and **Conventional**. Each has ranked
-  MoA classes with real actives, stage/bee/harvest/resistance warnings and its own 3-spray rotation. Then a list of
-  what **not** to use. Organic status lives on each active (`ORGANIC_IDS` in `src/core/chemDb.js`).
+  Then the spray options ranked on effectiveness under **All** (default), with **Organic** and **Conventional**
+  filters. Organic products carry a leaf mark; organic status lives on each active (`ORGANIC_IDS` in
+  `src/core/chemDb.js`). Each view has its stage/bee/harvest/resistance warnings and its own 3-spray rotation,
+  followed by a list of what **not** to use.
 - **Rotate**: the Rotation Helper (see below). Pick a pest and the IRAC group used last; it returns Avoid,
   Caution (shared target), and Rotate to, ranked by switching to a different target site and then by WHO toxicity.
 - **Products** (reached from product chips and from Learn, not the bottom bar): an MoA reference of organic, biological and conventional actives (with an Organic filter). Search by active ingredient (EN/中文). Each entry shows MoA, how it reaches the pest, WHO class,
@@ -121,6 +122,18 @@ npm run build
 
 Deploys to GitHub Pages on every push to `main` (`.github/workflows/deploy.yml`).
 First time only: **Settings → Pages → Source: GitHub Actions**.
+
+## Look & feel
+
+The app shares a look with the Pest-MoA rotation guide: a cream page (`#fcfbf7`), a light header (`#f4f2ea`),
+forest green (`#114b2d`) as the only accent, underline tabs at the top (Diagnose · Groups · Rotate · Learn),
+an A/A/A text-size switch, and icon tile grids where the selected tile turns solid green.
+
+**Images:** real reference photos come from Wikimedia Commons, with author and licence shown. Each group page
+opens with one, the group tiles have thumbnails, and every known example shows a photo strip. Photos are cached for
+offline use (service worker, 60 days). Without a connection the page falls back to the drawn icons. The two
+leaf-curl diagnostic drawings from the original app (`src/components/LeafCurl.jsx`) illustrate the curl-down and
+curl-up signs in the diagnosis.
 
 Long pages are kept short on purpose. Secondary detail sits in collapsible sections (`Fold` in
 `src/ui/kit.jsx`), and option lists show the top 3, with the rest behind "show more".

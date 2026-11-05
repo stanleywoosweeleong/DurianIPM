@@ -3,84 +3,95 @@ import { LanguageProvider, useLang } from './i18n/useLang.jsx';
 import { useRoute, href } from './hooks/useRoute.js';
 import { useOrchard, useFontScale } from './hooks/useOrchard.js';
 import { Icon } from './ui/kit.jsx';
-import Home from './screens/Home.jsx';
 import Diagnose from './screens/Diagnose.jsx';
+import Groups from './screens/Groups.jsx';
 import GroupPage from './screens/GroupPage.jsx';
 import { ChemicalList, ChemicalDetail } from './screens/Chemicals.jsx';
 import Rotate from './screens/Rotate.jsx';
 import { LearnList, Lesson } from './screens/Learn.jsx';
 
-const NAV = [
-  { id: 'home', icon: 'home', path: '', match: ['home', 'group'] },
-  { id: 'diagnose', icon: 'search', path: 'diagnose', match: ['diagnose'] },
+// Same family look as the Pest-MoA rotation guide: cream page, light header,
+// forest-green accent, underline tabs at the top, A/A/A text size.
+const TABS = [
+  { id: 'diagnose', icon: 'search', path: '', match: ['home', 'diagnose'] },
+  { id: 'groups', icon: 'grid', path: 'groups', match: ['groups', 'group', 'organic'] },
   { id: 'rotate', icon: 'rotate', path: 'rotate', match: ['rotate'] },
-  { id: 'learn', icon: 'book', path: 'learn', match: ['learn', 'chem', 'organic'] },
+  { id: 'learn', icon: 'book', path: 'learn', match: ['learn', 'chem'] },
 ];
 
 function LanguageGate() {
   const { setLang } = useLang();
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center gap-4 p-6 bg-stone-50">
+    <div className="min-h-screen flex flex-col items-center justify-center gap-4 p-6 bg-[#fcfbf7]">
       <img src="pwa-192x192.png" alt="" className="w-20 h-20 rounded-2xl" />
-      <div className="text-2xl font-extrabold text-center">榴莲综合防治<br />Durian IPM</div>
+      <div className="text-2xl font-extrabold text-center text-slate-900">榴莲综合防治<br />Durian IPM</div>
       <div className="w-full max-w-xs space-y-3 mt-2">
-        <button onClick={() => setLang('zh')} className="w-full min-h-[56px] rounded-xl bg-emerald-700 text-white text-xl font-extrabold">中文</button>
-        <button onClick={() => setLang('en')} className="w-full min-h-[56px] rounded-xl bg-white border-2 border-stone-300 text-xl font-extrabold">English</button>
+        <button onClick={() => setLang('zh')} className="w-full min-h-[56px] rounded-xl bg-[#114b2d] text-white text-xl font-extrabold">中文</button>
+        <button onClick={() => setLang('en')} className="w-full min-h-[56px] rounded-xl bg-white border border-slate-300 text-xl font-extrabold">English</button>
       </div>
     </div>
   );
 }
 
+const SIZES = [{ v: 1, cls: 'text-xs' }, { v: 1.15, cls: 'text-sm' }, { v: 1.3, cls: 'text-base' }];
+
 function Shell() {
   const { lang, setLang, ui, chosen } = useLang();
   const route = useRoute();
   const [orchard, setOrchard] = useOrchard();
-  const [, cycleFont] = useFontScale();
+  const [scale, setScale] = useFontScale();
 
   if (!chosen) return <LanguageGate />;
 
   let screen;
   switch (route.name) {
-    case 'diagnose': screen = <Diagnose orchard={orchard} />; break;
+    case 'groups': screen = <Groups orchard={orchard} setOrchard={setOrchard} />; break;
     case 'group': screen = <GroupPage id={route.id} orchard={orchard} setOrchard={setOrchard} />; break;
     case 'chem': screen = route.id ? <ChemicalDetail id={route.id} /> : <ChemicalList key="all" />; break;
     case 'organic': screen = <ChemicalList key="organic" initialKind="organic" />; break;
     case 'rotate': screen = <Rotate pestId={route.id} />; break;
     case 'learn': screen = route.id ? <Lesson id={route.id} /> : <LearnList />; break;
-    default: screen = <Home orchard={orchard} setOrchard={setOrchard} />;
+    default: screen = <Diagnose orchard={orchard} setOrchard={setOrchard} />;
   }
 
   return (
-    <div className="min-h-screen bg-stone-50 text-stone-900">
-      <header className="sticky top-0 z-40 bg-emerald-800 text-white safe-top shadow">
-        <div className="max-w-2xl mx-auto px-4 h-14 flex items-center gap-2">
-          <a href={href('')} className="flex items-center gap-2 min-w-0 flex-1">
-            <img src="pwa-192x192.png" alt="" className="w-8 h-8 rounded-lg" />
-            <span className="font-extrabold text-[17px] truncate">{ui('app.title')}</span>
-          </a>
-          <button onClick={cycleFont} className="min-h-[40px] min-w-[44px] rounded-lg bg-white/10 font-extrabold" aria-label={ui('app.textSize')}>Aa</button>
-          <button onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')} className="min-h-[40px] min-w-[44px] rounded-lg bg-white/10 font-extrabold" aria-label="Language">
-            {lang === 'zh' ? 'EN' : '中'}
-          </button>
-        </div>
-      </header>
-
-      <main className="max-w-2xl mx-auto px-4 pt-4 pb-28">{screen}</main>
-
-      <nav className="fixed bottom-0 inset-x-0 z-40 bg-white border-t border-stone-200" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
-        <div className="max-w-2xl mx-auto grid grid-cols-4">
-          {NAV.map(n => {
-            const on = n.match.includes(route.name);
-            return (
-              <a key={n.id} href={href(n.path)} aria-current={on ? 'page' : undefined}
-                className={`flex flex-col items-center justify-center gap-0.5 h-[64px] text-[12px] font-bold ${on ? 'text-emerald-800' : 'text-stone-500'}`}>
-                <span className={`px-4 py-1 rounded-full ${on ? 'bg-emerald-100' : ''}`}><Icon name={n.icon} className="w-6 h-6" /></span>
-                {ui(`nav.${n.id}`)}
-              </a>
-            );
-          })}
-        </div>
-      </nav>
+    <div className="min-h-screen bg-[#fcfbf7] text-slate-800">
+      <div className="sticky top-0 z-40">
+        <header className="bg-[#f4f2ea] border-b border-slate-300 safe-top">
+          <div className="max-w-2xl mx-auto px-4 py-2.5 flex items-center gap-2">
+            <a href={href('')} className="flex items-center gap-2.5 min-w-0 flex-1">
+              <span className="w-9 h-9 bg-[#114b2d] rounded-xl flex items-center justify-center text-white shadow-sm shrink-0">
+                <Icon name="leaf" className="w-5 h-5" />
+              </span>
+              <span className="font-extrabold text-[16px] text-slate-900 truncate">{ui('app.title')}</span>
+            </a>
+            <div className="flex items-center h-10 bg-white border border-slate-300 rounded-xl shadow-sm overflow-hidden shrink-0" role="group" aria-label={ui('app.textSize')}>
+              {SIZES.map(s => (
+                <button key={s.v} onClick={() => setScale(s.v)} aria-pressed={scale === s.v}
+                  className={`h-full w-8 font-extrabold ${s.cls} ${scale === s.v ? 'bg-[#114b2d] text-white' : 'text-slate-600'}`}>A</button>
+              ))}
+            </div>
+            <button onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')}
+              className="h-10 px-3 rounded-xl bg-white border border-slate-300 shadow-sm text-sm font-bold text-slate-700 shrink-0">
+              {lang === 'zh' ? 'EN' : '中文'}
+            </button>
+          </div>
+        </header>
+        <nav className="bg-white border-b border-slate-200">
+          <div className="max-w-2xl mx-auto px-2 grid grid-cols-4">
+            {TABS.map(tb => {
+              const on = tb.match.includes(route.name);
+              return (
+                <a key={tb.id} href={href(tb.path)} aria-current={on ? 'page' : undefined}
+                  className={`flex items-center justify-center gap-1.5 py-3 text-[15px] font-bold border-b-2 ${on ? 'text-[#114b2d] border-[#114b2d]' : 'text-slate-400 border-transparent'}`}>
+                  <Icon name={tb.icon} className="w-4 h-4" />{ui(`nav.${tb.id}`)}
+                </a>
+              );
+            })}
+          </div>
+        </nav>
+      </div>
+      <main className="max-w-2xl mx-auto px-4 pt-4" style={{ paddingBottom: 'calc(2.5rem + env(safe-area-inset-bottom))' }}>{screen}</main>
     </div>
   );
 }

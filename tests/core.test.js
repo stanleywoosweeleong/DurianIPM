@@ -66,7 +66,7 @@ test('every catalogued pest is mapped to a group', () => {
 test('classic cases diagnose correctly', () => {
   const top = a => diagnose(a)[0]?.group.id;
   assert.equal(top({ signs: ['ooze'], culprits: ['nothing'] }), 'oomycete');
-  assert.equal(top({ signs: ['curl', 'sticky'], culprits: ['soft-cluster'] }), 'phloem-suckers');
+  assert.equal(top({ signs: ['curl-down', 'sticky'], culprits: ['soft-cluster'] }), 'phloem-suckers');
   assert.equal(top({ signs: ['stipple', 'web-fine'], culprits: ['mite-dots'] }), 'mites');
   assert.equal(top({ signs: ['fruit-frass'], culprits: ['caterpillar'] }), 'fruit-borers');
   assert.equal(top({ signs: ['white-wax', 'ant-trail'], culprits: ['waxy-fixed'] }), 'scale-mealybug');

@@ -19,6 +19,5 @@ export function useFontScale() {
     document.documentElement.style.fontSize = `${scale * 100}%`;
     try { localStorage.setItem(FS_KEY, String(scale)); } catch { /* ignore */ }
   }, [scale]);
-  const cycle = () => setScale(s => (s >= 1.3 ? 1 : Math.round((s + 0.15) * 100) / 100));
-  return [scale, cycle];
+  return [scale, setScale];
 }

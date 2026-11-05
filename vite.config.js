@@ -32,7 +32,18 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2}'],
-        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024
+        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
+        // Reference photos: keep every Wikimedia image the farmer has seen, so
+        // they still show in the orchard with no signal.
+        runtimeCaching: [{
+          urlPattern: /^https:\/\/upload\.wikimedia\.org\//,
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'wikimedia-photos',
+            expiration: { maxEntries: 500, maxAgeSeconds: 60 * 24 * 60 * 60 },
+            cacheableResponse: { statuses: [0, 200] },
+          },
+        }],
       }
     })
   ]

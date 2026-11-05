@@ -38,7 +38,7 @@ export function KillsBadges({ stages }) {
   if (!stages?.length) return null;
   return (
     <div className="flex flex-wrap items-center gap-1.5">
-      <span className="text-[13px] font-bold text-stone-500">{ui('stage.kills')}</span>
+      <span className="text-[13px] font-bold text-slate-500">{ui('stage.kills')}</span>
       {['egg', 'young', 'adult'].map(s => (
         <Badge key={s} tone={stages.includes(s) ? 'blue' : 'grey'} className={stages.includes(s) ? '' : 'line-through opacity-60'}>{t(STAGE_LABEL[s])}</Badge>
       ))}

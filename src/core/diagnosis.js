@@ -18,7 +18,11 @@ export const PARTS = [
 // Each sign: which parts it applies to, and evidence weights per group.
 export const SIGNS = [
   // ─ leaves
-  { id: 'curl', parts: ['leaf'], label: { en: 'New leaves curled, twisted or cupped', zh: '新叶卷曲、扭曲或呈杯状' }, w: { 'phloem-suckers': 3, mites: 2, thrips: 1 } },
+  // Leaf-curl direction is a classic scouting clue (drawings from the original app):
+  // DOWN = feeding on the underside; UP = damage to the margins / upper surface.
+  { id: 'curl-down', parts: ['leaf'], art: 'downward_curl', label: { en: 'Leaves curl DOWN like a tent — flip them: pests underneath', zh: '叶片向下卷如帐篷——翻开看：害虫在叶背' }, w: { 'phloem-suckers': 4, mites: 2 } },
+  { id: 'curl-up', parts: ['leaf'], art: 'upward_curl', label: { en: 'Leaves curl UP like a boat, edges brown and crispy', zh: '叶片向上卷如小船，叶缘焦褐' }, w: { thrips: 3, 'phloem-suckers': 2, mites: 2 } },
+  { id: 'twisted', parts: ['leaf'], label: { en: 'New leaves twisted or deformed', zh: '新叶扭曲或畸形' }, w: { 'phloem-suckers': 2, mites: 2, thrips: 2 } },
   { id: 'sticky', parts: ['leaf', 'fruit', 'flower'], label: { en: 'Sticky shiny surface or black sooty coating', zh: '表面黏稠发亮或覆盖黑色煤烟' }, w: { 'phloem-suckers': 3, 'scale-mealybug': 3, 'ants-wasps': 1 } },
   { id: 'stipple', parts: ['leaf'], label: { en: 'Tiny pale or yellow speckles', zh: '细小的灰白或黄色斑点' }, w: { mites: 3, 'phloem-suckers': 1, thrips: 1 } },
   { id: 'silver', parts: ['leaf', 'flower'], label: { en: 'Silvery or bronze scarring', zh: '银白色或古铜色疤痕' }, w: { thrips: 3, mites: 2 } },

@@ -59,10 +59,10 @@ export function ChemicalList({ initialKind = 'all' }) {
 
   return (
     <div>
-      <h1 className="text-2xl font-extrabold">{kind === 'organic' ? ui('chem.organicTitle') : ui('chem.title')}</h1>
-      <p className="text-[15px] text-stone-600 leading-snug">{kind === 'organic' ? ui('chem.organicHint') : ui('chem.hint')}</p>
+      <h1 className="text-xl font-extrabold text-slate-900">{kind === 'organic' ? ui('chem.organicTitle') : ui('chem.title')}</h1>
+      <p className="text-[15px] text-slate-600 leading-snug">{kind === 'organic' ? ui('chem.organicHint') : ui('chem.hint')}</p>
       <input value={q} onChange={e => setQ(e.target.value)} placeholder={ui('chem.search')} autoComplete="off"
-        className="mt-3 w-full min-h-[52px] rounded-xl border-2 border-stone-300 px-3 bg-white focus:border-emerald-600 outline-none" />
+        className="mt-3 w-full min-h-[52px] rounded-xl border border-slate-300 px-3 bg-white focus:border-[#114b2d] outline-none" />
       <div className="flex gap-2 mt-3 overflow-x-auto pb-1 -mx-1 px-1">
         {KINDS.map(k => <Chip key={k} on={kind === k} onClick={() => setKind(k)} className="whitespace-nowrap">{t(KIND_LABEL[k])}</Chip>)}
       </div>
@@ -73,7 +73,7 @@ export function ChemicalList({ initialKind = 'all' }) {
         {!removed && list.length === 0 && <Callout tone="grey" icon="search">{ui('chem.none')}</Callout>}
         {list.map(c => <ChemRow key={c.id} c={c} />)}
       </div>
-      <p className="mt-4 text-[13px] text-stone-500">{ui('chem.legal')} {CHEMICALS.length} {ui('chem.count')} · {LAST_REVIEWED}</p>
+      <p className="mt-4 text-[13px] text-slate-500">{ui('chem.legal')} {CHEMICALS.length} {ui('chem.count')} · {LAST_REVIEWED}</p>
     </div>
   );
 }
@@ -82,9 +82,9 @@ function ChemRow({ c }) {
   const { t, lang } = useLang();
   const info = moaInfo(c.moa);
   return (
-    <a href={href(`chem/${c.id}`)} className="flex items-center gap-3 p-3 rounded-xl bg-white border border-stone-200 active:bg-stone-50">
+    <a href={href(`chem/${c.id}`)} className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 active:bg-slate-50">
       <div className="min-w-0 flex-1">
-        <div className="font-extrabold text-[16px] leading-tight">{c.name.en} <span className="font-bold text-stone-600">{c.name.zh !== c.name.en ? c.name.zh : ''}</span></div>
+        <div className="font-extrabold text-[16px] leading-tight">{c.name.en} <span className="font-bold text-slate-600">{c.name.zh !== c.name.en ? c.name.zh : ''}</span></div>
         <div className="flex flex-wrap gap-1.5 mt-1">
           <Badge tone="green">{moaCode(info) || t(info.name)}</Badge>
           {c.organic && <Badge tone="lime"><Icon name="leaf" className="w-3.5 h-3.5" /> {t({ en: 'Organic', zh: '有机' })}</Badge>}
@@ -93,7 +93,7 @@ function ChemRow({ c }) {
           {(c.tox === 'Ia' || c.tox === 'Ib') && <Badge tone="red">WHO {c.tox}</Badge>}
         </div>
       </div>
-      <Icon name="chevron" className="w-5 h-5 text-stone-400" />
+      <Icon name="chevron" className="w-5 h-5 text-slate-400" />
     </a>
   );
 }
@@ -117,8 +117,8 @@ export function ChemicalDetail({ id }) {
   return (
     <div>
       <BackBar />
-      <h1 className="text-2xl font-extrabold leading-tight">{c.name.en}</h1>
-      {c.name.zh !== c.name.en && <div className="text-xl font-bold text-stone-700">{c.name.zh}</div>}
+      <h1 className="text-xl font-extrabold leading-tight text-slate-900">{c.name.en}</h1>
+      {c.name.zh !== c.name.en && <div className="text-xl font-bold text-slate-700">{c.name.zh}</div>}
       <div className="flex flex-wrap gap-1.5 mt-2">
         <Badge tone="green">{moaCode(info) || t(info.name)}</Badge>
         <Badge>{t(info.name)}</Badge>
@@ -143,7 +143,7 @@ export function ChemicalDetail({ id }) {
         <Section title={ui('chem.usedFor')}>
           <div className="flex flex-wrap gap-2">
             {groups.map(g => (
-              <a key={g.id} href={href(`group/${g.id}`)} className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white border border-stone-300 font-bold text-[15px]">
+              <a key={g.id} href={href(`group/${g.id}`)} className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white border border-slate-300 font-bold text-[15px]">
                 <GroupArt id={g.id} className="w-6 h-6" /> {t(g.name)}
               </a>
             ))}
@@ -153,8 +153,8 @@ export function ChemicalDetail({ id }) {
 
       {(info.detail || info.note) && (
         <Fold title={ui('chem.how')}>
-          {info.detail && <p className="text-[15px] leading-snug text-stone-700">{t(info.detail)}</p>}
-          {info.note && <p className="text-[15px] leading-snug text-emerald-900 mt-2">{t(info.note)}</p>}
+          {info.detail && <p className="text-[15px] leading-snug text-slate-700">{t(info.detail)}</p>}
+          {info.note && <p className="text-[15px] leading-snug text-[#114b2d] mt-2">{t(info.note)}</p>}
         </Fold>
       )}
 
@@ -174,7 +174,7 @@ export function ChemicalDetail({ id }) {
           {info.crossRes && <p className="text-[15px] leading-snug">{t(info.crossRes)}</p>}
           {Object.keys(c.risk).length > 0 && (
             <div className="mt-3 space-y-1.5">
-              <div className="text-[13px] font-bold text-stone-500 uppercase tracking-wide">{ui('chem.resistanceBy')}</div>
+              <div className="text-[13px] font-bold text-slate-500 uppercase tracking-wide">{ui('chem.resistanceBy')}</div>
               {Object.entries(c.risk).map(([p, r]) => {
                 const pest = CHART_PESTS.find(x => x.id === p);
                 return (
@@ -183,7 +183,7 @@ export function ChemicalDetail({ id }) {
                       <span className="font-bold text-[15px]">{lang === 'zh' ? pest.zh : pest.en}</span>
                       <Badge tone={RISK_TONE[r]}>{L[`risk_${r}`]}</Badge>
                     </div>
-                    {c.notes[p] && <p className="text-[13px] text-stone-600 leading-snug">{L[`note_${c.notes[p]}`]}</p>}
+                    {c.notes[p] && <p className="text-[13px] text-slate-600 leading-snug">{L[`note_${c.notes[p]}`]}</p>}
                   </div>
                 );
               })}
@@ -191,9 +191,9 @@ export function ChemicalDetail({ id }) {
           )}
           {siblings.length > 0 && (
             <div className="mt-3">
-              <div className="text-[13px] font-bold text-stone-500 uppercase tracking-wide mb-1">{ui('chem.sameGroup')}</div>
+              <div className="text-[13px] font-bold text-slate-500 uppercase tracking-wide mb-1">{ui('chem.sameGroup')}</div>
               <div className="flex flex-wrap gap-1.5">
-                {siblings.map(x => <a key={x.id} href={href(`chem/${x.id}`)} className="px-2.5 py-1.5 rounded-lg border border-stone-300 bg-white text-[14px] font-bold">{t(x.name)}</a>)}
+                {siblings.map(x => <a key={x.id} href={href(`chem/${x.id}`)} className="px-2.5 py-1.5 rounded-lg border border-slate-300 bg-white text-[14px] font-bold">{t(x.name)}</a>)}
               </div>
             </div>
           )}
@@ -202,17 +202,17 @@ export function ChemicalDetail({ id }) {
 
       <Fold title={ui('chem.lookups')}>
         <div className="space-y-2">
-          <a href={mrlURL} onClick={e => openExternal(e, mrlURL)} className="flex items-center gap-2 p-3 rounded-xl bg-stone-50 border border-stone-300 font-bold text-emerald-900">
+          <a href={mrlURL} onClick={e => openExternal(e, mrlURL)} className="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-300 font-bold text-[#114b2d]">
             <Icon name="link" /> {ui('chem.mrl')}
           </a>
-          <a href={dt50URL} onClick={e => openExternal(e, dt50URL)} className="flex items-center gap-2 p-3 rounded-xl bg-stone-50 border border-stone-300 font-bold text-emerald-900">
+          <a href={dt50URL} onClick={e => openExternal(e, dt50URL)} className="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-300 font-bold text-[#114b2d]">
             <Icon name="link" /> {ui('chem.dt50')}
           </a>
-          <p className="text-[13px] text-stone-500 leading-snug">{ui('chem.mrlNote')}</p>
+          <p className="text-[13px] text-slate-500 leading-snug">{ui('chem.mrlNote')}</p>
         </div>
       </Fold>
 
-      <p className="mt-6 text-[13px] text-stone-500 leading-snug">{ui('chem.legal')}</p>
+      <p className="mt-6 text-[13px] text-slate-500 leading-snug">{ui('chem.legal')}</p>
     </div>
   );
 }
@@ -220,7 +220,7 @@ export function ChemicalDetail({ id }) {
 function Row({ label, children }) {
   return (
     <div>
-      <div className="text-[13px] font-bold text-stone-500 uppercase tracking-wide">{label}</div>
+      <div className="text-[13px] font-bold text-slate-500 uppercase tracking-wide">{label}</div>
       <div className="text-[15px] leading-snug">{children}</div>
     </div>
   );
