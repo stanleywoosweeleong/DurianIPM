@@ -929,7 +929,7 @@ export const GROUPS = [
       { moa: 'FRAC 11', fit: 'best', why: { en: 'Azoxystrobin: the usual field choice as a preventive, often premixed with difenoconazole. Weak in lab-dish tests (typical for this group) — protect before infection. Max 2 sprays in a row.', zh: '嘧菌酯：田间常用的预防药剂，常与苯醚甲环唑复配。培养皿试验中效果较弱（此类药剂的常见情况）——应在侵染前保护。连续不超过2次。' } },
       { moa: 'FRAC 20', fit: 'good', why: { en: 'Pencycuron is made specifically for Rhizoctonia and is strong in lab tests.', zh: '戊菌隆专门防治丝核菌，室内试验效果强。' } },
       { moa: 'BIO-FUN', fit: 'good', why: { en: 'Trichoderma and other antagonist fungi: in a durian leaf assay an antagonist still protected leaves at day 15, when copper-treated leaves were fully infected. Best in nurseries and leaf litter.', zh: '木霉菌等拮抗真菌：榴莲叶片试验中，第15天时拮抗菌仍能保护叶片，而铜剂处理的叶片已全部感染。苗圃和落叶层中效果最好。' } },
-      { moa: 'FRAC 26', fit: 'limited', why: { en: 'Validamycin targets Rhizoctonia, but the evidence is from rice sheath blight, not durian.', zh: '井冈霉素针对丝核菌，但证据来自水稻纹枯病，而非榴莲。' } },
+      { moa: 'FRAC U18', fit: 'limited', why: { en: 'Validamycin targets Rhizoctonia, but the evidence is from rice sheath blight, not durian.', zh: '井冈霉素针对丝核菌，但证据来自水稻纹枯病，而非榴莲。' } },
       { moa: 'FRAC M01', fit: 'limited', why: { en: 'Copper protects healthy leaves but cannot stop an established blight.', zh: '铜剂可保护健康叶片，但无法控制已发生的叶枯。' } },
     ],
     avoid: [
