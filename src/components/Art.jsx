@@ -163,6 +163,7 @@ export const EXTRA_GLYPHS = {
 
 const GROUP_ART = {
   'phloem-suckers': { pest: 'psyllid' },
+  fusarium: { extra: 'trunk' },
   leafhoppers: { pest: 'leafhopper' },
   'scale-mealybug': { pest: 'mealybug' },
   thrips: { pest: 'thrips' },

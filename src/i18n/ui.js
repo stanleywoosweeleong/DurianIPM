@@ -67,6 +67,7 @@ export const UI_STRINGS = {
     somethingElse: s('Something else…', '其他症状…'),
     pests: s('Pests', '害虫'),
     diseases: s('Diseases (fungi & bacteria)', '病害（真菌与细菌）'),
+    notDisease: s('Not a disease — do not spray: gum oozing from unbroken bark; sawdust or frass (that is a borer); moss or lichen with healthy bark underneath; a clean straight-edged wound from a tool. Scrape the bark: healthy green-white tissue underneath rules out trunk disease.', '这些不是病——不要喷药：树皮完好却流胶；有木屑或虫粪（那是蛀虫）；苔藓地衣，刮开底下是好皮；边缘平直的机械伤。刮开树皮：底下是健康的青白色组织，就排除了树干病害。'),
     pickOne: s('Which one looks like your tree? Tap it for the best treatment.', '哪一个像你的树？点击查看最佳防治方法。'),
     notSure: s('Not sure? Describe what you see →', '不确定？描述你看到的症状 →'),
     bestFirst: s('Most effective first', '效果最好的排前面'),

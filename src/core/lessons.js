@@ -81,6 +81,7 @@ export const LESSONS = [
         '• Hirsutella thompsonii (fungus that kills mites): kills mites within days, but it barely grows below 100% humidity, so field results are mixed. Do not rely on it in a dry spell.',
         '• Purpureocillium lilacinum (fungus that attacks nematode eggs): root-zone product; trials on vegetables show it reduces root-knot nematodes. Untested on durian.',
         '• "EM" (effective microorganisms) mixes: may help compost and soil, but there is little evidence they control any durian pest or disease. Do not count them as a treatment.',
+        '• Fungicides can kill your Trichoderma. In a lab test on another crop, every systemic fungicide tried stopped Trichoderma completely except azoxystrobin. Keep Trichoderma and fungicides apart in time — never in one tank, and not on the same cut.',
         'Rule of thumb: soil microbes (Trichoderma, Bacillus, Pseudomonas, Purpureocillium) go in with organic matter; insect- and mite-killing fungi go on the leaves in the evening.',
       ],
       zh: [
@@ -92,6 +93,7 @@ export const LESSONS = [
         '• 汤普森被毛孢（杀螨真菌）：几天内就能杀死螨，但湿度低于100%时几乎无法生长，所以田间效果参差不齐。干旱期不要依赖它。',
         '• 淡紫紫孢菌（攻击线虫卵的真菌）：根区产品；蔬菜试验显示可减少根结线虫。榴莲上未经试验。',
         '• “EM”（有效微生物群）：可能有助于堆肥和土壤，但几乎没有证据表明它能防治榴莲的任何病虫害。不要把它当作治疗手段。',
+        '• 杀菌剂会杀死你的木霉。在另一种作物的实验室试验中，除嘧菌酯外，所有试过的内吸杀菌剂都完全抑制了木霉。木霉和杀菌剂要错开时间使用——绝不同桶，也不要涂在同一切口上。',
         '经验法则：土壤微生物（木霉、芽孢杆菌、假单胞菌、紫孢菌）与有机质一起施用；杀虫杀螨真菌在傍晚喷到叶片上。',
       ],
     },
@@ -101,6 +103,7 @@ export const LESSONS = [
       { t: 'Review (Planta 2020) — Bacillus lipopeptides (surfactin, iturin, fengycin): direct antifungal action and induced systemic resistance', url: 'https://link.springer.com/article/10.1007/s00425-020-03357-7', scope: 'general', supports: 'Bacillus lipopeptides break fungal membranes and induce plant resistance' },
       { t: 'Bakker, Pieterse & van Loon (2007) Phytopathology — Induced systemic resistance by fluorescent Pseudomonas', url: 'https://www.apsnet.org/publications/phytopathology/2007/February/Pages/97_2_239.aspx', scope: 'general', supports: 'Pseudomonas: iron competition (siderophores) and induced systemic resistance' },
       { t: 'Gerson et al. (1979) Hirsutella thompsonii, a fungal pathogen of mites. II. Ann. Appl. Biol. 91:29–40', url: 'https://cris.huji.ac.il/en/publications/hirsutella-thompsoniu-a-fungal-pathogen-of-mites-ii-hostpathogen-/', scope: 'other', supports: 'kills most mites by day 2; sporulates very poorly below 100% humidity' },
+      { t: 'J. Biological Control — Compatibility of Trichoderma asperellum with fungicides (chickpea): only azoxystrobin compatible; other systemics 100% inhibition', url: 'https://informaticsjournals.com/index.php/jbc/article/view/32435', scope: 'other', supports: 'most systemic fungicides kill Trichoderma; azoxystrobin the exception' },
       { t: 'Braz. J. Biol. — Purpureocillium lilacinum against root-knot nematodes in tomato', url: 'https://scielo.br/j/bjb/a/GNX5mWgysYcyp8hTdjSXN4t', scope: 'other', supports: 'P. lilacinum reduced root-knot nematodes in greenhouse tomato (a chemical nematicide did better); field trials still needed' },
     ],
   },

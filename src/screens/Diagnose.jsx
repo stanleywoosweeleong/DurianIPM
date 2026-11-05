@@ -141,6 +141,7 @@ export default function Diagnose({ orchard, setOrchard }) {
           <h1 className="text-xl font-extrabold text-slate-900">{t(PARTS.find(p => p.id === part).name)}</h1>
         </div>
         <p className="text-[0.875rem] text-slate-500 mb-2">{ui('diag.pickOne')}</p>
+        {part === 'trunk' && <div className="mb-3 rounded-xl bg-amber-50 border border-amber-200 px-3 py-2 text-[0.875rem] leading-snug text-amber-950">{ui('diag.notDisease')}</div>}
         {/* Pests together first, then fungal/bacterial diseases together. */}
         {[['pests', (PART_PESTS[part] || []).filter(([gid]) => groupById(gid).kingdom !== 'disease')],
           ['diseases', (PART_PESTS[part] || []).filter(([gid]) => groupById(gid).kingdom === 'disease')]]
