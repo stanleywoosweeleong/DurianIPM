@@ -27,5 +27,5 @@ export const SPRAY_WHERE = {
   rhizoctonia: s('Young flush and seedlings, and the lower canopy where leaves stay wet.', '嫩梢和幼苗，以及叶片长期潮湿的下层树冠。'),
   'root-fungi': s('Dig a trench to cut root contact with sick trees, then drench deep around the collar and main roots.', '挖隔离沟切断与病树的根系接触，然后在根颈和主根周围深层灌根。'),
   bacterial: s('The canopy, focusing on spotted leaves.', '树冠，重点喷病斑叶片。'),
-  epiphytes: s('Scrape and wash the trunk; no spray on the leaves.', '刮除并冲洗树干；不喷叶片。'),
+  epiphytes: s('Copper wash on very heavy algal patches only — do not scrape or jet-wash the bark; no spray on the leaves.', '只在藻类非常严重处用铜剂清洗——不要刮或高压冲洗树皮；不喷叶片。'),
 };

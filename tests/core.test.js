@@ -6,7 +6,7 @@ import { REMOVED_MY, CHART_ROWS, EU_BANNED, BEE_TAGS, TOX_WHO } from '../src/cor
 import { SIGNS, CULPRITS, PARTS, diagnose } from '../src/core/diagnosis.js';
 import { recommend } from '../src/core/recommend.js';
 import { rotationFor, groupsForChartPest, CHART_FOR_GROUP } from '../src/core/rotation.js';
-import { MAPPED_IDS } from '../src/core/examples.js';
+import { MAPPED_IDS, NOT_DURIAN } from '../src/core/examples.js';
 import { ALL_PESTS } from '../src/data/pests.js';
 import { LESSONS } from '../src/core/lessons.js';
 
@@ -60,7 +60,8 @@ test('diagnosis weights point at real groups', () => {
 });
 
 test('every catalogued pest is mapped to a group', () => {
-  assert.deepEqual(ALL_PESTS.filter(p => !MAPPED_IDS.has(p.id)).map(p => p.id), []);
+  assert.deepEqual(ALL_PESTS.filter(p => !MAPPED_IDS.has(p.id) && !NOT_DURIAN[p.id]).map(p => p.id), []);
+  for (const id of Object.keys(NOT_DURIAN)) assert.ok(!MAPPED_IDS.has(id), id + ' is set aside but still shown');
 });
 
 test('classic cases diagnose correctly', () => {
