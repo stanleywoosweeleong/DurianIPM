@@ -449,6 +449,8 @@ const BEE_TAGS = {
   // HIGH (EPA data: contact LD50 >0.0374, oral >0.0422 ug/bee). It is not
   // the bee-safe diamide; chlorantraniliprole is.
   "Cyantraniliprole": "high",
+  // Added 2026-11-05 — PPDB/IUPAC record 136: oral LD50 0.13 ug/bee, rated High.
+  "Chlorfenapyr": "high",
   "Bacillus thuringiensis": "low",
   // Added 2026-08-03 — these four were absent while PPDB rated them HIGH for
   // acute bee toxicity. Each is taken from the record's own ecotoxicity
