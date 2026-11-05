@@ -77,6 +77,7 @@ export const GROUPS = [
       { moa: 'IRAC 1B', why: { en: 'Organophosphates: high resistance, high human risk.', zh: '有机磷：抗性高，对人风险大。' } },
     ],
     refs: [
+      { t: 'Wikipedia — List of durian diseases and pests (compiled host records)', url: 'https://en.wikipedia.org/wiki/List_of_durian_diseases_and_pests', supports: 'which species are recorded on durian', scope: 'durian' },
       { t: "IRAC: Bemisia tabaci resistance overview (2020) — pyrethroid and OP resistance globally widespread; 4C unaffected by neonic P450 mechanism", url: "https://irac-online.org/documents/bemisia-tabaci-resistance-overview", supports: "Do not use IRAC 3A/1B (whiteflies widely resistant); 4A 'limited' due to resistance; sulfoxaflor (4C) works on neonic-resistant populations", scope: "general" },
       { t: "Brück et al. 2009, Crop Protection — Movento (spirotetramat) ambimobile: moves via xylem and phloem to shoots and roots", url: "https://peeref.com/works/8723114", supports: "Spirotetramat (IRAC 23) moves down AND up in the sap, reaching hidden sucking pests", scope: "general" },
       { t: "PubMed 17659536 — flonicamid inhibits aphid feeding within 0.5 h; kills by starvation", url: "https://pubmed.ncbi.nlm.nih.gov/17659536/", supports: "Flonicamid (IRAC 29) stops feeding within hours", scope: "other" },
@@ -168,6 +169,8 @@ export const GROUPS = [
       { moa: 'IRAC 3A', why: { en: 'Cannot get through wax; kills the parasitic wasps that normally control scales.', zh: '无法穿透蜡层；会杀死原本控制介壳虫的寄生蜂。' } },
     ],
     refs: [
+      { t: 'ScaleNet — Exallomochlus hispidus: host Durio zibethinus, recorded in Malaysia', url: 'https://scalenet.info/catalogue/Exallomochlus%20hispidus/', supports: 'durian mealybug host record', scope: 'durian' },
+      { t: 'ScaleNet — Asterolecanium ungulatum (Asterolecaniidae, pit scales): host Durio zibethinus', url: 'https://scalenet.info/catalogue/Asterolecanium%20ungulatum/', supports: 'durian pit scale is a pit scale, not an armoured scale', scope: 'durian' },
       { t: "Anutrakunchai & Thongkamngam 2025, IJAT — indigenous B. bassiana killed up to 97% of Planococcus minor nymphs on durian fruit; wax limits sprays", url: "https://li04.tci-thaijo.org/index.php/IJAT/article/download/4310/187", supports: "Beauveria bassiana for durian mealybug; ants spread mealybugs; chemicals may not penetrate mealybug wax", scope: "durian" },
       { t: "UC IPM Pest Notes: Scales — armour/wax covers adults; time sprays to crawlers; oil controls; ant barriers; pyrethroids toxic to parasitoids", url: "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7408.html", supports: "Key biology (adults protected, crawlers exposed); control ants first; mineral oil on crawlers; do not use IRAC 3A (kills parasitic wasps, causes outbreaks)", scope: "other" },
       { t: "Daane et al., CDFA vine mealybug report (2017) — May spirotetramat (Movento) gave good control across regions; better than other spring materials", url: "https://static.cdfa.ca.gov/PiercesDisease/reports%2f2018%2fDaane%20%20Final%20Report%20CDFA%20Vine%20Mealybug%20Bioassays.pdf", supports: "best | IRAC 23 Spirotetramat systemic against mealybugs, including populations moving from trunk/roots", scope: "other" },
@@ -213,6 +216,8 @@ export const GROUPS = [
       { moa: 'IRAC 1B', why: { en: 'Old organophosphates: resistance and high hazard.', zh: '老式有机磷：有抗性且高危。' } },
     ],
     refs: [
+      { t: 'Conserve SC (spinosad) label — toxic to bees exposed during the 3 hours after treatment', url: 'https://discover.pbcgov.org:443/coextension/agriculture/PDF/LCLM/Conserve%20SC%20Insecticide%20Label.pdf', supports: 'spinosyns highly toxic to bees while wet, low risk once dry', scope: 'general' },
+      { t: 'Wikipedia — List of durian diseases and pests (compiled host records)', url: 'https://en.wikipedia.org/wiki/List_of_durian_diseases_and_pests', supports: 'which species are recorded on durian', scope: 'durian' },
       { t: "Seal et al. — chilli thrips on Scotch Bonnet pepper, St. Vincent: chlorfenapyr reduced adults and larvae most, then spinosad; chlorfenapyr moderately harmful to predatory beetles", url: "https://ageconsearch.umn.edu/record/264094", supports: "good | IRAC 13 chlorfenapyr kills chilli thrips larvae and adults; harm to predators", scope: "other" },
       { t: "PPDB/IUPAC — chlorfenapyr: honeybee oral LD50 0.13 µg/bee (High)", url: "https://sitem.herts.ac.uk/aeru/iupac/Reports/136.htm", supports: "chlorfenapyr highly toxic to bees — blocked in flowering", scope: "general" },
       { t: "UC IPM Pest Notes: Thrips — spinosad moves into tissue to reach hidden thrips; avoid pyrethroids/OPs; 2-week life cycle in warm weather", url: "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7429.html", supports: "best | IRAC 5 spinosad reaches thrips in buds; do not use IRAC 3A/1B (ineffective on most thrips, toxic to natural enemies, cause mite outbreaks); short life cycle; blue sticky traps; oil/neem as limited contact options", scope: "other" },
@@ -371,6 +376,7 @@ export const GROUPS = [
       { moa: 'IRAC 4A', why: { en: 'Neonicotinoids give only partial control of fruit-boring caterpillars (well below diamides or Bt) and are highly toxic to the bees that visit durian flowers.', zh: '新烟碱类对蛀果毛虫只有部分防效（远不及双酰胺或Bt），且对访花的蜜蜂高毒。' } },
     ],
     refs: [
+      { t: 'UPM thesis — Seasonal occurrence of the durian fruit borer, Mudaria magniplaga (Lepidoptera: Noctuidae)', url: 'https://cendekia.unisza.edu.my/neuaxis-e/Record/upm-10388/Description', supports: 'Mudaria magniplaga is the main durian fruit pest in Malaysia; it also infests flower buds', scope: 'durian' },
       { t: "Thai trial: bagging durian 6 weeks after fruit set gave 100% protection from seed borer Mudaria luteileprosa", url: "https://agris.fao.org/search/en/records/6472418353aa8c89630377f3", supports: "Bag fruit early: bagging at 6 wk prevented all damage; bagging at 8 wk was too late (2.86% vs 17.14% unbagged)", scope: "durian" },
       { t: "Integrated management of durian fruit borer Conogethes punctiferalis, Thailand 2022: spray plus spun-bonded bagging gave 100% protection", url: "https://li01.tci-thaijo.org/index.php/yru_jst/article/view/259187", supports: "Fruit bagging (with sprays) is highly effective against durian fruit borer; untreated losses 53–67%", scope: "durian" },
       { t: "An et al. 2024: C. punctiferalis larvae inside plant tissue are shielded from conventional insecticides; chlorantraniliprole widely used", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11487570", supports: "Once the larva is inside, sprays cannot reach it; chlorantraniliprole/emamectin listed as main options", scope: "other" },
@@ -491,6 +497,7 @@ export const GROUPS = [
     ],
     avoid: [],
     refs: [
+      { t: 'Indian Wood Insect Database (ICFRE) — Zeuzera coffeae: life cycle 4–5 months in the south', url: 'https://iwid.icfre.gov.in/woodsci/Insectdetails.jsp?id=2152', supports: 'life cycle about 4–5 months in warm climates; larvae push frass out of the holes', scope: 'other' },
       { t: "TNAU Agritech: red borer Zeuzera coffeae on coffee — wilting shoots, pellet-like frass, cut and burn twigs, Beauveria and braconid release", url: "https://agritech.tnau.ac.in/crop_protection/coffeepest/coffee_11.html", supports: "Scouting signs (wilting tips, pellet-like frass) and pruning/burning infested branches", scope: "other" },
       { t: "FAO Arabica coffee manual for Lao PDR — red stemborer Zeuzera coffeae: burn affected branches with borers inside", url: "https://www.fao.org/4/AE939E/ae939e0b.htm", supports: "Burn/destroy infested branches", scope: "other" },
       { t: "Biocontrol of leopard moth Zeuzera pyrina with entomopathogenic nematodes injected into galleries (Iran, IOBC-WPRS)", url: "https://iobc-wprs.org/?p=21773", supports: "Steinernema carpocapsae injected into tunnels kills cossid larvae (congener Z. pyrina, not Z. coffeae)", scope: "other" },
@@ -659,6 +666,7 @@ export const GROUPS = [
       { moa: 'IRAC 1B', why: { en: 'Organophosphates: mites are widely resistant.', zh: '有机磷：螨类普遍抗药。' } },
     ],
     refs: [
+      { t: 'Wikipedia — List of durian diseases and pests (compiled host records)', url: 'https://en.wikipedia.org/wiki/List_of_durian_diseases_and_pests', supports: 'which species are recorded on durian', scope: 'durian' },
       { t: "Szczepaniec et al. 2011, PLoS ONE — imidacloprid raised spider mite egg-laying ~40% via the plant; mites insensitive to neonics", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3104998", supports: "Do not use IRAC 4A: neonicotinoids do not kill mites and can increase their egg-laying", scope: "other" },
       { t: "UC IPM Pest Notes: Spider Mites — broad-spectrum sprays and pyrethroids trigger outbreaks; dust and water stress favour mites; water sprays, oils, sulfur", url: "https://ipm.ucanr.edu/PMG/PESTNOTES/pn7405.html", supports: "Do not use IRAC 3A (outbreaks); non-chemical steps (water spray, reduce dust, protect predatory mites); oil smothers mites; sulfur", scope: "other" },
       { t: "UC IPM Citrus: Citrus red mite — hexythiazox prevents egg hatch; bifenazate and oil least harmful to predatory mites", url: "https://ipm.ucanr.edu/agriculture/citrus/citrus-red-mite/", supports: "best | IRAC 10 hexythiazox targets eggs; good | bifenazate (20D) soft on predatory mites; IRAC 23 spirodiclofen as specific miticide", scope: "other" },
