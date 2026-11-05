@@ -35,11 +35,12 @@ export function ChemChip({ c }) {
   );
 }
 
-export default function GroupPage({ id, orchard, setOrchard }) {
+// `intro` / `onBack` / `initialPestStage` let the diagnosis show its result AS this page (no extra step).
+export default function GroupPage({ id, orchard, setOrchard, intro = null, onBack, initialPestStage = null }) {
   const { t, ui, lang } = useLang();
   const g = groupById(id);
   const [showAll, setShowAll] = useState(false);
-  const [pestStage, setPestStage] = useState(null);
+  const [pestStage, setPestStage] = useState(initialPestStage);
 
   const track = orchard.track === 'organic' ? 'organic' : 'all';
   const rec = useMemo(() => g && recommend(g, { stage: orchard.stage, recentMoa: orchard.recentMoa, track, pestStage }), [g, orchard.stage, orchard.recentMoa, track, pestStage]);
@@ -79,7 +80,8 @@ export default function GroupPage({ id, orchard, setOrchard }) {
 
   return (
     <div>
-      <BackBar />
+      <BackBar onBack={onBack} />
+      {intro}
       <WikiCover photo={coverFor(g.id)} lang={lang} className="h-48 mb-3" />
       <div className="flex items-center gap-3">
         <div className="w-11 h-11 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-700 shrink-0">

@@ -79,11 +79,11 @@ export function Callout({ tone = 'amber', icon = 'warn', title, children }) {
   );
 }
 
-export function BackBar({ title }) {
+export function BackBar({ title, onBack }) {
   const { ui } = useLang();
   return (
     <div className="flex items-center gap-2 -mx-1 mb-2">
-      <button onClick={back} className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-xl active:bg-slate-200" aria-label={ui('common.back')}>
+      <button onClick={onBack || back} className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-xl active:bg-slate-200" aria-label={ui('common.back')}>
         <Icon name="back" className="w-6 h-6" />
       </button>
       {title && <h1 className="text-xl font-extrabold text-slate-900 leading-tight truncate">{title}</h1>}
