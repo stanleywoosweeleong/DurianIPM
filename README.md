@@ -23,8 +23,8 @@ questions (where, what you see, what creature), and gets sound advice.
 
 ## Screens
 
-- **Common durian problems** (top of the opening screen): eight one-tap shortcuts straight to "Best fit": Phytophthora,
-  fruit borer, psyllids & aphids, mealybugs & scales, thrips, mites, stem borers and Rhizoctonia. Edit `COMMON` in
+- **Common durian problems** (top of the opening screen): nine one-tap shortcuts straight to "Best fit": Phytophthora,
+  fruit borer, leafhoppers (青蚊), psyllids & aphids, mealybugs & scales, thrips, mites, stem borers and Rhizoctonia. Edit `COMMON` in
   `src/screens/Diagnose.jsx` to change them.
 - **Diagnose by part:** tap where the problem is, and the pests and diseases of that part are listed, each with what to
   look for (`PART_PESTS`). One tap opens its advice. "Not sure? Describe what you see" opens the step-by-step
@@ -37,7 +37,11 @@ questions (where, what you see, what creature), and gets sound advice.
 - **Group page**: what it is, why it matters for control, how to confirm it, action threshold, non-chemical steps first.
   Then the spray options ranked on effectiveness, with stage/bee/harvest/resistance warnings and a 3-spray
   rotation. Organic products are marked 🌿 (organic status lives on each active, `ORGANIC_IDS` in
-  `src/core/chemDb.js`), with an optional "Organic only" switch. A list of what **not** to use follows.
+  `src/core/chemDb.js`), with an optional "Organic only" switch. A **Don't use** card sits open right under the suggested rotation.
+  Each page also shows **Where to spray** (`src/core/sprayWhere.js`) and, where problems travel together, an
+  **Often comes with** card linking both ways (`src/core/related.js` — e.g. pinhole borers ↔ Fusarium and
+  Phytophthora). The shot-hole borer page has a 4-question **severity grade** with a plan per level
+  (`src/ui/BorerGrade.jsx`). The trunk list opens with a "not a disease — don't spray" box.
 - **Rotation, inside every pest page:** one "Last sprayed" choice drives the Best-fit ranking, the suggested
   rotation and the full IRAC table (avoid / caution — shared target / rotate to, coloured by target site). There is
   no separate Rotate tab and no second pest picker. Old `#/rotate/<pest>` links open the matching pest page.
@@ -47,7 +51,9 @@ questions (where, what you see, what creature), and gets sound advice.
   "banned" answer with legal alternatives, never "no matches".
 - **Learn**: short WhatsApp-shareable lessons (making organic products work, mouthparts, life stages, rotation,
   "same chemical, different danger" (hazard vs. dilution, using abamectin as the example),
-  pollinators, systemic vs contact, safe mixing + tank-mix order).
+  why some sprays are off-limits during flowering, systemic vs contact, safe mixing + tank-mix order, good microbes,
+  spreaders/stickers/water pH, why fipronil is often the wrong choice, and "how sure is this advice?" — which parts
+  of the app have no source). Lessons can carry their own Sources list.
 
 ## Spray advice: most effective first
 

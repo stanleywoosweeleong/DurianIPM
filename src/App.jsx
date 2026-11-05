@@ -57,9 +57,7 @@ function Shell() {
         <header className="bg-[#f4f2ea] border-b border-slate-300 safe-top">
           <div className="max-w-2xl mx-auto px-[16px] py-[10px] flex items-center gap-[8px]">
             <a href={href('')} className="flex items-center gap-[10px] min-w-0 flex-1">
-              <span className="w-[36px] h-[36px] bg-[#114b2d] rounded-xl flex items-center justify-center text-white shadow-sm shrink-0">
-                <Icon name="leaf" className="w-[20px] h-[20px]" />
-              </span>
+              <img src={`${import.meta.env.BASE_URL}favicon.svg`} alt="" width="36" height="36" className="w-[36px] h-[36px] rounded-xl shadow-sm shrink-0" />
               <span className="font-extrabold text-[17px] text-slate-900 truncate">{ui('app.title')}</span>
             </a>
             <div className="flex items-center h-[40px] bg-white border border-slate-300 rounded-xl shadow-sm overflow-hidden shrink-0" role="group" aria-label={ui('app.textSize')}>

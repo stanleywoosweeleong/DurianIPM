@@ -14,7 +14,7 @@ export const SPRAY_WHERE = {
   'fruit-flies': s('No cover spray. Spot-spray protein bait on trunks and lower leaves around the orchard edge; collect fallen fruit.', '不全面喷药。在果园边缘的树干和下部叶片上点喷蛋白诱饵；清理落果。'),
   'trunk-borers': s('Into the fresh holes after clearing out the frass, then the bark around them.', '先清除蛀屑，再把药注入新鲜蛀孔，然后处理周围树皮。'),
   'red-branch-borer': s('Into the borehole on the branch; cut off and burn branches that are already hollow.', '注入枝条上的蛀孔；已蛀空的枝条剪下烧毁。'),
-  'shot-hole': s('The bark of the attacked trunk and branches, where the pinholes are — after cutting out dead wood.', '受害树干和枝条有针孔的树皮处——先锯除枯木。'),
+  'shot-hole': s('The bark from the soil up to 2 m, plus the main forks, until it runs wet. Spray dry bark when no rain is coming — after scraping out rot and cutting dead wood.', '从土面到2米高的树皮及大枝分叉处，喷到湿润流下。在树皮干燥、不会下雨时喷——先刮除烂斑、锯掉枯木。'),
   'soil-pests': s('Soil drench at the trunk base and root zone, not the canopy.', '在树干基部和根区灌根，不喷树冠。'),
   'ants-wasps': s('Ants: trunk base and bait stations on the ground. Wasp and hornet nests: spray the nest directly at night, with protective clothing.', '蚂蚁：树干基部及地面诱饵站。胡蜂窝：夜间穿防护服直接喷蜂窝。'),
   mites: s('Leaves where the mites sit — red mites mainly on the upper surface, broad mites on shoot tips. Coverage matters more than dose.', '螨所在的叶片——红蜘蛛主要在叶面，茶黄螨在嫩梢尖。覆盖比剂量更重要。'),

@@ -65,6 +65,7 @@ const LOCAL = [
   X('spiromesifen', 'Spiromesifen', '螺甲螨酯', 'IRAC 23', 'acaricide'),
   X('sulfur', 'Sulfur (wettable)', '硫磺', 'SULFUR', 'acaricide', { aliases: ['sulphur'] }),
   X('soap', 'Insecticidal soap', '杀虫皂', 'IRAC UN', 'insecticide'),
+  X('permethrin', 'Permethrin', '氯菊酯', 'IRAC 3A', 'insecticide', { tox: 'II', bee: 'high' }),
   X('carbendazim', 'Carbendazim', '多菌灵', 'FRAC 1', 'fungicide', { caution: 'export', eu: { en: 'Not approved in the EU', zh: '欧盟未批准使用' } }),
   X('thiophanate-methyl', 'Thiophanate-methyl', '甲基硫菌灵', 'FRAC 1', 'fungicide'),
   X('hexaconazole', 'Hexaconazole', '己唑醇', 'FRAC 3', 'fungicide'),

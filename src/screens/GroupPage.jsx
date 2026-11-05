@@ -12,6 +12,7 @@ import { moaKeyFromIrac } from '../core/chemDb.js';
 import { examplesFor } from '../core/examples.js';
 import { SPRAY_WHERE } from '../core/sprayWhere.js';
 import { RELATED } from '../core/related.js';
+import { BorerGrade } from '../ui/BorerGrade.jsx';
 import { coverFor } from '../core/photos.js';
 import { STAGES } from '../core/stages.js';
 import { href } from '../hooks/useRoute.js';
@@ -116,6 +117,7 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
         <p className={SPRAY_WHERE[g.id] && g.chem.length > 0 ? 'pb-1.5' : ''}><b>{ui('diag.first')}:</b> {t(g.nonChem[0])}</p>
         {SPRAY_WHERE[g.id] && g.chem.length > 0 && <p className="pt-1.5"><b>{ui('group.sprayWhere')}:</b> {t(SPRAY_WHERE[g.id])}</p>}
       </div>
+      {g.id === 'shot-hole' && <BorerGrade />}
       {RELATED[g.id] && (
         <div className="mt-2 rounded-xl bg-amber-50 border border-amber-200 px-3 py-2">
           <div className="text-[0.875rem] font-extrabold text-amber-900">{ui('group.related')}</div>
