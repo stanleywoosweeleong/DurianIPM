@@ -17,7 +17,7 @@ const FIGURES = {
       {MIX_SEQUENCE.map(s => (
         <li key={s.step} className="flex gap-2.5 items-start">
           <span className="w-7 h-7 rounded-full bg-[#114b2d] text-white font-extrabold text-[0.875rem] flex items-center justify-center shrink-0">{s.step}</span>
-          <span className="text-[1rem] leading-snug pt-0.5">{lang === 'zh' ? s.zh : s.en}</span>
+          <span className="text-[1rem] leading-snug pt-0.5">{t(s)}</span>
         </li>
       ))}
     </ol>
@@ -68,10 +68,10 @@ export function LearnList() {
 }
 
 export function Lesson({ id }) {
-  const { t, lang, ui } = useLang();
+  const { t, tl, lang, ui } = useLang();
   const l = LESSONS.find(x => x.id === id);
   if (!l) return <div><BackBar /><p>Not found.</p></div>;
-  const body = l.body[lang] || l.body.en;
+  const body = tl(l.body);
   const share = () => {
     const text = `${t(l.title)}\n\n${body.join('\n')}\n\n— ${ui('app.title')}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank', 'noopener');

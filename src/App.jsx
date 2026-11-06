@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { LanguageProvider, useLang } from './i18n/useLang.jsx';
 import { useRoute, href } from './hooks/useRoute.js';
 import { useOrchard, useFontScale } from './hooks/useOrchard.js';
@@ -8,6 +8,8 @@ import GroupPage from './screens/GroupPage.jsx';
 import { ChemicalList, ChemicalDetail } from './screens/Chemicals.jsx';
 import { GROUP_FOR_CHART } from './core/rotation.js';
 import { LearnList, Lesson } from './screens/Learn.jsx';
+import { LangButtons, LangSheet } from './ui/ShareApp.jsx';
+import { LANG_SHORT } from './i18n/useLang.jsx';
 
 // Same family look as the Pest-MoA rotation guide: cream page, light header,
 // forest-green accent, underline tabs at the top, A/A/A text size.
@@ -16,16 +18,14 @@ const TABS = [
   { id: 'learn', icon: 'book', path: 'learn', match: ['learn', 'chem', 'organic'] },
 ];
 
+// First launch: pick a language (saved; change it later from the header button).
 function LanguageGate() {
-  const { setLang } = useLang();
   return (
     <div className="min-h-screen flex flex-col items-center justify-center gap-4 p-6 bg-[#fcfbf7]">
-      <img src="pwa-192x192.png" alt="" className="w-20 h-20 rounded-2xl" />
-      <div className="text-2xl font-extrabold text-center text-slate-900">榴莲综合防治<br />Durian IPM</div>
-      <div className="w-full max-w-xs space-y-3 mt-2">
-        <button onClick={() => setLang('zh')} className="w-full min-h-[56px] rounded-xl bg-[#114b2d] text-white text-xl font-extrabold">中文</button>
-        <button onClick={() => setLang('en')} className="w-full min-h-[56px] rounded-xl bg-white border border-slate-300 text-xl font-extrabold">English</button>
-      </div>
+      <img src={`${import.meta.env.BASE_URL}favicon.svg`} alt="" className="w-20 h-20 rounded-2xl shadow-sm" />
+      <div className="text-2xl font-extrabold text-center text-slate-900 leading-snug">榴莲综合防治<br />Durian IPM</div>
+      <div className="text-[15px] font-bold text-center text-slate-600 leading-snug">请选择语言 · Choose your language<br />Pilih bahasa anda</div>
+      <div className="w-full max-w-xs mt-1"><LangButtons /></div>
     </div>
   );
 }
@@ -33,10 +33,11 @@ function LanguageGate() {
 const SIZES = [{ v: 1, cls: 'text-[12px]' }, { v: 1.1, cls: 'text-[14px]' }, { v: 1.2, cls: 'text-[16px]' }];
 
 function Shell() {
-  const { lang, setLang, ui, chosen } = useLang();
+  const { lang, ui, chosen } = useLang();
   const route = useRoute();
   const [orchard, setOrchard] = useOrchard();
   const [scale, setScale] = useFontScale(lang);
+  const [sheet, setSheet] = useState(false);
 
   if (!chosen) return <LanguageGate />;
 
@@ -66,9 +67,10 @@ function Shell() {
                   className={`h-full w-[32px] font-extrabold ${s.cls} ${scale === s.v ? 'bg-[#114b2d] text-white' : 'text-slate-600'}`}>A</button>
               ))}
             </div>
-            <button onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')}
-              className="h-[40px] px-[12px] rounded-xl bg-white border border-slate-300 shadow-sm text-[14px] font-bold text-slate-700 shrink-0">
-              {lang === 'zh' ? 'EN' : '中文'}
+            <button onClick={() => setSheet(true)} aria-label={ui('app.language')} aria-haspopup="dialog"
+              className="h-[40px] px-[10px] rounded-xl bg-white border border-slate-300 shadow-sm text-[14px] font-bold text-slate-800 shrink-0 flex items-center gap-[4px]">
+              <svg viewBox="0 0 24 24" className="w-[16px] h-[16px] text-slate-500" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" /></svg>
+              {LANG_SHORT[lang]}
             </button>
           </div>
         </header>
@@ -86,6 +88,7 @@ function Shell() {
           </div>
         </nav>
       </div>
+      {sheet && <LangSheet onClose={() => setSheet(false)} />}
       <main className="max-w-2xl mx-auto px-4 pt-4" style={{ paddingBottom: 'calc(2.5rem + env(safe-area-inset-bottom))' }}>{screen}</main>
     </div>
   );

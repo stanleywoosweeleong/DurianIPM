@@ -2,13 +2,27 @@
 // Data content (groups, chemicals, lessons) carries its own { en, zh } fields.
 
 const s = (en, zh) => ({ en, zh });
+// Strings written after the Malay pass carry their Malay inline.
+const s3 = (en, zh, ms) => ({ en, zh, ms });
 
 export const UI_STRINGS = {
   app: {
     textSize: s('Text size', '字体大小'),
-
+    language: s3('Language', '语言', 'Bahasa'),
+    chooseLang: s3('Choose your language', '请选择语言', 'Pilih bahasa anda'),
+    changeLater: s3('You can change this later from the language button at the top.', '以后可以点顶部的语言按钮更改。', 'Anda boleh tukar kemudian melalui butang bahasa di atas.'),
+    close: s3('Close', '关闭', 'Tutup'),
     title: s('Durian IPM', '榴莲综合防治'),
     tagline: s('Identify by how it feeds. Treat with the right chemistry.', '看取食方式识别，用对药剂防治。'),
+  },
+  share: {
+    title: s3('Share this app', '分享这个应用', 'Kongsi aplikasi ini'),
+    scan: s3('Scan with the phone camera to open the app.', '用手机相机扫描即可打开应用。', 'Imbas dengan kamera telefon untuk buka aplikasi.'),
+    whatsapp: s3('Share on WhatsApp', '分享到 WhatsApp', 'Kongsi di WhatsApp'),
+    copy: s3('Copy link', '复制链接', 'Salin pautan'),
+    copied: s3('Link copied', '链接已复制', 'Pautan disalin'),
+    message: s3('Durian IPM — spotted something on your durian? Find the best fit and a spray rotation. Free, works offline:', '榴莲综合防治——榴莲树上看到什么问题？找出最合适的做法和轮换用药。免费，可离线使用：', 'Durian IPM — nampak sesuatu pada pokok durian? Cari pilihan paling sesuai dan giliran semburan. Percuma, boleh guna tanpa internet:'),
+
   },
   nav: {
     rotate: s('Rotate', '轮替'),

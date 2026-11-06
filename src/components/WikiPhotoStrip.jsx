@@ -18,8 +18,8 @@ function PhotoLightbox({ photo, lang, onClose }) {
 
   if (!photo) return null;
 
-  const closeLabel = lang === 'zh' ? '关闭' : 'Close';
-  const sourceLabel = lang === 'zh' ? '维基共享来源页 →' : 'View on Wikimedia →';
+  const closeLabel = { zh: '关闭', ms: 'Tutup' }[lang] || 'Close';
+  const sourceLabel = { zh: '维基共享来源页 →', ms: 'Lihat di Wikimedia →' }[lang] || 'View on Wikimedia →';
 
   return (
     <div

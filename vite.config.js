@@ -17,7 +17,7 @@ export default defineConfig({
         name: 'Durian IPM · 榴莲综合防治',
         short_name: 'Durian IPM',
         description:
-          '榴莲综合防治 — 看到问题，找到最合适的用药与轮换。Durian IPM: spot a problem, get the best-fit treatment and rotation.',
+          '榴莲综合防治 — 看到问题，找到最合适的用药与轮换。Durian IPM: spot a problem, get the best-fit treatment and rotation. Kenal pasti masalah, dapatkan rawatan dan giliran paling sesuai.',
         theme_color: '#059669',
         background_color: '#f0fdf4',
         display: 'standalone',

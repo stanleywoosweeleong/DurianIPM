@@ -1,9 +1,10 @@
 // Leaf-curl diagnostic drawings, carried over from the original AgriPro DIPM app.
 import React from 'react';
+import { toMs } from '../i18n/ms.js';
 
 // lang: 'en' | 'zh' — labels inside the drawing follow the app language.
 export const LeafCurlArt = ({ id, alt, lang = 'en', className = 'h-32' }) => {
-  const L = (en, zh) => (lang === 'zh' ? zh : en);
+  const L = (en, zh) => (lang === 'zh' ? zh : lang === 'ms' ? toMs(en) : en);
   if (id === 'downward_curl') {
     return (
       <div className={`relative w-full ${className} rounded-lg bg-gradient-to-b from-slate-50 to-white overflow-hidden`}>

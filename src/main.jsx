@@ -6,13 +6,13 @@ import './index.css';
 import { registerSW } from 'virtual:pwa-register';
 
 const T = {
-  update: { zh: '有新版本', en: 'New version available' },
-  updateSub: { zh: '内容已更新，点一下就能用上。', en: 'The advice has been updated. Tap to load it.' },
-  now: { zh: '更新', en: 'Update' },
-  later: { zh: '稍后', en: 'Later' },
-  offline: { zh: '已可离线使用——果园没信号也能打开。', en: 'Ready offline — opens even with no signal in the orchard.' },
+  update: { zh: '有新版本', en: 'New version available', ms: 'Versi baharu tersedia' },
+  updateSub: { zh: '内容已更新，点一下就能用上。', en: 'The advice has been updated. Tap to load it.', ms: 'Nasihat telah dikemas kini. Ketik untuk memuatkannya.' },
+  now: { zh: '更新', en: 'Update', ms: 'Kemas kini' },
+  later: { zh: '稍后', en: 'Later', ms: 'Nanti' },
+  offline: { zh: '已可离线使用——果园没信号也能打开。', en: 'Ready offline — opens even with no signal in the orchard.', ms: 'Sedia tanpa internet — boleh dibuka walaupun tiada isyarat di kebun.' },
 };
-const tr = (k) => (document.documentElement.lang.startsWith('zh') ? T[k].zh : T[k].en);
+const tr = (k) => { const l = document.documentElement.lang; return l.startsWith('zh') ? T[k].zh : l.startsWith('ms') ? T[k].ms : T[k].en; };
 
 /**
  * Update toast. The new service worker waits (registerType: 'prompt') until the
@@ -23,13 +23,24 @@ function PWAUpdateToast() {
   const [needRefresh, setNeedRefresh] = useState(false);
   const [offlineReady, setOfflineReady] = useState(false);
   const [updateSW, setUpdateSW] = useState(() => () => {});
+  // Follow the app's language: re-render when <html lang> changes.
+  const [, setHtmlLang] = useState(document.documentElement.lang);
+  useEffect(() => {
+    const mo = new MutationObserver(() => setHtmlLang(document.documentElement.lang));
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+    return () => mo.disconnect();
+  }, []);
 
   useEffect(() => {
     let timer;
     const update = registerSW({
       immediate: true,
       onNeedRefresh() { setNeedRefresh(true); },
-      onOfflineReady() { setOfflineReady(true); },
+      onOfflineReady() {
+        // Not on the first-launch language screen: the farmer has not picked a language yet.
+        let picked = true; try { picked = !!localStorage.getItem('durianipm_lang'); } catch { /* ignore */ }
+        if (picked) setOfflineReady(true);
+      },
       onRegisteredSW(_url, reg) {
         if (!reg) return;
         const check = () => { if (navigator.onLine) reg.update().catch(() => {}); };

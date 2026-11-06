@@ -19,7 +19,7 @@ const KIND_LABEL = {
   all: { en: 'All', zh: '全部' }, organic: { en: 'Organic & bio', zh: '有机与生物' }, insecticide: { en: 'Insect & mite', zh: '杀虫杀螨' },
   fungicide: { en: 'Disease', zh: '杀菌' }, bio: { en: 'Biological', zh: '生物' },
 };
-const SITE_LABEL = (lang, s) => MOA_LABELS[lang][`site_${s}`];
+const SITE_LABEL = (lmap, s) => lmap(MOA_LABELS)[`site_${s}`];
 const SITE_TONE = { neural: 'violet', respiratory: 'blue', growth: 'green', midgut: 'amber', unknown: 'grey' };
 const RISK_TONE = { low: 'green', mid: 'amber', high: 'red' };
 const BEE_TONE = { high: 'red', wet: 'amber', mod: 'amber', low: 'green' };
@@ -31,9 +31,9 @@ export function RemovedNotice({ r }) {
     <div className="rounded-2xl border-2 border-rose-500 bg-rose-50 p-4">
       <div className="flex items-center gap-2 text-rose-800">
         <Icon name="warn" className="w-6 h-6" />
-        <div className="text-lg font-extrabold">{lang === 'zh' ? r.zh : r.en} — {r.hhp ? ui('status.hhp') : ui('status.banned')}</div>
+        <div className="text-lg font-extrabold">{t(r)} — {r.hhp ? ui('status.hhp') : ui('status.banned')}</div>
       </div>
-      <p className="text-[1rem] text-rose-900 mt-2 leading-snug">{lang === 'zh' ? r.basisZh : r.basisEn}</p>
+      <p className="text-[1rem] text-rose-900 mt-2 leading-snug">{t({ en: r.basisEn, zh: r.basisZh })}</p>
       <p className="text-[0.9375rem] text-rose-900 mt-2">{ui('chem.notListed')}</p>
       {r.groups.length > 0 && (
         <>
@@ -83,7 +83,7 @@ export function ChemicalList({ initialKind = 'all' }) {
 }
 
 function ChemRow({ c }) {
-  const { t, lang } = useLang();
+  const { t, lang, lmap } = useLang();
   const info = moaInfo(c.moa);
   return (
     <a href={href(`chem/${c.id}`)} className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 active:bg-slate-50">
@@ -92,7 +92,7 @@ function ChemRow({ c }) {
         <div className="flex flex-wrap gap-1.5 mt-1">
           <Badge tone="green">{moaCode(info) || t(info.name)}</Badge>
           {c.organic && <Badge tone="lime"><Icon name="leaf" className="w-3.5 h-3.5" /> {t({ en: 'Organic', zh: '有机' })}</Badge>}
-          {c.site && <Badge tone={SITE_TONE[c.site]}>{SITE_LABEL(lang, c.site)}</Badge>}
+          {c.site && <Badge tone={SITE_TONE[c.site]}>{SITE_LABEL(lmap, c.site)}</Badge>}
           {c.bee === 'high' && <Badge tone="red"><Icon name="bee" className="w-3.5 h-3.5" /></Badge>}
           {(c.tox === 'Ia' || c.tox === 'Ib') && <Badge tone="red">WHO {c.tox}</Badge>}
         </div>
@@ -103,11 +103,11 @@ function ChemRow({ c }) {
 }
 
 export function ChemicalDetail({ id }) {
-  const { t, ui, lang } = useLang();
+  const { t, ui, lang, lmap } = useLang();
   const c = chemById(id);
   if (!c) return <div><BackBar /><p>Not found.</p></div>;
   const info = moaInfo(c.moa);
-  const L = MOA_LABELS[lang];
+  const L = lmap(MOA_LABELS);
   const groups = [...new Set([
     ...groupsForMoa(GROUPS, c.moa).map(g => g.id),
     ...c.chartPests.map(p => GROUP_FOR_CHART[p]).filter(Boolean),
@@ -126,7 +126,7 @@ export function ChemicalDetail({ id }) {
       <div className="flex flex-wrap gap-1.5 mt-2">
         <Badge tone="green">{moaCode(info) || t(info.name)}</Badge>
         <Badge>{t(info.name)}</Badge>
-        {c.site && <Badge tone={SITE_TONE[c.site]}>{SITE_LABEL(lang, c.site)}</Badge>}
+        {c.site && <Badge tone={SITE_TONE[c.site]}>{SITE_LABEL(lmap, c.site)}</Badge>}
       </div>
 
       {c.hhpNote && <div className="mt-3"><Callout tone="amber" title={ui('chem.hhpNote')}>{t(c.hhpNote)} <a href={href('learn/hazard')} className="font-extrabold underline">{ui('chem.hhpLearn')}</a></Callout></div>}
@@ -139,7 +139,7 @@ export function ChemicalDetail({ id }) {
         {c.mobility && <Badge tone="blue">{L[`mob_${c.mobility}`]}</Badge>}
         {c.translaminar && <Badge tone="blue">{L.tl}</Badge>}
         {c.twoWay && <Badge tone="blue">{L.ud}</Badge>}
-        <Badge tone={TOX_TONE[c.tox]}>WHO {c.tox === 'NL' ? TOX_LABEL[lang].NL : `${c.tox} · ${TOX_LABEL[lang][c.tox]}`}</Badge>
+        <Badge tone={TOX_TONE[c.tox]}>WHO {c.tox === 'NL' ? lmap(TOX_LABEL).NL : `${c.tox} · ${lmap(TOX_LABEL)[c.tox]}`}</Badge>
         {c.bee && BEE_LABEL[c.bee] && <Badge tone={BEE_TONE[c.bee]}><Icon name="bee" className="w-3.5 h-3.5" /> {L[`risk_${c.bee === 'mod' || c.bee === 'wet' ? 'mid' : c.bee}`] || c.bee}</Badge>}
       </div>
       <div className="mt-2"><KillsBadges stages={info.stages} /></div>
@@ -185,7 +185,7 @@ export function ChemicalDetail({ id }) {
                 return (
                   <div key={p}>
                     <div className="flex items-center justify-between gap-2">
-                      <span className="font-bold text-[0.9375rem]">{lang === 'zh' ? pest.zh : pest.en}</span>
+                      <span className="font-bold text-[0.9375rem]">{t(pest)}</span>
                       <Badge tone={RISK_TONE[r]}>{L[`risk_${r}`]}</Badge>
                     </div>
                     {c.notes[p] && cleanNote(L[`note_${c.notes[p]}`], lang) && <p className="text-[0.8125rem] text-slate-600 leading-snug">{cleanNote(L[`note_${c.notes[p]}`], lang)}</p>}

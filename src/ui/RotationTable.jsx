@@ -20,13 +20,13 @@ const RISK_TONE = { low: 'green', mid: 'amber', high: 'red' };
  * (the page IS the pest). `pests` = rotation-chart pests for this group.
  */
 export function RotationTable({ pests, last }) {
-  const { t, lang, ui } = useLang();
-  const L = MOA_LABELS[lang];
+  const { t, lang, ui, lmap } = useLang();
+  const L = lmap(MOA_LABELS);
   const [pest, setPest] = useState(pests[0]);
   const usable = useMemo(() => groupsForChartPest(pest), [pest]);
   const rot = useMemo(() => (last && usable.includes(last) ? rotationFor(pest, last) : null), [pest, last, usable]);
-  const gName = (g) => `${g} · ${GROUP_NAMES[lang][g] || ''}`;
-  const pestName = (id) => { const p = CHART_PESTS.find(x => x.id === id); return lang === 'zh' ? p.zh : p.en; };
+  const gName = (g) => `${g} · ${lmap(GROUP_NAMES)[g] || ''}`;
+  const pestName = (id) => { const p = CHART_PESTS.find(x => x.id === id); return t(p); };
 
   return (
     <div>
@@ -91,8 +91,8 @@ function GroupBlock({ grp, gName, L }) {
 }
 
 function ActiveLink({ a, tone }) {
-  const { lang } = useLang();
-  const L = MOA_LABELS[lang];
+  const { lang, lmap } = useLang();
+  const L = lmap(MOA_LABELS);
   const label = a.chem ? (lang === 'zh' && a.chem.name.zh !== a.n ? a.chem.name.zh : a.n) : a.n;
   return (
     <a href={a.chem ? href(`chem/${a.chem.id}`) : undefined}

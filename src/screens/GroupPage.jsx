@@ -43,7 +43,7 @@ export function ChemChip({ c }) {
 
 // `intro` / `onBack` / `initialPestStage` let the diagnosis show its result AS this page (no extra step).
 export default function GroupPage({ id, orchard, setOrchard, intro = null, onBack, initialPestStage = null }) {
-  const { t, ui, lang } = useLang();
+  const { t, ui, lang, lmap } = useLang();
   const g = groupById(id);
   const [pestStage, setPestStage] = useState(initialPestStage);
 
@@ -150,7 +150,7 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
                   className="block w-full max-w-full min-h-[44px] rounded-lg border border-slate-300 bg-white px-2 font-bold text-[0.9375rem]">
                   <option value="">{ui('group.lastUsedNone')}</option>
                   {chartGroups
-                    ? chartGroups.map(code => <option key={code} value={code}>{`IRAC ${code} · ${GROUP_NAMES[lang][code] || ''}`}</option>)
+                    ? chartGroups.map(code => <option key={code} value={code}>{`IRAC ${code} · ${lmap(GROUP_NAMES)[code] || ''}`}</option>)
                     : rec.options.map(o => <option key={o.moa} value={o.moa}>{moaCode(o.moaInfo) ? `${moaCode(o.moaInfo)} · ${t(o.moaInfo.name)}` : t(o.moaInfo.name)}</option>)}
                 </select>
               </label>
