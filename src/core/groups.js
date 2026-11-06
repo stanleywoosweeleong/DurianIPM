@@ -815,9 +815,9 @@ export const GROUPS = [
     damagingStage: { en: 'Spores in wet weather; grows inside wood', zh: '潮湿天气产孢；在木质部内生长' },
     why: { en: 'True fungi that invade wood through wounds. Cutting out infected wood is the main cure; fungicides protect cuts and stop spread.', zh: '通过伤口侵入木质部的真菌。切除感病木质部是主要治疗手段；杀菌剂用于保护切口并阻止扩散。' },
     scout: { en: 'Twigs dying back from the tip, sunken bark with pinpoint black dots (the fungus fruiting), pink crust on branch forks, internal brown streaks. On fruit: rot spreading down from the stalk end, often a few days after harvest.', zh: '枝梢从顶端枯死、树皮凹陷并有针尖大小的黑点（真菌的产孢结构）、枝杈处出现粉红色菌壳、内部有褐色条纹。果实上：从果柄一端向下扩展的腐烂，常在采后几天出现。' },
-    threshold: { en: 'Act at first sign — prune at least 30 cm below any visible infection.', zh: '初见症状即处理——在可见病部下方至少30厘米处修剪。' },
+    threshold: { en: 'Act at first sign. On a BRANCH: cut at least 30 cm below any visible infection. On the TRUNK or a main limb: never cut — scrape out the diseased bark down to clean, healthy tissue and paint the wound.', zh: '初见症状即处理。在枝条上：在可见病部下方至少30厘米处剪除。在主干或主枝上：绝不能锯——把病变树皮刮到干净健康的组织，然后涂药封口。' },
     nonChem: [
-      { en: 'Prune on dry days, back into healthy wood well below the lesion. Burn the prunings — never leave them in the orchard.', zh: '在干燥天修剪，剪到病斑下方远处的健康木质部。剪下的枝条烧掉——绝不留在果园里。' },
+      { en: 'Work on dry days. Branches: cut back into healthy wood well below the lesion. Trunk and main limbs: scrape the canker out to healthy tissue instead of cutting. Burn all prunings and scrapings — never leave them in the orchard.', zh: '在干燥天作业。枝条：剪到病斑下方远处的健康木质部。主干和主枝：不要锯，而是把溃疡刮到健康组织。剪下的枝条和刮下的树皮全部烧掉——绝不留在果园里。' },
       { en: 'Disinfect tools between trees, and before cutting from diseased into healthy wood: 70% alcohol for 30 seconds, or 1 part bleach to 9 parts water for 30 seconds, then rinse and oil (bleach rusts tools). Wiping on a cloth is not disinfecting.', zh: '每棵树之间、以及从病部切到健康部位之前都要消毒工具：70%酒精30秒，或漂白水1份兑水9份浸30秒后冲洗上油（漂白水会锈蚀工具）。用布擦一擦不算消毒。' },
       { en: 'Paint fresh cuts the same day — Trichoderma paste, or copper paint (not both on the same cut).', zh: '新切口当天涂封——木霉膏或铜剂（同一切口不要两样都用）。' },
       { en: 'Harvest with a piece of stalk left on and do not let the fruit touch the soil — stem-end rot enters through the cut, Phytophthora from the soil.', zh: '采收时留一段果柄，不让果实接触土壤——果蒂腐从切口进入，疫霉从土壤传来。' },
