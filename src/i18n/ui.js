@@ -92,7 +92,7 @@ export const UI_STRINGS = {
     chemSub: s('Ranked for this pest group and your crop stage. Follow the product label.', '根据该类群和你的物候期排序。请遵照产品标签使用。'),
     trackAll: s('All', '全部'),
     organicOnly: s('Organic only', '只看有机'),
-    rankedNote: s('Ranked by how well each works for this pest. 🌿 = organic product.', '按对该害虫的防治效果排序。🌿 = 有机产品。'),
+    rankedNote: s('Options, ranked by the evidence for this pest — not the only right way. If what you do already works on your trees, keep it. 🌿 = organic product.', '按该病虫害的证据排序的可选方法——不是唯一正确的做法。如果你现在的做法在自己的树上有效，就继续用。🌿 = 有机产品。'),
     trackOrganic: s('Organic', '有机'),
     organicEmpty: s('No organic spray fits this group well — the non-chemical steps above ARE the organic programme.', '此类群没有合适的有机喷剂——上面的非化学措施就是有机方案。'),
     rotation: s('Suggested rotation', '建议轮换方案'),
