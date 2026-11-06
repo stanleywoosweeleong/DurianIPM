@@ -85,7 +85,7 @@ export const LESSONS = [
       en: [
         'Beneficial microbes are living products. Each one does one job well; none of them is a cure-all. All of them need moisture, an early start and no fungicide in the same tank.',
         '• Trichoderma (fungus, soil): grows around the roots and attacks Phytophthora. In durian orchards in Vietnam and Thailand it reduced Phytophthora in the soil and helped root and trunk rot recover. Apply to the soil with compost or manure, before the disease is severe.',
-        '• Bacillus subtilis / velezensis / amyloliquefaciens (bacteria, leaves and soil): make soap-like compounds (lipopeptides) that disrupt fungal cell membranes, and switch on the tree\'s own defences (induced resistance). Best as protection, used early.',
+        '• Bacillus subtilis / velezensis / amyloliquefaciens (bacteria, leaves and soil): make soap-like compounds (lipopeptides) that disrupt fungal cell membranes, and switch on the tree\'s own defences (induced resistance). Best as protection, used early. On durian: B. subtilis SYST2 gave 53.51% field control of Fusarium stem rot in Hainan — expect about half, not a cure.',
         '• Pseudomonas fluorescens (bacteria, roots): takes the iron that root-rot fungi need and also switches on the tree\'s defences. A root-zone product.',
         '• Beauveria, Metarhizium, Isaria (fungi that kill insects): infect insects they land on. They need humid evenings — sunlight kills the spores.',
         '• Hirsutella thompsonii (fungus that kills mites): kills mites within days, but it barely grows below 100% humidity, so field results are mixed. Do not rely on it in a dry spell.',
@@ -97,7 +97,7 @@ export const LESSONS = [
       zh: [
         '有益微生物是活体产品。每一种只擅长一件事，没有万能的。它们都需要湿度、尽早使用，并且不能和杀菌剂同桶混用。',
         '• 木霉菌（真菌，土壤）：在根部周围生长并攻击疫霉菌。在越南和泰国的榴莲园中，它降低了土壤中的疫霉菌数量，帮助根腐和树干腐烂恢复。与堆肥或粪肥一起施入土壤，在病情严重之前使用。',
-        '• 枯草/贝莱斯/解淀粉芽孢杆菌（细菌，叶片和土壤）：产生类似肥皂的化合物（脂肽），破坏真菌细胞膜，并激活树体自身的防御（诱导抗性）。最适合尽早用于保护。',
+        '• 枯草/贝莱斯/解淀粉芽孢杆菌（细菌，叶片和土壤）：产生类似肥皂的化合物（脂肽），破坏真菌细胞膜，并激活树体自身的防御（诱导抗性）。最适合尽早用于保护。在榴莲上：枯草芽孢杆菌SYST2在海南对镰刀菌茎腐的田间防效为53.51%——预期约一半，不是根治。',
         '• 荧光假单胞菌（细菌，根部）：抢走根腐真菌需要的铁，同时激活树体防御。是根区产品。',
         '• 白僵菌、绿僵菌、棒束孢（杀虫真菌）：侵染接触到的昆虫。需要潮湿的傍晚——阳光会杀死孢子。',
         '• 汤普森被毛孢（杀螨真菌）：几天内就能杀死螨，但湿度低于100%时几乎无法生长，所以田间效果参差不齐。干旱期不要依赖它。',
@@ -108,6 +108,7 @@ export const LESSONS = [
       ],
     },
     refs: [
+      { t: 'Jiang et al. 2026, Pathogens 15(8):849 — Bacillus subtilis SYST2 against durian Fusarium stem rot (Hainan field trial)', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC13516780/', scope: 'durian', supports: 'B. subtilis SYST2: 53.51% field control of durian stem rot' },
       { t: 'Can Tho University — Trichoderma against Phytophthora palmivora in Mekong Delta durian orchards', url: 'https://sj.ctu.edu.vn/ql/docgia/tacgia-12640/baibao-4947.html', scope: 'durian', supports: 'Trichoderma treatment helped diseased durian roots and leaves recover vs fungicide and control' },
       { t: 'AGRIS — Trichoderma harzianum reduced P. palmivora populations in Thai durian orchards', url: 'https://agris.fao.org/search/en/records/647237fa53aa8c896302a0f9', scope: 'durian', supports: 'T. harzianum lowered soil Phytophthora in orchard trials' },
       { t: 'Review (Planta 2020) — Bacillus lipopeptides (surfactin, iturin, fengycin): direct antifungal action and induced systemic resistance', url: 'https://link.springer.com/article/10.1007/s00425-020-03357-7', scope: 'general', supports: 'Bacillus lipopeptides break fungal membranes and induce plant resistance' },

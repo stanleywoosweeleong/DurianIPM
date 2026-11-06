@@ -221,7 +221,7 @@ export const PART_PESTS = {
     ['trunk-borers', L('Large holes (~1 cm) on the main trunk; coarse, stringy sawdust and sap', '主干上有大孔（约1厘米）；粗糙丝状木屑并流胶')],
     ['red-branch-borer', L('Round holes on branches pushing out pellet-like sawdust; shoot tips wilting', '枝条圆孔推出颗粒状虫粪；梢尖萎蔫')],
     ['shot-hole', L('Many 1 mm pinholes, fine powder, often dark wet patches — check for Phytophthora', '许多1毫米针孔和细粉，常有深色湿斑——检查是否有疫霉')],
-    ['fusarium', L('Branches die back fast — leaves yellow and drop within a week; wood brown-black inside; often beetle pinholes nearby', '枝条迅速枯死——叶片一周内发黄脱落；木质部内呈褐黑色；附近常有小蠹针孔')],
+    ['fusarium', L('Rough grey-white lesions with sticky yellow-brown ooze on branches; leaves yellow and drop within a week; often beetle pinholes', '枝条上粗糙的灰白病斑并渗出黄褐色黏液；叶片一周内发黄脱落；常有小蠹针孔')],
     ['canker-dieback', L('Pinpoint black dots on sunken bark; twigs dying back; pink crust on branch forks', '凹陷树皮上有针尖黑点；枝梢枯死；枝杈上有粉红色菌壳')],
     ['scale-mealybug', L('White waxy insects or shells in bark cracks; ants', '树皮缝里有白色蜡质虫或硬壳；有蚂蚁')],
     ['soil-pests', L('Mud tubes or mud sheets on the trunk', '树干上有泥道或泥被')],

@@ -857,8 +857,8 @@ export const GROUPS = [
       zh: '这是真菌，不是疫霉——所以防疫霉的药对它无效。在泰国果园里，它引起枝枯：叶片发黄、一周内脱落，木质部内部呈褐色至黑色；还发现小蠹虫携带这种菌。榴莲上没有经过试验的有效药剂，所以办法是锯掉枯木、保持根颈干燥、养好树势。',
     },
     scout: {
-      en: 'In Thai durian orchards: leaves yellow and drop within 5–7 days, branch tips show brown-black lesions and bark grooves, and the wood is discoloured inside — often with ambrosia beetle sawdust. To tell it from other trunk problems, scrape the lesion edge: rust-coloured ooze and wet rot = Phytophthora; pinpoint black dots = dieback fungi (Lasiodiplodia); whitish to pinkish spore pads, if present, point to Fusarium.',
-      zh: '在泰国榴莲园中：叶片在5–7天内发黄脱落，枝梢出现褐黑色病斑和树皮凹槽，木质部内部变色——常伴有小蠹木屑。与其他树干问题区分：刮开病斑边缘，铁锈色流胶和湿腐＝疫霉；针尖黑点＝枝枯真菌（毛色二孢）；如有白色至粉红色孢子垫，则指向镰刀菌。',
+      en: 'In Hainan, durian Fusarium stem rot showed rough grey-white to light-brown lesions on branches and forks, sticky yellow-brown ooze from cracks, and brown-black bark underneath. In Thai durian orchards: leaves yellow and drop within 5–7 days, branch tips show brown-black lesions and bark grooves, and the wood is discoloured inside — often with ambrosia beetle sawdust. To tell it from other trunk problems, scrape the lesion edge: rust-coloured ooze and wet rot = Phytophthora; pinpoint black dots = dieback fungi (Lasiodiplodia); whitish to pinkish spore pads, if present, point to Fusarium.',
+      zh: '在海南，榴莲镰刀菌茎腐表现为枝条和分叉处粗糙的灰白至浅褐色病斑，裂口渗出黄褐色黏液，剥皮可见褐黑色。在泰国榴莲园中：叶片在5–7天内发黄脱落，枝梢出现褐黑色病斑和树皮凹槽，木质部内部变色——常伴有小蠹木屑。与其他树干问题区分：刮开病斑边缘，铁锈色流胶和湿腐＝疫霉；针尖黑点＝枝枯真菌（毛色二孢）；如有白色至粉红色孢子垫，则指向镰刀菌。',
     },
     threshold: { en: 'Act at first sign — the longer dead wood stays, the more beetles breed in it.', zh: '初见症状即处理——枯木留得越久，在里面繁殖的小蠹越多。' },
     nonChem: [
@@ -868,7 +868,7 @@ export const GROUPS = [
       { en: 'Avoid wounding the collar with grass cutters and fertiliser hoes.', zh: '避免除草机和施肥锄伤到根颈。' },
     ],
     chem: [
-      { moa: 'BIO-FUN', only: ['trichoderma', 'bacillus-subtilis'], fit: 'good', why: { en: 'Trichoderma paste on cut surfaces and Bacillus on the trunk base, as protection after clean-up. Not tested against durian Fusarium in the field.', zh: '清理后在切面涂木霉膏、在树干基部用芽孢杆菌作保护。尚未在榴莲镰刀菌上做过田间试验。' } },
+      { moa: 'BIO-FUN', only: ['trichoderma', 'bacillus-subtilis'], fit: 'good', why: { en: 'Bacillus subtilis strain SYST2 gave 53.51% field control of durian Fusarium stem rot in Hainan (2026) — moderate, not a cure. Trichoderma paste on cut surfaces and Bacillus on the trunk base, as protection after clean-up.', zh: '清理后在切面涂木霉膏、在树干基部用芽孢杆菌作保护。枯草芽孢杆菌SYST2在海南榴莲镰刀菌茎腐田间防效为53.51%（2026）——中等，不是根治。' } },
       { moa: 'FRAC 3', only: ['difenoconazole', 'hexaconazole', 'propiconazole', 'tebuconazole'], fit: 'limited', why: { en: 'Triazoles are active on Fusarium in principle, but there is no durian trial, and systemics reach dead wood poorly. Only after cutting out, never instead of it.', zh: '三唑类原理上对镰刀菌有效，但榴莲上没有试验，而且内吸药很难到达死木质。只能在锯除之后使用，不能代替锯除。' } },
     ],
     avoid: [
@@ -876,6 +876,7 @@ export const GROUPS = [
       { moa: 'FRAC P07', why: { en: 'Phosphonates (fosetyl) target Phytophthora. In the Thai dieback outbreak, fungicides aimed at Phytophthora failed.', zh: '亚磷酸盐（三乙膦酸铝）针对疫霉。在泰国的枝枯爆发中，针对疫霉的杀菌剂都失效了。' } },
     ],
     refs: [
+      { t: 'Jiang et al. 2026, Pathogens 15(8):849 — Fusarium solani causing stem rot of durian in China (Hainan): isolation and biological control', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC13516780/', supports: 'field symptoms; Bacillus subtilis SYST2 53.51% field control vs 35.15% for a commercial Bacillus — the chemical compared (propamocarb, 25.46%) is a Phytophthora fungicide, not aimed at Fusarium', scope: 'durian' },
       { t: 'Guest et al. 2004 (ACIAR) — clear mulch from the trunk base in the wet season', url: 'https://era.dpi.qld.gov.au/id/eprint/10666/1/Integrated%20management%20of%20phytophthora%20diseases%20of%20durian%20recommendations%20and%20benefit-cost%20analysis.pdf', supports: 'keep the trunk collar dry: clear mulch from the base (stated for Phytophthora canker)', scope: 'durian' },
       { t: 'Plants (2023) — Comprehensive investigation of die-back disease caused by Fusarium in durian (Thailand)', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10490359/', supports: 'F. solani and F. incarnatum cause durian dieback; yellow leaves drop in 5–7 days; brown–black wood; ambrosia beetle Euwallacea similis carries F. solani; Phytophthora fungicides failed', scope: 'durian' },
       { t: 'Boontanom & Chantarasiri (2021) New Disease Reports 44:e12026 — Fusarium solani and Lasiodiplodia pseudotheobromae causing durian stem rot in Eastern Thailand', url: 'https://doi.org/10.1002/ndr2.12026', supports: 'Fusarium solani is a durian stem-rot pathogen', scope: 'durian' },
