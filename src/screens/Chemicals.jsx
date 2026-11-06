@@ -88,7 +88,7 @@ function ChemRow({ c }) {
   return (
     <a href={href(`chem/${c.id}`)} className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 active:bg-slate-50">
       <div className="min-w-0 flex-1">
-        <div className="font-extrabold text-[1rem] leading-tight">{c.name.en} <span className="font-bold text-slate-600">{c.name.zh !== c.name.en ? c.name.zh : ''}</span></div>
+        <div className="font-extrabold text-[1rem] leading-tight">{c.name.en} <span className="font-bold text-slate-600">{lang !== 'ms' && c.name.zh !== c.name.en ? c.name.zh : ''}</span></div>
         <div className="flex flex-wrap gap-1.5 mt-1">
           <Badge tone="green">{moaCode(info) || t(info.name)}</Badge>
           {c.organic && <Badge tone="lime"><Icon name="leaf" className="w-3.5 h-3.5" /> {t({ en: 'Organic', zh: '有机' })}</Badge>}
@@ -122,7 +122,7 @@ export function ChemicalDetail({ id }) {
     <div>
       <BackBar />
       <h1 className="text-xl font-extrabold leading-tight text-slate-900">{c.name.en}</h1>
-      {c.name.zh !== c.name.en && <div className="text-xl font-bold text-slate-700">{c.name.zh}</div>}
+      {lang !== 'ms' && c.name.zh !== c.name.en && <div className="text-xl font-bold text-slate-700">{c.name.zh}</div>}
       <div className="flex flex-wrap gap-1.5 mt-2">
         <Badge tone="green">{moaCode(info) || t(info.name)}</Badge>
         <Badge>{t(info.name)}</Badge>
