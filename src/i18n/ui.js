@@ -9,12 +9,18 @@ export const UI_STRINGS = {
   app: {
     textSize: s('Text size', '字体大小'),
     language: s3('Language', '语言', 'Bahasa'),
+    settings: s3('Language and text size', '语言与字体大小', 'Bahasa dan saiz teks'),
     chooseLang: s3('Choose your language', '请选择语言', 'Pilih bahasa anda'),
     changeLater: s3('You can change this later from the language button at the top.', '以后可以点顶部的语言按钮更改。', 'Anda boleh tukar kemudian melalui butang bahasa di atas.'),
     close: s3('Close', '关闭', 'Tutup'),
     toTop: s3('Back to top', '回到顶部', 'Ke atas'),
     title: s('Durian IPM', '榴莲综合防治'),
     tagline: s('Identify by how it feeds. Treat with the right chemistry.', '看取食方式识别，用对药剂防治。'),
+  },
+  size: {
+    normal: s3('Standard', '标准', 'Biasa'),
+    large: s3('Large', '大', 'Besar'),
+    xl: s3('Extra large', '特大', 'Sangat besar'),
   },
   words: {
     title: s3('Words to know', '术语小词典', 'Istilah penting'),

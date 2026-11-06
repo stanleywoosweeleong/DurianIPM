@@ -49,7 +49,28 @@ export function LangButtons({ onPick }) {
 }
 
 /** Bottom sheet opened from the header language button: language + share. */
-export function LangSheet({ onClose }) {
+const SIZES = [{ v: 1, px: 15, key: 'normal' }, { v: 1.1, px: 19, key: 'large' }, { v: 1.2, px: 23, key: 'xl' }];
+
+/** Text size: three big buttons; the change shows at once, the sheet stays open. */
+export function SizeButtons({ scale, setScale }) {
+  const { ui } = useLang();
+  return (
+    <div className="grid grid-cols-3 gap-2" role="group" aria-label={ui('app.textSize')}>
+      {SIZES.map(s => {
+        const on = scale === s.v;
+        return (
+          <button key={s.v} onClick={() => setScale(s.v)} aria-pressed={on}
+            className={`min-h-[64px] rounded-xl flex flex-col items-center justify-center gap-0.5 ${on ? 'bg-[#114b2d] text-white' : 'bg-paper border border-slate-300 text-slate-800'}`}>
+            <span className="font-extrabold leading-none" style={{ fontSize: s.px }}>A</span>
+            <span className="text-[12px] font-bold leading-tight">{ui(`size.${s.key}`)}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+export function LangSheet({ onClose, scale, setScale }) {
   const { ui } = useLang();
   return (
     <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center bg-black/40" onClick={onClose}>
@@ -62,6 +83,12 @@ export function LangSheet({ onClose }) {
           <button onClick={onClose} className="min-h-[44px] px-3 text-[0.9375rem] font-bold text-slate-600">{ui('app.close')}</button>
         </div>
         <LangButtons onPick={onClose} />
+        {setScale && (
+          <>
+            <h2 className="mt-6 mb-3 text-[1.25rem] font-extrabold text-slate-900">{ui('app.textSize')}</h2>
+            <SizeButtons scale={scale} setScale={setScale} />
+          </>
+        )}
         <h2 className="mt-6 mb-3 text-[1.25rem] font-extrabold text-slate-900">{ui('share.title')}</h2>
         <ShareApp />
       </div>
