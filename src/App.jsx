@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LanguageProvider, useLang } from './i18n/useLang.jsx';
 import { useRoute, href } from './hooks/useRoute.js';
 import { useOrchard, useFontScale } from './hooks/useOrchard.js';
@@ -27,6 +27,26 @@ function LanguageGate() {
       <div className="text-[15px] font-bold text-center text-slate-600 leading-snug">请选择语言 · Choose your language<br />Pilih bahasa anda</div>
       <div className="w-full max-w-xs mt-1"><LangButtons /></div>
     </div>
+  );
+}
+
+// Round "back to top" button: appears once the page has scrolled a screen or so.
+function ToTop() {
+  const { ui } = useLang();
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setShow(window.scrollY > window.innerHeight * 0.8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+  if (!show) return null;
+  return (
+    <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label={ui('app.toTop')} title={ui('app.toTop')}
+      className="fixed right-[16px] z-50 w-[52px] h-[52px] rounded-full bg-[#114b2d] text-white shadow-lg flex items-center justify-center active:bg-[#0d3b23]"
+      style={{ bottom: 'calc(20px + env(safe-area-inset-bottom))' }}>
+      <svg viewBox="0 0 24 24" className="w-[26px] h-[26px]" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" /></svg>
+    </button>
   );
 }
 
@@ -89,6 +109,7 @@ function Shell() {
         </nav>
       </div>
       {sheet && <LangSheet onClose={() => setSheet(false)} />}
+      <ToTop />
       <main className="max-w-2xl mx-auto px-4 pt-4" style={{ paddingBottom: 'calc(2.5rem + env(safe-area-inset-bottom))' }}>{screen}</main>
     </div>
   );
