@@ -15,6 +15,7 @@
     -webkit-tap-highlight-color: transparent;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    background: #ffffff;
   }
   /* Chinese: PingFang/Noto at weight 400 looks much thinner than Latin text
      at the same size, so regular Chinese text is set one step heavier. */

@@ -54,7 +54,7 @@ export function LangSheet({ onClose }) {
   return (
     <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center bg-black/40" onClick={onClose}>
       <div role="dialog" aria-modal="true" aria-label={ui('app.language')}
-        className="w-full max-w-md bg-[#fcfbf7] rounded-t-2xl sm:rounded-2xl p-5 max-h-[90vh] overflow-y-auto"
+        className="w-full max-w-md bg-white rounded-t-2xl sm:rounded-2xl p-5 max-h-[90vh] overflow-y-auto"
         style={{ paddingBottom: 'calc(1.25rem + env(safe-area-inset-bottom))' }}
         onClick={e => e.stopPropagation()}>
         <div className="flex items-center justify-between mb-3">

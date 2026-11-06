@@ -21,7 +21,7 @@ const TABS = [
 // First launch: pick a language (saved; change it later from the header button).
 function LanguageGate() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center gap-4 p-6 bg-[#fcfbf7]">
+    <div className="min-h-screen flex flex-col items-center justify-center gap-4 p-6 bg-white">
       <img src={`${import.meta.env.BASE_URL}favicon.svg`} alt="" className="w-20 h-20 rounded-2xl shadow-sm" />
       <div className="text-2xl font-extrabold text-center text-slate-900 leading-snug">榴莲综合防治<br />Durian IPM</div>
       <div className="text-[15px] font-bold text-center text-slate-600 leading-snug">请选择语言 · Choose your language<br />Pilih bahasa anda</div>
@@ -53,9 +53,9 @@ function Shell() {
   }
 
   return (
-    <div className="min-h-screen bg-[#fcfbf7] text-slate-800">
+    <div className="min-h-screen bg-white text-slate-800">
       <div className="sticky top-0 z-40">
-        <header className="bg-[#f4f2ea] border-b border-slate-300 safe-top">
+        <header className="bg-white border-b border-slate-200 safe-top">
           <div className="max-w-2xl mx-auto px-[16px] py-[10px] flex items-center gap-[8px]">
             <a href={href('')} className="flex items-center gap-[10px] min-w-0 flex-1">
               <img src={`${import.meta.env.BASE_URL}favicon.svg`} alt="" width="36" height="36" className="w-[36px] h-[36px] rounded-xl shadow-sm shrink-0" />
