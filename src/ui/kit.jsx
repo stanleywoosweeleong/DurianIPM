@@ -1,4 +1,5 @@
 import React from 'react';
+import { G } from './Gloss.jsx';
 import { useLang } from '../i18n/useLang.jsx';
 import { back } from '../hooks/useRoute.js';
 
@@ -95,7 +96,7 @@ export const Bullets = ({ items, t }) => (
   <ul className="space-y-1.5">
     {items.map((x, i) => (
       <li key={i} className="flex gap-2 text-[1rem] leading-snug text-slate-800">
-        <span className="text-emerald-600 font-black mt-0.5">•</span><span>{t(x)}</span>
+        <span className="text-emerald-600 font-black mt-0.5">•</span><span><G>{t(x)}</G></span>
       </li>
     ))}
   </ul>

@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import { G } from '../ui/Gloss.jsx';
 import { useLang } from '../i18n/useLang.jsx';
 import { Card, Section, Icon, Badge, Callout, BackBar, Bullets, Fold, openExternal } from '../ui/kit.jsx';
 import { GroupArt } from '../components/Art.jsx';
@@ -87,7 +88,7 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
         {rec.avoid.map(a => (
           <div key={a.moa}>
             <div className="font-extrabold text-[0.9375rem] text-rose-900">✕ {t(a.moaInfo.name)} {moaCode(a.moaInfo) && `· ${moaCode(a.moaInfo)}`}</div>
-            <div className="text-[0.9375rem] text-rose-900 leading-snug">{t(a.why)}</div>
+            <div className="text-[0.9375rem] text-rose-900 leading-snug"><G>{t(a.why)}</G></div>
           </div>
         ))}
       </div>
@@ -112,11 +113,11 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
         <Badge tone="blue">{t(FEEDING[g.feeding])}</Badge>
       </div>
 
-      <p className="mt-3 text-[1rem] leading-relaxed text-slate-800">{t(g.why)}</p>
+      <p className="mt-3 text-[1rem] leading-relaxed text-slate-800"><G>{t(g.why)}</G></p>
 
       <div className="mt-3 text-[0.9375rem] leading-snug rounded-xl bg-paper border border-slate-200 px-3 py-2 divide-y divide-slate-100">
-        <p className={SPRAY_WHERE[g.id] && g.chem.length > 0 ? 'pb-1.5' : ''}><b>{ui('diag.first')}:</b> {t(g.nonChem[0])}</p>
-        {SPRAY_WHERE[g.id] && g.chem.length > 0 && <p className="pt-1.5"><b>{ui('group.sprayWhere')}:</b> {t(SPRAY_WHERE[g.id])}</p>}
+        <p className={SPRAY_WHERE[g.id] && g.chem.length > 0 ? 'pb-1.5' : ''}><b>{ui('diag.first')}:</b> <G>{t(g.nonChem[0])}</G></p>
+        {SPRAY_WHERE[g.id] && g.chem.length > 0 && <p className="pt-1.5"><b>{ui('group.sprayWhere')}:</b> <G>{t(SPRAY_WHERE[g.id])}</G></p>}
       </div>
       {g.id === 'shot-hole' && <BorerGrade />}
       {RELATED[g.id] && (
@@ -203,9 +204,9 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
         <Bullets items={g.nonChem} t={t} />
       </Fold>
       <Fold title={ui('group.scout')} hint={t(g.threshold)}>
-        <p className="text-[1rem] leading-snug">{t(g.scout)}</p>
+        <p className="text-[1rem] leading-snug"><G>{t(g.scout)}</G></p>
         <div className="mt-3 text-[0.875rem] font-bold text-slate-500">{ui('group.threshold')}</div>
-        <p className="text-[1rem] leading-snug font-semibold">{t(g.threshold)}</p>
+        <p className="text-[1rem] leading-snug font-semibold"><G>{t(g.threshold)}</G></p>
         <p className="mt-2 text-[0.8125rem] text-slate-500 leading-snug">{ui('group.thresholdBasis')}</p>
       </Fold>
       <Fold title={ui('group.about')} hint={t(g.hides)}>
@@ -225,7 +226,7 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
               <div key={p.id} className="border-t border-slate-100 pt-2 first:border-0 first:pt-0">
                 <div className="font-extrabold text-[1rem]">{t(p.common)}</div>
                 <div className="text-[0.8125rem] italic text-slate-500">{p.scientific}</div>
-                <p className="text-[0.9375rem] mt-1 leading-snug">{t(p.symptoms)}</p>
+                <p className="text-[0.9375rem] mt-1 leading-snug"><G>{t(p.symptoms)}</G></p>
               </div>
             ))}
           </div>
@@ -285,7 +286,7 @@ function OptionCard({ o, rank }) {
             <div className="min-w-0 font-extrabold text-[1rem] leading-tight">{t(info.name)}{moaCode(info) && <span className="text-[#114b2d]"> · {moaCode(info)}</span>}</div>
             <Badge tone={FIT_TONE[o.fit]} className="shrink-0 whitespace-nowrap">{ui(`fit.${o.fit}`)}</Badge>
           </div>
-          <p className="text-[0.9375rem] leading-snug mt-1 text-slate-800">{t(o.why)}</p>
+          <p className="text-[0.9375rem] leading-snug mt-1 text-slate-800"><G>{t(o.why)}</G></p>
           <div className="mt-1.5"><KillsBadges stages={info.stages} /></div>
           {warns.length > 0 && (
             <div className="flex flex-wrap gap-1.5 mt-1.5">

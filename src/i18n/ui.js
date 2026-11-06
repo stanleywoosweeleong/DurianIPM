@@ -16,6 +16,13 @@ export const UI_STRINGS = {
     title: s('Durian IPM', '榴莲综合防治'),
     tagline: s('Identify by how it feeds. Treat with the right chemistry.', '看取食方式识别，用对药剂防治。'),
   },
+  words: {
+    title: s3('Words to know', '术语小词典', 'Istilah penting'),
+    intro: s3('The real technical words, explained. Tap any underlined word in the app to see its meaning.', '真正的专业术语，用简单的话解释。在应用里点任何带下划线的词，就能看到它的意思。', 'Istilah teknikal sebenar, diterangkan. Ketik mana-mana perkataan bergaris di dalam aplikasi untuk melihat maksudnya.'),
+    term: s3('What this word means', '这个词的意思', 'Maksud perkataan ini'),
+    all: s3('All words', '全部术语', 'Semua istilah'),
+    gotIt: s3('Got it', '明白了', 'Faham'),
+  },
   share: {
     title: s3('Share this app', '分享这个应用', 'Kongsi aplikasi ini'),
     scan: s3('Scan with the phone camera to open the app.', '用手机相机扫描即可打开应用。', 'Imbas dengan kamera telefon untuk buka aplikasi.'),

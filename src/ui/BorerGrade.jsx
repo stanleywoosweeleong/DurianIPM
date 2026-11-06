@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { G } from './Gloss.jsx';
 import { useLang } from '../i18n/useLang.jsx';
 
 // Four quick questions about one tree → a level and a short action plan.
@@ -75,7 +76,7 @@ export function BorerGrade() {
         <div className={`mt-3 rounded-xl border p-3 ${lv.tone}`}>
           <div className="font-extrabold text-[1rem]">{t(lv.name)}</div>
           <ol className="mt-1.5 space-y-1.5 list-decimal pl-5">
-            {lv.steps.map((st, i) => <li key={i} className="text-[0.9375rem] leading-snug">{t(st)}</li>)}
+            {lv.steps.map((st, i) => <li key={i} className="text-[0.9375rem] leading-snug"><G>{t(st)}</G></li>)}
           </ol>
         </div>
       )}

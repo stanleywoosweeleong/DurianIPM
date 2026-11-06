@@ -10,6 +10,7 @@ import { GROUP_FOR_CHART } from './core/rotation.js';
 import { LearnList, Lesson } from './screens/Learn.jsx';
 import { LangButtons, LangSheet } from './ui/ShareApp.jsx';
 import { LANG_SHORT } from './i18n/useLang.jsx';
+import { GlossProvider } from './ui/Gloss.jsx';
 
 // Same family look as the Pest-MoA rotation guide: cream page, light header,
 // forest-green accent, underline tabs at the top, A/A/A text size.
@@ -118,7 +119,9 @@ function Shell() {
 export default function App() {
   return (
     <LanguageProvider>
-      <Shell />
+      <GlossProvider>
+        <Shell />
+      </GlossProvider>
     </LanguageProvider>
   );
 }

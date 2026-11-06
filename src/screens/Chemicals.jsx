@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import { G } from '../ui/Gloss.jsx';
 import { useLang } from '../i18n/useLang.jsx';
 import { Section, Icon, Badge, Callout, BackBar, Chip, Fold, openExternal } from '../ui/kit.jsx';
 import { KillsBadges } from '../ui/StagePicker.jsx';
@@ -33,7 +34,7 @@ export function RemovedNotice({ r }) {
         <Icon name="warn" className="w-6 h-6" />
         <div className="text-lg font-extrabold">{t(r)} — {r.hhp ? ui('status.hhp') : ui('status.banned')}</div>
       </div>
-      <p className="text-[1rem] text-rose-900 mt-2 leading-snug">{t({ en: r.basisEn, zh: r.basisZh })}</p>
+      <p className="text-[1rem] text-rose-900 mt-2 leading-snug"><G>{t({ en: r.basisEn, zh: r.basisZh })}</G></p>
       <p className="text-[0.9375rem] text-rose-900 mt-2">{ui('chem.notListed')}</p>
       {r.groups.length > 0 && (
         <>
@@ -129,12 +130,12 @@ export function ChemicalDetail({ id }) {
         {c.site && <Badge tone={SITE_TONE[c.site]}>{SITE_LABEL(lmap, c.site)}</Badge>}
       </div>
 
-      {c.hhpNote && <div className="mt-3"><Callout tone="amber" title={ui('chem.hhpNote')}>{t(c.hhpNote)} <a href={href('learn/hazard')} className="font-extrabold underline">{ui('chem.hhpLearn')}</a></Callout></div>}
-      {c.organic && <div className="mt-3"><Callout tone="lime" icon="leaf" title={ui('chem.organic')}>{t(organicNote(c))}</Callout></div>}
-      {c.caution && <div className="mt-3"><Callout>{t(CAUTION_TEXT[c.caution])}</Callout></div>}
+      {c.hhpNote && <div className="mt-3"><Callout tone="amber" title={ui('chem.hhpNote')}><G>{t(c.hhpNote)}</G> <a href={href('learn/hazard')} className="font-extrabold underline">{ui('chem.hhpLearn')}</a></Callout></div>}
+      {c.organic && <div className="mt-3"><Callout tone="lime" icon="leaf" title={ui('chem.organic')}><G>{t(organicNote(c))}</G></Callout></div>}
+      {c.caution && <div className="mt-3"><Callout><G>{t(CAUTION_TEXT[c.caution])}</G></Callout></div>}
       <MrlCard c={c} />
 
-      {info.how && <p className="mt-3 text-[1rem] leading-snug font-semibold">{t(info.how)}</p>}
+      {info.how && <p className="mt-3 text-[1rem] leading-snug font-semibold"><G>{t(info.how)}</G></p>}
       <div className="flex flex-wrap gap-1.5 mt-2">
         {c.mobility && <Badge tone="blue">{L[`mob_${c.mobility}`]}</Badge>}
         {c.translaminar && <Badge tone="blue">{L.tl}</Badge>}
@@ -158,8 +159,8 @@ export function ChemicalDetail({ id }) {
 
       {(info.detail || info.note) && (
         <Fold title={ui('chem.how')}>
-          {info.detail && <p className="text-[0.9375rem] leading-snug text-slate-700">{t(info.detail)}</p>}
-          {info.note && <p className="text-[0.9375rem] leading-snug text-[#114b2d] mt-2">{t(info.note)}</p>}
+          {info.detail && <p className="text-[0.9375rem] leading-snug text-slate-700"><G>{t(info.detail)}</G></p>}
+          {info.note && <p className="text-[0.9375rem] leading-snug text-[#114b2d] mt-2"><G>{t(info.note)}</G></p>}
         </Fold>
       )}
 
@@ -176,7 +177,7 @@ export function ChemicalDetail({ id }) {
 
       {(info.crossRes || Object.keys(c.risk).length > 0 || siblings.length > 0) && (
         <Fold title={ui('chem.rotationFold')} hint={siblings.length ? `${ui('chem.sameGroup')}: ${siblings.slice(0, 3).map(x => t(x.name)).join(', ')}` : null}>
-          {info.crossRes && <p className="text-[0.9375rem] leading-snug">{t(info.crossRes)}</p>}
+          {info.crossRes && <p className="text-[0.9375rem] leading-snug"><G>{t(info.crossRes)}</G></p>}
           {Object.keys(c.risk).length > 0 && (
             <div className="mt-3 space-y-1.5">
               <div className="text-[0.8125rem] font-bold text-slate-500 uppercase tracking-wide">{ui('chem.resistanceBy')}</div>

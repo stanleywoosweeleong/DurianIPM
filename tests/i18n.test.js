@@ -20,3 +20,20 @@ test('Malay keeps codes and numbers, and names no banned active the English does
     for (const t of terms) if (ms.toLowerCase().includes(t)) assert.ok(en.toLowerCase().includes(t), `${t} added in: ${ms}`);
   }
 });
+
+import { GLOSSARY, glossSplit } from '../src/core/glossary.js';
+test('Words to know: every term explained in three languages, used in the app, no banned names', async () => {
+  const en = await collect();
+  const terms = REMOVED.flatMap(r => r.terms).filter(t => t.length >= 3).map(t => t.toLowerCase());
+  const used = new Set();
+  for (const s of en) for (const p of glossSplit(s, 'en')) if (typeof p === 'object') used.add(p.id);
+  for (const e of GLOSSARY) {
+    for (const l of ['en', 'zh', 'ms']) { assert.ok(e.word[l]?.trim(), `${e.id} word.${l}`); assert.ok(e.means[l]?.trim(), `${e.id} means.${l}`); }
+    assert.ok(used.has(e.id), `${e.id} never appears in the app's English text`);
+    const all = JSON.stringify([e.word, e.means]).toLowerCase();
+    for (const t of terms) assert.ok(!all.includes(t), `${e.id} names ${t}`);
+  }
+  // Longest term wins and only the first use is marked.
+  assert.deepEqual(glossSplit('cross-resistance and resistance, resistance', 'en').filter(p => typeof p === 'object').map(p => p.id), ['cross', 'resistance']);
+  assert.deepEqual(glossSplit('skin contact', 'en'), ['skin contact']);
+});

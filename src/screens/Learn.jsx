@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLang } from '../i18n/useLang.jsx';
 import { Card, Section, Icon, BackBar, Badge, Fold, openExternal } from '../ui/kit.jsx';
+import { G, WordsToKnow } from '../ui/Gloss.jsx';
 
 const SCOPE_TONE = { durian: 'green', other: 'amber', general: 'grey' };
 import { MouthpartsFigure, LifecycleFigure } from '../components/Art.jsx';
@@ -17,7 +18,7 @@ const FIGURES = {
       {MIX_SEQUENCE.map(s => (
         <li key={s.step} className="flex gap-2.5 items-start">
           <span className="w-7 h-7 rounded-full bg-[#114b2d] text-white font-extrabold text-[0.875rem] flex items-center justify-center shrink-0">{s.step}</span>
-          <span className="text-[1rem] leading-snug pt-0.5">{t(s)}</span>
+          <span className="text-[1rem] leading-snug pt-0.5"><G>{t(s)}</G></span>
         </li>
       ))}
     </ol>
@@ -62,6 +63,14 @@ export function LearnList() {
             <Icon name="chevron" className="w-5 h-5 text-slate-400" />
           </a>
         ))}
+        <a href={href('learn/words')} className="flex items-center gap-3 p-4 rounded-xl bg-paper border border-slate-200 active:bg-slate-50">
+          <span className="w-9 h-9 rounded-full bg-emerald-100 text-[#114b2d] flex items-center justify-center shrink-0"><Icon name="book" className="w-5 h-5" /></span>
+          <div className="flex-1 min-w-0">
+            <div className="font-extrabold text-[1rem] leading-tight">{ui('words.title')}</div>
+            <div className="text-[0.875rem] text-slate-600 leading-snug">{ui('words.intro')}</div>
+          </div>
+          <Icon name="chevron" className="w-5 h-5 text-slate-400" />
+        </a>
       </div>
     </div>
   );
@@ -69,6 +78,7 @@ export function LearnList() {
 
 export function Lesson({ id }) {
   const { t, tl, lang, ui } = useLang();
+  if (id === 'words') return <WordsToKnow BackBar={BackBar} />;
   const l = LESSONS.find(x => x.id === id);
   if (!l) return <div><BackBar /><p>Not found.</p></div>;
   const body = tl(l.body);
@@ -83,8 +93,8 @@ export function Lesson({ id }) {
       <p className="text-[0.9375rem] text-slate-500 mt-1 leading-snug">{t(l.summary)}</p>
       <Card className="px-3.5 py-3.5 mt-3 space-y-2.5 text-slate-800">
         {body.map((p, i) => p.startsWith('• ')
-          ? <div key={i} className="flex gap-2 text-[1rem] leading-[1.55]"><span className="text-emerald-600 font-bold">•</span><span>{p.slice(2)}</span></div>
-          : <p key={i} className="text-[1rem] leading-[1.6]">{p}</p>)}
+          ? <div key={i} className="flex gap-2 text-[1rem] leading-[1.55]"><span className="text-emerald-600 font-bold">•</span><span><G>{p.slice(2)}</G></span></div>
+          : <p key={i} className="text-[1rem] leading-[1.6]"><G>{p}</G></p>)}
       </Card>
       {FIGURES[l.id] && (
         <Section title={t(FIGURE_TITLE[l.id])}>{FIGURES[l.id](t, lang)}</Section>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { G } from './Gloss.jsx';
 import { useLang } from '../i18n/useLang.jsx';
 import { Chip, Badge } from './kit.jsx';
 import { STAGE_TERMS } from '../core/groups.js';
@@ -27,7 +28,7 @@ export function StagePicker({ groupId, value, onChange }) {
           <Chip key={k} on={value === k} onClick={() => onChange(value === k ? null : k)} className="text-[0.875rem] py-2">{label}</Chip>
         ))}
       </div>
-      {value === 'adults' && terms.adultNote && <p className="mt-2 text-[0.875rem] text-sky-900 leading-snug font-semibold">{t(terms.adultNote)}</p>}
+      {value === 'adults' && terms.adultNote && <p className="mt-2 text-[0.875rem] text-sky-900 leading-snug font-semibold"><G>{t(terms.adultNote)}</G></p>}
     </div>
   );
 }
