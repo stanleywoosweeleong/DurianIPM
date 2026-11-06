@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
@@ -10,6 +10,7 @@ const T = {
   updateSub: { zh: '内容已更新，点一下就能用上。', en: 'The advice has been updated. Tap to load it.', ms: 'Nasihat telah dikemas kini. Ketik untuk memuatkannya.' },
   now: { zh: '更新', en: 'Update', ms: 'Kemas kini' },
   later: { zh: '稍后', en: 'Later', ms: 'Nanti' },
+  updating: { zh: '更新中…', en: 'Updating…', ms: 'Mengemas kini…' },
   offline: { zh: '已可离线使用——果园没信号也能打开。', en: 'Ready offline — opens even with no signal in the orchard.', ms: 'Sedia tanpa internet — boleh dibuka walaupun tiada isyarat di kebun.' },
 };
 const tr = (k) => { const l = document.documentElement.lang; return l.startsWith('zh') ? T[k].zh : l.startsWith('ms') ? T[k].ms : T[k].en; };
@@ -23,6 +24,8 @@ function PWAUpdateToast() {
   const [needRefresh, setNeedRefresh] = useState(false);
   const [offlineReady, setOfflineReady] = useState(false);
   const [updateSW, setUpdateSW] = useState(() => () => {});
+  const [busy, setBusy] = useState(false);
+  const regRef = useRef(null);
   // Follow the app's language: re-render when <html lang> changes.
   const [, setHtmlLang] = useState(document.documentElement.lang);
   useEffect(() => {
@@ -43,6 +46,7 @@ function PWAUpdateToast() {
       },
       onRegisteredSW(_url, reg) {
         if (!reg) return;
+        regRef.current = reg;
         const check = () => { if (navigator.onLine) reg.update().catch(() => {}); };
         timer = setInterval(check, 60 * 60 * 1000);
         document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') check(); });
@@ -58,6 +62,20 @@ function PWAUpdateToast() {
     const t = setTimeout(() => setOfflineReady(false), 4000);
     return () => clearTimeout(t);
   }, [offlineReady]);
+
+  // Update: tell the waiting version to take over, then reload. iPhone home-screen
+  // apps do not always report the takeover, so reload anyway after a moment —
+  // the button must never just sit there.
+  const applyUpdate = () => {
+    if (busy) return;
+    setBusy(true);
+    let done = false;
+    const reload = () => { if (!done) { done = true; window.location.reload(); } };
+    navigator.serviceWorker?.addEventListener('controllerchange', reload);
+    try { regRef.current?.waiting?.postMessage({ type: 'SKIP_WAITING' }); } catch { /* ignore */ }
+    Promise.resolve(updateSW(true)).catch(() => {});
+    setTimeout(reload, 2500);
+  };
 
   if (!needRefresh && !offlineReady) return null;
 
@@ -84,7 +102,7 @@ function PWAUpdateToast() {
         {needRefresh && (
           <>
             <button onClick={() => setNeedRefresh(false)} className="min-h-[44px] px-2 text-[14px] font-bold text-emerald-100">{tr('later')}</button>
-            <button onClick={() => updateSW(true)} className="min-h-[44px] px-4 rounded-xl bg-white text-[#114b2d] text-[15px] font-extrabold">{tr('now')}</button>
+            <button onClick={applyUpdate} disabled={busy} className="min-h-[44px] px-4 rounded-xl bg-white text-[#114b2d] text-[15px] font-extrabold disabled:opacity-80">{busy ? tr('updating') : tr('now')}</button>
           </>
         )}
       </div>
