@@ -45,7 +45,8 @@ do not "tidy them away".
   text; text added later can carry Malay inline with `s3(en, zh, ms)` (or a `ms` key).
 - `npm test` fails if any visible English string has no Malay form. To find what is missing:
   `node scripts/i18n-strings.mjs out.json`. Malay is Bahasa Malaysia (not Indonesian), plain,
-  with the shared word list (perosak, racun kulat, giliran, kelulut, pangkal batang, kikis…).
+  with the shared word list (perosak, racun kulat, giliran, kelulut, pangkal batang, kikis,
+  bena hijau for leafhoppers — not "lompat daun"…).
 - In Malay mode, Chinese product names are hidden. The header button always shows the
   **current** language; the first launch asks for the language and remembers it.
 

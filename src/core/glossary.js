@@ -166,7 +166,7 @@ export const GLOSSARY = [
     means: {
       en: 'Sticky, sugary waste passed by sap-sucking insects (mealybugs, scales, psyllids, leafhoppers). It attracts ants and grows black sooty mould.',
       zh: '吸汁害虫（粉蚧、介壳虫、木虱、叶蝉）排出的黏黏的含糖排泄物。会招来蚂蚁，并长出黑色的煤污病。',
-      ms: 'Sisa melekit dan bergula yang dikeluarkan serangga penghisap (koya, serangga perisai, psilid, lompat daun). Ia menarik semut dan menumbuhkan kulapuk jelaga hitam.',
+      ms: 'Sisa melekit dan bergula yang dikeluarkan serangga penghisap (koya, serangga perisai, psilid, bena hijau). Ia menarik semut dan menumbuhkan kulapuk jelaga hitam.',
     },
   },
   {
