@@ -83,7 +83,11 @@ function PWAUpdateToast() {
     <div role="status" aria-live="polite"
       className="fixed inset-x-0 z-[200] flex justify-center px-3 pointer-events-none"
       style={{ bottom: 'calc(12px + env(safe-area-inset-bottom))' }}>
-      <div className="pointer-events-auto w-full max-w-md rounded-2xl bg-[#114b2d] text-white shadow-2xl px-4 py-3 flex items-center gap-3">
+      {/* The whole bar is the Update button — easier to hit than the small white button. */}
+      <div onClick={needRefresh ? applyUpdate : () => setOfflineReady(false)}
+        role={needRefresh ? 'button' : undefined} tabIndex={needRefresh ? 0 : undefined}
+        onKeyDown={e => { if (needRefresh && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); applyUpdate(); } }}
+        className="pointer-events-auto cursor-pointer select-none w-full max-w-md rounded-2xl bg-[#114b2d] text-white shadow-2xl px-4 py-3 flex items-center gap-3 active:bg-[#0d3b23]">
         <svg className="w-6 h-6 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           {needRefresh
             ? <><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" /><path d="M8 16H3v5" /></>
@@ -101,8 +105,8 @@ function PWAUpdateToast() {
         </div>
         {needRefresh && (
           <>
-            <button onClick={() => setNeedRefresh(false)} className="min-h-[44px] px-2 text-[14px] font-bold text-emerald-100">{tr('later')}</button>
-            <button onClick={applyUpdate} disabled={busy} className="min-h-[44px] px-4 rounded-xl bg-white text-[#114b2d] text-[15px] font-extrabold disabled:opacity-80">{busy ? tr('updating') : tr('now')}</button>
+            <button onClick={e => { e.stopPropagation(); setNeedRefresh(false); }} className="min-h-[44px] px-2 text-[14px] font-bold text-emerald-100">{tr('later')}</button>
+            <span aria-hidden="true" className="min-h-[44px] px-4 rounded-xl bg-white text-[#114b2d] text-[15px] font-extrabold flex items-center">{busy ? tr('updating') : tr('now')}</span>
           </>
         )}
       </div>
