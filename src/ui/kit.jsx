@@ -30,7 +30,7 @@ export function Icon({ name, className = 'w-5 h-5', strokeWidth = 2 }) {
 }
 
 export const Card = ({ className = '', children, ...p }) => (
-  <div className={`bg-white rounded-2xl border border-slate-200 shadow-sm ${className}`} {...p}>{children}</div>
+  <div className={`bg-paper rounded-2xl border border-slate-200 shadow-sm ${className}`} {...p}>{children}</div>
 );
 
 export function Section({ title, sub, children, className = '' }) {
@@ -48,7 +48,7 @@ export function Chip({ on, onClick, children, className = '' }) {
     <button type="button" onClick={onClick} aria-pressed={!!on}
       className={`min-h-[44px] px-3.5 py-2 rounded-xl border text-[0.9375rem] font-bold text-left transition-colors ${on
         ? 'bg-[#114b2d] border-[#114b2d] text-white shadow-md'
-        : 'bg-white border-slate-200 text-slate-700 active:bg-slate-50'} ${className}`}>
+        : 'bg-paper border-slate-200 text-slate-700 active:bg-slate-50'} ${className}`}>
       {children}
     </button>
   );
@@ -69,7 +69,7 @@ export const Badge = ({ tone = 'grey', children, className = '' }) => (
 
 export function Callout({ tone = 'amber', icon = 'warn', title, children }) {
   return (
-    <div className={`rounded-xl border-2 p-3 flex gap-2.5 ${TONE[tone]}`}>
+    <div className={`rounded-xl border-2 p-3 flex gap-2.5 ${TONE[tone].replace(/bg-\S+/, "bg-paper")}`}>
       <Icon name={icon} className="w-5 h-5 shrink-0 mt-0.5" />
       <div className="text-[0.9375rem] leading-snug">
         {title && <div className="font-extrabold mb-0.5">{title}</div>}
@@ -110,7 +110,7 @@ export const openExternal = (e, url) => {
 
 /** Collapsible section — keeps long pages short. Closed by default unless `open`. */
 export function Fold({ title, hint, open = false, tone = 'white', children }) {
-  const bg = { white: 'bg-white border-slate-200', rose: 'bg-rose-50 border-rose-200', lime: 'bg-lime-50 border-lime-300' }[tone];
+  const bg = { white: 'bg-paper border-slate-200', rose: 'bg-rose-50 border-rose-200', lime: 'bg-lime-50 border-lime-300' }[tone];
   return (
     <details className={`group mt-3 rounded-2xl border ${bg}`} open={open}>
       <summary className="list-none cursor-pointer select-none flex items-center gap-2 min-h-[52px] px-4 py-2">

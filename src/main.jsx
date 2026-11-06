@@ -106,7 +106,7 @@ function PWAUpdateToast() {
         {needRefresh && (
           <>
             <button onClick={e => { e.stopPropagation(); setNeedRefresh(false); }} className="min-h-[44px] px-2 text-[14px] font-bold text-emerald-100">{tr('later')}</button>
-            <span aria-hidden="true" className="min-h-[44px] px-4 rounded-xl bg-white text-[#114b2d] text-[15px] font-extrabold flex items-center">{busy ? tr('updating') : tr('now')}</span>
+            <span aria-hidden="true" className="min-h-[44px] px-4 rounded-xl bg-paper text-[#114b2d] text-[15px] font-extrabold flex items-center">{busy ? tr('updating') : tr('now')}</span>
           </>
         )}
       </div>

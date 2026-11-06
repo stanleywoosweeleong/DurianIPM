@@ -53,7 +53,7 @@ export function LearnList() {
       <p className="text-[0.9375rem] text-slate-600">{ui('learn.sub')}</p>
       <div className="space-y-2 mt-4">
         {LESSONS.map((l, i) => (
-          <a key={l.id} href={href(`learn/${l.id}`)} className="flex items-center gap-3 p-4 rounded-xl bg-white border border-slate-200 active:bg-slate-50">
+          <a key={l.id} href={href(`learn/${l.id}`)} className="flex items-center gap-3 p-4 rounded-xl bg-paper border border-slate-200 active:bg-slate-50">
             <span className="w-9 h-9 rounded-full bg-emerald-100 text-[#114b2d] font-extrabold flex items-center justify-center shrink-0">{i + 1}</span>
             <div className="flex-1 min-w-0">
               <div className="font-extrabold text-[1rem] leading-tight">{t(l.title)}</div>

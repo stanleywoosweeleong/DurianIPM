@@ -17,7 +17,7 @@ export function StagePicker({ groupId, value, onChange }) {
     ['mixed', ui('stage.mixed')],
   ];
   return (
-    <div className="rounded-xl border-2 border-sky-200 bg-sky-50 p-3">
+    <div className="rounded-xl border-2 border-sky-200 bg-paper p-3">
       <div className="flex items-baseline justify-between gap-2">
         <div className="font-extrabold text-[0.9375rem]">{ui('stage.question')}</div>
         <a href={href('learn/lifecycle')} className="text-[0.8125rem] font-bold text-sky-800 underline shrink-0">{ui('stage.why')}</a>

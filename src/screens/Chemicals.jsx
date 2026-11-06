@@ -28,7 +28,7 @@ const BEE_TONE = { high: 'red', wet: 'amber', mod: 'amber', low: 'green' };
 export function RemovedNotice({ r }) {
   const { t, lang, ui } = useLang();
   return (
-    <div className="rounded-2xl border-2 border-rose-500 bg-rose-50 p-4">
+    <div className="rounded-2xl border-2 border-rose-500 bg-paper p-4">
       <div className="flex items-center gap-2 text-rose-800">
         <Icon name="warn" className="w-6 h-6" />
         <div className="text-lg font-extrabold">{t(r)} — {r.hhp ? ui('status.hhp') : ui('status.banned')}</div>
@@ -40,7 +40,7 @@ export function RemovedNotice({ r }) {
           <div className="mt-3 font-bold text-[0.9375rem] text-rose-900">{ui('chem.alternatives')}</div>
           <div className="flex flex-wrap gap-2 mt-1.5">
             {r.groups.map(gid => (
-              <a key={gid} href={href(`group/${gid}`)} className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white border border-rose-300 font-bold text-[0.9375rem]">
+              <a key={gid} href={href(`group/${gid}`)} className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-paper border border-rose-300 font-bold text-[0.9375rem]">
                 <GroupArt id={gid} className="w-6 h-6" /> {t(groupById(gid).name)}
               </a>
             ))}
@@ -65,7 +65,7 @@ export function ChemicalList({ initialKind = 'all' }) {
       <div className="relative mt-3">
         <Icon name="search" className="w-5 h-5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
         <input id="product-search" name="product-search" type="search" value={q} onChange={e => setQ(e.target.value)} aria-label={ui('chem.title')} autoComplete="off"
-          className="w-full min-h-[52px] rounded-xl border border-slate-300 pl-10 pr-3 bg-white focus:border-[#114b2d] outline-none" />
+          className="w-full min-h-[52px] rounded-xl border border-slate-300 pl-10 pr-3 bg-paper focus:border-[#114b2d] outline-none" />
       </div>
       <div className="flex gap-2 mt-3 overflow-x-auto pb-1 -mx-1 px-1">
         {KINDS.map(k => <Chip key={k} on={kind === k} onClick={() => setKind(k)} className="whitespace-nowrap">{t(KIND_LABEL[k])}</Chip>)}
@@ -86,7 +86,7 @@ function ChemRow({ c }) {
   const { t, lang, lmap } = useLang();
   const info = moaInfo(c.moa);
   return (
-    <a href={href(`chem/${c.id}`)} className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 active:bg-slate-50">
+    <a href={href(`chem/${c.id}`)} className="flex items-center gap-3 p-3 rounded-xl bg-paper border border-slate-200 active:bg-slate-50">
       <div className="min-w-0 flex-1">
         <div className="font-extrabold text-[1rem] leading-tight">{c.name.en} <span className="font-bold text-slate-600">{lang !== 'ms' && c.name.zh !== c.name.en ? c.name.zh : ''}</span></div>
         <div className="flex flex-wrap gap-1.5 mt-1">
@@ -148,7 +148,7 @@ export function ChemicalDetail({ id }) {
         <Section title={ui('chem.usedFor')}>
           <div className="flex flex-wrap gap-2">
             {groups.map(g => (
-              <a key={g.id} href={href(`group/${g.id}`)} className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white border border-slate-300 font-bold text-[0.9375rem]">
+              <a key={g.id} href={href(`group/${g.id}`)} className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-paper border border-slate-300 font-bold text-[0.9375rem]">
                 <GroupArt id={g.id} className="w-6 h-6" /> {t(g.name)}
               </a>
             ))}
@@ -198,7 +198,7 @@ export function ChemicalDetail({ id }) {
             <div className="mt-3">
               <div className="text-[0.8125rem] font-bold text-slate-500 uppercase tracking-wide mb-1">{ui('chem.sameGroup')}</div>
               <div className="flex flex-wrap gap-1.5">
-                {siblings.map(x => <a key={x.id} href={href(`chem/${x.id}`)} className="px-2.5 py-1.5 rounded-lg border border-slate-300 bg-white text-[0.875rem] font-bold">{t(x.name)}</a>)}
+                {siblings.map(x => <a key={x.id} href={href(`chem/${x.id}`)} className="px-2.5 py-1.5 rounded-lg border border-slate-300 bg-paper text-[0.875rem] font-bold">{t(x.name)}</a>)}
               </div>
             </div>
           )}
@@ -207,10 +207,10 @@ export function ChemicalDetail({ id }) {
 
       <Fold title={ui('chem.lookups')}>
         <div className="space-y-2">
-          <a href={mrlURL} onClick={e => openExternal(e, mrlURL)} className="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-300 font-bold text-[#114b2d]">
+          <a href={mrlURL} onClick={e => openExternal(e, mrlURL)} className="flex items-center gap-2 p-3 rounded-xl bg-paper border border-slate-300 font-bold text-[#114b2d]">
             <Icon name="link" /> {ui('chem.mrl')}
           </a>
-          <a href={dt50URL} onClick={e => openExternal(e, dt50URL)} className="flex items-center gap-2 p-3 rounded-xl bg-slate-50 border border-slate-300 font-bold text-[#114b2d]">
+          <a href={dt50URL} onClick={e => openExternal(e, dt50URL)} className="flex items-center gap-2 p-3 rounded-xl bg-paper border border-slate-300 font-bold text-[#114b2d]">
             <Icon name="link" /> {ui('chem.dt50')}
           </a>
           <p className="text-[0.8125rem] text-slate-500 leading-snug">{ui('chem.mrlNote')}</p>

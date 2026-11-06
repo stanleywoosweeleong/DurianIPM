@@ -21,7 +21,7 @@ const TABS = [
 // First launch: pick a language (saved; change it later from the header button).
 function LanguageGate() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center gap-4 p-6 bg-white">
+    <div className="min-h-screen flex flex-col items-center justify-center gap-4 p-6 bg-paper">
       <img src={`${import.meta.env.BASE_URL}favicon.svg`} alt="" className="w-20 h-20 rounded-2xl shadow-sm" />
       <div className="text-2xl font-extrabold text-center text-slate-900 leading-snug">榴莲综合防治<br />Durian IPM</div>
       <div className="text-[15px] font-bold text-center text-slate-600 leading-snug">请选择语言 · Choose your language<br />Pilih bahasa anda</div>
@@ -53,28 +53,28 @@ function Shell() {
   }
 
   return (
-    <div className="min-h-screen bg-white text-slate-800">
+    <div className="min-h-screen bg-paper text-slate-800">
       <div className="sticky top-0 z-40">
-        <header className="bg-white border-b border-slate-200 safe-top">
+        <header className="bg-paper border-b border-slate-200 safe-top">
           <div className="max-w-2xl mx-auto px-[16px] py-[10px] flex items-center gap-[8px]">
             <a href={href('')} className="flex items-center gap-[10px] min-w-0 flex-1">
               <img src={`${import.meta.env.BASE_URL}favicon.svg`} alt="" width="36" height="36" className="w-[36px] h-[36px] rounded-xl shadow-sm shrink-0" />
               <span className="font-extrabold text-[17px] text-slate-900 truncate">{ui('app.title')}</span>
             </a>
-            <div className="flex items-center h-[40px] bg-white border border-slate-300 rounded-xl shadow-sm overflow-hidden shrink-0" role="group" aria-label={ui('app.textSize')}>
+            <div className="flex items-center h-[40px] bg-paper border border-slate-300 rounded-xl shadow-sm overflow-hidden shrink-0" role="group" aria-label={ui('app.textSize')}>
               {SIZES.map(s => (
                 <button key={s.v} onClick={() => setScale(s.v)} aria-pressed={scale === s.v}
                   className={`h-full w-[32px] font-extrabold ${s.cls} ${scale === s.v ? 'bg-[#114b2d] text-white' : 'text-slate-600'}`}>A</button>
               ))}
             </div>
             <button onClick={() => setSheet(true)} aria-label={ui('app.language')} aria-haspopup="dialog"
-              className="h-[40px] px-[10px] rounded-xl bg-white border border-slate-300 shadow-sm text-[14px] font-bold text-slate-800 shrink-0 flex items-center gap-[4px]">
+              className="h-[40px] px-[10px] rounded-xl bg-paper border border-slate-300 shadow-sm text-[14px] font-bold text-slate-800 shrink-0 flex items-center gap-[4px]">
               <svg viewBox="0 0 24 24" className="w-[16px] h-[16px] text-slate-500" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" /></svg>
               {LANG_SHORT[lang]}
             </button>
           </div>
         </header>
-        <nav className="bg-white border-b border-slate-200">
+        <nav className="bg-paper border-b border-slate-200">
           <div className="max-w-2xl mx-auto px-[8px] grid grid-cols-2">
             {TABS.map(tb => {
               const on = tb.match.includes(route.name);

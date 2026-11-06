@@ -32,7 +32,7 @@ export const moaCode = (info) => (info.irac ? `IRAC ${info.irac}` : info.key.sta
 export function ChemChip({ c }) {
   const { t } = useLang();
   return (
-    <a href={href(`chem/${c.id}`)} className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-slate-300 bg-white text-[0.875rem] font-bold active:bg-slate-100">
+    <a href={href(`chem/${c.id}`)} className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-slate-300 bg-paper text-[0.875rem] font-bold active:bg-slate-100">
       {c.organic && <Icon name="leaf" className="w-4 h-4 text-lime-700" />}
       <span>{t(c.name)}</span>
       {c.bee === 'high' && <Icon name="bee" className="w-4 h-4 text-rose-600" />}
@@ -81,7 +81,7 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
 
 
   const avoidCard = rec.avoid.length > 0 && (
-    <div className="mt-3 rounded-2xl bg-rose-50 border border-rose-200 p-3">
+    <div className="mt-3 rounded-2xl bg-paper border border-rose-200 p-3">
       <div className="font-extrabold text-[1rem] text-rose-900">{ui('group.avoid')}</div>
       <div className="mt-2 space-y-2">
         {rec.avoid.map(a => (
@@ -100,7 +100,7 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
       {intro}
       <WikiCover photo={coverFor(g.id)} lang={lang} className="h-48 mb-3" />
       <div className="flex items-center gap-3">
-        <div className="w-11 h-11 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-700 shrink-0">
+        <div className="w-11 h-11 rounded-xl bg-paper border border-slate-200 flex items-center justify-center text-slate-700 shrink-0">
           <GroupArt id={g.id} className="w-8 h-8" />
         </div>
         <div className="min-w-0">
@@ -114,13 +114,13 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
 
       <p className="mt-3 text-[1rem] leading-relaxed text-slate-800">{t(g.why)}</p>
 
-      <div className="mt-3 text-[0.9375rem] leading-snug rounded-xl bg-white border border-slate-200 px-3 py-2 divide-y divide-slate-100">
+      <div className="mt-3 text-[0.9375rem] leading-snug rounded-xl bg-paper border border-slate-200 px-3 py-2 divide-y divide-slate-100">
         <p className={SPRAY_WHERE[g.id] && g.chem.length > 0 ? 'pb-1.5' : ''}><b>{ui('diag.first')}:</b> {t(g.nonChem[0])}</p>
         {SPRAY_WHERE[g.id] && g.chem.length > 0 && <p className="pt-1.5"><b>{ui('group.sprayWhere')}:</b> {t(SPRAY_WHERE[g.id])}</p>}
       </div>
       {g.id === 'shot-hole' && <BorerGrade />}
       {RELATED[g.id] && (
-        <div className="mt-2 rounded-xl bg-amber-50 border border-amber-200 px-3 py-2">
+        <div className="mt-2 rounded-xl bg-paper border border-amber-200 px-3 py-2">
           <div className="text-[0.875rem] font-extrabold text-amber-900">{ui('group.related')}</div>
           <div className="mt-1 space-y-1.5">
             {RELATED[g.id].map(([rid, why]) => (
@@ -147,7 +147,7 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
               <label className="block min-w-0">
                 <span className="block font-bold text-slate-600 leading-tight mb-1">{ui('group.lastUsedShort')}</span>
                 <select id="last-sprayed" name="last-sprayed" value={lastValue} onChange={e => setLast(e.target.value || null)}
-                  className="block w-full max-w-full min-h-[44px] rounded-lg border border-slate-300 bg-white px-2 font-bold text-[0.9375rem]">
+                  className="block w-full max-w-full min-h-[44px] rounded-lg border border-slate-300 bg-paper px-2 font-bold text-[0.9375rem]">
                   <option value="">{ui('group.lastUsedNone')}</option>
                   {chartGroups
                     ? chartGroups.map(code => <option key={code} value={code}>{`IRAC ${code} · ${lmap(GROUP_NAMES)[code] || ''}`}</option>)
@@ -157,7 +157,7 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
               <label className="block min-w-0">
                 <span className="block font-bold text-slate-600 leading-tight mb-1">{ui('group.treeStage')}</span>
                 <select id="tree-stage" name="tree-stage" value={orchard.stage || ''} onChange={e => setOrchard({ stage: e.target.value || null })}
-                  className="block w-full max-w-full min-h-[44px] rounded-lg border border-slate-300 bg-white px-2 font-bold text-[0.9375rem]">
+                  className="block w-full max-w-full min-h-[44px] rounded-lg border border-slate-300 bg-paper px-2 font-bold text-[0.9375rem]">
                   <option value="">—</option>
                   {STAGES.map(st => <option key={st.id} value={st.id}>{t(st.name)}</option>)}
                 </select>
@@ -166,7 +166,7 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
           )}
 
           {orchard.stage === 'flowering' && rec.options.length > 0 && (
-            <a href={href('learn/pollinators')} className="mt-3 flex items-start gap-2 rounded-xl bg-amber-50 border border-amber-300 p-3 active:bg-amber-100">
+            <a href={href('learn/pollinators')} className="mt-3 flex items-start gap-2 rounded-xl bg-paper border border-amber-300 p-3 active:bg-amber-50">
               <Icon name="bee" className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
               <span className="flex-1 text-[0.875rem] leading-snug"><b>{ui('home.flowerWarn')}</b> <span className="text-[#114b2d] underline font-bold">{ui('group.whyFlowering')}</span></span>
             </a>
@@ -176,7 +176,7 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
           </div>
           {rec.rotationWithheld && <div className="mt-4"><Callout tone="blue" icon="leaf">{ui('group.rotationSite')}</Callout></div>}
           {rec.rotation.length > 1 && (
-            <div className="mt-4 rounded-2xl bg-emerald-50 border border-emerald-200 p-3">
+            <div className="mt-4 rounded-2xl bg-paper border border-emerald-200 p-3">
               <div className="font-extrabold text-[1rem]">{ui('group.rotation')}</div>
               <ol className="mt-2 space-y-1.5">
                 {rec.rotation.map((o, i) => (

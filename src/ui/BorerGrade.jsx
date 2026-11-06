@@ -55,7 +55,7 @@ export function BorerGrade() {
   const done = QUESTIONS.every(q => v[q.id] !== undefined);
   const lv = done ? LEVELS[level(v)] : null;
   return (
-    <div className="mt-3 rounded-2xl bg-white border border-slate-200 p-3">
+    <div className="mt-3 rounded-2xl bg-paper border border-slate-200 p-3">
       <div className="font-extrabold text-[1rem]">{t(s('How bad is this tree?', '这棵树有多严重？'))}</div>
       <p className="text-[0.8125rem] text-slate-500 leading-snug">{t(s('Four questions → a plan for this tree. A rule of thumb, not a trial-tested score.', '四个问题→这棵树的方案。是经验做法，不是试验得出的评分。'))}</p>
       {QUESTIONS.map(q => (
@@ -64,7 +64,7 @@ export function BorerGrade() {
           <div className="mt-1 grid grid-cols-2 gap-1.5">
             {q.a.map((a, i) => (
               <button key={i} type="button" aria-pressed={v[q.id] === i} onClick={() => setV({ ...v, [q.id]: i })}
-                className={`min-h-[44px] px-2 py-1.5 rounded-lg border text-[0.875rem] font-semibold leading-tight text-left ${v[q.id] === i ? 'bg-[#114b2d] border-[#114b2d] text-white' : 'bg-white border-slate-300 text-slate-700'}`}>
+                className={`min-h-[44px] px-2 py-1.5 rounded-lg border text-[0.875rem] font-semibold leading-tight text-left ${v[q.id] === i ? 'bg-[#114b2d] border-[#114b2d] text-white' : 'bg-paper border-slate-300 text-slate-700'}`}>
                 {t(a)}
               </button>
             ))}

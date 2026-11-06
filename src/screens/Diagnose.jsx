@@ -20,7 +20,7 @@ function Tile({ on, onClick, children, className = "" }) {
   return (
     <button type="button" onClick={onClick} aria-pressed={!!on}
       className={`flex flex-col items-center justify-center gap-1 p-2 min-h-[80px] rounded-xl border text-center text-[0.875rem] font-bold leading-tight transition-colors ${className} ${on
-        ? 'bg-[#114b2d] border-[#114b2d] text-white shadow-md' : 'bg-white border-slate-200 text-slate-700 active:bg-slate-50'}`}>
+        ? 'bg-[#114b2d] border-[#114b2d] text-white shadow-md' : 'bg-paper border-slate-200 text-slate-700 active:bg-slate-50'}`}>
       {children}
     </button>
   );
@@ -76,14 +76,14 @@ export default function Diagnose({ orchard, setOrchard }) {
       return (
         <div>
           <p className="mt-3 text-[1rem]">{ui('diag.none')}</p>
-          <button onClick={restart} className="mt-5 w-full min-h-[52px] rounded-xl border border-slate-300 bg-white font-bold">{ui('diag.restart')}</button>
+          <button onClick={restart} className="mt-5 w-full min-h-[52px] rounded-xl border border-slate-300 bg-paper font-bold">{ui('diag.restart')}</button>
         </div>
       );
     }
     const tone = top.confidence === 'high' ? 'green' : top.confidence === 'medium' ? 'amber' : 'grey';
     const others = rest.slice(0, 2);
     const intro = (
-      <div className="mb-3 rounded-xl border border-slate-200 bg-white p-3">
+      <div className="mb-3 rounded-xl border border-slate-200 bg-paper p-3">
         <div className="flex items-center justify-between gap-2">
           <span className="text-[0.8125rem] font-extrabold text-slate-500 uppercase tracking-wider">{ui('diag.resultTitle')}</span>
           <Badge tone={tone}>{ui(`diag.conf.${top.confidence}`)}</Badge>
@@ -143,7 +143,7 @@ export default function Diagnose({ orchard, setOrchard }) {
           <h1 className="text-xl font-extrabold text-slate-900">{t(PARTS.find(p => p.id === part).name)}</h1>
         </div>
         <p className="text-[0.875rem] text-slate-500 mb-2">{ui('diag.pickOne')}</p>
-        {part === 'trunk' && <div className="mb-3 rounded-xl bg-amber-50 border border-amber-200 px-3 py-2 text-[0.875rem] leading-snug text-amber-950">{ui('diag.notDisease')}</div>}
+        {part === 'trunk' && <div className="mb-3 rounded-xl bg-paper border border-amber-200 px-3 py-2 text-[0.875rem] leading-snug text-amber-950">{ui('diag.notDisease')}</div>}
         {/* Pests together first, then fungal/bacterial diseases together. */}
         {[['pests', (PART_PESTS[part] || []).filter(([gid]) => groupById(gid).kingdom !== 'disease')],
           ['diseases', (PART_PESTS[part] || []).filter(([gid]) => groupById(gid).kingdom === 'disease')]]
@@ -152,7 +152,7 @@ export default function Diagnose({ orchard, setOrchard }) {
               <h2 className="text-[0.8125rem] font-extrabold text-slate-500 uppercase tracking-wider mb-1.5">{ui(`diag.${kind}`)}</h2>
               <div className="space-y-2">
                 {list.map(([gid, look]) => (
-                  <a key={gid} href={href(`group/${gid}`)} className="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 active:bg-slate-50">
+                  <a key={gid} href={href(`group/${gid}`)} className="flex items-center gap-3 p-3 rounded-xl bg-paper border border-slate-200 active:bg-slate-50">
                     <span className="w-11 h-11 rounded-xl bg-slate-50 flex items-center justify-center shrink-0"><GroupArt id={gid} className="w-8 h-8 text-slate-700" /></span>
                     <span className="min-w-0 flex-1">
                       <span className="block font-extrabold text-[1rem] leading-tight text-slate-900">{t(groupById(gid).name)}</span>
@@ -181,8 +181,8 @@ export default function Diagnose({ orchard, setOrchard }) {
         <div className="grid grid-cols-1 gap-2 mt-3">
           {list.map(s => (
             <button key={s.id} type="button" onClick={() => setSign(s.id)}
-              className="text-left rounded-xl border border-slate-200 bg-white px-3.5 py-3 text-[0.9375rem] font-bold text-slate-800 active:bg-slate-50">
-              {s.art && <div className="mb-2 rounded-lg overflow-hidden bg-white"><LeafCurlArt id={s.art} alt={t(s.label)} lang={lang} className="h-24" /></div>}
+              className="text-left rounded-xl border border-slate-200 bg-paper px-3.5 py-3 text-[0.9375rem] font-bold text-slate-800 active:bg-slate-50">
+              {s.art && <div className="mb-2 rounded-lg overflow-hidden bg-paper"><LeafCurlArt id={s.art} alt={t(s.label)} lang={lang} className="h-24" /></div>}
               <span className="flex items-center justify-between gap-2">{t(s.label)}<Icon name="chevron" className="w-5 h-5 text-slate-400 shrink-0" /></span>
             </button>
           ))}
@@ -226,13 +226,13 @@ function KnownSearch() {
       <div className="relative">
         <Icon name="search" className="w-5 h-5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
         <input id="pest-search" name="pest-search" type="search" autoComplete="off" value={q} onChange={e => setQ(e.target.value)} placeholder={ui('home.searchKnown')} aria-label={ui('home.knownTitle')}
-          className="w-full min-h-[48px] rounded-xl border border-slate-300 pl-10 pr-3 bg-white focus:border-[#114b2d] outline-none" />
+          className="w-full min-h-[48px] rounded-xl border border-slate-300 pl-10 pr-3 bg-paper focus:border-[#114b2d] outline-none" />
       </div>
       {q && (
         <div className="mt-2 space-y-1.5">
           {hits.length === 0 && <p className="text-[0.875rem] text-slate-600">{ui('home.noKnown')}</p>}
           {hits.map(({ pest, groupId }) => (
-            <a key={pest.id} href={href(`group/${groupId}`)} className="flex items-center justify-between gap-2 p-3 rounded-xl bg-white border border-slate-200">
+            <a key={pest.id} href={href(`group/${groupId}`)} className="flex items-center justify-between gap-2 p-3 rounded-xl bg-paper border border-slate-200">
               <div className="min-w-0">
                 <div className="font-bold text-[0.9375rem] leading-tight">{t(pest.common)}</div>
                 <div className="text-[0.8125rem] italic text-slate-500 truncate">{pest.scientific}</div>
@@ -276,7 +276,7 @@ function CommonProblems() {
             <div className="grid grid-cols-3 auto-rows-fr gap-2">
               {list.map(([id, label]) => (
                 <a key={id} href={href(`group/${id}`)}
-                  className="flex flex-col items-center justify-center gap-1 p-2 min-h-[80px] rounded-xl border border-slate-200 bg-white text-center active:bg-slate-50">
+                  className="flex flex-col items-center justify-center gap-1 p-2 min-h-[80px] rounded-xl border border-slate-200 bg-paper text-center active:bg-slate-50">
                   <GroupArt id={id} className="w-8 h-8 text-slate-700" />
                   <span className="text-[0.8125rem] font-bold text-slate-700 leading-tight">{t(label)}</span>
                 </a>

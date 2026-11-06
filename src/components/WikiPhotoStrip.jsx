@@ -28,7 +28,7 @@ function PhotoLightbox({ photo, lang, onClose }) {
     >
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 z-10 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full font-bold text-sm flex items-center gap-2 backdrop-blur-sm"
+        className="absolute top-4 right-4 z-10 bg-paper/10 hover:bg-paper/20 text-white px-4 py-2 rounded-full font-bold text-sm flex items-center gap-2 backdrop-blur-sm"
         aria-label={closeLabel}
       >
         <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

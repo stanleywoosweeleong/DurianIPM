@@ -2,7 +2,10 @@
 export default {
   content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: {}
+    extend: {
+      // One soft paper tone for every surface — easier on the eyes than pure white.
+      colors: { paper: '#fcfbf7' },
+    }
   },
   plugins: []
 };

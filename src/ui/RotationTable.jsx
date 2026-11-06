@@ -34,7 +34,7 @@ export function RotationTable({ pests, last }) {
         <div className="grid gap-1 p-1 rounded-xl bg-slate-200 mb-3" style={{ gridTemplateColumns: `repeat(${pests.length}, 1fr)` }} role="tablist">
           {pests.map(p => (
             <button key={p} role="tab" aria-selected={pest === p} onClick={() => setPest(p)}
-              className={`min-h-[40px] rounded-lg font-bold text-[0.875rem] ${pest === p ? 'bg-white shadow' : 'text-slate-600'}`}>{pestName(p)}</button>
+              className={`min-h-[40px] rounded-lg font-bold text-[0.875rem] ${pest === p ? 'bg-paper shadow' : 'text-slate-600'}`}>{pestName(p)}</button>
           ))}
         </div>
       )}
@@ -51,7 +51,7 @@ export function RotationTable({ pests, last }) {
           {rot.caution.length > 0 && (
             <div>
               <div className="text-[0.8125rem] font-extrabold text-amber-800 uppercase tracking-wider mb-1.5">⚠ {L.rotateCaution} — {rot.caution.map(c => c.g).join(' / ')}</div>
-              <p className="text-[0.875rem] text-amber-900 bg-amber-50 border border-amber-300 rounded-xl p-2.5 leading-snug">
+              <p className="text-[0.875rem] text-amber-900 bg-paper border border-amber-300 rounded-xl p-2.5 leading-snug">
                 {rot.crossKind === 'partial' ? L.cautionNote_partial : L.cautionNote_shared}
               </p>
               <div className="space-y-2 mt-2">{rot.caution.map(grp => <GroupBlock key={grp.g} grp={grp} gName={gName} L={L} />)}</div>
@@ -96,7 +96,7 @@ function ActiveLink({ a, tone }) {
   const label = a.chem ? (lang === 'zh' && a.chem.name.zh !== a.n ? a.chem.name.zh : a.n) : a.n;
   return (
     <a href={a.chem ? href(`chem/${a.chem.id}`) : undefined}
-      className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border bg-white text-[0.875rem] font-bold ${tone === 'red' ? 'border-rose-300 text-rose-900' : 'border-slate-300'}`}>
+      className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border bg-paper text-[0.875rem] font-bold ${tone === 'red' ? 'border-rose-300 text-rose-900' : 'border-slate-300'}`}>
       {a.chem?.organic && <Icon name="leaf" className="w-4 h-4 text-lime-700" />}
       {label}
       <Badge tone={RISK_TONE[a.r]} className="text-[0.6875rem]">{L[`risk_${a.r}`]}</Badge>

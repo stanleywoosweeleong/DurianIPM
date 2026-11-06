@@ -227,7 +227,7 @@ export function MouthpartsFigure({ t }) {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
       {MOUTH.map(m => (
-        <div key={m.k} className="rounded-xl border border-slate-200 bg-white p-2 text-center">
+        <div key={m.k} className="rounded-xl border border-slate-200 bg-paper p-2 text-center">
           <svg viewBox="0 0 120 96" className="w-full h-20 text-slate-800" aria-hidden="true" dangerouslySetInnerHTML={{ __html: `<g ${g}>${m.draw}</g>` }} />
           <div className="font-bold text-[0.9375rem] text-slate-900">{t(MOUTH_TEXT[m.k].name)}</div>
           <div className="text-[0.8125rem] text-slate-600 leading-snug">{t(MOUTH_TEXT[m.k].who)}</div>
@@ -241,7 +241,7 @@ export function MouthpartsFigure({ t }) {
 // ── Life-cycle figure: which stage each kind of product hits. ───────────────
 export function LifecycleFigure({ t }) {
   const row = (title, stages) => (
-    <div className="rounded-xl border border-slate-200 bg-white p-3">
+    <div className="rounded-xl border border-slate-200 bg-paper p-3">
       <div className="font-bold text-[0.9375rem] mb-2">{t(title)}</div>
       <div className="flex items-stretch gap-1">
         {stages.map((s, i) => (
