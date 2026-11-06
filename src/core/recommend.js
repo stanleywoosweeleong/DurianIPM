@@ -35,6 +35,8 @@ function activesFor(group, key, only) {
  * @param {object} group – entry from GROUPS
  * @param {object} ctx   – { stage?: string, recentMoa?: string[] }  (MoA class keys)
  */
+const SITE_SPECIFIC = new Set(['oomycete']);
+
 export function recommend(group, ctx = {}) {
   // pestStage: what the farmer sees most — 'eggs' | 'young' | 'adults' | 'mixed' | null
   const { stage = null, recentMoa = [], track = 'all', pestStage = null } = ctx;
@@ -88,7 +90,10 @@ export function recommend(group, ctx = {}) {
   // cross-resistance cluster, skipping anything blocked at this stage.
   const rotation = [];
   const usedClusters = new Set();
-  for (const o of options) {
+  // Some groups' options are applied to different parts of the tree (injection, trunk paint, soil
+  // drench) — they are not a spray sequence, so no automatic rotation is offered.
+  const siteSpecific = SITE_SPECIFIC.has(group.id);
+  for (const o of siteSpecific ? [] : options) {
     if (rotation.length >= 3) break;
     if (o.warnings.includes('beeBlock') || o.recentlyUsed) continue;
     if (rotation.some(r => r.moa === o.moa)) continue;
@@ -99,7 +104,7 @@ export function recommend(group, ctx = {}) {
   }
 
   const avoid = (group.avoid || []).map(a => ({ ...a, moaInfo: moaInfo(a.moa) }));
-  return { options, rotation, avoid };
+  return { options, rotation, avoid, rotationWithheld: siteSpecific ? 'site-specific' : null };
 }
 
 /** Pest groups whose recommendations include this MoA class (for the chemical page). */

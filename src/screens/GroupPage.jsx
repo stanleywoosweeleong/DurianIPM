@@ -174,6 +174,7 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
           <div className="space-y-2 mt-3">
             {rec.options.map((o, i) => <OptionCard key={o.moa} o={o} rank={i + 1} />)}
           </div>
+          {rec.rotationWithheld && <div className="mt-4"><Callout tone="blue" icon="leaf">{ui('group.rotationSite')}</Callout></div>}
           {rec.rotation.length > 1 && (
             <div className="mt-4 rounded-2xl bg-emerald-50 border border-emerald-200 p-3">
               <div className="font-extrabold text-[1rem]">{ui('group.rotation')}</div>
@@ -205,6 +206,7 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
         <p className="text-[1rem] leading-snug">{t(g.scout)}</p>
         <div className="mt-3 text-[0.875rem] font-bold text-slate-500">{ui('group.threshold')}</div>
         <p className="text-[1rem] leading-snug font-semibold">{t(g.threshold)}</p>
+        <p className="mt-2 text-[0.8125rem] text-slate-500 leading-snug">{ui('group.thresholdBasis')}</p>
       </Fold>
       <Fold title={ui('group.about')} hint={t(g.hides)}>
         <div className="grid grid-cols-1 gap-3">

@@ -277,3 +277,24 @@ test('China MRL data: numeric limits, durian-covering basis only, exempt ids exi
   const cyper = CHEMICALS.find(c => c.id === 'cypermethrin');
   assert.equal(chinaMrl(cyper).kind, 'value');
 });
+
+test('whole-tree wilt with nothing else seen stays low-confidence', () => {
+  for (const culprits of [[], ['nothing'], ['unsure']]) {
+    const results = diagnose({ signs: ['tree-wilt'], culprits });
+    assert.ok(results.every(r => r.confidence === 'low'), JSON.stringify(culprits));
+  }
+});
+
+test('Phytophthora options are not turned into a spray rotation (different tree parts)', () => {
+  const r = recommend(GROUPS.find(g => g.id === 'oomycete'), {});
+  assert.equal(r.rotationWithheld, 'site-specific');
+  assert.deepEqual(r.rotation, []);
+  assert.ok(recommend(GROUPS.find(g => g.id === 'fruit-borers'), {}).rotation.length > 1);
+});
+
+test('alternation lesson stays, without the unsupported claims', () => {
+  const l = LESSONS.find(x => x.id === 'alternate');
+  assert.ok(l && /organic/i.test(l.title.en));
+  const text = JSON.stringify(l).toLowerCase();
+  assert.ok(!text.includes('in half') && !text.includes('5–7 days later'));
+});

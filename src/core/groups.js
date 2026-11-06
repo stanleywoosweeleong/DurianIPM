@@ -292,7 +292,7 @@ export const GROUPS = [
     ],
     chem: [
       { moa: 'IRAC 11A', fit: 'best', why: { en: 'Bt: only kills caterpillars and spares predators. The kurstaki strain needs no bee precaution; the aizawai strain should not be sprayed on open flowers.', zh: 'Bt：只杀毛虫，不伤天敌。库斯塔克亚种无需防蜂措施；鲇泽亚种不宜喷在盛开的花上。' } },
-      { moa: 'IRAC 28', fit: 'best', why: { en: 'Diamides stop feeding in minutes, long lasting, bee-safe.', zh: '双酰胺类数分钟内停止取食，持效长，对蜂安全。' } },
+      { moa: 'IRAC 28', fit: 'best', why: { en: 'Diamides stop feeding in minutes and last long. Chlorantraniliprole has low bee toxicity (UC IPM category III) — still keep it off open flowers. Cyantraniliprole is different: highly toxic to bees.', zh: '双酰胺类数分钟内停止取食，持效长。氯虫苯甲酰胺对蜂毒性低（UC IPM第III类）——但仍不要喷到盛开的花上。溴氰虫酰胺不同：对蜂高毒。' } },
       { moa: 'IRAC 5', fit: 'best', why: { en: 'Spinosyns: fast-acting. Highly toxic to bees while wet, much lower risk once dry (UC IPM: toxic to bees for about a day after spraying). At flowering, spray in the morning so it is dry before flowers open.', zh: '多杀菌素：速效。药液未干时对蜜蜂高毒，干后风险低得多（UC IPM：喷后约一天内对蜜蜂有毒）。开花期请早上喷，让药液在开花前干透。' } },
       { moa: 'IRAC 6', only: ['emamectin-benzoate'], fit: 'good', why: { en: 'Emamectin benzoate: very potent on caterpillars (abamectin is much weaker on them).', zh: '甲维盐：对毛虫活性极高（阿维菌素对毛虫弱得多）。' } },
       { moa: 'IRAC 22A', fit: 'good', why: { en: 'Indoxacarb: stomach action.', zh: '茚虫威：胃毒作用。' } },
@@ -369,7 +369,7 @@ export const GROUPS = [
       { en: 'Light traps to track moth flights.', zh: '用灯光诱捕监测成虫发生期。' },
     ],
     chem: [
-      { moa: 'IRAC 28', fit: 'best', why: { en: 'Long residual on the fruit skin kills larvae as they bite in; bee-safe.', zh: '在果皮上持效长，幼虫咬入时即被杀死；对蜂安全。' } },
+      { moa: 'IRAC 28', fit: 'best', why: { en: 'Long residual on the fruit skin kills larvae as they bite in. Chlorantraniliprole has low bee toxicity (UC IPM category III) — still keep sprays off open flowers.', zh: '在果皮上持效长，幼虫咬入时即被杀死。氯虫苯甲酰胺对蜂毒性低（UC IPM第III类）——但仍不要喷到盛开的花上。' } },
       { moa: 'IRAC 11A', fit: 'good', why: { en: 'Bt kills newly hatched larvae; re-apply after rain.', zh: 'Bt杀灭初孵幼虫；雨后需补喷。' } },
       { moa: 'IRAC 5', fit: 'good', why: { en: 'Spinosyns at egg hatch.', zh: '孵化期使用多杀菌素。' } },
       { moa: 'IRAC 22A', fit: 'good', why: { en: 'Indoxacarb as a rotation partner.', zh: '茚虫威作为轮换药剂。' } },

@@ -89,6 +89,8 @@ export default function Diagnose({ orchard, setOrchard }) {
           <Badge tone={tone}>{ui(`diag.conf.${top.confidence}`)}</Badge>
         </div>
         <p className="mt-1 text-[0.8125rem] text-slate-500 leading-snug">{ui('diag.because')}: {[...new Map(top.evidence.map(e => [e.id, e])).values()].map(e => t(e.label)).join(' · ')}</p>
+        <p className="mt-1.5 text-[0.8125rem] text-slate-600 leading-snug">{ui('diag.provisional')}</p>
+        {sign === 'tree-wilt' && <p className="mt-1.5 text-[0.8125rem] text-amber-900 leading-snug">{ui('diag.rootCheck')}</p>}
         {top.confidence === 'low' && <p className="mt-1 text-[0.8125rem] text-amber-900 leading-snug">{ui('diag.lowConf')}</p>}
         {others.length > 0 && (
           <p className="mt-1.5 text-[0.875rem] leading-snug">
