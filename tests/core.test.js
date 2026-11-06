@@ -1,5 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { fileURLToPath } from 'node:url';
 import { GROUPS } from '../src/core/groups.js';
 import { CHEMICALS, REMOVED, findRemovedActive, moaInfo, searchChemicals, HHP_EXCEPTIONS } from '../src/core/chemDb.js';
 import { REMOVED_MY, CHART_ROWS, EU_BANNED, BEE_TAGS, TOX_WHO } from '../src/core/moaDb.js';
@@ -215,7 +216,7 @@ test('Rhizoctonia: own group, Rhizoctonia-active fungicides, never oomycete-only
 test('no runtime photo search anywhere (only fixed, checked photos)', async () => {
   const fs = await import('node:fs');
   const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap(e => e.isDirectory() ? walk(`${d}/${e.name}`) : [`${d}/${e.name}`]);
-  const files = walk(new URL('../src', import.meta.url).pathname).filter(f => /\.(js|jsx)$/.test(f));
+  const files = walk(fileURLToPath(new URL('../src', import.meta.url))).filter(f => /\.(js|jsx)$/.test(f));
   const hits = files.filter(f => /commons\.wikimedia\.org\/w\/api\.php|gsrsearch/.test(fs.readFileSync(f, 'utf8')));
   assert.deepEqual(hits, []);
 });

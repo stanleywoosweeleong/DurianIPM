@@ -140,7 +140,7 @@ export function diagnose({ signs = [], culprits = [], weather = null }) {
     ...r,
     pct: Math.round((r.score / total) * 100),
     // confidence: how far ahead of the field this group is, and how much evidence overall
-    confidence: r.score === top && r.score >= 6 && (results[1]?.score ?? 0) <= r.score * 0.6
+    confidence: signs.length === 1 && signs[0] === 'tree-wilt' && !sawCreature ? 'low' : r.score === top && r.score >= 6 && (results[1]?.score ?? 0) <= r.score * 0.6
       ? 'high'
       : r.score >= top * 0.75 && r.score >= 4 ? 'medium' : 'low',
   }));

@@ -3,43 +3,51 @@
 
 export const LESSONS = [
   {
-    id: 'alternate',
-    icon: 'rotate',
-    title: { en: 'One round chemical, one round organic', zh: '一轮化学，一轮有机' },
-    summary: { en: 'You don\'t have to go fully organic. Alternating already cuts the harm in half.', zh: '不必完全有机。交替用药就能把危害减半。' },
-    body: {
-      en: [
-        'Going 100% organic is expensive and slow, and most orchards cannot afford it. But you do not have to choose between "all chemical" and "all organic". Alternate them: one round of a chemical, the next round an organic or biological product, and repeat.',
-        'Why it works:',
-        '• Fewer chemical rounds means less total chemical on the farm: less exposure for you and your workers and less run-off into drains and ponds. Residue on the fruit at harvest depends mostly on the LAST chemical spray and its waiting period — keep that one well before harvest.',
-        '• Pests build resistance to chemicals they meet again and again. Oils and soaps act physically, so resistance is very unlikely. Bt and spinosad CAN select resistance — diamondback moth in Malaysia became highly resistant to Bt after heavy use — so rotate those too.',
-        '• Ladybirds, parasitic wasps and predatory mites recover during a gentle round. Not every organic product is gentle: spinosad also harms natural enemies (and bees) for about a day after spraying.',
-        '• You pay the organic price on only half the rounds.',
-        'How to do it:',
-        '• When pests are many, start with the CHEMICAL round to knock them down. Follow with the ORGANIC round 5–7 days later to hold them down.',
-        '• Each chemical round uses a different IRAC/FRAC group from the last chemical round. The app\'s programme does this for you.',
-        '• Spray organic products in the late afternoon (sunlight kills Bt and fungi), and do not mix insect-killing fungi with fungicides.',
-        '• Keep scouting. If the pest is back below the action level, skip a round. The cheapest spray is the one you did not need.',
-      ],
-      zh: [
-        '完全有机既贵又慢，大多数果园负担不起。但你不必在“全化学”和“全有机”之间二选一。交替使用：一轮化学药剂，下一轮有机或生物产品，如此循环。',
-        '为什么有效：',
-        '• 化学轮次少了，农场上的化学药剂总量就少：你和工人的接触少，流入水沟和池塘的药液也少。采收时果实上的残留主要取决于最后一次化学喷药及其安全间隔期——这一次要远离采收。',
-        '• 害虫对反复接触的化学药剂会产生抗性。矿物油和皂液是物理作用，几乎不会产生抗性。Bt和多杀菌素会产生抗性——马来西亚的小菜蛾在大量使用Bt后产生了很高的抗性——所以它们也要轮换。',
-        '• 在温和的轮次期间，瓢虫、寄生蜂和捕食螨得以恢复。并非所有有机产品都温和：多杀霉素喷后约一天内也会伤害天敌（和蜜蜂）。',
-        '• 只有一半的轮次需要支付有机产品的价格。',
-        '怎么做：',
-        '• 虫口多时，先用化学轮次压下去；5–7天后用有机轮次稳住。',
-        '• 每一轮化学都要用与上一轮化学不同的IRAC/FRAC组别。应用里的方案会自动帮你安排。',
-        '• 有机产品在下午晚些时候喷施（阳光会杀死Bt和真菌），且不要把昆虫病原真菌与杀菌剂混用。',
-        '• 持续监测。如果害虫已降到防治阈值以下，就跳过一轮。最便宜的一次喷药，就是不需要喷的那一次。',
-      ],
-    },
-    refs: [
-      { t: 'Sayyed et al. (2004) Appl. Environ. Microbiol. — field-evolved Bt resistance in diamondback moth from Karak, Malaysia', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC535196', scope: 'other', supports: 'Bt can select resistance in the field, in Malaysia' },
-      { t: 'UC IPM Pest Notes: Thrips — life stages (2 larval stages, prepupa, pupa in soil); spinosad toxic to natural enemies and bees for about a day', url: 'https://ipm.ucanr.edu/PMG/PESTNOTES/pn7429.html', scope: 'general', supports: 'thrips life cycle; spinosad harms natural enemies and bees for about a day' },
-    ],
+  "id": "alternate",
+  "icon": "leaf",
+  "title": {
+    "en": "Choosing biological and conventional controls",
+    "zh": "如何选择生物与常规防治措施"
   },
+  "summary": {
+    "en": "Scout first. Choose an effective control only when it is needed.",
+    "zh": "先监测；需要防治时才选择有效措施。"
+  },
+  "body": {
+    "en": [
+      "Organic status alone does not tell you whether a product will control this pest, protect pollinators or prevent resistance. Choose a locally registered product whose label covers the crop, target and application method.",
+      "• Identify the cause and monitor its extent before treating. Use prevention and suitable nonchemical measures first; reassess whether pesticide treatment is needed.",
+      "• There is no universal chemical–organic alternation schedule, and no basis here for promising a 50% reduction in harm. Risk depends on the product and exposure; replacing a spray does not establish an export residue outcome.",
+      "• Bt and spinosad have IRAC groups too. Include biological insecticides in resistance planning. Plan treatment windows around pest generations and the label; changing the brand or organic status is not necessarily changing the mode of action.",
+      "• Recheck the pest after treatment. Decide whether another application is needed from monitoring and label instructions, including the minimum interval and maximum number of applications. Do not automatically spray again after 5–7 days.",
+      "• Check the specific product for pollinator precautions, biological compatibility, storage and application conditions. Do not assume every organic product is gentle or that every biological product can be tank-mixed.",
+      "• Follow the label’s pre-harvest interval and verify the destination market’s residue requirements. This app does not predict residue levels at harvest."
+    ],
+    "zh": [
+      "有机身份本身不能说明产品是否能防治此病虫害、保护传粉者或防止抗性。请选择当地已登记且标签涵盖作物、防治对象和施药方法的产品。",
+      "• 施药前先确认原因并监测发生程度。优先采取预防和适合的非化学措施，再评估是否需要农药。",
+      "• 没有通用的“化学—有机”交替日程，本应用也没有依据承诺危害降低50%。风险取决于产品和接触情况；替换一次喷药不能确定出口残留结果。",
+      "• Bt和多杀霉素也有IRAC组别。抗性管理也要包括生物杀虫剂。根据害虫世代及标签安排用药窗口；更换品牌或有机身份不一定改变作用机制。",
+      "• 处理后重新监测。是否再次施药应依据监测与标签要求，包括最短间隔和最多施药次数。不要自动在5–7天后再喷一次。",
+      "• 核对具体产品的传粉者注意事项、生物相容性、储存和施用条件。不要假定所有有机产品都温和，或所有生物产品都可混配。",
+      "• 遵守标签安全间隔期并核实目的地市场的残留要求。本应用不能预测采收时的残留水平。"
+    ]
+  },
+  "refs": [
+    {
+      "t": "US EPA — Integrated Pest Management (IPM) Principles",
+      "url": "https://www.epa.gov/safepestcontrol/integrated-pest-management-ipm-principles",
+      "scope": "general",
+      "supports": "Identify and monitor pests, use action thresholds and prevention, and select controls by effectiveness and risk"
+    },
+    {
+      "t": "IRAC — Creating an Insecticide Resistance Management Program",
+      "url": "https://irac-online.org/documents/insecticide-resistance-training-intermediate-module/",
+      "scope": "general",
+      "supports": "Treatment decisions based on pest risk; application windows based on pest generations; rotation of effective modes of action"
+    }
+  ]
+},
   {
     id: 'organic',
     icon: 'leaf',
@@ -52,7 +60,7 @@ export const LESSONS = [
         '• Spray in the late afternoon or evening. Sunlight kills Beauveria, Metarhizium and Bt within hours; humidity at night helps fungi infect.',
         '• Cover everything — leaf undersides, buds, fruit stalks. Oils, soaps and neem only work where they touch.',
         '• Never tank-mix insect-killing fungi (Beauveria, Metarhizium) or Trichoderma with fungicides, including copper.',
-        '• Repeat every 5–7 days during pressure. Living products and botanicals do not last as long as synthetics.',
+        '• Reassess pest pressure after treatment. Repeat only if needed and at the interval allowed by the specific product label; persistence varies with product and conditions.',
         '• Still rotate. Bt and spinosad have IRAC numbers (11A and 5) — pests can become resistant to them too.',
         '• Protect natural enemies. Organic programmes work best when ladybirds, parasitic wasps and predatory mites survive — avoid broad-spectrum sprays that kill them.',
         'The reward: low residues for export buyers, safer workers, healthier bees and kelulut (spinosad still not during flowering), and fewer pest rebounds.',
@@ -63,7 +71,7 @@ export const LESSONS = [
         '• 傍晚或下午晚些时候喷施。阳光会在数小时内杀死白僵菌、绿僵菌和Bt；夜间湿度有助于真菌侵染。',
         '• 全面覆盖——叶背、花蕾、果柄。油剂、皂液和印楝只在接触到的地方起作用。',
         '• 切勿将昆虫病原真菌（白僵菌、绿僵菌）或木霉菌与杀菌剂（包括铜剂）混用。',
-        '• 虫害压力大时每5–7天重复一次。活体产品和植物源药剂的持效期比化学合成药剂短。',
+        '• 处理后重新评估虫害压力。确有需要时才按具体产品标签允许的间隔重复施用；持效期随产品和环境条件而变。',
         '• 仍要轮换。Bt和多杀霉素也有IRAC编号（11A和5）——害虫同样会产生抗性。',
         '• 保护天敌。瓢虫、寄生蜂和捕食螨能存活时，有机方案效果最好——避免使用会杀死它们的广谱药剂。',
         '回报是：出口残留低、工人更安全、蜜蜂和无刺蜂更健康（开花期仍不要用多杀霉素）、害虫反弹更少。',
@@ -185,7 +193,7 @@ export const LESSONS = [
       en: [
         'Most insecticide labels show an IRAC group number (e.g. "Group 28"), every fungicide a FRAC group. Ten different brands can contain the same chemical.',
         'If you spray the same group again and again, the few pests that survive breed, and soon nothing works. That is resistance.',
-        '• Never use the same group for more than 2 sprays in a row.',
+        '• For insecticides, plan mode-of-action windows around pest generations. Follow the product label and applicable IRAC/FRAC guidance for repeat applications and seasonal limits; there is no universal two-spray rule.',
         '• Switching brand is NOT switching chemistry — check the group number.',
         '• Mixing two products from the same group gives no benefit.',
         '• Some different numbers still hit the SAME target (e.g. 4A ↔ 4C, 1A ↔ 1B, 10A ↔ 10B). Switching between them is not a real change — the Rotation tab warns you.',
@@ -194,7 +202,7 @@ export const LESSONS = [
       zh: [
         '多数杀虫剂标签上都有IRAC组别编号（如“第28组”），杀菌剂则有FRAC组别。十个不同品牌可能含有同一种化学成分。',
         '如果反复喷同一组药，存活下来的少数害虫会繁殖，很快就没有药有效了。这就是抗药性。',
-        '• 同一组别连续使用不超过2次。',
+        '• 杀虫剂应按害虫世代安排作用机制窗口。重复用药及季节次数限制应遵照产品标签与适用的IRAC/FRAC指引；不存在通用的“两次”规则。',
         '• 换品牌不等于换药——要看组别编号。',
         '• 同组的两种药混用没有任何好处。',
         '• 有些不同编号仍作用于同一靶标（如 4A ↔ 4C、1A ↔ 1B、10A ↔ 10B）。在它们之间切换并非真正换药——“轮替”页面会提醒你。',
@@ -202,6 +210,7 @@ export const LESSONS = [
       ],
     },
     refs: [
+      {"t": "IRAC — Creating an Insecticide Resistance Management Program", "url": "https://irac-online.org/documents/insecticide-resistance-training-intermediate-module/", "scope": "general", "supports": "Treatment decisions based on pest risk; application windows based on pest generations; rotation of effective modes of action"},
       { t: 'IRAC Mode of Action Classification (online)', url: 'https://irac-online.org/mode-of-action/classification-online/', scope: 'general', supports: 'Bt is IRAC 11A, spinosad IRAC 5; growth-regulator groups; rotate groups across pest generations' },
       { t: 'UC IPM — General properties of fungicides (grape): resistance risk by FRAC group', url: 'https://ipm.ucanr.edu/agriculture/grape/general-properties-of-fungicides-used-in-grapes/', scope: 'general', supports: 'multi-site fungicides (copper, sulfur, mancozeb) have low resistance risk' },
     ],
@@ -223,7 +232,7 @@ export const LESSONS = [
         'Copper fungicides are a much smaller bee risk than insecticides, but copper products were tested for damage to apple flowers (soluble coppers ranked most phytotoxic), and in grapes copper was the fungicide that most harmed pollen in the lab. Nobody has tested durian — keep copper off open flowers and tiny fruitlets.',
         'What to do instead:',
         '• Treat pests BEFORE the flowers open: check flower buds and clean up thrips, bugs and caterpillars at bud stage.',
-        '• During flowering, use only products the app does not mark red, and spray the bunches as little as possible.',
+        '• Absence of a red warning in this app is not evidence of pollinator safety. During flowering, check the specific product label and avoid exposing pollinators or contaminating flowers.',
         '• If you must spray, do it in the morning. Last night\'s flowers have finished, and new flowers do not open until late afternoon. Avoid the afternoon hours before they open.',
         '• Tell nearby kelulut and bee keepers before you spray so they can close the hives.',
       ],
@@ -238,7 +247,7 @@ export const LESSONS = [
         '铜制杀菌剂对蜂的风险比杀虫剂小得多，但在苹果花上的药害试验中，可溶性铜的药害排名最高；在葡萄的实验室试验中，铜是对花粉伤害最大的杀菌剂。榴莲上还没人试过——铜剂不要喷到盛开的花和小幼果上。',
         '应该怎么做：',
         '• 在开花之前处理害虫：检查花蕾，在花蕾期把蓟马、椿象和毛虫清理干净。',
-        '• 开花期只用应用中没有标红的产品，并尽量少喷花串。',
+        '• 本应用没有红色警示，并不代表产品对传粉者安全。开花期须核对具体产品标签，避免传粉者接触药剂或污染花朵。',
         '• 如果必须喷，请在早上喷。前一晚的花已经谢了，新花要到傍晚才开。避开开花前的下午时段。',
         '• 喷药前通知附近养无刺蜂和蜜蜂的人，让他们先关好蜂箱。',
       ],
@@ -420,9 +429,9 @@ export const LESSONS = [
     body: {
       en: [
         'Every pest page has a Sources list. Each source carries a badge:',
-        '• Durian study — the work was done on durian. The strongest evidence in this app.',
-        '• Other crop — the same pest or disease studied on another crop. Usually transfers, but not always.',
-        '• General guidance — extension advice or a review, not a specific trial.',
+        '• Durian-related source — discusses durian, but may be a trial, extension advice or a grower report. This badge does not rate study quality.',
+        '• Other crop / context — evidence from another crop or setting. It may address a different pest or only an application method; transfer to durian needs justification.',
+        '• General reference — broader background. Read the title and the supported claim to understand what it establishes; a scope badge is not a study-design label.',
         'These parts of the app have NO trial behind them. They are reasoned from how the pest or disease works, or from grower experience:',
         '• Which problem comes first in "Not sure? Describe what you see" — the scoring is reasoning, not field data.',
         '• Action thresholds ("act when 1 in 4 shoots…") — rules of thumb; none has been tested on durian.',
@@ -432,9 +441,9 @@ export const LESSONS = [
       ],
       zh: [
         '每个害虫页面都有“资料来源”列表。每条来源都有一个标签：',
-        '• 榴莲研究——研究是在榴莲上做的。是本应用里最强的证据。',
-        '• 其他作物——在别的作物上研究同一种病虫害。通常可以借鉴，但不一定。',
-        '• 通用指导——推广机构的建议或综述，不是具体试验。',
+        '• 榴莲相关来源——讨论榴莲，但可能是试验、推广建议或果农报告。此标签不评价研究质量。',
+        '• 其他作物或情境——来自其他作物或环境的证据，可能涉及不同病虫害或仅涉及施药方法；应用到榴莲需要依据。',
+        '• 通用参考——较广泛的背景资料。请阅读标题和所支持的主张以理解其依据；范围标签不代表研究设计。',
         '本应用的以下部分没有试验依据，是根据病虫害的特性或果农经验推理出来的：',
         '• “不确定？描述你看到的”里哪个问题排第一——评分是推理，不是田间数据。',
         '• 防治阈值（“超过四分之一的新梢……时处理”）——经验做法，没有一个在榴莲上验证过。',

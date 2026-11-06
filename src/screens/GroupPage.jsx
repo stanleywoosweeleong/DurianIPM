@@ -71,9 +71,10 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
       `${ui('group.nonChem')}:`, ...g.nonChem.map(n => `• ${t(n)}`),
     ];
     if (rec.rotation.length) {
-      lines.push('', `${ui('group.rotation')}:`);
+      lines.push('', `${ui('group.rotation')}:`, ui('group.rotationSub'));
       rec.rotation.forEach((o, i) => lines.push(`${i + 1}. ${t(o.moaInfo.name)}${moaCode(o.moaInfo) ? ` (${moaCode(o.moaInfo)})` : ''} — ${o.actives.slice(0, 3).map(a => t(a.name)).join(', ')}`));
     }
+    if (rec.rotationWithheld) lines.push('', ui('group.rotationSite'));
     lines.push('', ui('common.disclaimer'));
     const url = `https://wa.me/?text=${encodeURIComponent(lines.join('\n'))}`;
     window.open(url, '_blank', 'noopener');
@@ -132,6 +133,15 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
           </div>
         </div>
       )}
+      <Fold open title={ui('group.nonChem')} hint={t(g.nonChem[0])}>
+        <Bullets items={g.nonChem} t={t} />
+      </Fold>
+      <Fold open title={ui('group.scout')} hint={t(g.threshold)}>
+        <p className="text-[1rem] leading-snug">{t(g.scout)}</p>
+        <div className="mt-3 text-[0.875rem] font-bold text-slate-500">{ui('group.threshold')}</div>
+        <p className="text-[1rem] leading-snug font-semibold">{t(g.threshold)}</p>
+        <p className="mt-2 text-[0.8125rem] text-slate-500">{ui('group.thresholdBasis')}</p>
+      </Fold>
       {g.chem.length === 0 ? (
         <Section><Callout tone="blue" icon="leaf">{ui('group.noChem')}</Callout></Section>
       ) : (
@@ -174,9 +184,11 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
           <div className="space-y-2 mt-3">
             {rec.options.map((o, i) => <OptionCard key={o.moa} o={o} rank={i + 1} />)}
           </div>
+          {rec.rotationWithheld && <div className="mt-4"><Callout>{ui('group.rotationSite')}</Callout></div>}
           {rec.rotation.length > 1 && (
             <div className="mt-4 rounded-2xl bg-emerald-50 border border-emerald-200 p-3">
               <div className="font-extrabold text-[1rem]">{ui('group.rotation')}</div>
+              <p className="mt-2 text-[0.875rem] leading-snug">{ui('group.rotationSub')}</p>
               <ol className="mt-2 space-y-1.5">
                 {rec.rotation.map((o, i) => (
                   <li key={o.moa} className="flex gap-2 items-start">
@@ -198,14 +210,6 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
         </Section>
       )}
 
-      <Fold title={ui('group.nonChem')} hint={t(g.nonChem[0])}>
-        <Bullets items={g.nonChem} t={t} />
-      </Fold>
-      <Fold title={ui('group.scout')} hint={t(g.threshold)}>
-        <p className="text-[1rem] leading-snug">{t(g.scout)}</p>
-        <div className="mt-3 text-[0.875rem] font-bold text-slate-500">{ui('group.threshold')}</div>
-        <p className="text-[1rem] leading-snug font-semibold">{t(g.threshold)}</p>
-      </Fold>
       <Fold title={ui('group.about')} hint={t(g.hides)}>
         <div className="grid grid-cols-1 gap-3">
           <Fact label={ui('group.hides')} value={t(g.hides)} />

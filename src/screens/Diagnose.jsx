@@ -89,6 +89,8 @@ export default function Diagnose({ orchard, setOrchard }) {
           <Badge tone={tone}>{ui(`diag.conf.${top.confidence}`)}</Badge>
         </div>
         <p className="mt-1 text-[0.8125rem] text-slate-500 leading-snug">{ui('diag.because')}: {[...new Map(top.evidence.map(e => [e.id, e])).values()].map(e => t(e.label)).join(' · ')}</p>
+        <p className="mt-2 text-[0.875rem] text-amber-900 leading-snug">{ui('diag.provisional')}</p>
+        {sign === 'tree-wilt' && <p className="mt-2 text-[0.875rem] leading-snug">{ui('diag.rootCheck')}</p>}
         {top.confidence === 'low' && <p className="mt-1 text-[0.8125rem] text-amber-900 leading-snug">{ui('diag.lowConf')}</p>}
         {others.length > 0 && (
           <p className="mt-1.5 text-[0.875rem] leading-snug">
@@ -199,7 +201,7 @@ export default function Diagnose({ orchard, setOrchard }) {
   const { culprits } = nextAfterSign(sign);
   return (
     <div>
-      <Header title={ui('diag.q3')} sub={ui('diag.q3Sub')} />
+      <Header title={ui('diag.q3')} sub={ui(part === 'root' ? 'diag.q3Root' : 'diag.q3Sub')} />
       <div className="grid grid-cols-3 auto-rows-fr gap-2 mt-3">
         {culprits.map(c => (
           <Tile key={c.id} onClick={() => setCulprit(c.id)}>

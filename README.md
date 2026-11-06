@@ -19,7 +19,7 @@ actually decide which chemistry works:
 | Which stage does damage | Growth regulators only kill young stages |
 
 A pest nobody has catalogued still lands in one of ~22 groups through three plain
-questions (where, what you see, what creature), and gets sound advice.
+questions (where, what you see, what creature), and gets provisional management guidance; symptom scores are not validated diagnoses.
 
 ## Screens
 
@@ -35,8 +35,7 @@ questions (where, what you see, what creature), and gets sound advice.
 - **Diagnose**: 3-step wizard → the likely pest group, the evidence behind it, and **what works** right on the result:
   the first non-chemical steps, the top organic options and the top conventional options, each with real products.
 - **Group page**: what it is, why it matters for control, how to confirm it, action threshold, non-chemical steps first.
-  Then the spray options ranked on effectiveness, with stage/bee/harvest/resistance warnings and a 3-spray
-  rotation. Organic products are marked 🌿 (organic status lives on each active, `ORGANIC_IDS` in
+  Then the spray options ranked on effectiveness, with stage/bee/harvest/resistance warnings and a possible mode-of-action sequence, not a fixed spray calendar. The mixed-site Phytophthora group does not generate an automatic rotation. Organic products are marked 🌿 (organic status lives on each active, `ORGANIC_IDS` in
   `src/core/chemDb.js`), with an optional "Organic only" switch. A **Don't use** card sits open right under the suggested rotation.
   Each page also shows **Where to spray** (`src/core/sprayWhere.js`) and, where problems travel together, an
   **Often comes with** card linking both ways (`src/core/related.js` — e.g. pinhole borers ↔ Fusarium and
@@ -60,8 +59,7 @@ questions (where, what you see, what creature), and gets sound advice.
 Options are ranked purely on how well they work for the pest group, crop stage, life stage and last spray.
 Organic and conventional products share one list. Organic products carry a 🌿 leaf, and an optional
 **Organic only** switch (off by default) filters the list. Many organic products are costly or hard to find in
-Malaysian shops, so the app never forces them. The suggested rotation uses the best options, and a tip (plus
-the first lesson in Learn) encourages alternating with an organic round whenever one is available.
+Malaysian shops, so the app never forces them. The suggested sequence uses suitable modes of action where available. The first lesson explains monitoring-led control choices, label limits and insecticide treatment windows; it does not prescribe automatic chemical/organic alternation.
 
 ## Life stages
 
@@ -101,9 +99,7 @@ contributed parts:
   design" notes. Its policies apply to the whole app:
   - Banned actives are not browsable. They appear only as a search answer.
   - MRLs: each option and product shows the **China GB 2763-2026** limit that applies to durian (a durian row, else
-    the fruit group durian belongs to; another single fruit's limit never counts), "exempt" for GB 2763-exempt
-    biologicals, and otherwise the **0.01 mg/kg default** used by the EU and Japan. Data in `src/core/mrl.js`,
-    fetched from 2763.foodmate.net — re-run when GB 2763 is revised. No PHI numbers: follow the label.
+    the fruit group durian belongs to; another single fruit's limit never counts), recorded exemptions, and distinct **no applicable limit found** / **not verified** states. There is no numerical fallback. Data in `src/core/mrl.js` was compiled from 2763.foodmate.net; verify it against the current official standard before an export decision. The recorded source-check date is not a new regulatory audit. No PHI numbers: follow the label.
   - No half-life figures.
 - **[Taijiang insect guide](https://stanleywoosweeleong.github.io/taijiang-insects/)**: the original line-art
   insect-order glyphs and the mouthparts figure (`src/components/Art.jsx`), the step-by-step identification
@@ -169,3 +165,7 @@ Long pages are kept short on purpose. Secondary detail sits in collapsible secti
 `src/ui/kit.jsx`), and every option is listed in full, with no "show more" step.
 
 *Guidance only. The legal reference is the Malaysian Pesticides Board (LRMP) register and the product label.*
+
+## Content review (6 November 2026)
+
+See [the evidence and verification record](docs/content-review-2026-11-06.md) for the reasoning, sources, limits and regression checks behind the residue, diagnosis, rotation and lesson changes. Existing photographs and photo code were not changed.

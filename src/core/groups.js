@@ -292,7 +292,7 @@ export const GROUPS = [
     ],
     chem: [
       { moa: 'IRAC 11A', fit: 'best', why: { en: 'Bt: only kills caterpillars and spares predators. The kurstaki strain needs no bee precaution; the aizawai strain should not be sprayed on open flowers.', zh: 'Bt：只杀毛虫，不伤天敌。库斯塔克亚种无需防蜂措施；鲇泽亚种不宜喷在盛开的花上。' } },
-      { moa: 'IRAC 28', fit: 'best', why: { en: 'Diamides stop feeding in minutes, long lasting, bee-safe.', zh: '双酰胺类数分钟内停止取食，持效长，对蜂安全。' } },
+      { moa: 'IRAC 28', fit: 'best', why: { en: 'Diamides can stop caterpillar feeding quickly. Pollinator risk depends on the active, formulation and exposure; follow the product label and avoid exposing foraging bees.', zh: '双酰胺类可使毛虫迅速停止取食。传粉者风险取决于成分、剂型和接触情况；请遵守产品标签，避免接触正在采集的蜜蜂。' } },
       { moa: 'IRAC 5', fit: 'best', why: { en: 'Spinosyns: fast-acting. Highly toxic to bees while wet, much lower risk once dry (UC IPM: toxic to bees for about a day after spraying). At flowering, spray in the morning so it is dry before flowers open.', zh: '多杀菌素：速效。药液未干时对蜜蜂高毒，干后风险低得多（UC IPM：喷后约一天内对蜜蜂有毒）。开花期请早上喷，让药液在开花前干透。' } },
       { moa: 'IRAC 6', only: ['emamectin-benzoate'], fit: 'good', why: { en: 'Emamectin benzoate: very potent on caterpillars (abamectin is much weaker on them).', zh: '甲维盐：对毛虫活性极高（阿维菌素对毛虫弱得多）。' } },
       { moa: 'IRAC 22A', fit: 'good', why: { en: 'Indoxacarb: stomach action.', zh: '茚虫威：胃毒作用。' } },
@@ -304,6 +304,7 @@ export const GROUPS = [
       { moa: 'IRAC 1A', why: { en: 'Old carbamates: broad-spectrum and hazardous; selective options work better.', zh: '老式氨基甲酸酯：广谱且高危；选择性药剂效果更好。' } },
     ],
     refs: [
+      { t: 'NPIC — Chlorantraniliprole fact sheet', url: 'https://npic.orst.edu/factsheets/chlorantraniliprole.html', scope: 'general', supports: 'Chlorantraniliprole pollinator effects vary with exposure and bee life stage; low acute toxicity is not a blanket safety claim for all diamides or formulations' },
       { t: "UC IPM: relative toxicity of insecticides to natural enemies and honey bees (cole crops) — Bt, diamide, spinosyns low; pyrethroids, OPs, carbamates high", url: "https://ipm.ucanr.edu/agriculture/cole-crops/Relative-Toxicities-of-Insecticides-and-Miticides-Used-in-Cole-Crops-to-Natural-Enemies-and-Honey-Bees", supports: "Bt narrow (caterpillars), low toxicity to predators/parasites; chlorantraniliprole low to natural enemies, honey bee category III (no bee precaution); do-not-use broad-spectrum carbamates and OPs (ac", scope: "general" },
       { t: "Univ. of Missouri Extension: Bt must be eaten, targets mainly caterpillars, best on small larvae, breaks down in sun/rain", url: "https://extension.missouri.edu/news/bt-biological-insecticide-timing-and-target-matter", supports: "Stomach-acting Bt kills caterpillars only and spares beneficials; young larvae are much easier to kill than mature ones", scope: "general" },
       { t: "Brunner et al. 2005 J Insect Sci: neonicotinoids lacked activity against leafrollers in apple", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC1307575", supports: "Supports preferring caterpillar-selective classes over others; neonicotinoids insufficient against leafrollers (Pandemis, obliquebanded)", scope: "general" },
@@ -369,7 +370,7 @@ export const GROUPS = [
       { en: 'Light traps to track moth flights.', zh: '用灯光诱捕监测成虫发生期。' },
     ],
     chem: [
-      { moa: 'IRAC 28', fit: 'best', why: { en: 'Long residual on the fruit skin kills larvae as they bite in; bee-safe.', zh: '在果皮上持效长，幼虫咬入时即被杀死；对蜂安全。' } },
+      { moa: 'IRAC 28', fit: 'best', why: { en: 'Residues on the fruit surface target larvae as they bite in. Pollinator risk depends on the active, formulation and exposure; follow the product label and avoid exposing foraging bees.', zh: '果皮上的药剂残留针对咬入的幼虫。传粉者风险取决于成分、剂型和接触情况；请遵守产品标签，避免接触正在采集的蜜蜂。' } },
       { moa: 'IRAC 11A', fit: 'good', why: { en: 'Bt kills newly hatched larvae; re-apply after rain.', zh: 'Bt杀灭初孵幼虫；雨后需补喷。' } },
       { moa: 'IRAC 5', fit: 'good', why: { en: 'Spinosyns at egg hatch.', zh: '孵化期使用多杀菌素。' } },
       { moa: 'IRAC 22A', fit: 'good', why: { en: 'Indoxacarb as a rotation partner.', zh: '茚虫威作为轮换药剂。' } },
@@ -379,6 +380,7 @@ export const GROUPS = [
       { moa: 'IRAC 4A', why: { en: 'Neonicotinoids are weaker than standard borer insecticides on fruit-boring caterpillars, and are highly toxic to the bees that visit durian flowers.', zh: '新烟碱类对蛀果毛虫只有部分防效（远不及双酰胺或Bt），且对访花的蜜蜂高毒。' } },
     ],
     refs: [
+      { t: 'NPIC — Chlorantraniliprole fact sheet', url: 'https://npic.orst.edu/factsheets/chlorantraniliprole.html', scope: 'general', supports: 'Chlorantraniliprole pollinator effects vary with exposure and bee life stage; low acute toxicity is not a blanket safety claim for all diamides or formulations' },
       { t: 'DOA Thailand 2019 — integrated control of the durian seed borer (trial report)', url: 'https://info.doa.go.th/research/pdf/2562/337_2562.pdf', supports: 'moths lay single eggs on young fruit; larvae feed inside 30–40 days, then pupate in the soil; attack starts about 6 weeks after fruit set; light traps; collect and burn fallen fruit daily', scope: 'durian' },
       { t: 'UPLB — Survey and life history of major insect pests of durian (Lanao del Sur)', url: 'https://www.ukdr.uplb.edu.ph/journal-articles/5100', supports: 'Mudaria magniplaga is the major durian pest; life cycle 43–56 days', scope: 'durian' },
       { t: 'Integrated management of durian fruit borer, Nakhon Si Thammarat 2022–23 (RMUTSV Res. J.)', url: 'https://li01.tci-thaijo.org/index.php/rmutsvrj/article/view/262706', supports: 'insecticide plus fruit bagging gave 100% protection, no residues detected', scope: 'durian' },

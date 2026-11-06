@@ -16,9 +16,9 @@ export const CHINA_CHECKED_IDS = new Set(["metaldehyde", "pyraclostrobin", "azox
 // GB 2763 exempt list (豁免农药清单): no MRL needed. App ids.
 export const CHINA_EXEMPT = new Set(['bacillus-thuringiensis', 'bacillus-subtilis', 'trichoderma', 'beauveria-bassiana', 'metarhizium', 'purpureocillium']);
 
-// Where no limit is set, the EU (Reg. 396/2005, Art. 18) and Japan apply a default of 0.01 mg/kg —
-// in practice "no detectable residue". Used as the safe working limit when China sets none.
-export const DEFAULT_MRL = 0.01;
+// Missing data is not a legal limit. Never substitute another market's default,
+// or equate a numerical MRL with a laboratory's detection/quantification limit.
+export const CHINA_MRL_DATA_DATE = '2026-11-05';
 
 /** { kind: 'value'|'exempt'|'none'|'unknown', mrl?, basis? } for an active from CHEMICALS. */
 export function chinaMrl(c) {

@@ -88,7 +88,7 @@ export function recommend(group, ctx = {}) {
   // cross-resistance cluster, skipping anything blocked at this stage.
   const rotation = [];
   const usedClusters = new Set();
-  for (const o of options) {
+  for (const o of group.id === 'oomycete' ? [] : options) {
     if (rotation.length >= 3) break;
     if (o.warnings.includes('beeBlock') || o.recentlyUsed) continue;
     if (rotation.some(r => r.moa === o.moa)) continue;
@@ -99,7 +99,7 @@ export function recommend(group, ctx = {}) {
   }
 
   const avoid = (group.avoid || []).map(a => ({ ...a, moaInfo: moaInfo(a.moa) }));
-  return { options, rotation, avoid };
+  return { options, rotation, avoid, rotationWithheld: group.id === 'oomycete' ? 'site-specific' : null };
 }
 
 /** Pest groups whose recommendations include this MoA class (for the chemical page). */
