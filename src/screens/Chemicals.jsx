@@ -64,7 +64,7 @@ export function ChemicalList({ initialKind = 'all' }) {
       <p className="text-[0.9375rem] text-slate-600 leading-snug">{kind === 'organic' ? ui('chem.organicHint') : ui('chem.hint')}</p>
       <div className="relative mt-3">
         <Icon name="search" className="w-5 h-5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-        <input value={q} onChange={e => setQ(e.target.value)} aria-label={ui('chem.title')} autoComplete="off"
+        <input id="product-search" name="product-search" type="search" value={q} onChange={e => setQ(e.target.value)} aria-label={ui('chem.title')} autoComplete="off"
           className="w-full min-h-[52px] rounded-xl border border-slate-300 pl-10 pr-3 bg-white focus:border-[#114b2d] outline-none" />
       </div>
       <div className="flex gap-2 mt-3 overflow-x-auto pb-1 -mx-1 px-1">

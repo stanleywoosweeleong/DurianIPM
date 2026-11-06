@@ -146,7 +146,7 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
             <div className="mt-3 grid grid-cols-2 gap-2 text-[0.875rem]">
               <label className="block min-w-0">
                 <span className="block font-bold text-slate-600 leading-tight mb-1">{ui('group.lastUsedShort')}</span>
-                <select value={lastValue} onChange={e => setLast(e.target.value || null)}
+                <select id="last-sprayed" name="last-sprayed" value={lastValue} onChange={e => setLast(e.target.value || null)}
                   className="block w-full max-w-full min-h-[44px] rounded-lg border border-slate-300 bg-white px-2 font-bold text-[0.9375rem]">
                   <option value="">{ui('group.lastUsedNone')}</option>
                   {chartGroups
@@ -156,7 +156,7 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
               </label>
               <label className="block min-w-0">
                 <span className="block font-bold text-slate-600 leading-tight mb-1">{ui('group.treeStage')}</span>
-                <select value={orchard.stage || ''} onChange={e => setOrchard({ stage: e.target.value || null })}
+                <select id="tree-stage" name="tree-stage" value={orchard.stage || ''} onChange={e => setOrchard({ stage: e.target.value || null })}
                   className="block w-full max-w-full min-h-[44px] rounded-lg border border-slate-300 bg-white px-2 font-bold text-[0.9375rem]">
                   <option value="">—</option>
                   {STAGES.map(st => <option key={st.id} value={st.id}>{t(st.name)}</option>)}

@@ -225,7 +225,7 @@ function KnownSearch() {
     <div>
       <div className="relative">
         <Icon name="search" className="w-5 h-5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-        <input value={q} onChange={e => setQ(e.target.value)} placeholder={ui('home.searchKnown')} aria-label={ui('home.knownTitle')}
+        <input id="pest-search" name="pest-search" type="search" autoComplete="off" value={q} onChange={e => setQ(e.target.value)} placeholder={ui('home.searchKnown')} aria-label={ui('home.knownTitle')}
           className="w-full min-h-[48px] rounded-xl border border-slate-300 pl-10 pr-3 bg-white focus:border-[#114b2d] outline-none" />
       </div>
       {q && (
