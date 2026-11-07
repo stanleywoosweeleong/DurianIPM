@@ -58,7 +58,7 @@ do not "tidy them away".
   bena hijau for leafhoppers — not "lompat daun"…).
 - Plain English-only text shown in every language (the "Supports:" line of each source) is
   translated in `src/i18n/sources.json` (`{English: {zh, ms}}`, shown via `tx()`); a test checks it.
-- `ms.json` loads only when Malay is chosen (smaller first download); it is still precached.
+- Everything ships in one bundle, Malay included (Malaysia is on 4G/5G; no English flash).
 - In Malay mode, Chinese product names are hidden. The header button always shows the
   **current** language; the first launch asks for the language and remembers it.
 

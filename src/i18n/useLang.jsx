@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import { UI_STRINGS } from './ui.js';
-import { toMs, msSide, loadMs, msReady } from './ms.js';
+import { toMs, msSide } from './ms.js';
 import SOURCES from './sources.json';
 
 const LanguageContext = createContext(null);
@@ -39,11 +39,7 @@ export function LanguageProvider({ children }) {
     document.documentElement.lang = HTML_LANG[lang];
   }, [lang]);
 
-  // Malay text loads on demand; re-render once it has arrived.
-  const [msTick, setMsTick] = useState(msReady() ? 1 : 0);
-  useEffect(() => {
-    if (lang === 'ms' && !msReady()) loadMs().then(() => setMsTick(1)).catch(() => {});
-  }, [lang]);
+  const msTick = 1; // Malay is bundled; kept so the helpers' dependency lists stay simple
 
   // Pick translatable field: t({en, zh}) -> string for current language
   // Also accepts a plain string (returns it as-is — useful for already-neutral fields)

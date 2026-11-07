@@ -3,16 +3,13 @@
 // without touching the content files. Missing keys fall back to English.
 // Regenerate the key list with: node scripts/i18n-strings.mjs out.json
 //
-// The dictionary (~240 kB) loads only when Malay is chosen, so Chinese and English
-// users download less. It is still precached by the service worker for offline use.
-let MS = {};
-let loading = null;
-let version = 0;
-export const msReady = () => version > 0;
-export function loadMs() {
-  if (!loading) loading = import('./ms.json').then(m => { MS = m.default || m; version++; });
-  return loading;
-}
+// Shipped in the main bundle: Malaysia is on 4G/5G, and loading it with the app means
+// Malay never flashes English first.
+import MS_DICT from './ms.json';
+const MS = MS_DICT;
+let version = 1;
+export const msReady = () => true;
+export const loadMs = () => Promise.resolve();
 
 export const toMs = (s) => (typeof s === 'string' && MS[s]) || s;
 
