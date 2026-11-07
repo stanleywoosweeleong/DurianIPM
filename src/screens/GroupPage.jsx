@@ -173,10 +173,20 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
               <span className="flex-1 text-[0.875rem] leading-snug"><b>{ui('home.flowerWarn')}</b> <span className="text-[#114b2d] underline font-bold">{ui('group.whyFlowering')}</span></span>
             </a>
           )}
-          <div className="space-y-2 mt-3">
-            {rec.options.map((o, i) => <OptionCard key={o.moa} o={o} rank={i + 1} />)}
-          </div>
-          {track === 'organic' && <GanickProducts groupId={g.id} />}
+          {(() => {
+            // Organic only: the Mr. Ganick products sit above any option rated "Limited"
+            // (or blocked at flowering) — they are a product that does the job.
+            const cut = track === 'organic' ? rec.options.findIndex(o => o.fit === 'limited' || o.warnings.includes('beeBlock')) : -1;
+            const at = cut === -1 ? rec.options.length : cut;
+            const card = (o, i) => <OptionCard key={o.moa} o={o} rank={i + 1} />;
+            return (
+              <>
+                <div className="space-y-2 mt-3">{rec.options.slice(0, at).map(card)}</div>
+                {track === 'organic' && <GanickProducts groupId={g.id} />}
+                {at < rec.options.length && <div className="space-y-2 mt-3">{rec.options.slice(at).map((o, i) => card(o, at + i))}</div>}
+              </>
+            );
+          })()}
           {rec.rotationWithheld && <div className="mt-4"><Callout tone="blue" icon="leaf">{ui('group.rotationSite')}</Callout></div>}
           {rec.rotation.length > 1 && (
             <div className="mt-4 rounded-2xl bg-paper border border-emerald-200 p-3">
@@ -313,7 +323,7 @@ function GanickProducts({ groupId }) {
   const list = ganickFor(groupId);
   if (list.length === 0) return null;
   return (
-    <div className="mt-4 rounded-2xl bg-paper border border-lime-400 p-3">
+    <div className="mt-3 rounded-2xl bg-paper border border-lime-400 p-3">
       <div className="flex items-center gap-2 font-extrabold text-[1rem] text-lime-900"><Icon name="leaf" className="w-5 h-5 text-lime-700" />{ui('ganick.title')}</div>
       <p className="mt-1 text-[0.8125rem] text-slate-500 leading-snug">{ui('ganick.note')}</p>
       <ul className="mt-2 divide-y divide-slate-100">
