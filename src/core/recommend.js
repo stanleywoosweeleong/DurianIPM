@@ -54,15 +54,20 @@ export function recommend(group, ctx = {}) {
 
   // Mr. Ganick products sit in the option for their way of working; when the pest page
   // has no such option, it gets its own, marked as the manufacturer's use (no evidence rating).
+  // A product sold for this pest is never shown under a "Limited" rating: when its option is
+  // rated Limited (or the page has no such option), it gets its own option marked "Maker's use",
+  // ranked above every Limited option. The generic option keeps its real evidence rating.
   const ganick = ganickFor(group.id).filter(p => track === 'organic' ? p.organic !== false : track !== 'conventional');
-  const extra = [...new Set(ganick.map(p => p.moa))].filter(k => !group.chem.some(c => c.moa === k))
-    .map(moa => ({ moa, fit: 'maker', why: null, only: [] }));
+  const inside = (p) => group.chem.some(c => c.moa === p.moa && c.fit !== 'limited');
+  const extra = [...new Set(ganick.filter(p => !inside(p)).map(p => p.moa))]
+    .map(moa => ({ moa, fit: 'maker', why: null, only: [], key: `${moa}:maker` }));
 
   const options = [...group.chem, ...extra].map((c, index) => {
     const info = moaInfo(c.moa);
-    const all = activesFor(group, c.moa, c.only);
+    const maker = c.fit === 'maker';
+    const all = maker ? [] : activesFor(group, c.moa, c.only);
     const actives = track === 'organic' ? all.filter(a => a.organic) : track === 'conventional' ? all.filter(a => !a.organic) : all;
-    const brand = ganick.filter(p => p.moa === c.moa);
+    const brand = ganick.filter(p => p.moa === c.moa && (maker ? !inside(p) : inside(p)));
     const warnings = [];
     let score = FIT_SCORE[c.fit] ?? 1;
     if (brand.length && score < GANICK_FLOOR) score = GANICK_FLOOR;
@@ -99,7 +104,7 @@ export function recommend(group, ctx = {}) {
       const cl = clusterOf(r); return cl && cl.groups.some(g => moaKeyFromIrac(g) === c.moa);
     })) { score -= 1; warnings.push('crossRes'); }
 
-    return { ...c, moaInfo: info, actives, ganick: brand, warnings, score, index, recentlyUsed };
+    return { ...c, key: c.key || c.moa, moaInfo: info, actives, ganick: brand, warnings, score, index, recentlyUsed };
   }).filter(o => o.actives.length > 0 || o.ganick.length > 0);
 
   options.sort((a, b) => b.score - a.score || a.index - b.index);

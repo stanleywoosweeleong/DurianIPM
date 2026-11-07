@@ -152,7 +152,7 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
                   <option value="">{ui('group.lastUsedNone')}</option>
                   {chartGroups
                     ? chartGroups.map(code => <option key={code} value={code}>{`IRAC ${code} · ${lmap(GROUP_NAMES)[code] || ''}`}</option>)
-                    : rec.options.map(o => <option key={o.moa} value={o.moa}>{moaCode(o.moaInfo) ? `${moaCode(o.moaInfo)} · ${t(o.moaInfo.name)}` : t(o.moaInfo.name)}</option>)}
+                    : rec.options.filter((o, i, arr) => arr.findIndex(x => x.moa === o.moa) === i).map(o => <option key={o.moa} value={o.moa}>{moaCode(o.moaInfo) ? `${moaCode(o.moaInfo)} · ${t(o.moaInfo.name)}` : t(o.moaInfo.name)}</option>)}
                 </select>
               </label>
               <label className="block min-w-0">
@@ -173,7 +173,7 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
             </a>
           )}
           <div className="space-y-2 mt-3">
-            {rec.options.map((o, i) => <OptionCard key={o.moa} o={o} rank={i + 1} />)}
+            {rec.options.map((o, i) => <OptionCard key={o.key} o={o} rank={i + 1} />)}
           </div>
           {rec.options.some(o => o.ganick.length > 0) && <p className="mt-2 text-[0.8125rem] text-slate-500 leading-snug">{ui('ganick.note')}</p>}
           {rec.rotationWithheld && <div className="mt-4"><Callout tone="blue" icon="leaf">{ui('group.rotationSite')}</Callout></div>}
@@ -284,7 +284,14 @@ function OptionCard({ o, rank }) {
         <span className="w-7 h-7 rounded-full bg-slate-100 text-slate-700 font-extrabold text-[0.875rem] flex items-center justify-center shrink-0">{rank}</span>
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">
-            <div className="min-w-0 font-extrabold text-[1rem] leading-tight">{t(info.name)}{moaCode(info) && <span className="text-[#114b2d]"> · {moaCode(info)}</span>}</div>
+            {o.fit === 'maker' ? (
+              <div className="min-w-0">
+                <div className="font-extrabold text-[1rem] leading-tight">Mr. Ganick</div>
+                <div className="text-[0.8125rem] font-bold text-slate-500 leading-tight mt-0.5">{t(info.name)}{moaCode(info) && ` · ${moaCode(info)}`}</div>
+              </div>
+            ) : (
+              <div className="min-w-0 font-extrabold text-[1rem] leading-tight">{t(info.name)}{moaCode(info) && <span className="text-[#114b2d]"> · {moaCode(info)}</span>}</div>
+            )}
             <Badge tone={FIT_TONE[o.fit]} className="shrink-0 whitespace-nowrap">{ui(`fit.${o.fit}`)}</Badge>
           </div>
           {o.why && <p className="text-[0.9375rem] leading-snug mt-1 text-slate-800"><G>{t(o.why)}</G></p>}
@@ -300,7 +307,7 @@ function OptionCard({ o, rank }) {
                 <li key={p.id} className="rounded-lg border border-lime-300 px-2.5 py-1.5">
                   <div className="flex items-center gap-1.5 font-extrabold text-[0.9375rem] text-slate-900">
                     <Icon name="leaf" className="w-4 h-4 text-lime-700 shrink-0" />
-                    <span>Mr. Ganick · {p.name}{lang !== 'ms' && p.zh !== p.name && <span className="font-bold text-slate-600"> · {p.zh}</span>}</span>
+                    <span>{o.fit !== 'maker' && 'Mr. Ganick · '}{p.name}{lang !== 'ms' && p.zh !== p.name && <span className="font-bold text-slate-600"> · {p.zh}</span>}</span>
                   </div>
                   <div className="text-[0.8125rem] leading-snug text-slate-700"><b className="text-slate-600">{ui('ganick.actives')}:</b> <G>{p.actives.map(a => t(a)).join(' + ')}</G></div>
                   <div className="text-[0.8125rem] leading-snug text-slate-700"><b className="text-slate-600">{ui('ganick.for')}:</b> {t(p.use)}</div>

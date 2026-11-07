@@ -33,6 +33,7 @@ test('ranking: Mr. Ganick above every Limited option; organic first among equals
     const opts = recommend(g, { track }).options;
     opts.forEach((o, i) => {
       if (!o.ganick.length) return;
+      assert.notEqual(o.fit, 'limited', `${g.id}/${track}: a Mr. Ganick product is shown under a Limited rating`);
       const lowerLimited = opts.slice(0, i).filter(x => x.fit === 'limited' && !x.ganick.length);
       assert.deepEqual(lowerLimited.map(x => x.moa), [], `${g.id}/${track}: ${o.moa} (Mr. Ganick) below a Limited option`);
     });

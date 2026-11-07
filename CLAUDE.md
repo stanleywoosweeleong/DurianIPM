@@ -42,9 +42,10 @@ do not "tidy them away".
   Malaysia and this reputable range is available, so its products sit **inside the option for
   their way of working** (e.g. T-MAX in insect-killing fungi), listed first. Ranking
   (`recommend.js`): an option holding a Mr. Ganick product ranks above every "Limited" option;
-  among equal ratings, Mr. Ganick first, then organic, then chemical. If a pest page has no
-  option of that type, the product gets its own option marked "Maker's use" (no evidence
-  rating). Organic only → only organic options and products. Name, actives and what it is for;
+  among equal ratings, Mr. Ganick first, then organic, then chemical. A product sold for a pest
+  is **never shown under a "Limited" rating**: if its option is rated Limited, or the page has
+  no option of that type, it gets its own "Mr. Ganick" option marked "Maker's use" (厂家用途),
+  ranked above every Limited option; the generic option keeps its real evidence rating. Organic only → only organic options and products. Name, actives and what it is for;
   no link to their catalogue (the company runs it now), **no doses**, no praise, only products
   listed for a durian problem, never the catalogue's chemical mix partners. Pests with no
   Mr. Ganick product simply show none. Never suggest a banned active, from any source.
