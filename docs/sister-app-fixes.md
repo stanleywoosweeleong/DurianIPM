@@ -17,7 +17,8 @@ App: https://stanleywoosweeleong.github.io/Mr.Ganickproductcatalogue/ (single `i
 - [ ] **BST GOLD WP percentages add up to 109%** (99% w/w + 10% w/w). BST WP is 90% + 10%;
       check the label for GOLD's real split. **Still open — for Mr. Ganick:** the printed brochure
       itself says 99% + 10% (owner's photo, 7 Nov 2026), so the app copies the source correctly;
-      only the company can give the real split.
+      only the company can give the real split. The catalogue (v1.11.5) shows a note on BST GOLD WP
+      saying the percentages are as printed and await the company's confirmation.
 
 ### For Mr. Ganick's next brochure print (the printed page has these too)
 - BST GOLD WP: ingredients add up to 109% (99% + 10% w/w).
