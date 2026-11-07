@@ -28,6 +28,13 @@ test('every recommended MoA class has at least one real active or Mr. Ganick pro
     assert.ok(o.actives.length > 0 || o.ganick.length > 0, `${g.id}: ${o.moa} has no actives`);
 });
 
+test('rotation never includes an option that does not work on the stage the farmer sees', () => {
+  for (const g of GROUPS) for (const pestStage of ['eggs', 'young', 'adults', 'mixed']) for (const track of ['all', 'organic']) {
+    const bad = recommend(g, { pestStage, track }).rotation.filter(o => o.warnings.some(w => w === 'noAdults' || w === 'noYoung' || w === 'beeBlock'));
+    assert.deepEqual(bad.map(o => o.moa), [], `${g.id}/${pestStage}/${track}`);
+  }
+});
+
 test('ranking: Mr. Ganick above every Limited option; organic first among equals', () => {
   for (const g of GROUPS) for (const track of ['all', 'organic']) {
     const opts = recommend(g, { track }).options;
@@ -237,7 +244,8 @@ test('Rhizoctonia: own group, Rhizoctonia-active fungicides, never oomycete-only
 test('no runtime photo search anywhere (only fixed, checked photos)', async () => {
   const fs = await import('node:fs');
   const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap(e => e.isDirectory() ? walk(`${d}/${e.name}`) : [`${d}/${e.name}`]);
-  const files = walk(new URL('../src', import.meta.url).pathname).filter(f => /\.(js|jsx)$/.test(f));
+  const { fileURLToPath } = await import('node:url'); // works on Windows and with spaces in the path
+  const files = walk(fileURLToPath(new URL('../src', import.meta.url))).filter(f => /\.(js|jsx)$/.test(f));
   const hits = files.filter(f => /commons\.wikimedia\.org\/w\/api\.php|gsrsearch/.test(fs.readFileSync(f, 'utf8')));
   assert.deepEqual(hits, []);
 });

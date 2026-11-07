@@ -118,7 +118,8 @@ export function recommend(group, ctx = {}) {
   const siteSpecific = SITE_SPECIFIC.has(group.id);
   for (const o of siteSpecific ? [] : options) {
     if (rotation.length >= 3) break;
-    if (o.warnings.includes('beeBlock') || o.recentlyUsed) continue;
+    // Skip what is blocked now: bee-toxic at flowering, just used, or no use on the life stage the farmer sees.
+    if (o.warnings.some(w => w === 'beeBlock' || w === 'noAdults' || w === 'noYoung') || o.recentlyUsed) continue;
     if (rotation.some(r => r.moa === o.moa)) continue;
     const cl = o.moaInfo.irac && clusterOf(o.moaInfo.irac === '10' ? '10A' : o.moaInfo.irac);
     if (cl && usedClusters.has(cl)) continue;
