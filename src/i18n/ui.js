@@ -27,7 +27,6 @@ export const UI_STRINGS = {
     note: s3('One of the ways. Organic products are hard to find in Malaysia; this range is widely available. Uses as listed by the manufacturer.', '这是其中一种做法。马来西亚的有机产品不容易买到，这个品牌比较容易找到。用途按厂家目录。', 'Salah satu cara. Produk organik sukar didapati di Malaysia; rangkaian ini mudah didapati. Kegunaan seperti yang disenaraikan oleh pengeluar.'),
     for: s3('For', '用于', 'Untuk'),
     actives: s3('Actives', '有效成分', 'Bahan aktif'),
-    catalogue: s3('Mr. Ganick catalogue', 'Mr. Ganick 产品目录', 'Katalog Mr. Ganick'),
   },
   words: {
     title: s3('Words to know', '术语小词典', 'Istilah penting'),

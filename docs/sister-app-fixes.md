@@ -1,7 +1,8 @@
 # Errors spotted in the sister apps — to fix later
 
 Found while working on Durian IPM. Fix each in its own app, then tick it here.
-Owner's plan: finish Durian IPM first, then fix the Mr. Ganick product catalogue app.
+The Mr. Ganick catalogue app is now taken over by the company itself (the owner built the
+demo for them). Its items below are notes to pass on to Mr. Ganick, not for us to fix.
 
 ## Mr. Ganick product catalogue
 App: https://stanleywoosweeleong.github.io/Mr.Ganickproductcatalogue/ (single `index.html`; data in `const PRODUCTS` / `const PROBLEMS`)

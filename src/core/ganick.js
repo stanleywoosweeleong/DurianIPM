@@ -3,13 +3,12 @@
 // this range is widely available. Only products the catalogue lists for a durian pest or
 // disease. Product name and actives only — no doses, no praise, and never the catalogue's
 // chemical mix partners (so no banned active can come in).
-// Uses follow the manufacturer's catalogue (not independent trials on durian):
-// https://stanleywoosweeleong.github.io/Mr.Ganickproductcatalogue/
+// Uses follow the manufacturer's catalogue (not independent trials on durian).
+// The catalogue app now belongs to the company, so this app names the products only —
+// no link to the catalogue.
 // Checked against the catalogue on 7 Nov 2026. Two catalogue wordings are corrected
 // here: BST BOOST's salt is a phosphonate (亚磷酸盐, not 磷酸盐 phosphate), and PGPR
 // means plant growth-promoting rhizobacteria.
-
-export const GANICK_URL = 'https://stanleywoosweeleong.github.io/Mr.Ganickproductcatalogue/';
 
 const A = {
   faboideae: { en: 'Plant alkaloid (Faboideae, pea family)', zh: '豆科植物生物碱', ms: 'Alkaloid tumbuhan (Faboideae, keluarga kekacang)' },

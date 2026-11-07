@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { G } from '../ui/Gloss.jsx';
-import { ganickFor, GANICK_URL } from '../core/ganick.js';
+import { ganickFor } from '../core/ganick.js';
 import { useLang } from '../i18n/useLang.jsx';
 import { Card, Section, Icon, Badge, Callout, BackBar, Bullets, Fold, openExternal } from '../ui/kit.jsx';
 import { GroupArt } from '../components/Art.jsx';
@@ -325,7 +325,6 @@ function GanickProducts({ groupId }) {
           </li>
         ))}
       </ul>
-      <a href={GANICK_URL} onClick={e => openExternal(e, GANICK_URL)} className="mt-1 inline-flex items-center min-h-[40px] text-[0.875rem] font-bold text-[#114b2d] underline">{ui('ganick.catalogue')} →</a>
     </div>
   );
 }

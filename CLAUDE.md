@@ -41,7 +41,7 @@ do not "tidy them away".
 - **Mr. Ganick organic range** (`src/core/ganick.js`): listed only when the farmer turns on
   "Organic only", as one of the viable options — because organic products are hard to find in
   Malaysia and this reputable range is available. Product name, actives and what it is for;
-  **no doses**, no praise, only products listed for a durian problem, and **never** the
+  **no link to their catalogue** (the company runs it now), **no doses**, no praise, only products listed for a durian problem, and **never** the
   catalogue's chemical mix partners. Never suggest a banned active, from any source.
 
 ## Languages
