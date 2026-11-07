@@ -67,6 +67,7 @@ do not "tidy them away".
   (Playwright) in all three languages. Push to `main`.
 - The service worker uses `registerType: 'prompt'` with an update toast (`src/main.jsx`);
   the whole bar is the Update button and it always reloads.
+- Errors spotted in a sister app go into `docs/sister-app-fixes.md` (fixed later, one app at a time).
 - Sister apps that share facts with this one must be kept in step, and their service-worker
   cache version bumped when changed: the trunk-disease app, the Pinholeborer app and the
   Pest-MoA rotation guide (`moarotationguide`, built with `bash rebuild.sh index.html`).
