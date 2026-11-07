@@ -1,7 +1,7 @@
 import React from 'react';
 import { G } from './Gloss.jsx';
 import { useLang } from '../i18n/useLang.jsx';
-import { Chip, Badge } from './kit.jsx';
+import { Badge } from './kit.jsx';
 import { STAGE_TERMS } from '../core/groups.js';
 import { STAGE_LABEL } from '../core/moa.js';
 import { href } from '../hooks/useRoute.js';
@@ -19,14 +19,23 @@ export function StagePicker({ groupId, value, onChange }) {
   ];
   return (
     <div className="rounded-xl border-2 border-sky-200 bg-paper p-3">
-      <div className="flex items-baseline justify-between gap-2">
-        <div className="font-extrabold text-[0.9375rem]">{ui('stage.question')}</div>
-        <a href={href('learn/lifecycle')} className="inline-flex items-center min-h-[40px] px-1 -my-2 text-[0.875rem] font-bold text-sky-800 underline shrink-0">{ui('stage.why')}</a>
-      </div>
-      <div className="grid grid-cols-2 gap-2 mt-2">
-        {opts.map(([k, label]) => (
-          <Chip key={k} on={value === k} onClick={() => onChange(value === k ? null : k)} className="text-[0.875rem] py-2">{label}</Chip>
-        ))}
+      <div className="font-extrabold text-[1rem] leading-snug">{ui('stage.question')}</div>
+      <a href={href('learn/lifecycle')} className="inline-flex items-center min-h-[36px] text-[0.875rem] font-bold text-sky-800 underline">{ui('stage.why')} →</a>
+      <div className="grid grid-cols-2 auto-rows-fr gap-2 mt-1">
+        {opts.map(([k, label]) => {
+          const on = value === k;
+          // "Nymphs (wingless young)" → big "Nymphs", small "wingless young" underneath.
+          const m = label.match(/^(.+?)\s*[（(](.+)[）)]\s*$/);
+          return (
+            <button key={k} type="button" aria-pressed={on} onClick={() => onChange(on ? null : k)}
+              className={`min-h-[64px] px-2 py-2 rounded-xl border flex flex-col items-center justify-center text-center leading-tight transition-colors ${on
+                ? 'bg-[#114b2d] border-[#114b2d] text-white shadow-md'
+                : 'bg-paper border-slate-200 text-slate-800 active:bg-slate-50'}`}>
+              <span className="font-extrabold text-[1rem]">{m ? m[1] : label}</span>
+              {m && <span className={`mt-0.5 text-[0.8125rem] font-semibold ${on ? 'text-emerald-100' : 'text-slate-500'}`}>{m[2]}</span>}
+            </button>
+          );
+        })}
       </div>
       {value === 'adults' && terms.adultNote && <p className="mt-2 text-[0.875rem] text-sky-900 leading-snug font-semibold"><G>{t(terms.adultNote)}</G></p>}
     </div>

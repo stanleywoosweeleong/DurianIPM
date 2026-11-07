@@ -160,7 +160,7 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
           {rec.options.length === 0 && track === 'organic' && <div className="mt-3"><Callout tone="lime" icon="leaf">{ui('group.organicEmpty')}</Callout></div>}
 
           {rec.options.length > 0 && (
-            <div className="mt-3 grid grid-cols-2 gap-2 text-[0.875rem]">
+            <div className="mt-3 grid grid-cols-1 gap-2.5 text-[0.875rem]">
               <label className="block min-w-0">
                 <span className="block font-bold text-slate-600 leading-tight mb-1">{ui('group.lastUsedShort')}</span>
                 <select id="last-sprayed" name="last-sprayed" value={lastValue} onChange={e => setLast(e.target.value || null)}
