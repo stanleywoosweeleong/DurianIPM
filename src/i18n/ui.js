@@ -22,9 +22,18 @@ export const UI_STRINGS = {
     large: s3('Large', '大', 'Besar'),
     xl: s3('Extra large', '特大', 'Sangat besar'),
   },
+  track: {
+    title: s3('Products to show', '显示哪些产品', 'Produk yang dipaparkan'),
+    all: s3('All products', '全部产品', 'Semua produk'),
+    organic: s3('Organic only', '只看有机', 'Organik sahaja'),
+    hint: s3('Your usual choice for every pest. You can still change it on each pest page.', '每种害虫的默认选择。在各个害虫页面仍可单独更改。', 'Pilihan biasa anda untuk setiap perosak. Anda masih boleh menukarnya di halaman setiap perosak.'),
+    onlyHere: s3('Changed for this pest only.', '只对这种害虫更改了。', 'Ditukar untuk perosak ini sahaja.'),
+    backAll: s3('Back to all products', '恢复显示全部产品', 'Kembali ke semua produk'),
+    backOrganic: s3('Back to organic only', '恢复只看有机', 'Kembali ke organik sahaja'),
+  },
   ganick: {
     title: s3('Mr. Ganick organic products', 'Mr. Ganick 有机产品', 'Produk organik Mr. Ganick'),
-    note: s3('🌿 Mr. Ganick: organic products are hard to find in Malaysia; this range is widely available. Their uses are as listed by the manufacturer.', '🌿 Mr. Ganick：马来西亚的有机产品不容易买到，这个品牌比较容易找到。用途按厂家说明。', '🌿 Mr. Ganick: produk organik sukar didapati di Malaysia; rangkaian ini mudah didapati. Kegunaannya seperti yang disenaraikan oleh pengeluar.'),
+    note: s3('Mr. Ganick products: uses as stated by the maker.', 'Mr. Ganick 产品：用途按厂家说明。', 'Produk Mr. Ganick: kegunaan seperti yang dinyatakan oleh pengeluar.'),
     for: s3('For', '用于', 'Untuk'),
     actives: s3('Actives', '有效成分', 'Bahan aktif'),
   },
@@ -263,6 +272,7 @@ export const UI_STRINGS = {
   alt: {
     learn: s('Why alternate →', '为什么要交替 →'),
     tip: s('If you can get an organic product, use it for every other round — it cuts residues and resistance.', '如果买得到有机产品，可每隔一轮使用一次——能减少残留和抗性。'),
+    tipOrganic: s3('Organic products can lose effect too: switch to a different type each round, and keep the steps above in order.', '有机产品也会慢慢失效：每一轮换不同类型的产品，并按上面的顺序轮换。', 'Produk organik juga boleh hilang kesan: tukar kepada jenis lain setiap pusingan, dan ikut turutan di atas.'),
   },
   stage: {
     question: s('Which stage do you see most?', '你看到最多的是哪个虫态？'),

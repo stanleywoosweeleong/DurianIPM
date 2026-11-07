@@ -34,8 +34,8 @@ export function MrlCard({ c }) {
       <div className="text-[1rem] font-extrabold text-slate-900">{main}</div>
       {(r.kind === 'none' || r.kind === 'unknown') && <p className="text-[0.875rem] text-slate-600 leading-snug mt-0.5">{ui('mrl.default').replace('{d}', DEFAULT_MRL)}</p>}
       <p className="text-[0.8125rem] text-slate-500 leading-snug mt-1">{ui('mrl.source')}</p>
-      <a className="block mt-1.5 text-[0.8125rem] underline text-[#114b2d]" href="https://www.nhc.gov.cn/sps/c100088/202602/c0c4a9266f7e43cda1bf3bec59fc2786.shtml" target="_blank" rel="noopener">{ui('mrl.official')}</a>
-      <a className="block mt-1 text-[0.8125rem] underline text-[#114b2d]" href="https://mymrl.doa.gov.my/Commodities/15" target="_blank" rel="noopener">{ui('mrl.malaysia')}</a>
+      <a className="flex items-center min-h-[40px] text-[0.875rem] underline text-[#114b2d]" href="https://www.nhc.gov.cn/sps/c100088/202602/c0c4a9266f7e43cda1bf3bec59fc2786.shtml" target="_blank" rel="noopener">{ui('mrl.official')}</a>
+      <a className="flex items-center min-h-[40px] text-[0.875rem] underline text-[#114b2d]" href="https://mymrl.doa.gov.my/Commodities/15" target="_blank" rel="noopener">{ui('mrl.malaysia')}</a>
     </div>
   );
 }

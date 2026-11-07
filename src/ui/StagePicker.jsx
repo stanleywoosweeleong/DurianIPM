@@ -21,7 +21,7 @@ export function StagePicker({ groupId, value, onChange }) {
     <div className="rounded-xl border-2 border-sky-200 bg-paper p-3">
       <div className="flex items-baseline justify-between gap-2">
         <div className="font-extrabold text-[0.9375rem]">{ui('stage.question')}</div>
-        <a href={href('learn/lifecycle')} className="text-[0.8125rem] font-bold text-sky-800 underline shrink-0">{ui('stage.why')}</a>
+        <a href={href('learn/lifecycle')} className="inline-flex items-center min-h-[40px] px-1 -my-2 text-[0.875rem] font-bold text-sky-800 underline shrink-0">{ui('stage.why')}</a>
       </div>
       <div className="grid grid-cols-2 gap-2 mt-2">
         {opts.map(([k, label]) => (

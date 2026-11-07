@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import { UI_STRINGS } from './ui.js';
-import { toMs, msSide } from './ms.js';
+import { toMs, msSide, loadMs, msReady } from './ms.js';
+import SOURCES from './sources.json';
 
 const LanguageContext = createContext(null);
 
@@ -38,6 +39,12 @@ export function LanguageProvider({ children }) {
     document.documentElement.lang = HTML_LANG[lang];
   }, [lang]);
 
+  // Malay text loads on demand; re-render once it has arrived.
+  const [msTick, setMsTick] = useState(msReady() ? 1 : 0);
+  useEffect(() => {
+    if (lang === 'ms' && !msReady()) loadMs().then(() => setMsTick(1)).catch(() => {});
+  }, [lang]);
+
   // Pick translatable field: t({en, zh}) -> string for current language
   // Also accepts a plain string (returns it as-is — useful for already-neutral fields)
   const t = useCallback((field) => {
@@ -47,7 +54,7 @@ export function LanguageProvider({ children }) {
       return pick(field, lang) || field.en || field.zh || '';
     }
     return String(field);
-  }, [lang]);
+  }, [lang, msTick]);
 
   // Get a UI string by dotted key, e.g. ui('header.title')
   const ui = useCallback((key, fallback = '') => {
@@ -64,20 +71,23 @@ export function LanguageProvider({ children }) {
       return pick(node, lang) || node.en || node.zh || fallback;
     }
     return fallback || key;
-  }, [lang]);
+  }, [lang, msTick]);
 
   // A lesson body ({en:[…], zh:[…]}) or any {en, zh} pair of arrays.
   const tl = useCallback((field) => {
     if (!field) return [];
     if (lang === 'ms' && !field.ms) return (field.en || []).map(toMs);
     return field[lang] || field.en || [];
-  }, [lang]);
+  }, [lang, msTick]);
 
   // A map keyed by language: MOA_LABELS[lang], GROUP_NAMES[lang], TOX_LABEL[lang].
-  const lmap = useCallback((map) => (lang === 'ms' ? msSide(map) : map[lang] || map.en), [lang]);
+  const lmap = useCallback((map) => (lang === 'ms' ? msSide(map) : map[lang] || map.en), [lang, msTick]);
+
+  // English-only text that has its translations kept by English key (source notes).
+  const tx = useCallback((s) => (lang === 'en' || typeof s !== 'string' ? s : SOURCES[s]?.[lang] || s), [lang]);
 
   // Inline pair in components: L('English', '中文').
-  const L = useCallback((en, zh) => (lang === 'zh' ? zh : lang === 'ms' ? toMs(en) : en), [lang]);
+  const L = useCallback((en, zh) => (lang === 'zh' ? zh : lang === 'ms' ? toMs(en) : en), [lang, msTick]);
 
   // Render DT50 chemical name (always bilingual regardless of lang)
   const bilingualName = useCallback((field) => {
@@ -86,7 +96,7 @@ export function LanguageProvider({ children }) {
     return String(field || '');
   }, []);
 
-  const value = useMemo(() => ({ lang, setLang, t, ui, tl, lmap, L, bilingualName, chosen }), [lang, setLang, t, ui, tl, lmap, L, bilingualName, chosen]);
+  const value = useMemo(() => ({ lang, setLang, t, ui, tl, tx, lmap, L, bilingualName, chosen, msTick }), [lang, setLang, t, ui, tl, tx, lmap, L, bilingualName, chosen, msTick]);
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 }
 

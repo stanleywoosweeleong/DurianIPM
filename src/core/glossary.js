@@ -101,7 +101,7 @@ export const GLOSSARY = [
   },
   {
     id: 'cross',
-    match: { en: ['cross-resistan(?:ce|t)'], zh: ['交叉抗性', '交互抗性'], ms: ['kerintangan silang'] },
+    match: { en: ['cross-resistan(?:ce|t)'], zh: ['交叉抗药性', '交叉抗性', '交互抗性'], ms: ['kerintangan silang'] },
     word: { en: 'Cross-resistance', zh: '交叉抗性', ms: 'Kerintangan silang' },
     means: {
       en: 'Pests that became resistant to one product are also resistant to other products that work the same way — even ones they have never met. Switching brand is not rotating if the group is the same.',
@@ -111,7 +111,9 @@ export const GLOSSARY = [
   },
   {
     id: 'phi',
-    match: { en: ['pre-harvest intervals?', 'PHI'], zh: ['安全间隔期'], ms: ['tempoh tunggu sebelum tuai', 'tempoh tunggu'] },
+    // Case-sensitive so ordinary "Phi" is never taken for PHI.
+    match: { en: ['[Pp]re-harvest intervals?', 'PHI'], zh: ['安全间隔期'], ms: ['[Tt]empoh tunggu sebelum tuai', '[Tt]empoh tunggu'] },
+    cs: true,
     word: { en: 'Pre-harvest interval (PHI)', zh: '安全间隔期（PHI）', ms: 'Tempoh tunggu sebelum tuai (PHI)' },
     means: {
       en: 'The number of days on the label that must pass between the last spray and harvest, so residues fall to a safe level. Count back from the expected harvest.',
@@ -201,7 +203,7 @@ export const GLOSSARY = [
   },
   {
     id: 'trichoderma',
-    match: { en: ['Trichoderma'], zh: ['木霉'], ms: ['Trichoderma'] },
+    match: { en: ['Trichoderma'], zh: ['木霉(?!优)'], ms: ['Trichoderma'] }, // not inside the product name 木霉优
     word: { en: 'Trichoderma', zh: '木霉菌（Trichoderma）', ms: 'Trichoderma' },
     means: {
       en: 'A helpful fungus that lives in soil and around roots, attacking and crowding out root-rot organisms. It is alive: keep it away from fungicides that kill it, and give it organic matter and moisture.',
@@ -282,7 +284,7 @@ export const GLOSSARY = [
   },
   {
     id: 'dieback',
-    match: { en: ['die-?back'], zh: ['枝枯'], ms: ['mati rosot'] },
+    match: { en: ['die[- ]?back'], zh: ['枝枯'], ms: ['mati rosot'] },
     word: { en: 'Dieback', zh: '枝枯', ms: 'Mati rosot' },
     means: {
       en: 'Shoots and branches dying from the tip backwards. A symptom, not one disease: it can come from root rot, canker, borers or drought — find the cause.',

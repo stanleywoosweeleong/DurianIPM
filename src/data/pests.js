@@ -698,7 +698,7 @@ export const ALL_PESTS = [
     lifecycle: { en: 'Incredibly slow lifecycle, but catastrophic individual damage. The massive grub lives *inside* the tree for 8 to 12 months, slowly eating away the vascular tissue and structural heartwood. By the time you see sawdust, severe internal damage has already occurred.', zh: '生命周期极其缓慢，但单个个体的破坏力是灾难性的。巨大的幼虫在树**内部**生活8到12个月，慢慢吃掉维管组织和结构心材。当您看到锯末时，严重的内部破坏已经发生。' },
     symbiosis: { en: 'Entry wounds invite secondary fungal infections.', zh: '入侵伤口会引来继发性真菌感染。' },
     severity: 5,
-    control: { en: 'Inject Cypermethrin or Chlorpyrifos into *existing* insect boreholes and seal immediately with clay/wax to prevent rot. Avoid drilling new holes.', zh: '将氯氰菊酯或毒死蜱直接注入**现有**的蛀孔内，并立即用粘土/蜡密封以防腐烂。避免钻出新孔。' },
+    control: { en: 'Inject Cypermethrin into *existing* insect boreholes and seal immediately with clay/wax to prevent rot. Avoid drilling new holes.', zh: '将氯氰菊酯直接注入**现有**的蛀孔内，并立即用粘土/蜡密封以防腐烂。避免钻出新孔。' },
     stages: ['All Stages'],
     ipm: ['Chemical', 'Physical'],
   },

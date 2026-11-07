@@ -79,10 +79,10 @@ function Shell() {
           <div className="max-w-2xl mx-auto px-[16px] py-[10px] flex items-center gap-[8px]">
             <a href={href('')} className="flex items-center gap-[10px] min-w-0 flex-1">
               <img src={`${import.meta.env.BASE_URL}favicon.svg`} alt="" width="36" height="36" className="w-[36px] h-[36px] rounded-xl shadow-sm shrink-0" />
-              <span className="font-extrabold text-[18px] leading-[1.2] text-slate-900">{ui('app.title')}</span>
+              <span className="font-extrabold text-[1.125rem] leading-[1.2] text-slate-900">{ui('app.title')}</span>
             </a>
             <button onClick={() => setSheet(true)} aria-label={ui('app.settings')} aria-haspopup="dialog"
-              className="h-[40px] px-[10px] rounded-xl bg-paper border border-slate-300 shadow-sm text-[14px] font-bold text-slate-800 shrink-0 flex items-center gap-[4px]">
+              className="min-h-[40px] px-[10px] rounded-xl bg-paper border border-slate-300 shadow-sm text-[0.875rem] font-bold text-slate-800 shrink-0 flex items-center gap-[4px]">
               <svg viewBox="0 0 24 24" className="w-[16px] h-[16px] text-slate-500" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" /></svg>
               {LANG_SHORT[lang]}
             </button>
@@ -94,7 +94,7 @@ function Shell() {
               const on = tb.match.includes(route.name);
               return (
                 <a key={tb.id} href={href(tb.path)} aria-current={on ? 'page' : undefined}
-                  className={`flex items-center justify-center gap-[6px] py-[12px] text-[15px] font-bold border-b-2 ${on ? 'text-[#114b2d] border-[#114b2d]' : 'text-slate-400 border-transparent'}`}>
+                  className={`flex items-center justify-center gap-[6px] py-[12px] text-[0.9375rem] font-bold border-b-2 ${on ? 'text-[#114b2d] border-[#114b2d]' : 'text-slate-600 border-transparent'}`}>
                   <Icon name={tb.icon} className="w-[16px] h-[16px]" />{ui(`nav.${tb.id}`)}
                 </a>
               );
@@ -102,7 +102,7 @@ function Shell() {
           </div>
         </nav>
       </div>
-      {sheet && <LangSheet onClose={() => setSheet(false)} scale={scale} setScale={setScale} />}
+      {sheet && <LangSheet onClose={() => setSheet(false)} scale={scale} setScale={setScale} orchard={orchard} setOrchard={setOrchard} />}
       <ToTop />
       <main className="max-w-2xl mx-auto px-4 pt-4" style={{ paddingBottom: 'calc(2.5rem + env(safe-area-inset-bottom))' }}>{screen}</main>
     </div>

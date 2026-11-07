@@ -44,12 +44,21 @@ export function ChemChip({ c }) {
 
 // `intro` / `onBack` / `initialPestStage` let the diagnosis show its result AS this page (no extra step).
 export default function GroupPage({ id, orchard, setOrchard, intro = null, onBack, initialPestStage = null }) {
-  const { t, ui, lang, lmap } = useLang();
+  const { t, ui, tx, lang, lmap } = useLang();
   const g = groupById(id);
   const [pestStage, setPestStage] = useState(initialPestStage);
 
-  const track = orchard.track === 'organic' ? 'organic' : 'all';
-  const rec = useMemo(() => g && recommend(g, { stage: orchard.stage, recentMoa: orchard.recentMoa, track, pestStage }), [g, orchard.stage, orchard.recentMoa, track, pestStage]);
+  // Products to show: this pest's own choice if the farmer changed it here, else their usual one.
+  const usualTrack = orchard.track === 'organic' ? 'organic' : 'all';
+  const track = orchard.trackBy?.[id] || usualTrack;
+  const setTrack = (v) => {
+    const trackBy = { ...(orchard.trackBy || {}) };
+    if (v === usualTrack) delete trackBy[id]; else trackBy[id] = v;
+    setOrchard({ trackBy });
+  };
+  // "Last sprayed" is per pest.
+  const last = orchard.lastBy?.[id] || { lastIrac: null, recentMoa: [] };
+  const rec = useMemo(() => g && recommend(g, { stage: orchard.stage, recentMoa: last.recentMoa, track, pestStage }), [g, orchard.stage, last.recentMoa, track, pestStage]);
   if (!g) return <div><BackBar /><p>Not found.</p></div>;
 
   const examples = examplesFor(g.id);
@@ -61,10 +70,10 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
     const A = a.startsWith('UN') ? 999 : parseInt(a, 10), B = b.startsWith('UN') ? 999 : parseInt(b, 10);
     return A - B || a.localeCompare(b);
   }) : null;
-  const lastValue = chart ? (orchard.lastIrac || '') : (orchard.recentMoa[0] || '');
-  const setLast = (v) => (chart
-    ? setOrchard({ lastIrac: v || null, recentMoa: v ? [moaKeyFromIrac(v)] : [] })
-    : setOrchard({ lastIrac: null, recentMoa: v ? [v] : [] }));
+  const lastValue = chart ? (last.lastIrac || '') : (last.recentMoa[0] || '');
+  const setLast = (v) => setOrchard({ lastBy: { ...(orchard.lastBy || {}), [id]: chart
+    ? { lastIrac: v || null, recentMoa: v ? [moaKeyFromIrac(v)] : [] }
+    : { lastIrac: null, recentMoa: v ? [v] : [] } } });
 
   const share = () => {
     const lines = [
@@ -73,7 +82,7 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
     ];
     if (rec.rotation.length) {
       lines.push('', `${ui('group.rotation')}:`);
-      rec.rotation.forEach((o, i) => lines.push(`${i + 1}. ${t(o.moaInfo.name)}${moaCode(o.moaInfo) ? ` (${moaCode(o.moaInfo)})` : ''} — ${o.actives.slice(0, 3).map(a => t(a.name)).join(', ')}`));
+      rec.rotation.forEach((o, i) => lines.push(`${i + 1}. ${t(o.moaInfo.name)}${moaCode(o.moaInfo) ? ` (${moaCode(o.moaInfo)})` : ''} — ${stepProducts(o, t, 3)}`));
     }
     lines.push('', ui('common.disclaimer'));
     const url = `https://wa.me/?text=${encodeURIComponent(lines.join('\n'))}`;
@@ -138,7 +147,14 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
       ) : (
         <Section title={ui('group.chem')}>
           <p className="text-[0.8125rem] text-slate-500 mb-2 leading-snug">{ui('group.rankedNote')}</p>
-          <div className="mb-3"><OrganicToggle on={track === 'organic'} onChange={v => setOrchard({ track: v ? 'organic' : 'all' })} /></div>
+          <div className="mb-3">
+            <OrganicToggle on={track === 'organic'} onChange={v => setTrack(v ? 'organic' : 'all')} />
+            {track !== usualTrack && (
+              <p className="mt-1.5 text-[0.8125rem] text-slate-600 leading-snug">
+                {ui('track.onlyHere')} <button type="button" onClick={() => setTrack(usualTrack)} className="font-bold text-[#114b2d] underline min-h-[32px]">{ui(usualTrack === 'organic' ? 'track.backOrganic' : 'track.backAll')}</button>
+              </p>
+            )}
+          </div>
           <StagePicker groupId={g.id} value={pestStage} onChange={setPestStage} compact />
 
           {rec.options.length === 0 && track === 'organic' && <div className="mt-3"><Callout tone="lime" icon="leaf">{ui('group.organicEmpty')}</Callout></div>}
@@ -182,13 +198,13 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
               <div className="font-extrabold text-[1rem]">{ui('group.rotation')}</div>
               <ol className="mt-2 space-y-1.5">
                 {rec.rotation.map((o, i) => (
-                  <li key={o.moa} className="flex gap-2 items-start">
+                  <li key={o.key} className="flex gap-2 items-start">
                     <span className="w-6 h-6 rounded-full bg-[#114b2d] text-white font-extrabold text-[0.8125rem] flex items-center justify-center shrink-0 mt-0.5">{i + 1}</span>
-                    <span className="text-[0.9375rem] leading-snug"><b>{moaCode(o.moaInfo) || t(o.moaInfo.name)}</b> — {o.actives.slice(0, 2).map(a => t(a.name)).join(', ')}</span>
+                    <span className="text-[0.9375rem] leading-snug"><b>{moaCode(o.moaInfo) || t(o.moaInfo.name)}</b> — {stepProducts(o, t)}</span>
                   </li>
                 ))}
               </ol>
-              <p className="mt-2 text-[0.8125rem] text-slate-600 leading-snug">🌿 {ui('alt.tip')} <a href={href('learn/alternate')} className="font-bold text-[#114b2d] underline">{ui('alt.learn')}</a></p>
+              <p className="mt-2 text-[0.8125rem] text-slate-600 leading-snug">🌿 {ui(track === 'organic' ? 'alt.tipOrganic' : 'alt.tip')} <a href={href('learn/alternate')} className="font-bold text-[#114b2d] underline">{ui('alt.learn')}</a></p>
             </div>
           )}
           {avoidCard}
@@ -237,13 +253,13 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
       <Fold title={ui('group.sources')} hint={g.refs?.length ? `${g.refs.length} ${ui('group.refsCount')}` : ui('group.refsBasis')}>
         {g.refs?.length ? (
           <ol className="space-y-2 list-decimal pl-5">
-            {g.refs.map(r => (
-              <li key={r.url} className="text-[0.875rem] leading-snug">
+            {g.refs.map((r, i) => (
+              <li key={i} className="text-[0.875rem] leading-snug">
                 <a href={r.url} onClick={e => openExternal(e, r.url)} className="text-[#114b2d] underline">{r.t}</a>
                 {(r.scope || r.supports) && (
                   <div className="mt-0.5 flex flex-wrap items-center gap-1.5">
                     {r.scope && <Badge tone={SCOPE_TONE[r.scope] || 'grey'}>{ui(`group.scope.${r.scope}`)}</Badge>}
-                    {r.supports && <span className="text-[0.8125rem] text-slate-500">{ui('group.supports')}: {r.supports}</span>}
+                    {r.supports && <span className="text-[0.8125rem] text-slate-500">{ui('group.supports')}: {tx(r.supports)}</span>}
                   </div>
                 )}
               </li>
@@ -295,7 +311,7 @@ function OptionCard({ o, rank }) {
             {o.fit !== 'maker' && <Badge tone={FIT_TONE[o.fit]} className="shrink-0 whitespace-nowrap">{ui(`fit.${o.fit}`)}</Badge>}
           </div>
           {o.why && <p className="text-[0.9375rem] leading-snug mt-1 text-slate-800"><G>{t(o.why)}</G></p>}
-          <div className="mt-1.5"><KillsBadges stages={info.stages} /></div>
+          {o.fit !== 'maker' && <div className="mt-1.5"><KillsBadges stages={info.stages} /></div>}
           {warns.length > 0 && (
             <div className="flex flex-wrap gap-1.5 mt-1.5">
               {warns.map(w => <Badge key={w} tone={WARN_TONE[w]}>{ui(`warn.${w}`)}</Badge>)}
@@ -328,3 +344,9 @@ function OptionCard({ o, rank }) {
 }
 
 export { TOX_TONE };
+
+// Products named in a rotation step: Mr. Ganick products first, then actives.
+function stepProducts(o, t, n = 2) {
+  const names = [...o.ganick.map(p => `Mr. Ganick ${p.name}`), ...o.actives.map(a => t(a.name))];
+  return names.slice(0, n).join(', ');
+}

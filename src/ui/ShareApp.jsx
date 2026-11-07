@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLang, VALID_LANGS, LANG_LABEL } from '../i18n/useLang.jsx';
+import { useCloseOnNav } from './useCloseOnNav.js';
 
 export const APP_URL = 'https://stanleywoosweeleong.github.io/DurianIPM/';
 
@@ -49,7 +50,7 @@ export function LangButtons({ onPick }) {
 }
 
 /** Bottom sheet opened from the header language button: language + share. */
-const SIZES = [{ v: 1, px: 15, key: 'normal' }, { v: 1.1, px: 19, key: 'large' }, { v: 1.2, px: 23, key: 'xl' }];
+const SIZES = [{ v: 1, px: 15, key: 'normal' }, { v: 1.2, px: 20, key: 'large' }, { v: 1.4, px: 25, key: 'xl' }];
 
 /** Text size: three big buttons; the change shows at once, the sheet stays open. */
 export function SizeButtons({ scale, setScale }) {
@@ -62,7 +63,7 @@ export function SizeButtons({ scale, setScale }) {
           <button key={s.v} onClick={() => setScale(s.v)} aria-pressed={on}
             className={`min-h-[64px] rounded-xl flex flex-col items-center justify-center gap-0.5 ${on ? 'bg-[#114b2d] text-white' : 'bg-paper border border-slate-300 text-slate-800'}`}>
             <span className="font-extrabold leading-none" style={{ fontSize: s.px }}>A</span>
-            <span className="text-[12px] font-bold leading-tight">{ui(`size.${s.key}`)}</span>
+            <span className="text-[0.8125rem] font-bold leading-tight">{ui(`size.${s.key}`)}</span>
           </button>
         );
       })}
@@ -70,8 +71,28 @@ export function SizeButtons({ scale, setScale }) {
   );
 }
 
-export function LangSheet({ onClose, scale, setScale }) {
+/** Products to show — the farmer's usual choice; changing it clears per-pest changes. */
+export function TrackButtons({ orchard, setOrchard }) {
   const { ui } = useLang();
+  const cur = orchard.track === 'organic' ? 'organic' : 'all';
+  return (
+    <>
+      <div className="grid grid-cols-2 gap-2" role="group" aria-label={ui('track.title')}>
+        {['all', 'organic'].map(v => (
+          <button key={v} onClick={() => setOrchard({ track: v, trackBy: {} })} aria-pressed={cur === v}
+            className={`min-h-[52px] rounded-xl text-[1rem] font-extrabold ${cur === v ? 'bg-[#114b2d] text-white' : 'bg-paper border border-slate-300 text-slate-800'}`}>
+            {ui(`track.${v}`)}
+          </button>
+        ))}
+      </div>
+      <p className="mt-2 text-[0.875rem] text-slate-600 leading-snug">{ui('track.hint')}</p>
+    </>
+  );
+}
+
+export function LangSheet({ onClose, scale, setScale, orchard, setOrchard }) {
+  const { ui } = useLang();
+  useCloseOnNav(onClose);
   return (
     <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center bg-black/40" onClick={onClose}>
       <div role="dialog" aria-modal="true" aria-label={ui('app.language')}
@@ -87,6 +108,12 @@ export function LangSheet({ onClose, scale, setScale }) {
           <>
             <h2 className="mt-6 mb-3 text-[1.25rem] font-extrabold text-slate-900">{ui('app.textSize')}</h2>
             <SizeButtons scale={scale} setScale={setScale} />
+          </>
+        )}
+        {setOrchard && (
+          <>
+            <h2 className="mt-6 mb-3 text-[1.25rem] font-extrabold text-slate-900">{ui('track.title')}</h2>
+            <TrackButtons orchard={orchard} setOrchard={setOrchard} />
           </>
         )}
         <h2 className="mt-6 mb-3 text-[1.25rem] font-extrabold text-slate-900">{ui('share.title')}</h2>

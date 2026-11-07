@@ -52,3 +52,13 @@ test('Mr. Ganick list: real pest groups, three languages, names and actives only
     for (const t of terms) assert.ok(!all.includes(t), `${p.id} names ${t}`);
   }
 });
+
+import { collectSupports } from '../scripts/i18n-strings.mjs';
+test('every source "Supports:" note has Chinese and Malay, with no banned names', async () => {
+  const SRC = JSON.parse(fs.readFileSync(new URL('../src/i18n/sources.json', import.meta.url), 'utf8'));
+  const terms = REMOVED.flatMap(r => r.terms).filter(t => t.length >= 3).map(t => t.toLowerCase());
+  for (const s of await collectSupports()) {
+    assert.ok(SRC[s]?.zh?.trim() && SRC[s]?.ms?.trim(), `no translation for: ${s}`);
+    for (const t of terms) for (const l of ['zh', 'ms']) if (SRC[s][l].toLowerCase().includes(t)) assert.ok(s.toLowerCase().includes(t), `${t} added in ${l}: ${SRC[s][l]}`);
+  }
+});

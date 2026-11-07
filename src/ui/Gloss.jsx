@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useMemo } from 'react';
+import React, { createContext, useContext, useState, useMemo, useEffect } from 'react';
+import { useCloseOnNav } from './useCloseOnNav.js';
 import { useLang } from '../i18n/useLang.jsx';
 import { glossSplit, glossById, GLOSSARY } from '../core/glossary.js';
 import { href } from '../hooks/useRoute.js';
@@ -27,7 +28,7 @@ export function G({ children }) {
   if (parts.length === 1 && typeof parts[0] === 'string') return children;
   return parts.map((p, i) => typeof p === 'string' ? <React.Fragment key={i}>{p}</React.Fragment> : (
     <button key={i} type="button" onClick={e => { e.preventDefault(); e.stopPropagation(); show(p.id); }}
-      className="inline p-0 m-0 bg-transparent border-0 font-[inherit] text-[length:inherit] leading-[inherit] text-inherit text-left underline decoration-dotted decoration-[#114b2d]/60 underline-offset-[3px] decoration-2 cursor-help">
+      className="inline py-[4px] px-0 m-0 bg-transparent border-0 font-[inherit] text-[length:inherit] leading-[inherit] text-inherit text-left underline decoration-dotted decoration-[#114b2d]/60 underline-offset-[3px] decoration-2 cursor-help">
       {p.text}
     </button>
   ));
@@ -41,6 +42,7 @@ function termTitle(e, lang, t) {
 
 function TermCard({ id, onClose }) {
   const { t, ui, lang } = useLang();
+  useCloseOnNav(onClose);
   const e = glossById(id);
   if (!e) return null;
   return (
@@ -52,7 +54,7 @@ function TermCard({ id, onClose }) {
         <h2 className="mt-0.5 text-[1.25rem] font-extrabold text-slate-900 leading-tight">{termTitle(e, lang, t)}</h2>
         <p className="mt-2 text-[1rem] leading-relaxed text-slate-800">{t(e.means)}</p>
         <div className="mt-4 flex items-center gap-2">
-          <a href={href('learn/words')} onClick={onClose} className="flex-1 min-h-[44px] rounded-xl border border-slate-300 bg-paper flex items-center justify-center text-[0.9375rem] font-bold text-[#114b2d]">{ui('words.all')}</a>
+          <a href={href('learn/words')} className="flex-1 min-h-[44px] rounded-xl border border-slate-300 bg-paper flex items-center justify-center text-[0.9375rem] font-bold text-[#114b2d]">{ui('words.all')}</a>
           <button onClick={onClose} className="flex-1 min-h-[44px] rounded-xl bg-[#114b2d] text-white text-[0.9375rem] font-extrabold">{ui('words.gotIt')}</button>
         </div>
       </div>

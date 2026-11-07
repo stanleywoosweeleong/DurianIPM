@@ -300,12 +300,6 @@ export const MOA = {
     how: { en: 'Baits eaten by snails and slugs.', zh: '被蜗牛和蛞蝓取食的饵剂。' },
     route: ['ingestion'], stages: ['young', 'adult'], bee: 'low', resistance: 'low',
   },
-  'HRAC 22': {
-    kind: 'herbicide',
-    name: { en: 'Bipyridyliums (paraquat)', zh: '联吡啶类（百草枯）' },
-    how: { en: 'Burns green tissue on contact.', zh: '接触后灼烧绿色组织。' },
-    route: ['contact'], stages: [], bee: 'low', resistance: 'low',
-  },
   'HRAC 10': {
     kind: 'herbicide',
     name: { en: 'Glufosinate', zh: '草铵膦' },

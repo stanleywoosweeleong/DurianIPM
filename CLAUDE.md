@@ -56,6 +56,9 @@ do not "tidy them away".
   `node scripts/i18n-strings.mjs out.json`. Malay is Bahasa Malaysia (not Indonesian), plain,
   with the shared word list (perosak, racun kulat, giliran, kelulut, pangkal batang, kikis,
   bena hijau for leafhoppers — not "lompat daun"…).
+- Plain English-only text shown in every language (the "Supports:" line of each source) is
+  translated in `src/i18n/sources.json` (`{English: {zh, ms}}`, shown via `tx()`); a test checks it.
+- `ms.json` loads only when Malay is chosen (smaller first download); it is still precached.
 - In Malay mode, Chinese product names are hidden. The header button always shows the
   **current** language; the first launch asks for the language and remembers it.
 
@@ -64,6 +67,16 @@ do not "tidy them away".
 - One soft **paper** tone (`bg-paper`, #fcfbf7) on every surface — easier on the eyes than
   pure white. Meaning goes in coloured borders, headings and badges, not tinted panels.
 - Dark forest green #114b2d for actions. Chinese text is set a step larger and heavier.
+- Text size steps 100% / 120% / 140% (settings panel); header, tabs and the update bar follow it.
+
+## Choices the farmer makes
+
+- **Products to show** (settings panel): "All products" by default — neutral, not organic-first.
+  Each pest page still has its own Organic only switch; a change there applies to that pest
+  only, is remembered, and shows "Changed for this pest only" with a way back. Changing the
+  usual choice in the panel clears the per-pest changes.
+- **Last sprayed** is remembered **per pest** (`orchard.lastBy`). Saved data is validated on
+  read (`useOrchard.js`), so a bad value never crashes a page.
 
 ## Working on it
 

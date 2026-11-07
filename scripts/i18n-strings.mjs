@@ -22,6 +22,18 @@ function walk(x, depth = 0) {
   }
 }
 
+// Plain English-only strings shown in every language (the "Supports:" line of each source):
+// these need both a Chinese and a Malay form.
+export async function collectSupports() {
+  const { GROUPS } = await mod('core/groups.js');
+  const { LESSONS } = await mod('core/lessons.js');
+  const out = new Set();
+  const visit = (x) => { if (!x || typeof x !== 'object') return; if (Array.isArray(x)) return x.forEach(visit);
+    if (typeof x.supports === 'string' && x.supports.trim()) out.add(x.supports); Object.values(x).forEach(visit); };
+  visit(GROUPS); visit(LESSONS);
+  return [...out];
+}
+
 export async function collect() {
   const { UI_STRINGS } = await mod('i18n/ui.js');
   const { GROUPS, FEEDING, STAGE_TERMS } = await mod('core/groups.js');
@@ -39,7 +51,8 @@ export async function collect() {
   walk(D); walk(SPRAY_WHERE); walk(RELATED); walk(ST); walk(M); walk(C.CAUTION_TEXT); walk(C.REMOVED);
   for (const c of C.CHEMICALS) { walk(c.name); walk(c.notes); walk(c.hhpNote); }
   // Language maps keyed by lang: translate the English side.
-  for (const key of ['MOA_LABELS', 'GROUP_NAMES', 'TOX_LABEL', 'BEE_LABEL', 'BENEFICIAL_LABEL', 'FUNGUS_LABEL', 'ENV_LABEL']) {
+  walk(DB.EU_BANNED); walk(C.ORGANIC_NOTE);
+  for (const key of ['MOA_LABELS', 'GROUP_NAMES', 'TOX_LABEL', 'BEE_LABEL', 'BENEFICIAL_LABEL', 'FUNGUS_LABEL', 'ENV_LABEL', 'GROUP_MOA', 'GROUP_CROSS_RESISTANCE']) {
     const m = DB[key]; if (!m) continue; if (m.en) Object.values(m.en).forEach(v => typeof v === 'string' ? add(v) : walk(v)); else walk(m);
   }
   (DB.CHART_PESTS || []).forEach(p => add(p.en));

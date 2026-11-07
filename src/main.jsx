@@ -35,7 +35,7 @@ function PWAUpdateToast() {
   }, []);
 
   useEffect(() => {
-    let timer;
+    let timer; let onVisible;
     const update = registerSW({
       immediate: true,
       onNeedRefresh() { setNeedRefresh(true); },
@@ -49,11 +49,12 @@ function PWAUpdateToast() {
         regRef.current = reg;
         const check = () => { if (navigator.onLine) reg.update().catch(() => {}); };
         timer = setInterval(check, 60 * 60 * 1000);
-        document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') check(); });
+        onVisible = () => { if (document.visibilityState === 'visible') check(); };
+        document.addEventListener('visibilitychange', onVisible);
       },
     });
     setUpdateSW(() => update);
-    return () => clearInterval(timer);
+    return () => { clearInterval(timer); if (onVisible) document.removeEventListener('visibilitychange', onVisible); };
   }, []);
 
   // The "ready offline" note is brief and goes away on its own.
@@ -96,17 +97,17 @@ function PWAUpdateToast() {
         <div className="flex-1 min-w-0">
           {needRefresh ? (
             <>
-              <div className="font-extrabold text-[15px] leading-tight">{tr('update')}</div>
-              <div className="text-[13px] text-emerald-100 leading-snug">{tr('updateSub')}</div>
+              <div className="font-extrabold text-[0.9375rem] leading-tight">{tr('update')}</div>
+              <div className="text-[0.8125rem] text-emerald-100 leading-snug">{tr('updateSub')}</div>
             </>
           ) : (
-            <div className="text-[14px] leading-snug">{tr('offline')}</div>
+            <div className="text-[0.875rem] leading-snug">{tr('offline')}</div>
           )}
         </div>
         {needRefresh && (
           <>
-            <button onClick={e => { e.stopPropagation(); setNeedRefresh(false); }} className="min-h-[44px] px-2 text-[14px] font-bold text-emerald-100">{tr('later')}</button>
-            <span aria-hidden="true" className="min-h-[44px] px-4 rounded-xl bg-paper text-[#114b2d] text-[15px] font-extrabold flex items-center">{busy ? tr('updating') : tr('now')}</span>
+            <button onClick={e => { e.stopPropagation(); setNeedRefresh(false); }} className="min-h-[44px] px-2 text-[0.875rem] font-bold text-emerald-100">{tr('later')}</button>
+            <span aria-hidden="true" className="min-h-[44px] px-4 rounded-xl bg-paper text-[#114b2d] text-[0.9375rem] font-extrabold flex items-center">{busy ? tr('updating') : tr('now')}</span>
           </>
         )}
       </div>
