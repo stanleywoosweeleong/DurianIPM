@@ -15,7 +15,15 @@ App: https://stanleywoosweeleong.github.io/Mr.Ganickproductcatalogue/ (single `i
 - [x] **"PGPR (Plant Growth Promoting Regulator)" is wrong** (BST WP, BST GOLD WP).
       PGPR = **plant growth-promoting rhizobacteria** (植物根际促生菌).
 - [ ] **BST GOLD WP percentages add up to 109%** (99% w/w + 10% w/w). BST WP is 90% + 10%;
-      check the label for GOLD's real split. **Still open** — needs the figure from the product label.
+      check the label for GOLD's real split. **Still open — for Mr. Ganick:** the printed brochure
+      itself says 99% + 10% (owner's photo, 7 Nov 2026), so the app copies the source correctly;
+      only the company can give the real split.
+
+### For Mr. Ganick's next brochure print (the printed page has these too)
+- BST GOLD WP: ingredients add up to 109% (99% + 10% w/w).
+- "Natural PGPR (Natural Plant Growth Promoting **Regulator**)" → PGPR = plant growth-promoting
+  **rhizobacteria**.
+- "Papillionaceae" → **Papilionaceae** (BST BOOST SP; also LEPID 007 SL in the catalogue).
 - [x] **Spelling: "Papillionaceae" → "Papilionaceae"** (LEPID 007 SL, BST BOOST SP).
 - [x] **Whitefly is named "白粉蝶" in Chinese** (SCALE EX-LITE EW; problem `whitefly`).
       白粉蝶 is the cabbage white butterfly; whitefly is **粉虱**.
