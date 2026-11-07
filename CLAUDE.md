@@ -38,14 +38,16 @@ do not "tidy them away".
   - Fruit flies are a **minor** durian pest. Plant bugs mainly matter on **young trees**.
   - Validamycin is **FRAC U18** (no longer 26).
   - Fipronil around cankers is used against ants and insects feeding on the ooze.
-- **Mr. Ganick organic range** (`src/core/ganick.js`): listed only when the farmer turns on
-  "Organic only", as one of the viable options — because organic products are hard to find in
-  Malaysia and this reputable range is available. Product name, actives and what it is for;
-  **no link to their catalogue** (the company runs it now), **no doses**, no praise, only products listed for a durian problem, and **never** the
-  catalogue's chemical mix partners. Never suggest a banned active, from any source.
-
-## Languages
-
+- **Mr. Ganick organic range** (`src/core/ganick.js`): organic products are hard to find in
+  Malaysia and this reputable range is available, so its products sit **inside the option for
+  their way of working** (e.g. T-MAX in insect-killing fungi), listed first. Ranking
+  (`recommend.js`): an option holding a Mr. Ganick product ranks above every "Limited" option;
+  among equal ratings, Mr. Ganick first, then organic, then chemical. If a pest page has no
+  option of that type, the product gets its own option marked "Maker's use" (no evidence
+  rating). Organic only → only organic options and products. Name, actives and what it is for;
+  no link to their catalogue (the company runs it now), **no doses**, no praise, only products
+  listed for a durian problem, never the catalogue's chemical mix partners. Pests with no
+  Mr. Ganick product simply show none. Never suggest a banned active, from any source.
 - Content objects are `{ en, zh }`. Malay comes from `src/i18n/ms.json`, keyed by the English
   text; text added later can carry Malay inline with `s3(en, zh, ms)` (or a `ms` key).
 - `npm test` fails if any visible English string has no Malay form. To find what is missing:

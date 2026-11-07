@@ -184,7 +184,7 @@ export const MOA = {
   },
   'BIO-INS': {
     kind: 'bio',
-    name: { en: 'Insect-killing fungi (Beauveria, Metarhizium, Isaria, Lecanicillium)', zh: '昆虫病原真菌（白僵菌、绿僵菌、棒束孢、蜡蚧轮枝菌）' },
+    name: { en: 'Insect-killing fungi & bacteria (Beauveria, Metarhizium, Isaria, Lecanicillium…)', zh: '昆虫病原真菌与细菌（白僵菌、绿僵菌、棒束孢、蜡蚧轮枝菌等）', ms: 'Kulat & bakteria pembunuh serangga (Beauveria, Metarhizium, Isaria, Lecanicillium…)' },
     how: { en: 'Fungal spores land on the insect, grow through its skin and kill it from inside.', zh: '真菌孢子附着在虫体表面，穿透表皮并从内部杀死害虫。' },
     route: ['contact', 'biological'], stages: ['young', 'adult'], bee: 'low', resistance: 'low',
     note: { en: 'Needs humidity — spray in the evening. Do not tank-mix with fungicides.', zh: '需要湿度——傍晚喷施。切勿与杀菌剂混用。' },
@@ -277,6 +277,13 @@ export const MOA = {
     how: { en: 'Multi-site protectant — fungi almost never become resistant.', zh: '多位点保护剂——真菌几乎不会产生抗性。' },
     route: ['contact'], stages: [], bee: 'low', resistance: 'low',
     note: { en: 'Washes off in rain; re-apply after heavy rain. Ideal rotation/mix partner.', zh: '易被雨水冲刷；大雨后需补喷。理想的轮换/混配伙伴。' },
+  },
+  'FRAC BM01': {
+    kind: 'bio',
+    name: { en: 'Plant-extract fungicides', zh: '植物源杀菌剂', ms: 'Racun kulat ekstrak tumbuhan' },
+    how: { en: 'Plant extracts that slow disease fungi on the leaf surface and help the plant\'s own defences. Several modes of action, so resistance is unlikely.', zh: '植物提取物，在叶面抑制病菌并帮助植物自身防御。作用方式多样，不易产生抗性。', ms: 'Ekstrak tumbuhan yang melambatkan kulat penyakit pada permukaan daun dan membantu pertahanan pokok sendiri. Pelbagai cara tindakan, jadi kerintangan tidak mungkin.' },
+    route: ['contact'], stages: [], bee: 'low', resistance: 'low',
+    note: { en: 'Protective: works best before the disease spreads, repeated after heavy rain.', zh: '保护性：在病害扩散前使用效果最好，大雨后要补喷。', ms: 'Perlindungan: paling berkesan sebelum penyakit merebak, ulang selepas hujan lebat.' },
   },
   'BIO-FUN': {
     kind: 'bio',

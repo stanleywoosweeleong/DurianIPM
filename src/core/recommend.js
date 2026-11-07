@@ -4,8 +4,16 @@
 import { CROSS_RESISTANCE_CLUSTERS, toxSev } from './moaDb.js';
 import { CHEMICALS, USABLE_ROWS, moaInfo, moaKeyFromIrac, REMOVED } from './chemDb.js';
 import { CHART_FOR_GROUP } from './rotation.js';
+import { ganickFor } from './ganick.js';
 
 const FIT_SCORE = { best: 3, good: 2, limited: 1 };
+// An option holding a Mr. Ganick product made for this pest ranks above every
+// "Limited" option (owner's rule): organic products are hard to find in Malaysia and
+// this range does the job. Among options with the same rating, ones with a Mr. Ganick
+// product come first, then ones with an organic product, then the rest.
+const GANICK_FLOOR = 1.5;
+const TIE_GANICK = 0.1;
+const TIE_ORGANIC = 0.05;
 const chemByEn = new Map(CHEMICALS.map(c => [c.name.en, c]));
 const clusterOf = (irac) => CROSS_RESISTANCE_CLUSTERS.find(c => c.groups.includes(irac));
 
@@ -44,12 +52,22 @@ export function recommend(group, ctx = {}) {
   const nearHarvest = stage === 'harvest';
   const recentIrac = recentMoa.filter(k => k.startsWith('IRAC ')).map(k => k.slice(5));
 
-  const options = group.chem.map((c, index) => {
+  // Mr. Ganick products sit in the option for their way of working; when the pest page
+  // has no such option, it gets its own, marked as the manufacturer's use (no evidence rating).
+  const ganick = ganickFor(group.id).filter(p => track === 'organic' ? p.organic !== false : track !== 'conventional');
+  const extra = [...new Set(ganick.map(p => p.moa))].filter(k => !group.chem.some(c => c.moa === k))
+    .map(moa => ({ moa, fit: 'maker', why: null, only: [] }));
+
+  const options = [...group.chem, ...extra].map((c, index) => {
     const info = moaInfo(c.moa);
     const all = activesFor(group, c.moa, c.only);
     const actives = track === 'organic' ? all.filter(a => a.organic) : track === 'conventional' ? all.filter(a => !a.organic) : all;
+    const brand = ganick.filter(p => p.moa === c.moa);
     const warnings = [];
     let score = FIT_SCORE[c.fit] ?? 1;
+    if (brand.length && score < GANICK_FLOOR) score = GANICK_FLOOR;
+    if (brand.length) score += TIE_GANICK;
+    else if (actives.some(a => a.organic)) score += TIE_ORGANIC;
 
     const activeBee = actives.some(a => a.bee === 'high') ? 'high' : actives.some(a => a.bee === 'mod' || a.bee === 'wet') ? 'medium' : null;
     const bee = activeBee === 'high' || info.bee === 'high' ? 'high' : (activeBee || info.bee);
@@ -81,8 +99,8 @@ export function recommend(group, ctx = {}) {
       const cl = clusterOf(r); return cl && cl.groups.some(g => moaKeyFromIrac(g) === c.moa);
     })) { score -= 1; warnings.push('crossRes'); }
 
-    return { ...c, moaInfo: info, actives, warnings, score, index, recentlyUsed };
-  }).filter(o => o.actives.length > 0);
+    return { ...c, moaInfo: info, actives, ganick: brand, warnings, score, index, recentlyUsed };
+  }).filter(o => o.actives.length > 0 || o.ganick.length > 0);
 
   options.sort((a, b) => b.score - a.score || a.index - b.index);
 

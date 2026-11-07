@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from 'react';
 import { G } from '../ui/Gloss.jsx';
-import { ganickFor } from '../core/ganick.js';
 import { useLang } from '../i18n/useLang.jsx';
 import { Card, Section, Icon, Badge, Callout, BackBar, Bullets, Fold, openExternal } from '../ui/kit.jsx';
 import { GroupArt } from '../components/Art.jsx';
@@ -23,7 +22,7 @@ import { StagePicker, KillsBadges } from '../ui/StagePicker.jsx';
 
 import { WikiCover } from '../components/WikiPhotoStrip.jsx';
 
-const FIT_TONE = { best: 'green', good: 'blue', limited: 'grey' };
+const FIT_TONE = { best: 'green', good: 'blue', limited: 'grey', maker: 'lime' };
 // How directly a reference applies: a durian study beats the same pest on another crop.
 const SCOPE_TONE = { durian: 'green', other: 'amber', general: 'grey' };
 const WARN_TONE = { beeBlock: 'red', beeHigh: 'amber', beeEvening: 'amber', copperFlower: 'amber', phi: 'violet', resistance: 'grey', rotate: 'red', crossRes: 'amber', noAdults: 'red', noYoung: 'red', youngBest: 'green', ovicide: 'green', pairAdult: 'amber' };
@@ -173,20 +172,10 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
               <span className="flex-1 text-[0.875rem] leading-snug"><b>{ui('home.flowerWarn')}</b> <span className="text-[#114b2d] underline font-bold">{ui('group.whyFlowering')}</span></span>
             </a>
           )}
-          {(() => {
-            // Organic only: the Mr. Ganick products sit above any option rated "Limited"
-            // (or blocked at flowering) — they are a product that does the job.
-            const cut = track === 'organic' ? rec.options.findIndex(o => o.fit === 'limited' || o.warnings.includes('beeBlock')) : -1;
-            const at = cut === -1 ? rec.options.length : cut;
-            const card = (o, i) => <OptionCard key={o.moa} o={o} rank={i + 1} />;
-            return (
-              <>
-                <div className="space-y-2 mt-3">{rec.options.slice(0, at).map(card)}</div>
-                {track === 'organic' && <GanickProducts groupId={g.id} />}
-                {at < rec.options.length && <div className="space-y-2 mt-3">{rec.options.slice(at).map((o, i) => card(o, at + i))}</div>}
-              </>
-            );
-          })()}
+          <div className="space-y-2 mt-3">
+            {rec.options.map((o, i) => <OptionCard key={o.moa} o={o} rank={i + 1} />)}
+          </div>
+          {rec.options.some(o => o.ganick.length > 0) && <p className="mt-2 text-[0.8125rem] text-slate-500 leading-snug">{ui('ganick.note')}</p>}
           {rec.rotationWithheld && <div className="mt-4"><Callout tone="blue" icon="leaf">{ui('group.rotationSite')}</Callout></div>}
           {rec.rotation.length > 1 && (
             <div className="mt-4 rounded-2xl bg-paper border border-emerald-200 p-3">
@@ -285,7 +274,7 @@ function Fact({ label, value }) {
 const WARN_PRIORITY = ['beeBlock', 'rotate', 'noAdults', 'noYoung', 'crossRes', 'youngBest', 'ovicide', 'pairAdult', 'copperFlower', 'beeHigh', 'beeEvening', 'phi', 'resistance'];
 
 function OptionCard({ o, rank }) {
-  const { t, ui } = useLang();
+  const { t, ui, lang } = useLang();
   const info = o.moaInfo;
   const blocked = o.warnings.includes('beeBlock');
   const warns = WARN_PRIORITY.filter(w => o.warnings.includes(w)).slice(0, 2);
@@ -298,16 +287,32 @@ function OptionCard({ o, rank }) {
             <div className="min-w-0 font-extrabold text-[1rem] leading-tight">{t(info.name)}{moaCode(info) && <span className="text-[#114b2d]"> · {moaCode(info)}</span>}</div>
             <Badge tone={FIT_TONE[o.fit]} className="shrink-0 whitespace-nowrap">{ui(`fit.${o.fit}`)}</Badge>
           </div>
-          <p className="text-[0.9375rem] leading-snug mt-1 text-slate-800"><G>{t(o.why)}</G></p>
+          {o.why && <p className="text-[0.9375rem] leading-snug mt-1 text-slate-800"><G>{t(o.why)}</G></p>}
           <div className="mt-1.5"><KillsBadges stages={info.stages} /></div>
           {warns.length > 0 && (
             <div className="flex flex-wrap gap-1.5 mt-1.5">
               {warns.map(w => <Badge key={w} tone={WARN_TONE[w]}>{ui(`warn.${w}`)}</Badge>)}
             </div>
           )}
-          <div className="flex flex-wrap gap-1.5 mt-2">
-            {o.actives.map(c => <ChemChip key={c.id} c={c} />)}
-          </div>
+          {o.ganick.length > 0 && (
+            <ul className="mt-2 space-y-1.5">
+              {o.ganick.map(p => (
+                <li key={p.id} className="rounded-lg border border-lime-300 px-2.5 py-1.5">
+                  <div className="flex items-center gap-1.5 font-extrabold text-[0.9375rem] text-slate-900">
+                    <Icon name="leaf" className="w-4 h-4 text-lime-700 shrink-0" />
+                    <span>Mr. Ganick · {p.name}{lang !== 'ms' && p.zh !== p.name && <span className="font-bold text-slate-600"> · {p.zh}</span>}</span>
+                  </div>
+                  <div className="text-[0.8125rem] leading-snug text-slate-700"><b className="text-slate-600">{ui('ganick.actives')}:</b> <G>{p.actives.map(a => t(a)).join(' + ')}</G></div>
+                  <div className="text-[0.8125rem] leading-snug text-slate-700"><b className="text-slate-600">{ui('ganick.for')}:</b> {t(p.use)}</div>
+                </li>
+              ))}
+            </ul>
+          )}
+          {o.actives.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 mt-2">
+              {o.actives.map(c => <ChemChip key={c.id} c={c} />)}
+            </div>
+          )}
           {o.actives.length > 0 && <MrlLine actives={o.actives} />}
         </div>
       </div>
@@ -316,25 +321,3 @@ function OptionCard({ o, rank }) {
 }
 
 export { TOX_TONE };
-
-// Organic only: the Mr. Ganick range as one of the viable options — name and actives, no doses.
-function GanickProducts({ groupId }) {
-  const { t, ui, lang } = useLang();
-  const list = ganickFor(groupId);
-  if (list.length === 0) return null;
-  return (
-    <div className="mt-3 rounded-2xl bg-paper border border-lime-400 p-3">
-      <div className="flex items-center gap-2 font-extrabold text-[1rem] text-lime-900"><Icon name="leaf" className="w-5 h-5 text-lime-700" />{ui('ganick.title')}</div>
-      <p className="mt-1 text-[0.8125rem] text-slate-500 leading-snug">{ui('ganick.note')}</p>
-      <ul className="mt-2 divide-y divide-slate-100">
-        {list.map(p => (
-          <li key={p.id} className="py-2">
-            <div className="font-extrabold text-[0.9375rem] text-slate-900">{p.name}{lang !== 'ms' && p.zh !== p.name && <span className="font-bold text-slate-600"> · {p.zh}</span>}</div>
-            <div className="text-[0.875rem] leading-snug text-slate-700"><b className="text-slate-600">{ui('ganick.actives')}:</b> <G>{p.actives.map(a => t(a)).join(' + ')}</G></div>
-            <div className="text-[0.875rem] leading-snug text-slate-700"><b className="text-slate-600">{ui('ganick.for')}:</b> {t(p.use)}</div>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}

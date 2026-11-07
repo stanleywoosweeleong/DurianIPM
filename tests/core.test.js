@@ -23,9 +23,30 @@ test('every group is bilingual and never recommends what it says to avoid', () =
   }
 });
 
-test('every recommended MoA class has at least one real active', () => {
+test('every recommended MoA class has at least one real active or Mr. Ganick product', () => {
   for (const g of GROUPS) for (const o of recommend(g).options)
-    assert.ok(o.actives.length > 0, `${g.id}: ${o.moa} has no actives`);
+    assert.ok(o.actives.length > 0 || o.ganick.length > 0, `${g.id}: ${o.moa} has no actives`);
+});
+
+test('ranking: Mr. Ganick above every Limited option; organic first among equals', () => {
+  for (const g of GROUPS) for (const track of ['all', 'organic']) {
+    const opts = recommend(g, { track }).options;
+    opts.forEach((o, i) => {
+      if (!o.ganick.length) return;
+      const lowerLimited = opts.slice(0, i).filter(x => x.fit === 'limited' && !x.ganick.length);
+      assert.deepEqual(lowerLimited.map(x => x.moa), [], `${g.id}/${track}: ${o.moa} (Mr. Ganick) below a Limited option`);
+    });
+    if (track === 'organic') for (const o of opts) {
+      assert.ok(o.actives.every(a => a.organic), `${g.id}: non-organic active in organic mode`);
+      assert.ok(o.ganick.every(p => p.organic !== false), `${g.id}: non-organic Mr. Ganick product in organic mode`);
+    }
+    // Same rating, no flowering/stage context: organic options never follow a chemical-only one.
+    for (let i = 1; i < opts.length; i++) {
+      const a = opts[i - 1], b = opts[i];
+      const org = (o) => o.ganick.length > 0 || o.actives.some(x => x.organic);
+      if (a.fit === b.fit && !a.warnings.length && !b.warnings.length) assert.ok(org(a) || !org(b), `${g.id}/${track}: ${b.moa} organic after ${a.moa}`);
+    }
+  }
 });
 
 test('rotation-guide invariant: nothing removed in Malaysia is browsable or recommended', () => {

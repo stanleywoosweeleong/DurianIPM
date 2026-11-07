@@ -24,7 +24,7 @@ export const UI_STRINGS = {
   },
   ganick: {
     title: s3('Mr. Ganick organic products', 'Mr. Ganick 有机产品', 'Produk organik Mr. Ganick'),
-    note: s3('One of the ways. Organic products are hard to find in Malaysia; this range is widely available. Uses as listed by the manufacturer.', '这是其中一种做法。马来西亚的有机产品不容易买到，这个品牌比较容易找到。用途按厂家目录。', 'Salah satu cara. Produk organik sukar didapati di Malaysia; rangkaian ini mudah didapati. Kegunaan seperti yang disenaraikan oleh pengeluar.'),
+    note: s3('🌿 Mr. Ganick: organic products are hard to find in Malaysia; this range is widely available. Their uses are as listed by the manufacturer.', '🌿 Mr. Ganick：马来西亚的有机产品不容易买到，这个品牌比较容易找到。用途按厂家说明。', '🌿 Mr. Ganick: produk organik sukar didapati di Malaysia; rangkaian ini mudah didapati. Kegunaannya seperti yang disenaraikan oleh pengeluar.'),
     for: s3('For', '用于', 'Untuk'),
     actives: s3('Actives', '有效成分', 'Bahan aktif'),
   },
@@ -156,7 +156,7 @@ export const UI_STRINGS = {
     treeStage: s('Tree stage (optional)', '物候期（可选）'),
     share: s('Share on WhatsApp', '分享到 WhatsApp'),
   },
-  fit: { best: s('Best fit', '最佳'), good: s('Good', '良好'), limited: s('Limited', '有限') },
+  fit: { best: s('Best fit', '最佳'), good: s('Good', '良好'), limited: s('Limited', '有限'), maker: s3("Maker's use", '厂家用途', 'Kegunaan pengeluar') },
   mrl: {
     china: s('China MRL on durian', '中国榴莲残留限量'),
     group: s('(tropical-fruit group)', '（热带水果类）'),
