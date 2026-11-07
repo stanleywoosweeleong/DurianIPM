@@ -156,7 +156,7 @@ export const UI_STRINGS = {
     treeStage: s('Tree stage (optional)', '物候期（可选）'),
     share: s('Share on WhatsApp', '分享到 WhatsApp'),
   },
-  fit: { best: s('Best fit', '最佳'), good: s('Good', '良好'), limited: s('Limited', '有限'), maker: s3("Maker's use", '厂家用途', 'Kegunaan pengeluar') },
+  fit: { best: s('Best fit', '最佳'), good: s('Good', '良好'), limited: s('Limited', '有限') },
   mrl: {
     china: s('China MRL on durian', '中国榴莲残留限量'),
     group: s('(tropical-fruit group)', '（热带水果类）'),

@@ -22,7 +22,7 @@ import { StagePicker, KillsBadges } from '../ui/StagePicker.jsx';
 
 import { WikiCover } from '../components/WikiPhotoStrip.jsx';
 
-const FIT_TONE = { best: 'green', good: 'blue', limited: 'grey', maker: 'lime' };
+const FIT_TONE = { best: 'green', good: 'blue', limited: 'grey' };
 // How directly a reference applies: a durian study beats the same pest on another crop.
 const SCOPE_TONE = { durian: 'green', other: 'amber', general: 'grey' };
 const WARN_TONE = { beeBlock: 'red', beeHigh: 'amber', beeEvening: 'amber', copperFlower: 'amber', phi: 'violet', resistance: 'grey', rotate: 'red', crossRes: 'amber', noAdults: 'red', noYoung: 'red', youngBest: 'green', ovicide: 'green', pairAdult: 'amber' };
@@ -292,7 +292,7 @@ function OptionCard({ o, rank }) {
             ) : (
               <div className="min-w-0 font-extrabold text-[1rem] leading-tight">{t(info.name)}{moaCode(info) && <span className="text-[#114b2d]"> · {moaCode(info)}</span>}</div>
             )}
-            <Badge tone={FIT_TONE[o.fit]} className="shrink-0 whitespace-nowrap">{ui(`fit.${o.fit}`)}</Badge>
+            {o.fit !== 'maker' && <Badge tone={FIT_TONE[o.fit]} className="shrink-0 whitespace-nowrap">{ui(`fit.${o.fit}`)}</Badge>}
           </div>
           {o.why && <p className="text-[0.9375rem] leading-snug mt-1 text-slate-800"><G>{t(o.why)}</G></p>}
           <div className="mt-1.5"><KillsBadges stages={info.stages} /></div>

@@ -55,7 +55,7 @@ export function recommend(group, ctx = {}) {
   // Mr. Ganick products sit in the option for their way of working; when the pest page
   // has no such option, it gets its own, marked as the manufacturer's use (no evidence rating).
   // A product sold for this pest is never shown under a "Limited" rating: when its option is
-  // rated Limited (or the page has no such option), it gets its own option marked "Maker's use",
+  // rated Limited (or the page has no such option), it gets its own "Mr. Ganick" option with no rating badge,
   // ranked above every Limited option. The generic option keeps its real evidence rating.
   const ganick = ganickFor(group.id).filter(p => track === 'organic' ? p.organic !== false : track !== 'conventional');
   const inside = (p) => group.chem.some(c => c.moa === p.moa && c.fit !== 'limited');
