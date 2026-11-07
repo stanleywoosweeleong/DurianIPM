@@ -19,6 +19,8 @@ App: https://stanleywoosweeleong.github.io/Mr.Ganickproductcatalogue/ (single `i
       itself says 99% + 10% (owner's photo, 7 Nov 2026), so the app copies the source correctly;
       only the company can give the real split. The catalogue (v1.11.5) shows a note on BST GOLD WP
       saying the percentages are as printed and await the company's confirmation.
+      Web check (7 Nov 2026): Baba's own shop (babashop.com.my, 277 products) lists only regular BST
+      (90% + 10%, matching the catalogue); BST GOLD and BST BOOST are not listed online. Ask Mr. Ganick.
 
 ### For Mr. Ganick's next brochure print (the printed page has these too)
 - BST GOLD WP: ingredients add up to 109% (99% + 10% w/w).
