@@ -22,6 +22,13 @@ export const UI_STRINGS = {
     large: s3('Large', '大', 'Besar'),
     xl: s3('Extra large', '特大', 'Sangat besar'),
   },
+  ganick: {
+    title: s3('Mr. Ganick organic products', 'Mr. Ganick 有机产品', 'Produk organik Mr. Ganick'),
+    note: s3('One of the ways. Organic products are hard to find in Malaysia; this range is widely available. Uses as listed by the manufacturer.', '这是其中一种做法。马来西亚的有机产品不容易买到，这个品牌比较容易找到。用途按厂家目录。', 'Salah satu cara. Produk organik sukar didapati di Malaysia; rangkaian ini mudah didapati. Kegunaan seperti yang disenaraikan oleh pengeluar.'),
+    for: s3('For', '用于', 'Untuk'),
+    actives: s3('Actives', '有效成分', 'Bahan aktif'),
+    catalogue: s3('Mr. Ganick catalogue', 'Mr. Ganick 产品目录', 'Katalog Mr. Ganick'),
+  },
   words: {
     title: s3('Words to know', '术语小词典', 'Istilah penting'),
     intro: s3('The real technical words, explained. Tap any underlined word in the app to see its meaning.', '真正的专业术语，用简单的话解释。在应用里点任何带下划线的词，就能看到它的意思。', 'Istilah teknikal sebenar, diterangkan. Ketik mana-mana perkataan bergaris di dalam aplikasi untuk melihat maksudnya.'),

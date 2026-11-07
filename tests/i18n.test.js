@@ -37,3 +37,18 @@ test('Words to know: every term explained in three languages, used in the app, n
   assert.deepEqual(glossSplit('cross-resistance and resistance, resistance', 'en').filter(p => typeof p === 'object').map(p => p.id), ['cross', 'resistance']);
   assert.deepEqual(glossSplit('skin contact', 'en'), ['skin contact']);
 });
+
+import { GANICK } from '../src/core/ganick.js';
+import { GROUPS } from '../src/core/groups.js';
+test('Mr. Ganick list: real pest groups, three languages, names and actives only, no banned names', () => {
+  const ids = new Set(GROUPS.map(g => g.id));
+  const terms = REMOVED.flatMap(r => r.terms).filter(t => t.length >= 3).map(t => t.toLowerCase());
+  for (const p of GANICK) {
+    assert.ok(p.name && p.groups.length, p.id);
+    for (const g of p.groups) assert.ok(ids.has(g), `${p.id} → unknown group ${g}`);
+    for (const f of [p.use, ...p.actives]) for (const l of ['en', 'zh', 'ms']) assert.ok(f[l]?.trim(), `${p.id} ${l}`);
+    const all = JSON.stringify(p).toLowerCase();
+    assert.ok(!/\d\s*(ml|g|l)\b|\bdose\b|剂量/.test(all), `${p.id} carries a dose`);
+    for (const t of terms) assert.ok(!all.includes(t), `${p.id} names ${t}`);
+  }
+});

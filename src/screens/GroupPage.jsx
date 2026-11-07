@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { G } from '../ui/Gloss.jsx';
+import { ganickFor, GANICK_URL } from '../core/ganick.js';
 import { useLang } from '../i18n/useLang.jsx';
 import { Card, Section, Icon, Badge, Callout, BackBar, Bullets, Fold, openExternal } from '../ui/kit.jsx';
 import { GroupArt } from '../components/Art.jsx';
@@ -175,6 +176,7 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
           <div className="space-y-2 mt-3">
             {rec.options.map((o, i) => <OptionCard key={o.moa} o={o} rank={i + 1} />)}
           </div>
+          {track === 'organic' && <GanickProducts groupId={g.id} />}
           {rec.rotationWithheld && <div className="mt-4"><Callout tone="blue" icon="leaf">{ui('group.rotationSite')}</Callout></div>}
           {rec.rotation.length > 1 && (
             <div className="mt-4 rounded-2xl bg-paper border border-emerald-200 p-3">
@@ -304,3 +306,26 @@ function OptionCard({ o, rank }) {
 }
 
 export { TOX_TONE };
+
+// Organic only: the Mr. Ganick range as one of the viable options — name and actives, no doses.
+function GanickProducts({ groupId }) {
+  const { t, ui, lang } = useLang();
+  const list = ganickFor(groupId);
+  if (list.length === 0) return null;
+  return (
+    <div className="mt-4 rounded-2xl bg-paper border border-lime-400 p-3">
+      <div className="flex items-center gap-2 font-extrabold text-[1rem] text-lime-900"><Icon name="leaf" className="w-5 h-5 text-lime-700" />{ui('ganick.title')}</div>
+      <p className="mt-1 text-[0.8125rem] text-slate-500 leading-snug">{ui('ganick.note')}</p>
+      <ul className="mt-2 divide-y divide-slate-100">
+        {list.map(p => (
+          <li key={p.id} className="py-2">
+            <div className="font-extrabold text-[0.9375rem] text-slate-900">{p.name}{lang !== 'ms' && p.zh !== p.name && <span className="font-bold text-slate-600"> · {p.zh}</span>}</div>
+            <div className="text-[0.875rem] leading-snug text-slate-700"><b className="text-slate-600">{ui('ganick.actives')}:</b> <G>{p.actives.map(a => t(a)).join(' + ')}</G></div>
+            <div className="text-[0.875rem] leading-snug text-slate-700"><b className="text-slate-600">{ui('ganick.for')}:</b> {t(p.use)}</div>
+          </li>
+        ))}
+      </ul>
+      <a href={GANICK_URL} onClick={e => openExternal(e, GANICK_URL)} className="mt-1 inline-flex items-center min-h-[40px] text-[0.875rem] font-bold text-[#114b2d] underline">{ui('ganick.catalogue')} →</a>
+    </div>
+  );
+}
