@@ -26,6 +26,11 @@ do not "tidy them away".
 - **Every claim evidence-cited.** Durian sources first; otherwise say it comes from another
   crop or is a general reference (the `scope` on refs). If it cannot be verified, say
   "unverified" — never invent figures.
+- **No names in "does not work" statements** (legal letters are common in Malaysia): when a
+  source finds a product ineffective or unproven, name the type (systemic, diamide, …), not
+  the active. Recommended options keep their names, a cited ranking among them included
+  (e.g. "weaker than permethrin"), and so do safety warnings (bee toxicity, no effect on
+  water moulds). Same rule in the sister apps.
 - **Never name actives banned in Malaysia** anywhere in visible text (only the search answer
   in `REMOVED` may). Tests enforce this, in all three languages.
 - **China MRL** (`src/core/mrl.js`, GB 2763-2026): a durian or fruit-group limit if set,
