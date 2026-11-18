@@ -38,6 +38,9 @@ do not "tidy them away".
   - Fruit flies are a **minor** durian pest. Plant bugs mainly matter on **young trees**.
   - Validamycin is **FRAC U18** (no longer 26).
   - Fipronil around cankers is used against ants and insects feeding on the ooze.
+  - Ethiprole (IRAC 2B, same group as fipronil; new in Malaysia): stays in the chart data,
+    chemical list and rotation helper, but is **not** a recommended option on any pest page
+    until it is more widely adopted. It is not a rotation partner for fipronil.
 - **Mr. Ganick organic range** (`src/core/ganick.js`): organic products are hard to find in
   Malaysia and this reputable range is available, so its products sit **inside the option for
   their way of working** (e.g. T-MAX in insect-killing fungi), listed first. Ranking
