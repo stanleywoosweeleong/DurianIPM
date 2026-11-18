@@ -13,6 +13,7 @@ export const SPRAY_WHERE = {
   'fruit-borers': s('The fruit surface and fruit clusters, from young fruit onward — early, before larvae get inside.', '从幼果期开始喷果面和果串——要趁早，在幼虫钻进去之前。'),
   'fruit-flies': s('No cover spray. Spot-spray protein bait on trunks and lower leaves around the orchard edge; collect fallen fruit.', '不全面喷药。在果园边缘的树干和下部叶片上点喷蛋白诱饵；清理落果。'),
   'trunk-borers': s('Into the fresh holes after clearing out the frass, then the bark around them.', '先清除蛀屑，再把药注入新鲜蛀孔，然后处理周围树皮。'),
+  'bark-borers': { en: 'Clear the silk-and-sawdust ribbons first, then spray or swab the bark where they were, the hole openings and the branch forks; trunk and main branches to run-off, not the leaves.', zh: '先清掉丝和木屑结成的带，再喷或涂原来有带的树皮、孔口和枝杈；树干和主枝喷到药液流下，不用喷叶片。', ms: 'Bersihkan jalur sutera dan habuk kayu dahulu, kemudian sembur atau sapu kulit di tempat jalur itu, mulut lubang dan cabang dahan; batang dan dahan utama sehingga meleleh, bukan daun.' },
   'red-branch-borer': s('Into the borehole on the branch; cut off and burn branches that are already hollow.', '注入枝条上的蛀孔；已蛀空的枝条剪下烧毁。'),
   'shot-hole': s('The bark from the soil up to 2 m, plus the main forks, until it runs wet. Spray dry bark when no rain is coming — after scraping out rot and cutting dead wood.', '从土面到2米高的树皮及大枝分叉处，喷到湿润流下。在树皮干燥、不会下雨时喷——先刮除烂斑、锯掉枯木。'),
   'soil-pests': s('Soil drench at the trunk base and root zone, not the canopy.', '在树干基部和根区灌根，不喷树冠。'),

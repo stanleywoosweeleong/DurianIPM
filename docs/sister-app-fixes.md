@@ -30,3 +30,21 @@ App: https://stanleywoosweeleong.github.io/Mr.Ganickproductcatalogue/ (single `i
 - [x] **Spelling: "Papillionaceae" → "Papilionaceae"** (LEPID 007 SL, BST BOOST SP).
 - [x] **Whitefly is named "白粉蝶" in Chinese** (SCALE EX-LITE EW; problem `whitefly`).
       白粉蝶 is the cabbage white butterfly; whitefly is **粉虱**.
+
+## Stem, bark and pinhole borers — keep in step with Durian IPM (18 Nov 2026)
+Durian IPM now: (1) longhorn stem borer = Cerambycidae only, with Rhytidodera simulans and a
+second Batocera ("B. gultata" as printed, unverified) from Brown 1997; (2) a new **Bark borers**
+page (Indarbela/Squamura bark-eating caterpillars, Conopia/Synanthedon clearwing moths) — rarely
+kills a grown tree; (3) **chlorantraniliprole**: *Limited* on longhorn grubs (no tunnel trial; 38–55%
+vs imidacloprid 59–86% by trunk infusion on Anoplophora), *Best fit* on bark borers (best of 8 on
+Indarbela in pomegranate; US extension bark spray for clearwings); (4) **emamectin benzoate**:
+strongest longhorn evidence (89% fewer grubs, >99% less frass in year 2, Anoplophora, willow) and
+now *Good* for pinhole borers (Vietnam durian program; sycamore injection −65%);
+(5) pinhole borer species on durian: Xyleborus similis (trunk/base), X. fornicatus (branches after
+harvest) — Lương Thị Duyên et al. 2018, sanitation + light traps + stage-timed trunk sprays: 4% vs 32%.
+- [ ] **Trunk-disease app** — borer species list and any chlorantraniliprole wording to match.
+- [ ] **Pinholeborer app** — add the Vietnam durian program (timing: after harvest, each flush,
+      flowering, fruit set; light traps; remove attacked branches) and emamectin; X. similis on the trunk.
+      Do not name the banned active used in that program.
+- [ ] **Pest-MoA rotation guide** — check stem-borer rows: chlorantraniliprole is not a longhorn-grub tool.
+- [ ] **agripro-dipm-app** — its `moa.js` still lists chlorantraniliprole for the mango stem borer.
