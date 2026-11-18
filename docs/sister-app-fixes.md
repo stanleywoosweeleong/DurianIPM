@@ -42,9 +42,9 @@ strongest longhorn evidence (89% fewer grubs, >99% less frass in year 2, Anoplop
 now *Good* for pinhole borers (Vietnam durian program; sycamore injection −65%);
 (5) pinhole borer species on durian: Xyleborus similis (trunk/base), X. fornicatus (branches after
 harvest) — Lương Thị Duyên et al. 2018, sanitation + light traps + stage-timed trunk sprays: 4% vs 32%.
-- [ ] **Trunk-disease app** — borer species list and any chlorantraniliprole wording to match.
-- [ ] **Pinholeborer app** — add the Vietnam durian program (timing: after harvest, each flush,
+- [x] **Trunk-disease app** — borer species list and any chlorantraniliprole wording to match. (18 Nov: longhorn chemical evidence, bark-borer card, Vietnam durian result, three new sources; cache dtd-v2026-11-18-1.)
+- [x] **Pinholeborer app** — add the Vietnam durian program (timing: after harvest, each flush,
       flowering, fruit set; light traps; remove attacked branches) and emamectin; X. similis on the trunk.
-      Do not name the banned active used in that program.
-- [ ] **Pest-MoA rotation guide** — check stem-borer rows: chlorantraniliprole is not a longhorn-grub tool.
-- [ ] **agripro-dipm-app** — its `moa.js` still lists chlorantraniliprole for the mango stem borer.
+      Do not name the banned active used in that program. (18 Nov: done; cache borer-2026-1118-1.)
+- [x] **Pest-MoA rotation guide** — check stem-borer rows: chlorantraniliprole is not a longhorn-grub tool. (18 Nov: checked — its charts have no borer rows; nothing to change.)
+- [x] **agripro-dipm-app** — its `moa.js` still lists chlorantraniliprole for the mango stem borer. (18 Nov: fixed borer rows; also REMOVED its advice to inject chlorpyrifos — banned in Malaysia — into stem-borer holes, and the "systemic" pinhole-borer sprays.)
