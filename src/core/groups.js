@@ -123,10 +123,11 @@ export const GROUPS = [
       { moa: 'IRAC UN', only: ['azadirachtin', 'white-oil', 'soap'], fit: 'limited', why: { en: 'Neem, oil or soap kill nymphs they touch; spray leaf undersides. Adults fly off.', zh: '印楝、油剂或杀虫皂可杀死接触到的若虫；要喷到叶背。成虫会飞走。' } },
     ],
     avoid: [
-      { moa: 'IRAC 3A', why: { en: 'Pyrethroids: leafhoppers are widely resistant, and the spray kills their predators so numbers bounce back.', zh: '拟除虫菊酯：叶蝉普遍抗药，且药剂杀死天敌，使虫量反弹。' } },
+      { moa: 'IRAC 3A', why: { en: 'Pyrethroids: the cotton leafhopper Amrasca biguttula — close kin of the durian leafhoppers, and also recorded on durian — is resistant to pyrethroids in India and Pakistan, and the spray kills predators so numbers bounce back. No durian test found.', zh: '拟除虫菊酯：棉叶蝉 Amrasca biguttula——与榴莲上的叶蝉是近亲，也有在榴莲上的记录——在印度和巴基斯坦已对拟除虫菊酯产生抗性；而且药剂杀死天敌，使虫量反弹。未找到榴莲上的试验。', ms: 'Piretroid: bena kapas Amrasca biguttula — saudara dekat bena hijau durian, dan juga direkodkan pada durian — tahan terhadap piretroid di India dan Pakistan, dan semburan membunuh pemangsa jadi bilangannya naik semula. Tiada ujian pada durian ditemui.' } },
       { moa: 'IRAC 1B', why: { en: 'Old organophosphates: high resistance and high risk to people.', zh: '老式有机磷：抗性高，对人风险大。' } },
     ],
     refs: [
+      { t: "IRAC: Amrasca biguttula — pyrethroid (3A) resistance recorded in India and Pakistan", url: "https://irac-online.org/pests/amrasca_biguttula_biguttula/", supports: "Amrasca biguttula populations in India and Pakistan are resistant to pyrethroids (metabolic resistance)", scope: "other" },
       { t: 'Purdue CAPS datasheet — Amrasca biguttula (lists durian as a host): hopperburn symptoms', url: 'https://caps.ceris.purdue.edu/amrasca-biguttula-caps-datasheet_v2/', supports: 'hopperburn: yellow blotches and a yellow halo along leaf edges, then curling and browning', scope: 'other' },
       { t: 'Thepwatana — Durian pests: leafhoppers (Amrasca durianae) feed on buds and young leaves, which scorch and dry; worst during leaf flushing', url: 'https://thepwatana.com/en/blog/durian-pest-leafhoppers-and-durian-psyllid/', supports: 'durian leafhopper species; hopperburn on young flush; flush is the risk period', scope: 'durian' },
       { t: 'Wikipedia — List of durian diseases and pests (durian leafhopper, Amrasca durianae)', url: 'https://en.wikipedia.org/wiki/List_of_durian_diseases_and_pests', supports: 'Amrasca durianae is a recorded durian pest', scope: 'durian' },
