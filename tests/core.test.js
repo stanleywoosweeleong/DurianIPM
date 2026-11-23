@@ -329,9 +329,9 @@ test('alternation lesson stays, without the unsupported claims', () => {
   assert.ok(!text.includes('in half') && !text.includes('5–7 days later'));
 });
 
-test('farmers\' names for Phytophthora (黑头病 / black head / reput akar) find it in search', async () => {
+test('farmers\' names for Phytophthora (黑头病 / canker / reput akar) find it in search', async () => {
   const { searchKnownPests } = await import('../src/core/examples.js');
-  for (const q of ['黑头病', '黑头', 'black head', 'Black Head', 'reput akar', 'Reput Akar']) {
+  for (const q of ['黑头病', '黑头', 'canker', 'Canker', 'reput akar', 'Reput Akar']) {
     const ids = searchKnownPests(q).map(h => h.pest.id);
     assert.ok(ids.includes('phytophthora'), `"${q}" should find Phytophthora, got ${ids.join(', ') || 'nothing'}`);
   }

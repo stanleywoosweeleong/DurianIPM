@@ -49,11 +49,12 @@ harvest) — Lương Thị Duyên et al. 2018, sanitation + light traps + stage-
 - [x] **Pest-MoA rotation guide** — check stem-borer rows: chlorantraniliprole is not a longhorn-grub tool. (18 Nov: checked — its charts have no borer rows; nothing to change.)
 - [x] **agripro-dipm-app** — its `moa.js` still lists chlorantraniliprole for the mango stem borer. (18 Nov: fixed borer rows; also REMOVED its advice to inject chlorpyrifos — banned in Malaysia — into stem-borer holes, and the "systemic" pinhole-borer sprays.)
 
-## 23 Nov 2026 — farmers' name for Phytophthora: 黑头病 / black head / reput akar
+## 23 Nov 2026 — farmers' name for Phytophthora: 黑头病 / canker / reput akar
 
-Durian IPM now finds Phytophthora palmivora when farmers search 黑头病 (中文), black head (English)
-or reput akar (Bahasa Melayu, the owner's choice), and shows "俗称：黑头病" next to the technical name.
+Durian IPM now finds Phytophthora palmivora when farmers search 黑头病 (中文), canker (English)
+or reput akar (Bahasa Melayu); in everyday English farmers say **canker**, not "black head" (owner's choice), and shows "俗称：黑头病" next to the technical name.
 - [ ] **Pinholeborer app** — its Malay label for 黑头病 is "Kanser batang / kepala hitam (Phytophthora)".
       The owner uses **reput akar** for 黑头病 in Malay; align the wording, keep the technical term.
-- [ ] **Trunk-disease app** — add 黑头病 / black head / reput akar as names for Phytophthora where farmers
+- [ ] **Pinholeborer app** — its English label "Patch canker / black head (Phytophthora)": drop "black head".
+- [ ] **Trunk-disease app** — add 黑头病 / canker / reput akar as names for Phytophthora where farmers
       search or read, so the apps use the same name.

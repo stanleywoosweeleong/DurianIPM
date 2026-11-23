@@ -1208,7 +1208,7 @@ export const ALL_PESTS = [
     common: { en: 'Patch Canker / Root Rot', zh: '疫霉病 (树干溃疡 / 根腐病)' },
     scientific: 'Phytophthora palmivora',
     // The name many farmers use. Searchable, and shown as "also called" next to the technical name.
-    aka: { en: 'black head', zh: '黑头病', ms: 'reput akar' },
+    aka: { en: 'canker', zh: '黑头病', ms: 'reput akar' },
     genus: 'Phytophthora',
     family: 'Oomycete',
     target: { en: 'Roots, collar, trunk, fruit', zh: '根部，根颈，树干，果实' },
