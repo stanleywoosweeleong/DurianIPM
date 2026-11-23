@@ -14,7 +14,11 @@ export const RELATED = {
     ['oomycete', { en: 'In Malaysia, clearwing borers are recorded attacking the trunk after Phytophthora. Gum on the bark can be either — scrape to check.', zh: '马来西亚记录显示，透翅蛾常在疫霉之后侵害树干。树皮流胶两者都有可能——刮开看看。', ms: 'Di Malaysia, pengorek sayap jernih direkodkan menyerang batang selepas Phytophthora. Getah pada kulit boleh jadi salah satu — kikis untuk memeriksa.' }],
   ],
   oomycete: [
+    ['canker-dieback', { en: 'Dieback high in the branches, with sunken bark and pinpoint black dots or a pink crust, is a true fungus instead — Phytophthora fungicides will not touch it.', zh: '如果是树冠高处的枝枯，树皮凹陷、有针尖黑点或粉红菌壳，那是真菌——防疫霉的药对它没用。', ms: 'Mati rosot tinggi di dahan, dengan kulit cekung dan bintik hitam halus atau kerak merah jambu, ialah kulat sebenar — racun kulat Phytophthora tidak berkesan padanya.' }],
     ['bark-borers', { en: 'Clearwing caterpillars follow Phytophthora into the trunk. Brown frass mixed with the gum means borers are in too.', zh: '透翅蛾幼虫会跟着疫霉侵入树干。流胶里混有褐色虫粪，说明蛀虫也进去了。', ms: 'Ulat sayap jernih mengikut Phytophthora masuk ke batang. Najis perang bercampur getah bermakna pengorek juga ada.' }],
     ['shot-hole', s('Pinhole borers gather on Phytophthora-rotted bark, and their holes let more disease in.', '针孔小蠹聚集在被疫霉烂掉的树皮上，它们的孔又让更多病菌进入。')],
+  ],
+  'canker-dieback': [
+    ['oomycete', { en: 'A wet, dark canker on the trunk with reddish-brown ooze is usually Phytophthora. Scrape it: brown, wet rot under the bark points there.', zh: '树干上湿润、深色、流红褐色胶液的溃疡（黑头病）多半是疫霉。刮开看：树皮下是褐色湿烂，就是疫霉。', ms: 'Kanker basah dan gelap pada batang dengan getah perang kemerahan biasanya Phytophthora. Kikis: reput perang dan basah di bawah kulit menunjukkan Phytophthora.' }],
   ],
 };

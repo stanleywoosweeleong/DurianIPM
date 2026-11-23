@@ -1315,7 +1315,7 @@ export const ALL_PESTS = [
     part: 'Trunk/Branches',
     type: { en: 'Pathogen', zh: '病原体' },
     hiding: { en: 'Wounds, cracked bark, infected pruning cuts', zh: '伤口，破裂的树皮，受感染的修剪切口' },
-    symptoms: { en: 'Dieback of branches, dark oozing lesions on the trunk. Causes rapid black rotting of fruit post-harvest.', zh: '树枝枯死，树干上出现深色渗液的病斑。导致果实采后迅速出现黑腐。' },
+    symptoms: { en: 'Dieback of branches, dark lesions on branches and sometimes the trunk. A wet, oozing trunk canker is more often Phytophthora. Causes rapid black rotting of fruit post-harvest.', zh: '树枝枯死，枝条上（有时树干上）出现深色病斑。树干湿润流胶的溃疡更常是疫霉。导致果实采后迅速出现黑腐。', ms: 'Mati rosot dahan, luka gelap pada dahan dan kadangkala batang. Kanker batang yang basah dan bergetah lebih kerap Phytophthora. Menyebabkan buah reput hitam dengan cepat selepas tuai.' },
     activity: 'N/A',
     lifecycle: { en: 'Opportunistic wound pathogen that acts extremely fast under high heat and humidity. Spores land on fresh pruning cuts or sunscald wounds and can begin decaying wood or post-harvest fruit within 48 hours. Can lay dormant inside wood for months until tree gets stressed.', zh: '机会性伤口病原体，在高温高湿下发病极快。孢子落在新鲜的修剪切口或日灼伤口上，可在 48 小时内开始腐蚀木材或采后的果实。它可以休眠在木材内部数月，直到树木承受压力才爆发。' },
     symbiosis: { en: 'Often enters through sunscald, borer holes, or mechanical damage.', zh: '通常通过日灼、蛀虫孔或机械损伤进入。' },

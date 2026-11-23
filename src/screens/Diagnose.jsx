@@ -258,10 +258,12 @@ const COMMON = [
   ['thrips', { en: 'Thrips', zh: '蓟马' }],
   ['mites', { en: 'Mites', zh: '螨类' }],
   ['trunk-borers', { en: 'Stem borers', zh: '枝干蛀虫' }],
-  ['oomycete', { en: 'Phytophthora', zh: '疫霉病' }],
+  // Trunk canker (黑头病) is Phytophthora — say so on the tile, so farmers do not
+  // tap the fungal branch-dieback tile for it.
+  ['oomycete', { en: 'Phytophthora (canker)', zh: '疫霉病（黑头病）', ms: 'Phytophthora (kanker)' }],
   ['rhizoctonia', { en: 'Rhizoctonia', zh: '丝核菌叶枯' }],
   ['fusarium', { en: 'Fusarium rot', zh: '镰刀菌茎腐' }],
-  ['canker-dieback', { en: 'Dieback & canker', zh: '枝枯与溃疡' }],
+  ['canker-dieback', { en: 'Branch dieback', zh: '枝枯病', ms: 'Mati rosot dahan' }],
 ];
 
 function CommonProblems() {
