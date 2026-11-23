@@ -55,7 +55,7 @@ export const SIGNS = [
   { id: 'pinholes', parts: ['trunk'], label: { en: 'Many tiny holes (1–2 mm) with fine powder', zh: '许多小孔（1–2毫米）并有细粉' }, w: { 'shot-hole': 5, fusarium: 2, oomycete: 1 } },
   { id: 'branch-wilt', parts: ['trunk'], label: { en: 'One branch wilting beyond a hole or ring', zh: '某枝条在孔洞或环痕以外萎蔫' }, w: { 'trunk-borers': 3, 'canker-dieback': 2 } },
   { id: 'ooze', parts: ['trunk'], label: { en: 'Wet dark patch with reddish-brown ooze', zh: '湿润深色斑块并流出红褐色胶液' }, w: { oomycete: 5, 'canker-dieback': 1, 'shot-hole': 1 } },
-  { id: 'dieback', parts: ['trunk', 'leaf'], label: { en: 'Twigs dying back from the tips', zh: '枝梢从顶端向下枯死' }, w: { 'canker-dieback': 4, oomycete: 1 } },
+  { id: 'dieback', parts: ['trunk', 'leaf'], label: { en: 'Twigs dying back from the tips', zh: '枝梢从顶端向下枯死' }, w: { 'canker-dieback': 4, fusarium: 2, oomycete: 1 } },
   { id: 'pink-crust', parts: ['trunk'], label: { en: 'Pink or white crust spreading over branch forks', zh: '粉红色或白色菌壳在枝杈上蔓延' }, w: { 'canker-dieback': 4 } },
   { id: 'black-dots', parts: ['trunk'], label: { en: 'Pinpoint black dots on sunken bark', zh: '凹陷树皮上有针尖大小的黑点' }, w: { 'canker-dieback': 5 } },
   { id: 'pink-mould', parts: ['trunk'], label: { en: 'Branches die back fast: leaves yellow and drop within a week, wood brown-black inside, often with beetle pinholes', zh: '枝条迅速枯死：叶片一周内发黄脱落，木质部内呈褐黑色，常伴有小蠹针孔' }, w: { fusarium: 5 } },
