@@ -78,8 +78,9 @@ or upward spread.
 - [x] **Pest-MoA rotation guide** — checked: no canker, dieback or Phytophthora content.
 - [x] **Pinholeborer app** — its full Phytophthora step says "repeated after 21 days". The trunk-disease
       app gives no such interval; find a source or reword (the "second treatment" calendar entry uses it).
-      (23 Nov: day 21 is now a check — still spreading? treat again — labelled a rule of thumb; injection
-      2–3 times a year as each flush matures, from ACIAR; Guest et al. 2004 added to its sources.)
+      (23 Nov: owner — 21 days is too late. The lesion edge is now checked every 7 days (days 7, 14, 21 in
+      the calendar, moderate and severe trees), labelled a rule of thumb; injection 2–3 times a year as each
+      flush matures, from ACIAR; Guest et al. 2004 added. Trunk-disease app and Durian IPM now say every week too.)
 - [x] **Trunk-disease app** — symptom s8 ("dead leaves clinging, flagging") and the dieback arrow
       ("travels down") are general pathology with no durian source; label them as general. (23 Nov: done.)
 - [ ] **All three apps** — the white/pink mould sign for Fusarium is from the genus in general; replace
