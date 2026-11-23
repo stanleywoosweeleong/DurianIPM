@@ -14,6 +14,8 @@ import { examplesFor } from '../core/examples.js';
 import { SPRAY_WHERE } from '../core/sprayWhere.js';
 import { RELATED } from '../core/related.js';
 import { BorerGrade } from '../ui/BorerGrade.jsx';
+import { TellApart } from '../ui/TellApart.jsx';
+import { TELL_APART_GROUPS } from '../core/tellApart.js';
 import { MrlLine } from '../ui/MrlLine.jsx';
 import { coverFor } from '../core/photos.js';
 import { STAGES } from '../core/stages.js';
@@ -142,6 +144,7 @@ export default function GroupPage({ id, orchard, setOrchard, intro = null, onBac
           </div>
         </div>
       )}
+      {TELL_APART_GROUPS.includes(g.id) && <TellApart />}
       {g.chem.length === 0 ? (
         <Section><Callout tone="blue" icon="leaf">{ui('group.noChem')}</Callout></Section>
       ) : (
