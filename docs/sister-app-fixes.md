@@ -49,12 +49,36 @@ harvest) — Lương Thị Duyên et al. 2018, sanitation + light traps + stage-
 - [x] **Pest-MoA rotation guide** — check stem-borer rows: chlorantraniliprole is not a longhorn-grub tool. (18 Nov: checked — its charts have no borer rows; nothing to change.)
 - [x] **agripro-dipm-app** — its `moa.js` still lists chlorantraniliprole for the mango stem borer. (18 Nov: fixed borer rows; also REMOVED its advice to inject chlorpyrifos — banned in Malaysia — into stem-borer holes, and the "systemic" pinhole-borer sprays.)
 
-## 23 Nov 2026 — farmers' name for Phytophthora: 黑头病 / canker / reput akar
+## 23 Nov 2026 — farmers' name for Phytophthora: 黑头病 / canker / kanker
 
 Durian IPM now finds Phytophthora palmivora when farmers search 黑头病 (中文), canker (English)
-or reput akar (Bahasa Melayu); in everyday English farmers say **canker**, not "black head" (owner's choice), and shows "俗称：黑头病" next to the technical name.
-- [ ] **Pinholeborer app** — its Malay label for 黑头病 is "Kanser batang / kepala hitam (Phytophthora)".
+or kanker (Bahasa Melayu; reput akar until 23 Nov); in everyday English farmers say **canker**, not "black head" (owner's choice), and shows "俗称：黑头病" next to the technical name.
+- [x] **Pinholeborer app** — its Malay label for 黑头病 is "Kanser batang / kepala hitam (Phytophthora)".
       The owner uses **reput akar** for 黑头病 in Malay; align the wording, keep the technical term.
-- [ ] **Pinholeborer app** — its English label "Patch canker / black head (Phytophthora)": drop "black head".
-- [ ] **Trunk-disease app** — add 黑头病 / canker / reput akar as names for Phytophthora where farmers
+- [x] **Pinholeborer app** — its English label "Patch canker / black head (Phytophthora)": drop "black head".
+- [x] **Trunk-disease app** — add 黑头病 / canker / reput akar as names for Phytophthora where farmers
       search or read, so the apps use the same name.
+  (23 Nov: owner's decision — the Malay name is **kanker** in all apps, not reput akar. Pinholeborer now
+  "Canker / patch canker" and "Kanker batang (Phytophthora)"; trunk-disease app's Phytophthora entry names
+  it the usual trunk canker — 黑头病 / canker / kanker; Durian IPM's "also called" in Malay is kanker.)
+
+## 23 Nov 2026 — trunk canker is Phytophthora; Fusarium on durian; "Dieback or Fusarium?" card
+
+Durian IPM: the "Dieback & canker" tile was opening the true-fungus branch page, while the trunk canker
+farmers mean (黑头病) is Phytophthora. Tiles now read "Phytophthora (canker)" and "Branch dieback".
+Fusarium on durian (Pongpisutta et al. 2023, Plants 12:3045; Chantarasiri & Boontanom 2021, New Dis
+Rep 44:e12026; Jiang et al. 2026, Pathogens 15:849) shows on branches, forks and trunk, linked to pinhole
+borers, leaves yellow and drop in 5–7 days, brown-to-black wood; no durian study reports a collar start
+or upward spread.
+- [x] **Trunk-disease app** — Phytophthora named the usual trunk canker; phosphonate (paint / bark spray)
+      and trunk injection as separate Field steps; Fusarium pathway redrawn and rewritten to the durian
+      studies; symptom notes say what is durian evidence and what is general; card added to Triage.
+- [x] **Pinholeborer app** — canker naming; Phytophthora steps split phosphonate from injection;
+      only F. solani linked to the beetle; card added to Identify ("Lasiodiplodia dieback or Fusarium?").
+- [x] **Pest-MoA rotation guide** — checked: no canker, dieback or Phytophthora content.
+- [ ] **Pinholeborer app** — its full Phytophthora step says "repeated after 21 days". The trunk-disease
+      app gives no such interval; find a source or reword (the "second treatment" calendar entry uses it).
+- [ ] **Trunk-disease app** — symptom s8 ("dead leaves clinging, flagging") and the dieback arrow
+      ("travels down") are general pathology with no durian source; label them as general.
+- [ ] **All three apps** — the white/pink mould sign for Fusarium is from the genus in general; replace
+      or confirm if a Malaysian durian study turns up.
