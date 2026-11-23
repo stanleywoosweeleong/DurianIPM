@@ -23,7 +23,7 @@ export const SPRAY_WHERE = {
   nematodes: s('Root zone drench, under the canopy edge where the feeder roots are.', '根区灌根，在树冠滴水线下吸收根所在处。'),
   oomycete: s('Trunk lesions (scrape and paint) and the soil around the trunk; nursery: the polybag soil.', '树干病斑（刮除后涂药）及树干周围土壤；苗圃：营养袋土壤。'),
   'canker-dieback': { en: 'Pruning cuts and scraped branch lesions (paint them), and the branch forks; pink disease starts in the forks.', zh: '修剪伤口和刮净的枝条病斑（涂药），以及枝桠分叉处；粉红病从分叉处开始。', ms: 'Kesan cantasan dan luka dahan yang telah dikikis (sapukan), dan cabang dahan; penyakit merah jambu bermula di cabang dahan.' },
-  fusarium: s('Cut surfaces and scraped lesion edges, and the trunk base — after cutting out dead wood, not instead of it.', '切面、刮净的病斑边缘以及树干基部——在锯除枯木之后，而不是代替锯除。'),
+  fusarium: { en: 'Cut surfaces and scraped lesion edges on branches, forks and the trunk — after cutting out dead and bored wood, not instead of it.', zh: '枝条、分叉处和树干上的切面与刮净的病斑边缘——在锯除枯木和被蛀木头之后，而不是代替锯除。', ms: 'Permukaan potongan dan pinggir lesi yang dikikis pada dahan, cabang dan batang — selepas memotong kayu mati dan yang dikorek, bukan sebagai gantinya.' },
   'leaf-spots': s('The whole canopy, including flowers and young fruit when anthracnose is active.', '整个树冠；炭疽病发生时包括花和幼果。'),
   rhizoctonia: s('Young flush and seedlings, and the lower canopy where leaves stay wet.', '嫩梢和幼苗，以及叶片长期潮湿的下层树冠。'),
   'root-fungi': s('Dig a trench to cut root contact with sick trees, then drench deep around the collar and main roots.', '挖隔离沟切断与病树的根系接触，然后在根颈和主根周围深层灌根。'),

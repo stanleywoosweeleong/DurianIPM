@@ -904,11 +904,11 @@ export const GROUPS = [
     examples: { en: 'Fusarium solani, F. incarnatum — often carried in by ambrosia beetles', zh: '腐皮镰刀菌、半裸镰刀菌——常由小蠹虫带入' },
     taxon: { en: 'Ascomycota: Nectriaceae (true fungi)', zh: '子囊菌门：丛赤壳科（真菌）' },
     feeding: 'pathogen',
-    hides: { en: 'In the bark and wood near the trunk base and in bored branches; enters through wounds, beetle holes and a collar that stays wet', zh: '在根颈附近及被蛀枝条的树皮和木质部中；从伤口、小蠹孔和长期潮湿的根颈侵入' },
+    hides: { en: 'In the bark and wood of branches, forks and the trunk, and in bored branches; enters through wounds and beetle holes', zh: '在枝条、分叉处和树干的树皮与木质部中，以及被蛀的枝条里；从伤口和小蠹孔侵入', ms: 'Dalam kulit dan kayu dahan, cabang dan batang, serta dalam dahan yang dikorek; masuk melalui luka dan lubang kumbang' },
     damagingStage: { en: 'Grows inside bark and wood; spreads with beetles and wet soil', zh: '在树皮和木质部内生长；随小蠹虫和潮湿土壤传播' },
     why: {
-      en: 'A true fungus, not Phytophthora — so Phytophthora fungicides do not touch it. In Thai orchards it caused dieback with yellow leaves dropping within a week and brown-to-black wood inside; ambrosia beetles were found carrying it. There is no tested spray for durian, so the cure is cutting out dead wood, a dry trunk base and a strong tree.',
-      zh: '这是真菌，不是疫霉——所以防疫霉的药对它无效。在泰国果园里，它引起枝枯：叶片发黄、一周内脱落，木质部内部呈褐色至黑色；还发现小蠹虫携带这种菌。榴莲上没有经过试验的有效药剂，所以办法是锯掉枯木、保持根颈干燥、养好树势。',
+      en: 'A true fungus, not Phytophthora — so Phytophthora fungicides do not touch it. In Thai orchards it caused dieback with yellow leaves dropping within a week and brown-to-black wood inside; an ambrosia beetle was linked with it. There is no tested spray for durian, so the cure is cutting out dead and bored wood, dealing with the beetles and keeping the tree strong.',
+      zh: '这是真菌，不是疫霉——所以防疫霉的药对它无效。在泰国果园里，它引起枝枯：叶片发黄、一周内脱落，木质部内部呈褐色至黑色；还发现一种小蠹与这种菌有关联。榴莲上没有经过试验的有效药剂，所以办法是锯掉枯木和被蛀的木头、处理小蠹、养好树势。',
     },
     scout: {
       en: 'In Hainan, durian Fusarium stem rot showed rough grey-white to light-brown lesions on branches and forks, sticky yellow-brown ooze from cracks, and brown-black bark underneath. In Thai durian orchards: leaves yellow and drop within 5–7 days, branch tips show brown-black lesions and bark grooves, and the wood is discoloured inside — often with ambrosia beetle sawdust. To tell it from other trunk problems, scrape the lesion edge: rust-coloured ooze and wet rot = Phytophthora; pinpoint black dots = dieback fungi (Lasiodiplodia); whitish to pinkish spore pads, if present, point to Fusarium.',
@@ -917,12 +917,12 @@ export const GROUPS = [
     threshold: { en: 'Act at first sign — the longer dead wood stays, the more beetles breed in it.', zh: '初见症状即处理——枯木留得越久，在里面繁殖的小蠹越多。' },
     nonChem: [
       { en: 'Cut out dead and bored wood back to healthy wood, and burn it — it is where the beetles breed.', zh: '把枯死和被蛀的木头锯到健康部位，并烧掉——那是小蠹繁殖的地方。' },
-      { en: 'Pull mulch and soil away from the trunk base and fix drainage — a collar that stays wet lets the fungus in.', zh: '把覆盖物和泥土从树干基部扒开，并做好排水——长期潮湿的根颈会让病菌侵入。' },
+      { en: 'Keep the trunk base dry: pull mulch and soil away and fix drainage. On durian this is proven against Phytophthora; for Fusarium it is general advice, since the durian studies found it on branches, forks and the trunk.', zh: '保持树干基部干燥：扒开覆盖物和泥土，做好排水。在榴莲上这是防疫霉的做法；对镰刀菌只是一般建议，因为榴莲研究发现它在枝条、分叉处和树干上。', ms: 'Pastikan pangkal batang kering: alihkan sungkupan dan tanah serta baiki saliran. Pada durian ini terbukti untuk Phytophthora; untuk Fusarium ia nasihat umum, kerana kajian durian menemuinya pada dahan, cabang dan batang.' },
       { en: 'Disinfect tools between trees (70% alcohol for 30 seconds).', zh: '每棵树之间消毒工具（70%酒精30秒）。' },
       { en: 'Avoid wounding the collar with grass cutters and fertiliser hoes.', zh: '避免除草机和施肥锄伤到根颈。' },
     ],
     chem: [
-      { moa: 'BIO-FUN', only: ['trichoderma', 'bacillus-subtilis'], fit: 'good', why: { en: 'Bacillus subtilis strain SYST2 gave 53.51% field control of durian Fusarium stem rot in Hainan (2026) — moderate, not a cure. Trichoderma paste on cut surfaces and Bacillus on the trunk base, as protection after clean-up.', zh: '清理后在切面涂木霉膏、在树干基部用芽孢杆菌作保护。枯草芽孢杆菌SYST2在海南榴莲镰刀菌茎腐田间防效为53.51%（2026）——中等，不是根治。' } },
+      { moa: 'BIO-FUN', only: ['trichoderma', 'bacillus-subtilis'], fit: 'good', why: { en: 'Bacillus subtilis strain SYST2 gave 53.51% field control of durian Fusarium stem rot in Hainan (2026) — moderate, not a cure. Trichoderma paste on cut surfaces and Bacillus on the trunk and lesion edges, as protection after clean-up.', zh: '清理后在切面涂木霉膏、在树干和病斑边缘用芽孢杆菌作保护。枯草芽孢杆菌SYST2在海南榴莲镰刀菌茎腐田间防效为53.51%（2026）——中等，不是根治。' } },
       { moa: 'FRAC 3', only: ['difenoconazole', 'hexaconazole', 'propiconazole', 'tebuconazole'], fit: 'limited', why: { en: 'Triazoles are active on Fusarium in principle, but there is no durian trial, and systemics reach dead wood poorly. Only after cutting out, never instead of it.', zh: '三唑类原理上对镰刀菌有效，但榴莲上没有试验，而且内吸药很难到达死木质。只能在锯除之后使用，不能代替锯除。' } },
     ],
     avoid: [
