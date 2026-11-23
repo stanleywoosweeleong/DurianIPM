@@ -85,6 +85,7 @@ export const UI_STRINGS = {
     learnMore: s('Quick lessons', '快速课程'),
     pickStage: s('Set your crop stage to see what to watch for.', '设置物候期，查看需要关注的问题。'),
     searchKnown: s('Search a known pest name…', '搜索已知害虫名称…'),
+    aka: s3('Also called: ', '俗称：', 'Juga dipanggil: '),
   },
   diag: {
     step: s('Step', '步骤'),

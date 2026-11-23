@@ -59,12 +59,14 @@ export function groupOfPest(pestId) {
 }
 
 /** Search the known-pest catalogue (both languages + scientific name). */
-export function searchKnownPests(q) {
+// extraNames(pest) can add names, e.g. the name shown in the current language (Malay comes from ms.json in the app).
+export function searchKnownPests(q, extraNames = () => []) {
   const s = q.trim().toLowerCase();
   if (!s) return [];
-  return ALL_PESTS.filter(p =>
-    p.common.en.toLowerCase().includes(s) || p.common.zh.includes(s) || p.scientific.toLowerCase().includes(s)
-  ).map(p => ({ pest: p, groupId: groupOfPest(p.id) }));
+  // English and Chinese names, the scientific name, any name farmers also use (aka, e.g. 黑头病), plus extraNames
+  const names = p => [p.common.en, p.common.zh, p.scientific, ...(p.aka ? Object.values(p.aka) : []), ...extraNames(p)];
+  return ALL_PESTS.filter(p => names(p).some(n => typeof n === 'string' && n.toLowerCase().includes(s)))
+    .map(p => ({ pest: p, groupId: groupOfPest(p.id) }));
 }
 
 export const MAPPED_IDS = new Set(Object.values(MAP).flat());

@@ -220,7 +220,8 @@ export default function Diagnose({ orchard, setOrchard }) {
 function KnownSearch() {
   const { t, ui } = useLang();
   const [q, setQ] = useState('');
-  const hits = useMemo(() => searchKnownPests(q).slice(0, 6), [q]);
+  // Also match the name shown in the current language, so Malay names work in BM
+  const hits = useMemo(() => searchKnownPests(q, p => [t(p.common)]).slice(0, 6), [q, t]);
   return (
     <div>
       <div className="relative">
@@ -235,6 +236,7 @@ function KnownSearch() {
             <a key={pest.id} href={href(`group/${groupId}`)} className="flex items-center justify-between gap-2 p-3 rounded-xl bg-paper border border-slate-200">
               <div className="min-w-0">
                 <div className="font-bold text-[0.9375rem] leading-tight">{t(pest.common)}</div>
+                {pest.aka && !t(pest.common).toLowerCase().includes(t(pest.aka).toLowerCase()) && <div className="text-[0.8125rem] text-slate-600">{ui('home.aka')}{t(pest.aka)}</div>}
                 <div className="text-[0.8125rem] italic text-slate-500 truncate">{pest.scientific}</div>
               </div>
               <Badge tone="green">{t(groupById(groupId)?.name)}</Badge>
