@@ -76,9 +76,11 @@ or upward spread.
 - [x] **Pinholeborer app** — canker naming; Phytophthora steps split phosphonate from injection;
       only F. solani linked to the beetle; card added to Identify ("Lasiodiplodia dieback or Fusarium?").
 - [x] **Pest-MoA rotation guide** — checked: no canker, dieback or Phytophthora content.
-- [ ] **Pinholeborer app** — its full Phytophthora step says "repeated after 21 days". The trunk-disease
+- [x] **Pinholeborer app** — its full Phytophthora step says "repeated after 21 days". The trunk-disease
       app gives no such interval; find a source or reword (the "second treatment" calendar entry uses it).
-- [ ] **Trunk-disease app** — symptom s8 ("dead leaves clinging, flagging") and the dieback arrow
-      ("travels down") are general pathology with no durian source; label them as general.
+      (23 Nov: day 21 is now a check — still spreading? treat again — labelled a rule of thumb; injection
+      2–3 times a year as each flush matures, from ACIAR; Guest et al. 2004 added to its sources.)
+- [x] **Trunk-disease app** — symptom s8 ("dead leaves clinging, flagging") and the dieback arrow
+      ("travels down") are general pathology with no durian source; label them as general. (23 Nov: done.)
 - [ ] **All three apps** — the white/pink mould sign for Fusarium is from the genus in general; replace
       or confirm if a Malaysian durian study turns up.
